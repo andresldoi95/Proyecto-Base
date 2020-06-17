@@ -12,7 +12,7 @@
     <template slot="end">
       <b-navbar-item tag="div">
         <div class="buttons">
-          <a class="button is-primary">{{ $t('link.login') }}</a>
+          <router-link :to="{ name: 'Login' }" class="button is-primary">{{ $t('link.login') }}</router-link>
         </div>
       </b-navbar-item>
     </template>

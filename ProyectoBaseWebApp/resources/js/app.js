@@ -22,8 +22,8 @@ const routes = require("./routes/router").default;
 const router = new VueRouter(routes);
 const messages = require("./lang/translator").default;
 const i18n = new VueI18n({
-    locale: "es",
-    messages,
+    locale: "en",
+    messages
 });
 //Instanciando VueJS en el proyecto con sus diferentes recursos
 const app = new Vue({
@@ -31,7 +31,7 @@ const app = new Vue({
     router,
     store,
     components: {
-        App,
+        App
     },
-    el: "#app",
+    el: "#app"
 });
