@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsersTable extends Migration
+class CreateRolsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,21 +13,17 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('roles', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->char('es_superadmin', 1)->default('N');
-            $table->rememberToken();
+            $table->unsignedBigInteger('empresa_id');
+            $table->string('nombre');
+            $table->string('descripcion', 500);
             $table->timestamps();
             $table->unsignedBigInteger('creador_id')->nullable();
             $table->unsignedBigInteger('modificador_id')->nullable();
-        });
-        Schema::table('users', function (Blueprint $table) {
             $table->foreign('creador_id')->references('id')->on('users');
             $table->foreign('modificador_id')->references('id')->on('users');
+            $table->foreign('empresa_id')->references('id')->on('empresas');
         });
     }
 
@@ -38,6 +34,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('roles');
     }
 }
