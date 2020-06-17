@@ -16,9 +16,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'es_superadmin', 'creador_id', 'modificador_id'
+        'name', 'email', 'password', 'es_superadmin', 'creador_id', 'modificador_id', 'estado'
     ];
 
+    public function scopeActive($query)
+    {
+        return $query->where('estado', 'A');
+    }
     public function creador()
     {
         return $this->belongsTo('App\User');

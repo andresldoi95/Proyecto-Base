@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->char('es_superadmin', 1)->default('N');
+            $table->char('estado', 1)->default('A');
             $table->rememberToken();
             $table->timestamps();
             $table->unsignedBigInteger('creador_id')->nullable();

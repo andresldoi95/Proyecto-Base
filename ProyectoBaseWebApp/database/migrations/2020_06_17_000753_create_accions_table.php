@@ -17,7 +17,9 @@ class CreateAccionsTable extends Migration
             $table->string('id', 60)->primary();
             $table->string('descripcion');
             $table->char('estado', 1)->default('A');
+            $table->string('modulo_id', 10);
             $table->timestamps();
+            $table->foreign('modulo_id')->references('id')->on('modulos');
         });
     }
 
