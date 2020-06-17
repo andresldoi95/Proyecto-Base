@@ -18,6 +18,7 @@ class CreateRolsTable extends Migration
             $table->unsignedBigInteger('empresa_id');
             $table->string('nombre');
             $table->string('descripcion', 500);
+            $table->char('estado', 1)->default('A');
             $table->timestamps();
             $table->unsignedBigInteger('creador_id')->nullable();
             $table->unsignedBigInteger('modificador_id')->nullable();

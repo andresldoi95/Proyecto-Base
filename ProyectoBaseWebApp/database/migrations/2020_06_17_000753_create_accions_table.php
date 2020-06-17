@@ -16,6 +16,7 @@ class CreateAccionsTable extends Migration
         Schema::create('acciones', function (Blueprint $table) {
             $table->string('id', 60)->primary();
             $table->string('descripcion');
+            $table->char('estado', 1)->default('A');
             $table->timestamps();
         });
     }
