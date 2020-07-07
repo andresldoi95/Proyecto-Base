@@ -7,7 +7,8 @@ export default {
     message: {
         derechosReservados: "All rights reserved",
         acceso_exitoso: "Successful access!",
-        invalid_credentials: "Invalid credentials!"
+        invalid_credentials: "Invalid credentials!",
+        usuario_inactivo: "Your user is inactive!"
     },
     title: {
         login: "Login",

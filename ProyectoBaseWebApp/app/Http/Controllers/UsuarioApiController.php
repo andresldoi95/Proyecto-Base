@@ -8,6 +8,7 @@ class UsuarioApiController extends Controller
 {
     public function index(Request $request)
     {
-        return $request->user();
+        $user = $request->user();
+        return $user;
     }
 }

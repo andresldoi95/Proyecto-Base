@@ -74,6 +74,13 @@ export default {
         password: undefined
       }
     };
+  },
+  mounted: function() {
+    if (this.$session.exists()) {
+      this.$router.push({
+        name: "Home"
+      });
+    }
   }
 };
 </script>

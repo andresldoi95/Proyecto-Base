@@ -1,4 +1,5 @@
 const urlApi = process.env.MIX_APP_URL_API;
+import { i18n } from "vue-i18n";
 
 export default {
     state: {

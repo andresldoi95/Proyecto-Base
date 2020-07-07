@@ -20,21 +20,6 @@ Vue.use(VueSession);
 const store = new Vuex.Store(require("./plugins/store").default);
 const routes = require("./routes/router").default;
 const router = new VueRouter(routes);
-router.beforeEach((to, from, next) => {
-    if (to.matched.some(record => record.meta.requiresAuth)) {
-        if (store.state.token === "") {
-            next({
-                name: "Login"
-            });
-        } else next();
-    } else if (to.matched.some(record => record.meta.guest)) {
-        if (store.state.token !== "") {
-            next({
-                name: "Home"
-            });
-        } else next();
-    } else next();
-});
 const messages = require("./lang/translator").default;
 const i18n = new VueI18n({
     locale: "en",
@@ -69,4 +54,20 @@ const app = new Vue({
         App
     },
     el: "#app"
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (!app.$session.exists()) {
+            next({
+                name: "Login"
+            });
+        } else next();
+    } else if (to.matched.some(record => record.meta.guest)) {
+        if (app.$session.exists()) {
+            next({
+                name: "Home"
+            });
+        } else next();
+    } else next();
 });

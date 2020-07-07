@@ -2041,6 +2041,13 @@ __webpack_require__.r(__webpack_exports__);
         password: undefined
       }
     };
+  },
+  mounted: function mounted() {
+    if (this.$session.exists()) {
+      this.$router.push({
+        name: "Home"
+      });
+    }
   }
 });
 
@@ -36900,25 +36907,6 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store(__webpack_req
 var routes = __webpack_require__(/*! ./routes/router */ "./resources/js/routes/router.js")["default"];
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__["default"](routes);
-router.beforeEach(function (to, from, next) {
-  if (to.matched.some(function (record) {
-    return record.meta.requiresAuth;
-  })) {
-    if (store.state.token === "") {
-      next({
-        name: "Login"
-      });
-    } else next();
-  } else if (to.matched.some(function (record) {
-    return record.meta.guest;
-  })) {
-    if (store.state.token !== "") {
-      next({
-        name: "Home"
-      });
-    } else next();
-  } else next();
-});
 
 var messages = __webpack_require__(/*! ./lang/translator */ "./resources/js/lang/translator.js")["default"];
 
@@ -36953,6 +36941,25 @@ var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
     App: _components_App__WEBPACK_IMPORTED_MODULE_8__["default"]
   },
   el: "#app"
+});
+router.beforeEach(function (to, from, next) {
+  if (to.matched.some(function (record) {
+    return record.meta.requiresAuth;
+  })) {
+    if (!app.$session.exists()) {
+      next({
+        name: "Login"
+      });
+    } else next();
+  } else if (to.matched.some(function (record) {
+    return record.meta.guest;
+  })) {
+    if (app.$session.exists()) {
+      next({
+        name: "Home"
+      });
+    } else next();
+  } else next();
 });
 
 /***/ }),
@@ -37320,7 +37327,8 @@ __webpack_require__.r(__webpack_exports__);
   message: {
     derechosReservados: "All rights reserved",
     acceso_exitoso: "Successful access!",
-    invalid_credentials: "Invalid credentials!"
+    invalid_credentials: "Invalid credentials!",
+    usuario_inactivo: "Your user is inactive!"
   },
   title: {
     login: "Login",
@@ -37355,7 +37363,8 @@ __webpack_require__.r(__webpack_exports__);
   message: {
     derechosReservados: "Todos los derechos reservados",
     acceso_exitoso: "¡Su acceso ha sido exitoso!",
-    invalid_credentials: "¡Credenciales inválidas!"
+    invalid_credentials: "¡Credenciales inválidas!",
+    usuario_inactivo: "Tu usuario se encuentra inactivo."
   },
   title: {
     login: "Iniciar sesión",
@@ -37397,7 +37406,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-i18n */ "./node_modules/vue-i18n/dist/vue-i18n.esm.js");
 var urlApi = "http://127.0.0.1:8000/api";
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: {
     empresas: [],
