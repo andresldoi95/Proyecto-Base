@@ -1,5 +1,6 @@
 import Home from "../components/Home";
 import Login from "../components/auth/Login";
+import Admin from "../components/layouts/AdminPanel";
 export default {
     mode: "history",
     routes: [
@@ -17,6 +18,14 @@ export default {
             name: "Login",
             meta: {
                 guest: true
+            }
+        },
+        {
+            path: "/admin",
+            component: Admin,
+            name: "Admin",
+            meta: {
+                requiresAuth: true
             }
         }
     ]

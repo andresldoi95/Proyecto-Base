@@ -2,7 +2,8 @@ export default {
     link: {
         login: "Login",
         home: "Home",
-        logout: "Logout"
+        logout: "Logout",
+        admin: "Admin panel"
     },
     message: {
         derechosReservados: "All rights reserved",
@@ -12,7 +13,9 @@ export default {
     },
     title: {
         login: "Login",
-        access: "Access to the system with your username and password"
+        access: "Access to the system with your username and password",
+        dashboard: "Dashboard",
+        menu: "Menu"
     },
     etiqueta: {
         username: "Username",

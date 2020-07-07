@@ -2,7 +2,8 @@ export default {
     link: {
         login: "Iniciar sesión",
         home: "Inicio",
-        logout: "Cerrar sesión"
+        logout: "Cerrar sesión",
+        admin: "Panel de administración"
     },
     message: {
         derechosReservados: "Todos los derechos reservados",
@@ -12,7 +13,9 @@ export default {
     },
     title: {
         login: "Iniciar sesión",
-        access: "Accede al sistema con tu nombre de usuario y contraseña"
+        access: "Accede al sistema con tu nombre de usuario y contraseña",
+        dashboard: "Dashboard",
+        menu: "Menu"
     },
     etiqueta: {
         username: "Nombre de usuario",

@@ -7,6 +7,7 @@
     </template>
     <template slot="start">
       <b-navbar-item tag="router-link" :to="{ name: 'Home' }">{{ $t('link.home') }}</b-navbar-item>
+      <b-navbar-item tag="router-link" :to="{ name: 'Admin' }">{{ $t('link.admin') }}</b-navbar-item>
     </template>
 
     <template slot="end">

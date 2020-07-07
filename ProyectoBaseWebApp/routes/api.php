@@ -20,4 +20,9 @@ Route::group(['middleware' => 'auth:api'], function () {
             'create', 'edit'
         ]
     ]);
+    Route::resource('empresas', 'EmpresaController', [
+        'except' => [
+            'create', 'edit'
+        ]
+    ]);
 });
