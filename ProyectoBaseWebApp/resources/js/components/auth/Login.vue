@@ -45,9 +45,12 @@ export default {
         .then(({ data }) => {
           this.$session.start();
           let token = data.access_token;
-          this.$store.commit("update", token);
+          this.$store.dispatch("loggedIn", token);
           this.$session.set("oauth2", token);
           this.$buefy.toast.open(this.$t("message.acceso_exitoso"));
+          this.$router.push({
+            name: "Home"
+          });
         })
         .catch(({ response }) => {
           let status = response.status;

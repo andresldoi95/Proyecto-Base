@@ -13,6 +13,11 @@ export default {
   components: {
     MHeader,
     MFooter
+  },
+  mounted: function() {
+    if (this.$session.exists()) {
+      this.$store.dispatch("loggedIn", this.$session.get("oauth2"));
+    }
   }
 };
 </script>

@@ -1924,6 +1924,11 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     MHeader: _layouts_Header__WEBPACK_IMPORTED_MODULE_0__["default"],
     MFooter: _layouts_Footer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  mounted: function mounted() {
+    if (this.$session.exists()) {
+      this.$store.dispatch("loggedIn", this.$session.get("oauth2"));
+    }
   }
 });
 
@@ -2003,11 +2008,15 @@ __webpack_require__.r(__webpack_exports__);
 
         var token = data.access_token;
 
-        _this.$store.commit("update", token);
+        _this.$store.dispatch("loggedIn", token);
 
         _this.$session.set("oauth2", token);
 
         _this.$buefy.toast.open(_this.$t("message.acceso_exitoso"));
+
+        _this.$router.push({
+          name: "Home"
+        });
       })["catch"](function (_ref2) {
         var response = _ref2.response;
         var status = response.status;
@@ -2100,7 +2109,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    logout: function logout() {
+      this.$store.dispatch("loggedOut");
+      this.$session.destroy();
+      this.$router.push({
+        name: "Login"
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -20401,23 +20423,34 @@ var render = function() {
         "template",
         { slot: "end" },
         [
-          _c("b-navbar-item", { attrs: { tag: "div" } }, [
-            _c(
-              "div",
-              { staticClass: "buttons" },
-              [
+          _vm.$store.state.usuario.id !== ""
+            ? _c(
+                "b-navbar-dropdown",
+                { attrs: { label: _vm.$store.state.usuario.nombre } },
+                [
+                  _c("b-navbar-item", { on: { click: _vm.logout } }, [
+                    _vm._v(_vm._s(_vm.$t("link.logout")))
+                  ])
+                ],
+                1
+              )
+            : _c("b-navbar-item", { attrs: { tag: "div" } }, [
                 _c(
-                  "router-link",
-                  {
-                    staticClass: "button is-primary",
-                    attrs: { to: { name: "Login" } }
-                  },
-                  [_vm._v(_vm._s(_vm.$t("link.login")))]
+                  "div",
+                  { staticClass: "buttons" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass: "button is-primary",
+                        attrs: { to: { name: "Login" } }
+                      },
+                      [_vm._v(_vm._s(_vm.$t("link.login")))]
+                    )
+                  ],
+                  1
                 )
-              ],
-              1
-            )
-          ])
+              ])
         ],
         1
       )
@@ -36867,12 +36900,49 @@ var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store(__webpack_req
 var routes = __webpack_require__(/*! ./routes/router */ "./resources/js/routes/router.js")["default"];
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__["default"](routes);
+router.beforeEach(function (to, from, next) {
+  if (to.matched.some(function (record) {
+    return record.meta.requiresAuth;
+  })) {
+    if (store.state.token === "") {
+      next({
+        name: "Login"
+      });
+    } else next();
+  } else if (to.matched.some(function (record) {
+    return record.meta.guest;
+  })) {
+    if (store.state.token !== "") {
+      next({
+        name: "Home"
+      });
+    } else next();
+  } else next();
+});
 
 var messages = __webpack_require__(/*! ./lang/translator */ "./resources/js/lang/translator.js")["default"];
 
 var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_6__["default"]({
   locale: "en",
   messages: messages
+}); //Configurando interceptores para axios
+
+axios__WEBPACK_IMPORTED_MODULE_3___default.a.interceptors.request.use(function (config) {
+  if (app.$session.exists()) {
+    var token = app.$session.get("oauth2");
+
+    if (token) {
+      config.headers["Authorization"] = "Bearer ".concat(token);
+
+      if (app.$store.state.token === "") {
+        app.$store.dispatch("loggedIn", token);
+      }
+    }
+  }
+
+  return config;
+}, function (error) {
+  return Promise.reject(error);
 }); //Instanciando VueJS en el proyecto con sus diferentes recursos
 
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
@@ -37244,7 +37314,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   link: {
     login: "Login",
-    home: "Home"
+    home: "Home",
+    logout: "Logout"
   },
   message: {
     derechosReservados: "All rights reserved",
@@ -37278,7 +37349,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   link: {
     login: "Iniciar sesión",
-    home: "Inicio"
+    home: "Inicio",
+    logout: "Cerrar sesión"
   },
   message: {
     derechosReservados: "Todos los derechos reservados",
@@ -37325,8 +37397,49 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var urlApi = "http://127.0.0.1:8000/api";
 /* harmony default export */ __webpack_exports__["default"] = ({
-  state: {}
+  state: {
+    empresas: [],
+    acciones: [],
+    usuario: {
+      id: "",
+      nombre: "",
+      es_superadmin: "N"
+    },
+    empresa_actual_id: "",
+    token: ""
+  },
+  mutations: {
+    loggedIn: function loggedIn(state, token) {
+      state.token = token;
+    },
+    setUserInfo: function setUserInfo(state, userInfo) {
+      state.empresas = userInfo.empresas;
+      state.usuario.id = userInfo.id;
+      state.usuario.nombre = userInfo.name;
+      state.usuario.es_superadmin = userInfo.es_superadmin;
+    }
+  },
+  actions: {
+    loggedIn: function loggedIn(context, token) {
+      context.commit("loggedIn", token);
+
+      this._vm.$http.get(urlApi + "/usuario").then(function (_ref) {
+        var data = _ref.data;
+        context.commit("setUserInfo", data);
+      });
+    },
+    loggedOut: function loggedOut(context) {
+      context.commit("loggedIn", "");
+      context.commit("setUserInfo", {
+        empresas: [],
+        id: "",
+        name: "",
+        es_superadmin: "N"
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -37349,11 +37462,17 @@ __webpack_require__.r(__webpack_exports__);
   routes: [{
     path: "/",
     component: _components_Home__WEBPACK_IMPORTED_MODULE_0__["default"],
-    name: "Home"
+    name: "Home",
+    meta: {
+      requiresAuth: true
+    }
   }, {
     path: "/login",
     component: _components_auth_Login__WEBPACK_IMPORTED_MODULE_1__["default"],
-    name: "Login"
+    name: "Login",
+    meta: {
+      guest: true
+    }
   }]
 });
 

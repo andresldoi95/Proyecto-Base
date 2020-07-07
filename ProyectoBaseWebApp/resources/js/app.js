@@ -20,11 +20,46 @@ Vue.use(VueSession);
 const store = new Vuex.Store(require("./plugins/store").default);
 const routes = require("./routes/router").default;
 const router = new VueRouter(routes);
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (store.state.token === "") {
+            next({
+                name: "Login"
+            });
+        } else next();
+    } else if (to.matched.some(record => record.meta.guest)) {
+        if (store.state.token !== "") {
+            next({
+                name: "Home"
+            });
+        } else next();
+    } else next();
+});
 const messages = require("./lang/translator").default;
 const i18n = new VueI18n({
     locale: "en",
     messages
 });
+
+//Configurando interceptores para axios
+axios.interceptors.request.use(
+    config => {
+        if (app.$session.exists()) {
+            let token = app.$session.get("oauth2");
+            if (token) {
+                config.headers["Authorization"] = `Bearer ${token}`;
+                if (app.$store.state.token === "") {
+                    app.$store.dispatch("loggedIn", token);
+                }
+            }
+        }
+        return config;
+    },
+    error => {
+        return Promise.reject(error);
+    }
+);
+
 //Instanciando VueJS en el proyecto con sus diferentes recursos
 const app = new Vue({
     i18n,

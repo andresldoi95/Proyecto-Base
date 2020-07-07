@@ -10,7 +10,10 @@
     </template>
 
     <template slot="end">
-      <b-navbar-item tag="div">
+      <b-navbar-dropdown v-if="$store.state.usuario.id !== ''" :label="$store.state.usuario.nombre">
+        <b-navbar-item @click="logout">{{ $t('link.logout') }}</b-navbar-item>
+      </b-navbar-dropdown>
+      <b-navbar-item v-else tag="div">
         <div class="buttons">
           <router-link :to="{ name: 'Login' }" class="button is-primary">{{ $t('link.login') }}</router-link>
         </div>
@@ -20,5 +23,15 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    logout: function() {
+      this.$store.dispatch("loggedOut");
+      this.$session.destroy();
+      this.$router.push({
+        name: "Login"
+      });
+    }
+  }
+};
 </script>

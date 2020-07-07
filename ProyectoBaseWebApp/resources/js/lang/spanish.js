@@ -1,7 +1,8 @@
 export default {
     link: {
         login: "Iniciar sesión",
-        home: "Inicio"
+        home: "Inicio",
+        logout: "Cerrar sesión"
     },
     message: {
         derechosReservados: "Todos los derechos reservados",
