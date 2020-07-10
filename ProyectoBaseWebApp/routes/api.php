@@ -32,5 +32,16 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::delete('/', 'EmpresaApiController@destroy');
     });
 
+    Route::resource('roles', 'RolApiController', [
+        'except' => [
+            'create', 'edit'
+        ]
+    ]);
+    Route::group(['prefix' => 'roles'], function () {
+        Route::delete('/', 'RolApiController@destroy');
+    });
+
     Route::get('modulos', 'ModuloApiController@index');
+
+    Route::get('acciones', 'AccionApiController@index');
 });

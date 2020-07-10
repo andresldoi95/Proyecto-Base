@@ -3,6 +3,7 @@ import Login from "../components/auth/Login";
 import Admin from "../components/layouts/AdminPanel";
 import Empresas from "../components/admin/empresas/Empresas";
 import Dashboard from "../components/admin/Dashboard";
+import Roles from "../components/admin/usuarios/Roles";
 export default {
     mode: "history",
     routes: [
@@ -41,6 +42,14 @@ export default {
                         requiresAuth: true
                     },
                     name: "Empresas"
+                },
+                {
+                    component: Roles,
+                    path: "roles",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "Roles"
                 }
             ]
         }

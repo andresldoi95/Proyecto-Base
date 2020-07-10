@@ -24,6 +24,12 @@
                 tag="router-link"
                 to="/admin/empresas"
               ></b-menu-item>
+              <b-menu-item
+                icon="account-lock"
+                :label="$t('title.roles')"
+                tag="router-link"
+                to="/admin/roles"
+              ></b-menu-item>
             </b-menu-list>
           </b-menu>
         </div>

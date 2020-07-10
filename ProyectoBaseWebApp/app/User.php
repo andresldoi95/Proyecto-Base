@@ -22,7 +22,7 @@ class User extends Authenticatable
 
     public function empresa()
     {
-        return $this->belongsTo('App\Empresa');
+        return $this->belongsTo('App\Empresa')->active();
     }
 
     public function scopeActive($query)

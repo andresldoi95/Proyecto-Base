@@ -40,11 +40,13 @@ export default {
         access: "Accede al sistema con tu nombre de usuario y contraseña",
         dashboard: "Dashboard",
         menu: "Menu",
-        empresas: "Empresas"
+        empresas: "Empresas",
+        roles: "Roles"
     },
     etiqueta: {
         username: "Nombre de usuario",
-        password: "Contraseña"
+        password: "Contraseña",
+        acciones: "Acciones"
     },
     button: {
         login: "Iniciar sesión"

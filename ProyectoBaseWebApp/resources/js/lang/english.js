@@ -39,12 +39,14 @@ export default {
         access: "Access to the system with your username and password",
         dashboard: "Dashboard",
         menu: "Menu",
-        empresas: "Enterprises"
+        empresas: "Enterprises",
+        roles: "Roles"
     },
     etiqueta: {
         username: "Username",
         password: "Password",
-        modulos: "Modules"
+        modulos: "Modules",
+        acciones: "Actions"
     },
     button: {
         login: "Login"
