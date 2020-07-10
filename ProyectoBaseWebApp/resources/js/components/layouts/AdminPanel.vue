@@ -12,7 +12,18 @@
           <img src="/img/logo.png" alt="Logo" />
           <b-menu class="is-custom-mobile">
             <b-menu-list :label="$t('title.menu')">
-              <b-menu-item icon="monitor" :label="$t('title.dashboard')"></b-menu-item>
+              <b-menu-item
+                to="/admin"
+                tag="router-link"
+                icon="monitor"
+                :label="$t('title.dashboard')"
+              ></b-menu-item>
+              <b-menu-item
+                icon="office-building"
+                :label="$t('title.empresas')"
+                tag="router-link"
+                to="/admin/empresas"
+              ></b-menu-item>
             </b-menu-list>
           </b-menu>
         </div>

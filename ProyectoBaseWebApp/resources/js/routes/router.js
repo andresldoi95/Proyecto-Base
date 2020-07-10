@@ -1,6 +1,8 @@
 import Home from "../components/Home";
 import Login from "../components/auth/Login";
 import Admin from "../components/layouts/AdminPanel";
+import Empresas from "../components/admin/empresas/Empresas";
+import Dashboard from "../components/admin/Dashboard";
 export default {
     mode: "history",
     routes: [
@@ -23,10 +25,24 @@ export default {
         {
             path: "/admin",
             component: Admin,
-            name: "Admin",
             meta: {
                 requiresAuth: true
-            }
+            },
+            children: [
+                {
+                    name: "Dashboard",
+                    path: "",
+                    component: Dashboard
+                },
+                {
+                    component: Empresas,
+                    path: "empresas",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "Empresas"
+                }
+            ]
         }
     ]
 };

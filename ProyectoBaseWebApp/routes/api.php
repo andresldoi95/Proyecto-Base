@@ -20,9 +20,14 @@ Route::group(['middleware' => 'auth:api'], function () {
             'create', 'edit'
         ]
     ]);
-    Route::resource('empresas', 'EmpresaController', [
+    Route::resource('empresas', 'EmpresaApiController', [
         'except' => [
             'create', 'edit'
         ]
     ]);
+    Route::group(['prefix' => 'empresas'], function () {
+        Route::delete('/', 'EmpresaApiController@destroy');
+    });
+
+    Route::get('modulos', 'ModuloApiController@index');
 });
