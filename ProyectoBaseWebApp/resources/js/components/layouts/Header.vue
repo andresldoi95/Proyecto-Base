@@ -6,6 +6,17 @@
       </b-navbar-item>
     </template>
     <template slot="start">
+      <b-navbar-dropdown
+        v-if="$store.state.empresas.length > 0"
+        :label="$store.state.nombre_empresa_actual === ''?$t('message.seleccione_empresa'):$store.state.nombre_empresa_actual"
+      >
+        <b-navbar-item
+          @click="cambiarEmpresa(empresa.id, empresa.nombre)"
+          v-show="$store.state.empresa_actual_id != empresa.id"
+          v-for="empresa in $store.state.empresas"
+          :key="empresa.id"
+        >{{ empresa.nombre }}</b-navbar-item>
+      </b-navbar-dropdown>
       <b-navbar-item tag="router-link" to="/">{{ $t('link.home') }}</b-navbar-item>
       <b-navbar-item tag="router-link" to="/admin">{{ $t('link.admin') }}</b-navbar-item>
     </template>
@@ -32,6 +43,24 @@ export default {
       this.$router.push({
         name: "Login"
       });
+    },
+    cambiarEmpresa: function(id, nombre) {
+      this.$http
+        .post(process.env.MIX_APP_URL_API + "/usuario/" + id, {
+          _method: "PUT"
+        })
+        .then(() => {
+          this.$store.commit("cambiarEmpresaActual", {
+            id: id,
+            nombre: nombre
+          });
+        })
+        .catch(() => {
+          this.$buefy.toast.open({
+            message: this.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        });
     }
   }
 };

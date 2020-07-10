@@ -2152,6 +2152,8 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         _this2.$refs.masterForm.submit();
+
+        _this2.$store.dispatch("loggedIn", _this2.$store.state.token);
       })["catch"](function (_ref) {
         var response = _ref.response;
         var status = response.status;
@@ -2232,7 +2234,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$http.post("http://127.0.0.1:8000" + "/oauth/token", {
         grant_type: "password",
         client_id: "2",
-        client_secret: "61IbHfqc4lEvmwMYlUYqrMav19pg0gvNGGD8Kp4o",
+        client_secret: "fkqQS643LevMfyMfKFknMvj2kMUSSZFpuUEj5S9K",
         username: this.form.username,
         password: this.form.password
       }).then(function (_ref) {
@@ -2415,6 +2417,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     logout: function logout() {
@@ -2422,6 +2435,23 @@ __webpack_require__.r(__webpack_exports__);
       this.$session.destroy();
       this.$router.push({
         name: "Login"
+      });
+    },
+    cambiarEmpresa: function cambiarEmpresa(id, nombre) {
+      var _this = this;
+
+      this.$http.post("http://127.0.0.1:8000/api" + "/usuario/" + id, {
+        _method: "PUT"
+      }).then(function () {
+        _this.$store.commit("cambiarEmpresaActual", {
+          id: id,
+          nombre: nombre
+        });
+      })["catch"](function () {
+        _this.$buefy.toast.open({
+          message: _this.$t("message.generic_error"),
+          type: "is-danger"
+        });
       });
     }
   }
@@ -21982,6 +22012,45 @@ var render = function() {
         "template",
         { slot: "start" },
         [
+          _vm.$store.state.empresas.length > 0
+            ? _c(
+                "b-navbar-dropdown",
+                {
+                  attrs: {
+                    label:
+                      _vm.$store.state.nombre_empresa_actual === ""
+                        ? _vm.$t("message.seleccione_empresa")
+                        : _vm.$store.state.nombre_empresa_actual
+                  }
+                },
+                _vm._l(_vm.$store.state.empresas, function(empresa) {
+                  return _c(
+                    "b-navbar-item",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value:
+                            _vm.$store.state.empresa_actual_id != empresa.id,
+                          expression:
+                            "$store.state.empresa_actual_id != empresa.id"
+                        }
+                      ],
+                      key: empresa.id,
+                      on: {
+                        click: function($event) {
+                          return _vm.cambiarEmpresa(empresa.id, empresa.nombre)
+                        }
+                      }
+                    },
+                    [_vm._v(_vm._s(empresa.nombre))]
+                  )
+                }),
+                1
+              )
+            : _vm._e(),
+          _vm._v(" "),
           _c("b-navbar-item", { attrs: { tag: "router-link", to: "/" } }, [
             _vm._v(_vm._s(_vm.$t("link.home")))
           ]),
@@ -39543,7 +39612,8 @@ __webpack_require__.r(__webpack_exports__);
     perpage: "Per page",
     guardar: "Save",
     cancelar: "Cancel",
-    search: "Search"
+    search: "Search",
+    seleccione_empresa: "Select an enterprise..."
   },
   title: {
     login: "Login",
@@ -39607,7 +39677,8 @@ __webpack_require__.r(__webpack_exports__);
     guardar: "Guardar",
     cancelar: "Cancelar",
     search: "Consultar",
-    modulos: "Módulos"
+    modulos: "Módulos",
+    seleccione_empresa: "Seleccione una empresa..."
   },
   title: {
     login: "Iniciar sesión",
@@ -39652,9 +39723,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-i18n */ "./node_modules/vue-i18n/dist/vue-i18n.esm.js");
 var urlApi = "http://127.0.0.1:8000/api";
-
 /* harmony default export */ __webpack_exports__["default"] = ({
   state: {
     empresas: [],
@@ -39665,7 +39734,8 @@ var urlApi = "http://127.0.0.1:8000/api";
       es_superadmin: "N"
     },
     empresa_actual_id: "",
-    token: ""
+    token: "",
+    nombre_empresa_actual: ""
   },
   mutations: {
     loggedIn: function loggedIn(state, token) {
@@ -39673,9 +39743,13 @@ var urlApi = "http://127.0.0.1:8000/api";
     },
     setUserInfo: function setUserInfo(state, userInfo) {
       state.empresas = userInfo.empresas;
-      state.usuario.id = userInfo.id;
-      state.usuario.nombre = userInfo.name;
-      state.usuario.es_superadmin = userInfo.es_superadmin;
+      state.usuario.id = userInfo.usuario.id;
+      state.usuario.nombre = userInfo.usuario.name;
+      state.usuario.es_superadmin = userInfo.usuario.es_superadmin;
+    },
+    cambiarEmpresaActual: function cambiarEmpresaActual(state, data) {
+      state.empresa_actual_id = data.id;
+      state.nombre_empresa_actual = data.nombre;
     }
   },
   actions: {
@@ -39685,15 +39759,24 @@ var urlApi = "http://127.0.0.1:8000/api";
       this._vm.$http.get(urlApi + "/usuario").then(function (_ref) {
         var data = _ref.data;
         context.commit("setUserInfo", data);
+
+        if (data.usuario.empresa !== null) {
+          context.commit("cambiarEmpresaActual", {
+            id: data.usuario.empresa.id,
+            nombre: data.usuario.empresa.nombre
+          });
+        }
       });
     },
     loggedOut: function loggedOut(context) {
       context.commit("loggedIn", "");
       context.commit("setUserInfo", {
         empresas: [],
-        id: "",
-        name: "",
-        es_superadmin: "N"
+        usuario: {
+          id: "",
+          name: "",
+          es_superadmin: "N"
+        }
       });
     }
   }

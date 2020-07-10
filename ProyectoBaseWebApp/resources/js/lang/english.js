@@ -31,7 +31,8 @@ export default {
         perpage: "Per page",
         guardar: "Save",
         cancelar: "Cancel",
-        search: "Search"
+        search: "Search",
+        seleccione_empresa: "Select an enterprise..."
     },
     title: {
         login: "Login",

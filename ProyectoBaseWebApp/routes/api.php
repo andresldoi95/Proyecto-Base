@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::group(['middleware' => 'auth:api'], function () {
+    Route::group(['prefix' => 'usuario'], function () {
+        Route::put('/{empresaId}', 'UsuarioApiController@cambiarEmpresaActual');
+    });
     Route::resource('usuario', 'UsuarioApiController', [
         'except' => [
             'create', 'edit'

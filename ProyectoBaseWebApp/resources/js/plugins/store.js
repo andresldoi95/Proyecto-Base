@@ -1,5 +1,4 @@
 const urlApi = process.env.MIX_APP_URL_API;
-import { i18n } from "vue-i18n";
 
 export default {
     state: {
@@ -11,7 +10,8 @@ export default {
             es_superadmin: "N"
         },
         empresa_actual_id: "",
-        token: ""
+        token: "",
+        nombre_empresa_actual: ""
     },
     mutations: {
         loggedIn(state, token) {
@@ -19,9 +19,13 @@ export default {
         },
         setUserInfo(state, userInfo) {
             state.empresas = userInfo.empresas;
-            state.usuario.id = userInfo.id;
-            state.usuario.nombre = userInfo.name;
-            state.usuario.es_superadmin = userInfo.es_superadmin;
+            state.usuario.id = userInfo.usuario.id;
+            state.usuario.nombre = userInfo.usuario.name;
+            state.usuario.es_superadmin = userInfo.usuario.es_superadmin;
+        },
+        cambiarEmpresaActual(state, data) {
+            state.empresa_actual_id = data.id;
+            state.nombre_empresa_actual = data.nombre;
         }
     },
     actions: {
@@ -29,15 +33,23 @@ export default {
             context.commit("loggedIn", token);
             this._vm.$http.get(urlApi + "/usuario").then(({ data }) => {
                 context.commit("setUserInfo", data);
+                if (data.usuario.empresa !== null) {
+                    context.commit("cambiarEmpresaActual", {
+                        id: data.usuario.empresa.id,
+                        nombre: data.usuario.empresa.nombre
+                    });
+                }
             });
         },
         loggedOut(context) {
             context.commit("loggedIn", "");
             context.commit("setUserInfo", {
                 empresas: [],
-                id: "",
-                name: "",
-                es_superadmin: "N"
+                usuario: {
+                    id: "",
+                    name: "",
+                    es_superadmin: "N"
+                }
             });
         }
     }

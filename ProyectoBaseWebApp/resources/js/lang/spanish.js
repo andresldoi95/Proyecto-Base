@@ -32,7 +32,8 @@ export default {
         guardar: "Guardar",
         cancelar: "Cancelar",
         search: "Consultar",
-        modulos: "Módulos"
+        modulos: "Módulos",
+        seleccione_empresa: "Seleccione una empresa..."
     },
     title: {
         login: "Iniciar sesión",
