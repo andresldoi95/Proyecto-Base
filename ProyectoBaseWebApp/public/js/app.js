@@ -2885,6 +2885,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     logout: function logout() {
@@ -2912,6 +2922,9 @@ __webpack_require__.r(__webpack_exports__);
           type: "is-danger"
         });
       });
+    },
+    cambiarLenguaje: function cambiarLenguaje(lang) {
+      this.$store.commit("setLang", lang);
     }
   }
 });
@@ -19726,6 +19739,140 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof="fun
 
 /***/ }),
 
+/***/ "./node_modules/vue-cookies/vue-cookies.js":
+/*!*************************************************!*\
+  !*** ./node_modules/vue-cookies/vue-cookies.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/**
+ * Vue Cookies v1.7.2
+ * https://github.com/cmp-cc/vue-cookies
+ *
+ * Copyright 2016, cmp-cc
+ * Released under the MIT license
+ */
+
+(function() {
+
+    var defaultConfig = {
+        expires : '1d',
+        path : '; path=/',
+        domain:'',
+        secure:'',
+        sameSite:''
+    }
+
+    var VueCookies = {
+        // install of Vue
+        install: function(Vue) {
+            Vue.prototype.$cookies = this
+            Vue.$cookies = this
+        },
+        config : function(expireTimes,path,domain,secure,sameSite) {
+            defaultConfig.expires = expireTimes ? expireTimes : '1d';
+            defaultConfig.path = path ? '; path=' + path : '; path=/';
+            defaultConfig.domain = domain ? '; domain=' + domain : '';
+            defaultConfig.secure = secure ? '; Secure' : '';
+            defaultConfig.sameSite = sameSite ? '; SameSite=' + sameSite : '';
+        },
+        get: function(key) {
+            var value = decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(key).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null
+
+            if(value && value.substring(0,1) === "{" && value.substring(value.length-1,value.length) === "}") {
+                try {
+                    value = JSON.parse(value)
+                }catch (e) {
+                    return value;
+                }
+            }
+            return value;
+        },
+        set: function(key, value, expireTimes, path, domain, secure, sameSite) {
+            if (!key) {
+                throw new Error("Cookie name is not find in first argument.")
+            }else if(/^(?:expires|max\-age|path|domain|secure|SameSite)$/i.test(key)){
+                throw new Error("Cookie key name illegality, Cannot be set to ['expires','max-age','path','domain','secure','SameSite']\t current key name: " + key);
+            }
+            // support json object
+            if(value && value.constructor === Object) {
+                value = JSON.stringify(value);
+            }
+            var _expires = "";
+            expireTimes = expireTimes === undefined ? defaultConfig.expires : expireTimes;
+            if (expireTimes && expireTimes != 0) {
+                switch (expireTimes.constructor) {
+                    case Number:
+                        if(expireTimes === Infinity || expireTimes === -1) _expires = "; expires=Fri, 31 Dec 9999 23:59:59 GMT";
+                        else _expires = "; max-age=" + expireTimes;
+                        break;
+                    case String:
+                        if (/^(?:\d{1,}(y|m|d|h|min|s))$/i.test(expireTimes)) {
+                            // get capture number group
+                            var _expireTime = expireTimes.replace(/^(\d{1,})(?:y|m|d|h|min|s)$/i, "$1");
+                            // get capture type group , to lower case
+                            switch (expireTimes.replace(/^(?:\d{1,})(y|m|d|h|min|s)$/i, "$1").toLowerCase()) {
+                                // Frequency sorting
+                                case 'm':  _expires = "; max-age=" + +_expireTime * 2592000; break; // 60 * 60 * 24 * 30
+                                case 'd':  _expires = "; max-age=" + +_expireTime * 86400; break; // 60 * 60 * 24
+                                case 'h': _expires = "; max-age=" + +_expireTime * 3600; break; // 60 * 60
+                                case 'min':  _expires = "; max-age=" + +_expireTime * 60; break; // 60
+                                case 's': _expires = "; max-age=" + _expireTime; break;
+                                case 'y': _expires = "; max-age=" + +_expireTime * 31104000; break; // 60 * 60 * 24 * 30 * 12
+                                default: new Error("unknown exception of 'set operation'");
+                            }
+                        } else {
+                            _expires = "; expires=" + expireTimes;
+                        }
+                        break;
+                    case Date:
+                        _expires = "; expires=" + expireTimes.toUTCString();
+                        break;
+                }
+            }
+            document.cookie =
+                encodeURIComponent(key) + "=" + encodeURIComponent(value) +
+                _expires +
+                (domain ? "; domain=" + domain : defaultConfig.domain) +
+                (path ? "; path=" + path : defaultConfig.path) +
+                (secure === undefined ? defaultConfig.secure : secure ? "; Secure" : "") +
+                (sameSite === undefined ? defaultConfig.sameSite : (sameSite ? "; SameSite=" + sameSite : ""));
+            return this;
+        },
+        remove: function(key, path, domain) {
+            if (!key || !this.isKey(key)) {
+                return false;
+            }
+            document.cookie = encodeURIComponent(key) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + (domain ? "; domain=" + domain : defaultConfig.domain) + (path ? "; path=" + path : defaultConfig.path);
+            return this;
+        },
+        isKey: function(key) {
+            return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(key).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
+        },
+        keys:  function() {
+            if(!document.cookie) return [];
+            var _keys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "").split(/\s*(?:\=[^;]*)?;\s*/);
+            for (var _index = 0; _index < _keys.length; _index++) {
+                _keys[_index] = decodeURIComponent(_keys[_index]);
+            }
+            return _keys;
+        }
+    }
+
+    if (true) {
+        module.exports = VueCookies;
+    } else {}
+    // vue-cookies can exist independently,no dependencies library
+    if(typeof window!=="undefined"){
+        window.$cookies = VueCookies;
+    }
+
+})()
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-i18n/dist/vue-i18n.esm.js":
 /*!****************************************************!*\
   !*** ./node_modules/vue-i18n/dist/vue-i18n.esm.js ***!
@@ -23008,6 +23155,53 @@ var render = function() {
         "template",
         { slot: "end" },
         [
+          _c(
+            "b-navbar-dropdown",
+            { attrs: { label: _vm.$store.state.locale } },
+            [
+              _c(
+                "b-navbar-item",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.$store.state.locale !== "es",
+                      expression: "$store.state.locale !== 'es'"
+                    }
+                  ],
+                  on: {
+                    click: function($event) {
+                      return _vm.cambiarLenguaje("es")
+                    }
+                  }
+                },
+                [_vm._v("Español (es)")]
+              ),
+              _vm._v(" "),
+              _c(
+                "b-navbar-item",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.$store.state.locale !== "en",
+                      expression: "$store.state.locale !== 'en'"
+                    }
+                  ],
+                  on: {
+                    click: function($event) {
+                      return _vm.cambiarLenguaje("en")
+                    }
+                  }
+                },
+                [_vm._v("English (en)")]
+              )
+            ],
+            1
+          ),
+          _vm._v(" "),
           _vm.$store.state.usuario.id !== ""
             ? _c(
                 "b-navbar-dropdown",
@@ -44617,7 +44811,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_axios__WEBPACK_IMPORTED_MODUL
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_i18n__WEBPACK_IMPORTED_MODULE_6__["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_session__WEBPACK_IMPORTED_MODULE_7___default.a);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(__webpack_require__(/*! vue-moment */ "./node_modules/vue-moment/dist/vue-moment.js")); //Importando configuraciones de los diferentes plugins
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(__webpack_require__(/*! vue-moment */ "./node_modules/vue-moment/dist/vue-moment.js"));
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(__webpack_require__(/*! vue-cookies */ "./node_modules/vue-cookies/vue-cookies.js")); //Importando configuraciones de los diferentes plugins
 
 var store = new vuex__WEBPACK_IMPORTED_MODULE_2__["default"].Store(__webpack_require__(/*! ./plugins/store */ "./resources/js/plugins/store.js")["default"]);
 
@@ -44627,10 +44822,16 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__["default"](routes);
 
 var messages = __webpack_require__(/*! ./lang/translator */ "./resources/js/lang/translator.js")["default"];
 
+var currentLang = vue__WEBPACK_IMPORTED_MODULE_0___default.a.$cookies.get("locale");
 var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_6__["default"]({
-  locale: "en",
+  locale: currentLang ? currentLang : "es",
   messages: messages
-}); //Configurando interceptores para axios
+});
+
+if (currentLang) {
+  store.commit("setOnlyLang", currentLang);
+} //Configurando interceptores para axios
+
 
 axios__WEBPACK_IMPORTED_MODULE_3___default.a.interceptors.request.use(function (config) {
   if (app.$session.exists()) {
@@ -45641,7 +45842,8 @@ var urlApi = "http://127.0.0.1:8000/api";
     empresa_actual_id: "",
     token: "",
     nombre_empresa_actual: "",
-    globalKey: "0"
+    globalKey: "0",
+    locale: "es"
   },
   mutations: {
     loggedIn: function loggedIn(state, token) {
@@ -45659,6 +45861,16 @@ var urlApi = "http://127.0.0.1:8000/api";
     },
     reload: function reload(state, key) {
       state.globalKey = key;
+    },
+    setLang: function setLang(state, locale) {
+      state.locale = locale;
+
+      this._vm.$cookies.set("locale", locale, Infinity);
+
+      state.globalKey = locale;
+    },
+    setOnlyLang: function setOnlyLang(state, locale) {
+      state.locale = locale;
     }
   },
   actions: {

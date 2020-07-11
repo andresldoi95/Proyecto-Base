@@ -12,7 +12,8 @@ export default {
         empresa_actual_id: "",
         token: "",
         nombre_empresa_actual: "",
-        globalKey: "0"
+        globalKey: "0",
+        locale: "es"
     },
     mutations: {
         loggedIn(state, token) {
@@ -30,6 +31,14 @@ export default {
         },
         reload(state, key) {
             state.globalKey = key;
+        },
+        setLang(state, locale) {
+            state.locale = locale;
+            this._vm.$cookies.set("locale", locale, Infinity);
+            state.globalKey = locale;
+        },
+        setOnlyLang(state, locale) {
+            state.locale = locale;
         }
     },
     actions: {

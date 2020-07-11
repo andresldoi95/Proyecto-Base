@@ -22,6 +22,16 @@
     </template>
 
     <template slot="end">
+      <b-navbar-dropdown :label="$store.state.locale">
+        <b-navbar-item
+          v-show="$store.state.locale !== 'es'"
+          @click="cambiarLenguaje('es')"
+        >Español (es)</b-navbar-item>
+        <b-navbar-item
+          v-show="$store.state.locale !== 'en'"
+          @click="cambiarLenguaje('en')"
+        >English (en)</b-navbar-item>
+      </b-navbar-dropdown>
       <b-navbar-dropdown v-if="$store.state.usuario.id !== ''" :label="$store.state.usuario.nombre">
         <b-navbar-item @click="logout">{{ $t('link.logout') }}</b-navbar-item>
       </b-navbar-dropdown>
@@ -65,6 +75,9 @@ export default {
             type: "is-danger"
           });
         });
+    },
+    cambiarLenguaje: function(lang) {
+      this.$store.commit("setLang", lang);
     }
   }
 };

@@ -17,16 +17,21 @@ Vue.use(VueRouter);
 Vue.use(VueI18n);
 Vue.use(VueSession);
 Vue.use(require("vue-moment"));
+Vue.use(require("vue-cookies"));
 //Importando configuraciones de los diferentes plugins
 const store = new Vuex.Store(require("./plugins/store").default);
 const routes = require("./routes/router").default;
 const router = new VueRouter(routes);
 const messages = require("./lang/translator").default;
+let currentLang = Vue.$cookies.get("locale");
 const i18n = new VueI18n({
-    locale: "en",
+    locale: currentLang ? currentLang : "es",
     messages
 });
 
+if (currentLang) {
+    store.commit("setOnlyLang", currentLang);
+}
 //Configurando interceptores para axios
 axios.interceptors.request.use(
     config => {
