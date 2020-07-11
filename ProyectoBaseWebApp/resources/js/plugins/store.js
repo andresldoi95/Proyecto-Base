@@ -11,7 +11,8 @@ export default {
         },
         empresa_actual_id: "",
         token: "",
-        nombre_empresa_actual: ""
+        nombre_empresa_actual: "",
+        globalKey: "0"
     },
     mutations: {
         loggedIn(state, token) {
@@ -26,6 +27,9 @@ export default {
         cambiarEmpresaActual(state, data) {
             state.empresa_actual_id = data.id;
             state.nombre_empresa_actual = data.nombre;
+        },
+        reload(state, key) {
+            state.globalKey = key;
         }
     },
     actions: {

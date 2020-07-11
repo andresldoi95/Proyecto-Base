@@ -117,7 +117,10 @@ export default {
               message: this.$t("message.guardado_generico"),
               type: "is-success"
             });
-            this.$refs.masterForm.submit();
+            this.$store.commit(
+              "reload",
+              this.$moment(new Date()).format("YYYYMMDDHHmmss")
+            );
           })
           .catch(() => {
             this.$buefy.toast.open({
@@ -152,7 +155,10 @@ export default {
             message: this.$t("message.guardado_generico"),
             type: "is-success"
           });
-          this.$refs.masterForm.submit();
+          this.$store.commit(
+            "reload",
+            this.$moment(new Date()).format("YYYYMMDDHHmmss")
+          );
         })
         .catch(({ response }) => {
           let status = response.status;

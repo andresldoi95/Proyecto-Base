@@ -54,6 +54,10 @@ export default {
             id: id,
             nombre: nombre
           });
+          this.$store.commit(
+            "reload",
+            this.$moment(new Date()).format("YYYYMMDDHHmmss")
+          );
         })
         .catch(() => {
           this.$buefy.toast.open({

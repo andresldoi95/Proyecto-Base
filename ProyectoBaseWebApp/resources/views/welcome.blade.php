@@ -10,7 +10,7 @@
     </head>
     <body>
         <div id="app">
-            <app/>
+            <app :key="$store.state.globalKey"/>
         </div>
 
         <script src="{{ asset('js/app.js') }}"></script>

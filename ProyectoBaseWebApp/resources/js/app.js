@@ -16,6 +16,7 @@ Vue.use(VueAxios, axios);
 Vue.use(VueRouter);
 Vue.use(VueI18n);
 Vue.use(VueSession);
+Vue.use(require("vue-moment"));
 //Importando configuraciones de los diferentes plugins
 const store = new Vuex.Store(require("./plugins/store").default);
 const routes = require("./routes/router").default;
