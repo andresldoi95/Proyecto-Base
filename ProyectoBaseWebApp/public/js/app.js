@@ -1929,6 +1929,8 @@ __webpack_require__.r(__webpack_exports__);
     if (this.$session.exists()) {
       this.$store.dispatch("loggedIn", this.$session.get("oauth2"));
     }
+
+    this.$i18n.locale = this.$store.state.locale;
   }
 });
 

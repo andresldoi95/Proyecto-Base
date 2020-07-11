@@ -18,6 +18,7 @@ export default {
     if (this.$session.exists()) {
       this.$store.dispatch("loggedIn", this.$session.get("oauth2"));
     }
+    this.$i18n.locale = this.$store.state.locale;
   }
 };
 </script>
