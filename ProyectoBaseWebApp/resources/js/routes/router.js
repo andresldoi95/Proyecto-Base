@@ -4,6 +4,7 @@ import Admin from "../components/layouts/AdminPanel";
 import Empresas from "../components/admin/empresas/Empresas";
 import Dashboard from "../components/admin/Dashboard";
 import Roles from "../components/admin/usuarios/Roles";
+import Usuarios from "../components/admin/usuarios/Usuarios";
 export default {
     mode: "history",
     routes: [
@@ -50,6 +51,14 @@ export default {
                         requiresAuth: true
                     },
                     name: "Roles"
+                },
+                {
+                    component: Usuarios,
+                    path: "usuarios",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "Usuarios"
                 }
             ]
         }

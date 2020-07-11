@@ -32,7 +32,11 @@ export default {
         guardar: "Save",
         cancelar: "Cancel",
         search: "Search",
-        seleccione_empresa: "Select an enterprise..."
+        seleccione_empresa: "Select an enterprise...",
+        email: "E-mail",
+        debe_seleccionar_roles: "You must select at least one role",
+        password_confirmation: "Password confirmation",
+        password: "Password"
     },
     title: {
         login: "Login",
@@ -40,13 +44,15 @@ export default {
         dashboard: "Dashboard",
         menu: "Menu",
         empresas: "Enterprises",
-        roles: "Roles"
+        roles: "Roles",
+        usuarios: "Users"
     },
     etiqueta: {
         username: "Username",
         password: "Password",
         modulos: "Modules",
-        acciones: "Actions"
+        acciones: "Actions",
+        roles: "Roles"
     },
     button: {
         login: "Login"

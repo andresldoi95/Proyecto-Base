@@ -33,7 +33,11 @@ export default {
         cancelar: "Cancelar",
         search: "Consultar",
         modulos: "Módulos",
-        seleccione_empresa: "Seleccione una empresa..."
+        seleccione_empresa: "Seleccione una empresa...",
+        email: "Correo electrónico",
+        debe_seleccionar_roles: "Debe seleccionar al menos un rol",
+        password_confirmation: "Confirmación de contraseña",
+        password: "Contraseña"
     },
     title: {
         login: "Iniciar sesión",
@@ -41,12 +45,15 @@ export default {
         dashboard: "Dashboard",
         menu: "Menu",
         empresas: "Empresas",
-        roles: "Roles"
+        roles: "Roles",
+        usuarios: "Usuarios"
     },
     etiqueta: {
         username: "Nombre de usuario",
         password: "Contraseña",
-        acciones: "Acciones"
+        acciones: "Acciones",
+        roles: "Roles",
+        modulos: "Módulos"
     },
     button: {
         login: "Iniciar sesión"

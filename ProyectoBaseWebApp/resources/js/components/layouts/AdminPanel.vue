@@ -30,6 +30,12 @@
                 tag="router-link"
                 to="/admin/roles"
               ></b-menu-item>
+              <b-menu-item
+                icon="account-multiple"
+                :label="$t('title.usuarios')"
+                tag="router-link"
+                to="/admin/usuarios"
+              ></b-menu-item>
             </b-menu-list>
           </b-menu>
         </div>
@@ -59,6 +65,9 @@ export default {
 <style lang="scss">
 .p-1 {
   padding: 1em;
+}
+.sidebar-body {
+  width: 100%;
 }
 .sidebar-page {
   display: flex;

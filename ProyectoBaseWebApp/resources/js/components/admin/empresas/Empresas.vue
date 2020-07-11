@@ -29,12 +29,6 @@
                     field : 'descripcion',
                     sortable : true
                 }
-                ,
-                {
-                    label : $t('message.status'),
-                    field : 'estado',
-                    sortable : true
-                }
             ]"
         >
           <div class="columns">
@@ -159,7 +153,6 @@ export default {
             type: "is-success"
           });
           this.$refs.masterForm.submit();
-          this.$store.dispatch("loggedIn", this.$store.state.token);
         })
         .catch(({ response }) => {
           let status = response.status;

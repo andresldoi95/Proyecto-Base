@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Route;
 Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'usuario'], function () {
         Route::put('/{empresaId}', 'UsuarioApiController@cambiarEmpresaActual');
+        Route::delete('/', 'UsuarioApiController@destroy');
+    });
+    Route::group(['prefix' => 'usuarios'], function () {
+        Route::get('/', 'UsuarioApiController@search');
     });
     Route::resource('usuario', 'UsuarioApiController', [
         'except' => [
@@ -32,9 +36,13 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::delete('/', 'EmpresaApiController@destroy');
     });
 
+    Route::group(['prefix' => 'roles'], function () {
+        Route::get('/listado', 'RolApiController@listado');
+    });
+
     Route::resource('roles', 'RolApiController', [
         'except' => [
-            'create', 'edit'
+            'create', 'edit', 'show'
         ]
     ]);
     Route::group(['prefix' => 'roles'], function () {

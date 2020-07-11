@@ -30,4 +30,8 @@ class Rol extends Model
     {
         return $query->where('estado', 'A');
     }
+    public function scopeCurrent($query, $empresaId)
+    {
+        return $query->where('empresa_id', $empresaId);
+    }
 }

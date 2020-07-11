@@ -20,6 +20,11 @@ class User extends Authenticatable
         'name', 'email', 'password', 'es_superadmin', 'creador_id', 'modificador_id', 'estado', 'empresa_id'
     ];
 
+    public function roles()
+    {
+        return $this->belongsToMany('App\Rol', 'privilegios', 'usuario_id', 'rol_id');
+    }
+
     public function empresa()
     {
         return $this->belongsTo('App\Empresa')->active();

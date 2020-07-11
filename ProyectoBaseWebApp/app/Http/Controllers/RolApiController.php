@@ -7,6 +7,11 @@ use App\Rol;
 
 class RolApiController extends Controller
 {
+    public function listado(Request $request)
+    {
+        $user = $request->user();
+        return Rol::active()->orderBy('nombre')->current($user->empresa_id)->get();
+    }
     public function index(Request $request)
     {
         $user = $request->user();
