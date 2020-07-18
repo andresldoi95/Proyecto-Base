@@ -6,6 +6,8 @@ import Dashboard from "../components/admin/Dashboard";
 import Roles from "../components/admin/usuarios/Roles";
 import Usuarios from "../components/admin/usuarios/Usuarios";
 import ModificarCuenta from "../components/auth/ModificarCuenta";
+import SetPassword from "../components/auth/SetPassword";
+import RecuperarCuenta from "../components/auth/RecuperarCuenta";
 export default {
     mode: "history",
     routes: [
@@ -23,6 +25,22 @@ export default {
             name: "Perfil",
             meta: {
                 requiresAuth: true
+            }
+        },
+        {
+            path: "/recuperar",
+            component: RecuperarCuenta,
+            name: "Recuperar",
+            meta: {
+                guest: true
+            }
+        },
+        {
+            path: "/set-password/:token",
+            component: SetPassword,
+            name: "SetPassword",
+            meta: {
+                guest: true
             }
         },
         {

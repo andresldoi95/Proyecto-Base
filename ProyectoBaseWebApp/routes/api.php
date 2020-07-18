@@ -55,3 +55,6 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::get('acciones', 'AccionApiController@index');
 });
+
+Route::post('/reset', 'UsuarioApiController@reset');
+Route::post('/set-password', 'UsuarioApiController@setPassword');

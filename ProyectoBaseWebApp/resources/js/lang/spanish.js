@@ -4,9 +4,14 @@ export default {
         home: "Inicio",
         logout: "Cerrar sesión",
         admin: "Panel de administración",
-        perfil: "Editar cuenta"
+        perfil: "Editar cuenta",
+        recuperar: "Recuperar cuenta"
     },
     message: {
+        email_inexistente:
+            "El e-mail proporcionado no está registrado en el sistema",
+        link_enviado:
+            "El link de recuperación ha sido enviado a su dirección de correo electrónico",
         derechosReservados: "Todos los derechos reservados",
         acceso_exitoso: "¡Su acceso ha sido exitoso!",
         invalid_credentials: "¡Credenciales inválidas!",
@@ -38,7 +43,8 @@ export default {
         email: "Correo electrónico",
         debe_seleccionar_roles: "Debe seleccionar al menos un rol",
         password_confirmation: "Confirmación de contraseña",
-        password: "Contraseña"
+        password: "Contraseña",
+        token_invalido: "Token inválido"
     },
     title: {
         login: "Iniciar sesión",
@@ -48,7 +54,10 @@ export default {
         empresas: "Empresas",
         roles: "Roles",
         usuarios: "Usuarios",
-        edit_account: "Editar cuenta"
+        edit_account: "Editar cuenta",
+        recuperar_cuenta: "Recuperar cuenta",
+        recuperar_cuenta_sub: "Recupera tu cuenta proporcionándonos tu email",
+        set_password: "Cambia tu contraseña"
     },
     etiqueta: {
         username: "Nombre de usuario",
@@ -59,6 +68,8 @@ export default {
     },
     button: {
         login: "Iniciar sesión",
-        edit_account: "Editar cuenta"
+        edit_account: "Editar cuenta",
+        enviar_link: "Enviar link de recuperación",
+        set_password: "Cambiar contraseña"
     }
 };

@@ -4,9 +4,12 @@ export default {
         home: "Home",
         logout: "Logout",
         admin: "Admin panel",
-        perfil: "Edit account"
+        perfil: "Edit account",
+        recuperar: "Recover account"
     },
     message: {
+        email_inexistente: "The given e-mail is not registered in the system",
+        link_enviado: "The reset link has been sent to your email address",
         derechosReservados: "All rights reserved",
         acceso_exitoso: "Successful access!",
         invalid_credentials: "Invalid credentials!",
@@ -47,7 +50,10 @@ export default {
         empresas: "Enterprises",
         roles: "Roles",
         usuarios: "Users",
-        edit_account: "Edit account"
+        edit_account: "Edit account",
+        recuperar_cuenta: "Recover account",
+        recuperar_cuenta_sub: "Recover your account by entering your email",
+        set_password: "Set your password"
     },
     etiqueta: {
         username: "Username",
@@ -58,6 +64,9 @@ export default {
     },
     button: {
         login: "Login",
-        edit_account: "Edit account"
+        edit_account: "Edit account",
+        enviar_link: "Send reset link",
+        set_password: "Set password",
+        token_invalido: "The token is invalid"
     }
 };

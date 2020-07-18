@@ -22,6 +22,7 @@
                 <b-input type="password" v-model="form.password"></b-input>
               </b-field>
               <b-button expanded native-type="submit" type="is-primary">{{ $t('button.login') }}</b-button>
+              <router-link :to="{ name: 'Recuperar' }">{{ $t('link.recuperar') }}</router-link>
             </form>
           </div>
         </div>

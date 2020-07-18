@@ -9,6 +9,7 @@ use App\User;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Rule;
+use Snowfire\Beautymail\Beautymail;
 
 class UsuarioApiController extends Controller
 {
@@ -127,5 +128,43 @@ class UsuarioApiController extends Controller
     public function datos(Request $request)
     {
         return $request->user();
+    }
+    public function reset(Request $request)
+    {
+        $request->validate([
+            'email' => [
+                'required', Rule::exists('users')->where('estado', 'A')
+            ]
+        ]);
+        $user = User::where('email', 'like', $request->input('email'))->active()->firstOrFail();
+        $user->token_recuperacion = uniqid('t' . date('YmdHi'), true);
+        $user->save();
+        $beautymail = app()->make(Beautymail::class);
+        $beautymail->send('emails.reset', [
+            'user' => $user
+        ], function ($message) use ($user) {
+            $message
+                ->to($user->email, $user->name)
+                ->subject(__('subject.password_reset'));
+        });
+    }
+    public function setPassword(Request $request)
+    {
+        $request->validate([
+            'email' => [
+                'required', Rule::exists('users')->where('estado', 'A')
+            ],
+            'token' => [
+                'required', Rule::exists('users', 'token_recuperacion')->where('email', $request->input('email'))
+            ],
+            'password' => 'nullable|min:6|confirmed'
+        ]);
+        $email = $request->input('email');
+        $user = User::where('email', 'like', $email)
+            ->where('token_recuperacion', $request->input('token'))
+            ->firstOrFail();
+        $user->password = bcrypt($request->input('password'));
+        $user->token_recuperacion = null;
+        $user->save();
     }
 }
