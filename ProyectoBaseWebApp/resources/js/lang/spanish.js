@@ -3,7 +3,8 @@ export default {
         login: "Iniciar sesión",
         home: "Inicio",
         logout: "Cerrar sesión",
-        admin: "Panel de administración"
+        admin: "Panel de administración",
+        perfil: "Editar cuenta"
     },
     message: {
         derechosReservados: "Todos los derechos reservados",
@@ -46,7 +47,8 @@ export default {
         menu: "Menu",
         empresas: "Empresas",
         roles: "Roles",
-        usuarios: "Usuarios"
+        usuarios: "Usuarios",
+        edit_account: "Editar cuenta"
     },
     etiqueta: {
         username: "Nombre de usuario",
@@ -56,6 +58,7 @@ export default {
         modulos: "Módulos"
     },
     button: {
-        login: "Iniciar sesión"
+        login: "Iniciar sesión",
+        edit_account: "Editar cuenta"
     }
 };

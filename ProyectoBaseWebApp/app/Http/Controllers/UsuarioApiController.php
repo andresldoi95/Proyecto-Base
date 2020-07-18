@@ -107,4 +107,25 @@ class UsuarioApiController extends Controller
                 'estado' => DB::raw('if(estado = "A", "I", "A")')
             ]);
     }
+    public function perfil(Request $request)
+    {
+        $user = $request->user();
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => [
+                'required', 'max:500', Rule::unique('users')->ignore($user->id)
+            ],
+            'password' => 'nullable|min:6|confirmed'
+        ]);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $password = $request->input('password');
+        if (isset($password))
+            $user->password = bcrypt($password);
+        $user->save();
+    }
+    public function datos(Request $request)
+    {
+        return $request->user();
+    }
 }

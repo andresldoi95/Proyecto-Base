@@ -2736,6 +2736,141 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/ModificarCuenta.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/ModificarCuenta.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  methods: {
+    limpiarErrores: function limpiarErrores() {
+      this.errores.name = undefined;
+      this.errores.email = undefined;
+      this.errores.password = undefined;
+      this.errores.password_confirmation = undefined;
+    },
+    submit: function submit() {
+      var _this = this;
+
+      this.limpiarErrores();
+      this.$http.post("http://127.0.0.1:8000/api" + "/usuario/perfil", this.form).then(function (_ref) {
+        var data = _ref.data;
+
+        _this.$buefy.toast.open(_this.$t("message.guardado_generico"));
+
+        _this.$store.commit("reload", _this.$moment(new Date()).format("YYYYMMDDHHmmss"));
+      })["catch"](function (_ref2) {
+        var response = _ref2.response;
+        var status = response.status;
+
+        if (status === 422) {
+          _this.errores.name = response.data.errors.name;
+          _this.errores.email = response.data.errors.email;
+          _this.errores.password = response.data.errors.password;
+          _this.errores.password_confirmation = response.data.errors.password_confirmation;
+        } else {
+          _this.$buefy.toast.open({
+            message: _this.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        }
+      });
+    }
+  },
+  data: function data() {
+    var _form;
+
+    return {
+      form: (_form = {
+        name: "",
+        password: "",
+        email: ""
+      }, _defineProperty(_form, "password", ""), _defineProperty(_form, "password_confirmation", ""), _form),
+      errores: {
+        name: undefined,
+        email: undefined,
+        password: undefined,
+        password_confirmation: undefined
+      }
+    };
+  },
+  mounted: function mounted() {
+    var _this2 = this;
+
+    this.$http.get("http://127.0.0.1:8000/api" + "/usuario/datos").then(function (_ref3) {
+      var data = _ref3.data;
+      _this2.form.name = data.name;
+      _this2.form.email = data.email;
+      _this2.form.password = "";
+      _this2.form.password_confirmation = "";
+    })["catch"](function (_ref4) {
+      var response = _ref4.response;
+
+      _this2.$buefy.toast.open({
+        message: _this2.$t("message.generic_error"),
+        type: "is-danger"
+      });
+    });
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/AdminPanel.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/AdminPanel.vue?vue&type=script&lang=js& ***!
@@ -2851,6 +2986,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -22896,6 +23032,168 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/ModificarCuenta.vue?vue&type=template&id=312bac96&":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/auth/ModificarCuenta.vue?vue&type=template&id=312bac96& ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "columns is-vcentered is-centered" }, [
+    _c("div", { staticClass: "column is-half" }, [
+      _c("section", { staticClass: "hero" }, [
+        _c("div", { staticClass: "hero-body" }, [
+          _c("div", { staticClass: "container" }, [
+            _c("h1", { staticClass: "title" }, [
+              _vm._v(_vm._s(_vm.$t("title.edit_account")))
+            ]),
+            _vm._v(" "),
+            _c(
+              "form",
+              {
+                on: {
+                  submit: function($event) {
+                    $event.preventDefault()
+                    return _vm.submit($event)
+                  }
+                }
+              },
+              [
+                _c(
+                  "b-field",
+                  {
+                    attrs: {
+                      message: _vm.errores.name ? _vm.errores.name[0] : "",
+                      type: _vm.errores.name ? "is-danger" : "",
+                      label: _vm.$t("message.nombre")
+                    }
+                  },
+                  [
+                    _c("b-input", {
+                      model: {
+                        value: _vm.form.name,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "name", $$v)
+                        },
+                        expression: "form.name"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-field",
+                  {
+                    attrs: {
+                      message: _vm.errores.email ? _vm.errores.email[0] : "",
+                      type: _vm.errores.email ? "is-danger" : "",
+                      label: _vm.$t("message.email")
+                    }
+                  },
+                  [
+                    _c("b-input", {
+                      model: {
+                        value: _vm.form.email,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "email", $$v)
+                        },
+                        expression: "form.email"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-field",
+                  {
+                    attrs: {
+                      message: _vm.errores.password
+                        ? _vm.errores.password[0]
+                        : "",
+                      type: _vm.errores.password ? "is-danger" : "",
+                      label: _vm.$t("message.password")
+                    }
+                  },
+                  [
+                    _c("b-input", {
+                      attrs: { "password-reveal": "", type: "password" },
+                      model: {
+                        value: _vm.form.password,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "password", $$v)
+                        },
+                        expression: "form.password"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-field",
+                  {
+                    attrs: {
+                      message: _vm.errores.password_confirmation
+                        ? _vm.errores.password_confirmation[0]
+                        : "",
+                      type: _vm.errores.password_confirmation
+                        ? "is-danger"
+                        : "",
+                      label: _vm.$t("message.password_confirmation")
+                    }
+                  },
+                  [
+                    _c("b-input", {
+                      attrs: { "password-reveal": "", type: "password" },
+                      model: {
+                        value: _vm.form.password_confirmation,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "password_confirmation", $$v)
+                        },
+                        expression: "form.password_confirmation"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "b-button",
+                  {
+                    attrs: {
+                      expanded: "",
+                      "native-type": "submit",
+                      type: "is-primary"
+                    }
+                  },
+                  [_vm._v(_vm._s(_vm.$t("button.edit_account")))]
+                )
+              ],
+              1
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/AdminPanel.vue?vue&type=template&id=8ccd2934&":
 /*!*********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/AdminPanel.vue?vue&type=template&id=8ccd2934& ***!
@@ -23209,6 +23507,12 @@ var render = function() {
                 "b-navbar-dropdown",
                 { attrs: { label: _vm.$store.state.usuario.nombre } },
                 [
+                  _c(
+                    "b-navbar-item",
+                    { attrs: { tag: "router-link", to: "/perfil" } },
+                    [_vm._v(_vm._s(_vm.$t("link.perfil")))]
+                  ),
+                  _vm._v(" "),
                   _c("b-navbar-item", { on: { click: _vm.logout } }, [
                     _vm._v(_vm._s(_vm.$t("link.logout")))
                   ])
@@ -45367,6 +45671,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/auth/ModificarCuenta.vue":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/auth/ModificarCuenta.vue ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ModificarCuenta_vue_vue_type_template_id_312bac96___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ModificarCuenta.vue?vue&type=template&id=312bac96& */ "./resources/js/components/auth/ModificarCuenta.vue?vue&type=template&id=312bac96&");
+/* harmony import */ var _ModificarCuenta_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ModificarCuenta.vue?vue&type=script&lang=js& */ "./resources/js/components/auth/ModificarCuenta.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ModificarCuenta_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ModificarCuenta_vue_vue_type_template_id_312bac96___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ModificarCuenta_vue_vue_type_template_id_312bac96___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/auth/ModificarCuenta.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/ModificarCuenta.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/auth/ModificarCuenta.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ModificarCuenta_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ModificarCuenta.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/ModificarCuenta.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ModificarCuenta_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/auth/ModificarCuenta.vue?vue&type=template&id=312bac96&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/auth/ModificarCuenta.vue?vue&type=template&id=312bac96& ***!
+  \*****************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ModificarCuenta_vue_vue_type_template_id_312bac96___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ModificarCuenta.vue?vue&type=template&id=312bac96& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/auth/ModificarCuenta.vue?vue&type=template&id=312bac96&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ModificarCuenta_vue_vue_type_template_id_312bac96___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ModificarCuenta_vue_vue_type_template_id_312bac96___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/layouts/AdminPanel.vue":
 /*!********************************************************!*\
   !*** ./resources/js/components/layouts/AdminPanel.vue ***!
@@ -45675,7 +46048,8 @@ __webpack_require__.r(__webpack_exports__);
     login: "Login",
     home: "Home",
     logout: "Logout",
-    admin: "Admin panel"
+    admin: "Admin panel",
+    perfil: "Edit account"
   },
   message: {
     derechosReservados: "All rights reserved",
@@ -45717,7 +46091,8 @@ __webpack_require__.r(__webpack_exports__);
     menu: "Menu",
     empresas: "Enterprises",
     roles: "Roles",
-    usuarios: "Users"
+    usuarios: "Users",
+    edit_account: "Edit account"
   },
   etiqueta: {
     username: "Username",
@@ -45727,7 +46102,8 @@ __webpack_require__.r(__webpack_exports__);
     roles: "Roles"
   },
   button: {
-    login: "Login"
+    login: "Login",
+    edit_account: "Edit account"
   }
 });
 
@@ -45747,7 +46123,8 @@ __webpack_require__.r(__webpack_exports__);
     login: "Iniciar sesión",
     home: "Inicio",
     logout: "Cerrar sesión",
-    admin: "Panel de administración"
+    admin: "Panel de administración",
+    perfil: "Editar cuenta"
   },
   message: {
     derechosReservados: "Todos los derechos reservados",
@@ -45790,7 +46167,8 @@ __webpack_require__.r(__webpack_exports__);
     menu: "Menu",
     empresas: "Empresas",
     roles: "Roles",
-    usuarios: "Usuarios"
+    usuarios: "Usuarios",
+    edit_account: "Editar cuenta"
   },
   etiqueta: {
     username: "Nombre de usuario",
@@ -45800,7 +46178,8 @@ __webpack_require__.r(__webpack_exports__);
     modulos: "Módulos"
   },
   button: {
-    login: "Iniciar sesión"
+    login: "Iniciar sesión",
+    edit_account: "Editar cuenta"
   }
 });
 
@@ -45923,6 +46302,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_Dashboard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/admin/Dashboard */ "./resources/js/components/admin/Dashboard.vue");
 /* harmony import */ var _components_admin_usuarios_Roles__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/admin/usuarios/Roles */ "./resources/js/components/admin/usuarios/Roles.vue");
 /* harmony import */ var _components_admin_usuarios_Usuarios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/admin/usuarios/Usuarios */ "./resources/js/components/admin/usuarios/Usuarios.vue");
+/* harmony import */ var _components_auth_ModificarCuenta__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/auth/ModificarCuenta */ "./resources/js/components/auth/ModificarCuenta.vue");
+
 
 
 
@@ -45936,6 +46317,13 @@ __webpack_require__.r(__webpack_exports__);
     path: "/",
     component: _components_Home__WEBPACK_IMPORTED_MODULE_0__["default"],
     name: "Home",
+    meta: {
+      requiresAuth: true
+    }
+  }, {
+    path: "/perfil",
+    component: _components_auth_ModificarCuenta__WEBPACK_IMPORTED_MODULE_7__["default"],
+    name: "Perfil",
     meta: {
       requiresAuth: true
     }

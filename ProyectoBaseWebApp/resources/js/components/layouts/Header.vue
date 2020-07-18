@@ -33,6 +33,7 @@
         >English (en)</b-navbar-item>
       </b-navbar-dropdown>
       <b-navbar-dropdown v-if="$store.state.usuario.id !== ''" :label="$store.state.usuario.nombre">
+        <b-navbar-item tag="router-link" to="/perfil">{{ $t('link.perfil') }}</b-navbar-item>
         <b-navbar-item @click="logout">{{ $t('link.logout') }}</b-navbar-item>
       </b-navbar-dropdown>
       <b-navbar-item v-else tag="div">

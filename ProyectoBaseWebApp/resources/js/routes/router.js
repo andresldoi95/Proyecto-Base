@@ -5,6 +5,7 @@ import Empresas from "../components/admin/empresas/Empresas";
 import Dashboard from "../components/admin/Dashboard";
 import Roles from "../components/admin/usuarios/Roles";
 import Usuarios from "../components/admin/usuarios/Usuarios";
+import ModificarCuenta from "../components/auth/ModificarCuenta";
 export default {
     mode: "history",
     routes: [
@@ -12,6 +13,14 @@ export default {
             path: "/",
             component: Home,
             name: "Home",
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: "/perfil",
+            component: ModificarCuenta,
+            name: "Perfil",
             meta: {
                 requiresAuth: true
             }

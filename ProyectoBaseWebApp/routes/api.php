@@ -18,6 +18,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'usuario'], function () {
         Route::put('/{empresaId}', 'UsuarioApiController@cambiarEmpresaActual');
         Route::delete('/', 'UsuarioApiController@destroy');
+        Route::post('/perfil', 'UsuarioApiController@perfil');
+        Route::get('/datos', 'UsuarioApiController@datos');
     });
     Route::group(['prefix' => 'usuarios'], function () {
         Route::get('/', 'UsuarioApiController@search');

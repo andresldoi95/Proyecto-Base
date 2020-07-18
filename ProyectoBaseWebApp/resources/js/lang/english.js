@@ -3,7 +3,8 @@ export default {
         login: "Login",
         home: "Home",
         logout: "Logout",
-        admin: "Admin panel"
+        admin: "Admin panel",
+        perfil: "Edit account"
     },
     message: {
         derechosReservados: "All rights reserved",
@@ -45,7 +46,8 @@ export default {
         menu: "Menu",
         empresas: "Enterprises",
         roles: "Roles",
-        usuarios: "Users"
+        usuarios: "Users",
+        edit_account: "Edit account"
     },
     etiqueta: {
         username: "Username",
@@ -55,6 +57,7 @@ export default {
         roles: "Roles"
     },
     button: {
-        login: "Login"
+        login: "Login",
+        edit_account: "Edit account"
     }
 };
