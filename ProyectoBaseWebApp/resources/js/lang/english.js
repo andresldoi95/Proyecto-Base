@@ -41,7 +41,8 @@ export default {
         debe_seleccionar_roles: "You must select at least one role",
         password_confirmation: "Password confirmation",
         password: "Password",
-        valor: "Value"
+        valor: "Value",
+        color: "Color"
     },
     title: {
         login: "Login",
@@ -55,7 +56,8 @@ export default {
         recuperar_cuenta: "Recover account",
         recuperar_cuenta_sub: "Recover your account by entering your email",
         set_password: "Set your password",
-        largos: "Longs"
+        largos: "Longs",
+        espesores: "Thickness"
     },
     etiqueta: {
         username: "Username",

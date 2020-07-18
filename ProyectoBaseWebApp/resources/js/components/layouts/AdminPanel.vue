@@ -42,6 +42,12 @@
                 tag="router-link"
                 to="/admin/largos"
               ></b-menu-item>
+              <b-menu-item
+                icon="weight"
+                :label="$t('title.espesores')"
+                tag="router-link"
+                to="/admin/espesores"
+              ></b-menu-item>
             </b-menu-list>
           </b-menu>
         </div>

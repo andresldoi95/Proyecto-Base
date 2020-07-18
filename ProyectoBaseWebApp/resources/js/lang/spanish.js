@@ -45,7 +45,8 @@ export default {
         password_confirmation: "Confirmación de contraseña",
         password: "Contraseña",
         token_invalido: "Token inválido",
-        valor: "Valor"
+        valor: "Valor",
+        color: "Color"
     },
     title: {
         login: "Iniciar sesión",
@@ -59,7 +60,8 @@ export default {
         recuperar_cuenta: "Recuperar cuenta",
         recuperar_cuenta_sub: "Recupera tu cuenta proporcionándonos tu email",
         set_password: "Cambia tu contraseña",
-        largos: "Largos"
+        largos: "Largos",
+        espesores: "Espesores"
     },
     etiqueta: {
         username: "Nombre de usuario",

@@ -9,6 +9,7 @@ import ModificarCuenta from "../components/auth/ModificarCuenta";
 import SetPassword from "../components/auth/SetPassword";
 import RecuperarCuenta from "../components/auth/RecuperarCuenta";
 import Largos from "../components/admin/largos/Largos";
+import Espesores from "../components/admin/espesores/Espesores";
 export default {
     mode: "history",
     routes: [
@@ -95,6 +96,14 @@ export default {
                         requiresAuth: true
                     },
                     name: "Largos"
+                },
+                {
+                    component: Espesores,
+                    path: "espesores",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "Espesores"
                 }
             ]
         }
