@@ -47,6 +47,14 @@ Route::group(['middleware' => 'auth:api'], function () {
             'create', 'edit', 'show'
         ]
     ]);
+    Route::group(['prefix' => 'largos'], function () {
+        Route::delete('/', 'LargoApiController@destroy');
+    });
+    Route::resource('largos', 'LargoApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
     Route::group(['prefix' => 'roles'], function () {
         Route::delete('/', 'RolApiController@destroy');
     });

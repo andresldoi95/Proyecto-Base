@@ -40,7 +40,8 @@ export default {
         email: "E-mail",
         debe_seleccionar_roles: "You must select at least one role",
         password_confirmation: "Password confirmation",
-        password: "Password"
+        password: "Password",
+        valor: "Value"
     },
     title: {
         login: "Login",
@@ -53,7 +54,8 @@ export default {
         edit_account: "Edit account",
         recuperar_cuenta: "Recover account",
         recuperar_cuenta_sub: "Recover your account by entering your email",
-        set_password: "Set your password"
+        set_password: "Set your password",
+        largos: "Longs"
     },
     etiqueta: {
         username: "Username",

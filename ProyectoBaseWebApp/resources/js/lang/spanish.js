@@ -44,7 +44,8 @@ export default {
         debe_seleccionar_roles: "Debe seleccionar al menos un rol",
         password_confirmation: "Confirmación de contraseña",
         password: "Contraseña",
-        token_invalido: "Token inválido"
+        token_invalido: "Token inválido",
+        valor: "Valor"
     },
     title: {
         login: "Iniciar sesión",
@@ -57,7 +58,8 @@ export default {
         edit_account: "Editar cuenta",
         recuperar_cuenta: "Recuperar cuenta",
         recuperar_cuenta_sub: "Recupera tu cuenta proporcionándonos tu email",
-        set_password: "Cambia tu contraseña"
+        set_password: "Cambia tu contraseña",
+        largos: "Largos"
     },
     etiqueta: {
         username: "Nombre de usuario",

@@ -36,6 +36,12 @@
                 tag="router-link"
                 to="/admin/usuarios"
               ></b-menu-item>
+              <b-menu-item
+                icon="ruler"
+                :label="$t('title.largos')"
+                tag="router-link"
+                to="/admin/largos"
+              ></b-menu-item>
             </b-menu-list>
           </b-menu>
         </div>

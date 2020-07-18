@@ -8,6 +8,7 @@ import Usuarios from "../components/admin/usuarios/Usuarios";
 import ModificarCuenta from "../components/auth/ModificarCuenta";
 import SetPassword from "../components/auth/SetPassword";
 import RecuperarCuenta from "../components/auth/RecuperarCuenta";
+import Largos from "../components/admin/largos/Largos";
 export default {
     mode: "history",
     routes: [
@@ -86,6 +87,14 @@ export default {
                         requiresAuth: true
                     },
                     name: "Usuarios"
+                },
+                {
+                    component: Largos,
+                    path: "largos",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "Largos"
                 }
             ]
         }
