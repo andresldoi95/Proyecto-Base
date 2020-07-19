@@ -64,7 +64,8 @@ export default {
         largos: "Largos",
         espesores: "Espesores",
         procedencias: "Procedencias",
-        destinos: "Destines"
+        destinos: "Destinos",
+        materiales: "Materiales"
     },
     etiqueta: {
         username: "Nombre de usuario",

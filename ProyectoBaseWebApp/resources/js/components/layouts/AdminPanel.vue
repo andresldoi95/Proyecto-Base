@@ -60,6 +60,12 @@
                 tag="router-link"
                 to="/admin/destinos"
               ></b-menu-item>
+              <b-menu-item
+                icon="material-ui"
+                :label="$t('title.materiales')"
+                tag="router-link"
+                to="/admin/materiales"
+              ></b-menu-item>
             </b-menu-list>
           </b-menu>
         </div>

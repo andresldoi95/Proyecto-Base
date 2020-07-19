@@ -60,7 +60,8 @@ export default {
         largos: "Longs",
         espesores: "Thickness",
         procedencias: "Provenances",
-        destinos: "Destines"
+        destinos: "Destines",
+        materiales: "Materials"
     },
     etiqueta: {
         username: "Username",
