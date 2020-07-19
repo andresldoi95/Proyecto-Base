@@ -55,6 +55,22 @@ Route::group(['middleware' => 'auth:api'], function () {
             'create', 'edit', 'show'
         ]
     ]);
+    Route::group(['prefix' => 'procedencias'], function () {
+        Route::delete('/', 'ProcedenciaApiController@destroy');
+    });
+    Route::resource('procedencias', 'ProcedenciaApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
+    Route::group(['prefix' => 'destinos'], function () {
+        Route::delete('/', 'DestinoApiController@destroy');
+    });
+    Route::resource('destinos', 'DestinoApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
     Route::group(['prefix' => 'espesores'], function () {
         Route::delete('/', 'EspesorApiController@destroy');
     });

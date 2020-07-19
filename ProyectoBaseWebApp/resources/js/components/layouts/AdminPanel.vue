@@ -48,6 +48,18 @@
                 tag="router-link"
                 to="/admin/espesores"
               ></b-menu-item>
+              <b-menu-item
+                icon="source-branch"
+                :label="$t('title.procedencias')"
+                tag="router-link"
+                to="/admin/procedencias"
+              ></b-menu-item>
+              <b-menu-item
+                icon="map-marker"
+                :label="$t('title.destinos')"
+                tag="router-link"
+                to="/admin/destinos"
+              ></b-menu-item>
             </b-menu-list>
           </b-menu>
         </div>

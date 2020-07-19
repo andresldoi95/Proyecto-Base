@@ -10,6 +10,8 @@ import SetPassword from "../components/auth/SetPassword";
 import RecuperarCuenta from "../components/auth/RecuperarCuenta";
 import Largos from "../components/admin/largos/Largos";
 import Espesores from "../components/admin/espesores/Espesores";
+import Procedencias from "../components/admin/procedencias/Procedencias";
+import Destinos from "../components/admin/destinos/Destinos";
 export default {
     mode: "history",
     routes: [
@@ -104,6 +106,22 @@ export default {
                         requiresAuth: true
                     },
                     name: "Espesores"
+                },
+                {
+                    component: Procedencias,
+                    path: "procedencias",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "Procedencias"
+                },
+                {
+                    component: Destinos,
+                    path: "destinos",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "Destinos"
                 }
             ]
         }

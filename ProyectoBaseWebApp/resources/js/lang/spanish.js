@@ -46,7 +46,8 @@ export default {
         password: "Contraseña",
         token_invalido: "Token inválido",
         valor: "Valor",
-        color: "Color"
+        color: "Color",
+        codigo: "Código"
     },
     title: {
         login: "Iniciar sesión",
@@ -61,7 +62,9 @@ export default {
         recuperar_cuenta_sub: "Recupera tu cuenta proporcionándonos tu email",
         set_password: "Cambia tu contraseña",
         largos: "Largos",
-        espesores: "Espesores"
+        espesores: "Espesores",
+        procedencias: "Procedencias",
+        destinos: "Destines"
     },
     etiqueta: {
         username: "Nombre de usuario",

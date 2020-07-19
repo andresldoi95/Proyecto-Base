@@ -42,7 +42,8 @@ export default {
         password_confirmation: "Password confirmation",
         password: "Password",
         valor: "Value",
-        color: "Color"
+        color: "Color",
+        codigo: "Code"
     },
     title: {
         login: "Login",
@@ -57,7 +58,9 @@ export default {
         recuperar_cuenta_sub: "Recover your account by entering your email",
         set_password: "Set your password",
         largos: "Longs",
-        espesores: "Thickness"
+        espesores: "Thickness",
+        procedencias: "Provenances",
+        destinos: "Destines"
     },
     etiqueta: {
         username: "Username",
