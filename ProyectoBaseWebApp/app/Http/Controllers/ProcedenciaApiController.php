@@ -9,6 +9,11 @@ use Illuminate\Validation\Rule;
 
 class ProcedenciaApiController extends Controller
 {
+    public function listado(Request $request)
+    {
+        $user = $request->user();
+        return Procedencia::active()->orderBy('descripcion')->where('empresa_id', $user->empresa_id)->get();
+    }
     public function index(Request $request)
     {
         $user = $request->user();

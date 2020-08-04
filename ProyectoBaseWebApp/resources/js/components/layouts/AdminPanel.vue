@@ -78,6 +78,12 @@
                 tag="router-link"
                 to="/admin/controladores"
               ></b-menu-item>
+              <b-menu-item
+                icon="account-multiple-outline"
+                :label="$t('title.aserradores')"
+                tag="router-link"
+                to="/admin/aserradores"
+              ></b-menu-item>
             </b-menu-list>
           </b-menu>
         </div>

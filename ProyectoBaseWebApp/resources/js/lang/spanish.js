@@ -51,6 +51,7 @@ export default {
         codigo: "Código"
     },
     title: {
+        aserradores: "Aserradores",
         login: "Iniciar sesión",
         access: "Accede al sistema con tu nombre de usuario y contraseña",
         dashboard: "Dashboard",
@@ -67,9 +68,11 @@ export default {
         procedencias: "Procedencias",
         destinos: "Destinos",
         materiales: "Materiales",
-        controladores: "Controladores"
+        controladores: "Controladores",
+        seleccione: "Seleccione..."
     },
     etiqueta: {
+        procedencia: "Procedencia",
         username: "Nombre de usuario",
         password: "Contraseña",
         acciones: "Acciones",

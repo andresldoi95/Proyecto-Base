@@ -42,6 +42,10 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/listado', 'RolApiController@listado');
     });
 
+    Route::group(['prefix' => 'procedencias'], function () {
+        Route::get('/listado', 'ProcedenciaApiController@listado');
+    });
+
     Route::resource('roles', 'RolApiController', [
         'except' => [
             'create', 'edit', 'show'
@@ -99,6 +103,14 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::delete('/', 'EspesorApiController@destroy');
     });
     Route::resource('espesores', 'EspesorApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
+    Route::group(['prefix' => 'aserradores'], function () {
+        Route::delete('/', 'AserradorApiController@destroy');
+    });
+    Route::resource('aserradores', 'AserradorApiController', [
         'except' => [
             'create', 'edit', 'show'
         ]

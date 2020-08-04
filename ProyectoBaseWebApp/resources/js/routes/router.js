@@ -15,6 +15,7 @@ import Destinos from "../components/admin/destinos/Destinos";
 import Materiales from "../components/admin/materiales/Materiales";
 import Correos from "../components/admin/correos/Correos";
 import Controladores from "../components/admin/controladores/Controladores";
+import Aserradores from "../components/admin/aserradores/Aserradores";
 export default {
     mode: "history",
     routes: [
@@ -149,6 +150,14 @@ export default {
                         requiresAuth: true
                     },
                     name: "Controladores"
+                },
+                {
+                    component: Aserradores,
+                    path: "aserradores",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "Aserradores"
                 }
             ]
         }

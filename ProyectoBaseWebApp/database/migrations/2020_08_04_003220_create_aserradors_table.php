@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateControladorsTable extends Migration
+class CreateAserradorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateControladorsTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('controladores'))
-            Schema::create('controladores', function (Blueprint $table) {
+        if (!Schema::hasTable('aserradores'))
+            Schema::create('aserradores', function (Blueprint $table) {
                 $table->id();
                 $table->unsignedBigInteger('empresa_id');
+                $table->unsignedBigInteger('procedencia_id');
                 $table->string('identificacion', 20);
                 $table->string('nombre');
                 $table->timestamps();
@@ -26,6 +27,7 @@ class CreateControladorsTable extends Migration
                 $table->foreign('creador_id')->references('id')->on('users');
                 $table->foreign('modificador_id')->references('id')->on('users');
                 $table->foreign('empresa_id')->references('id')->on('empresas');
+                $table->foreign('procedencia_id')->references('id')->on('procedencias');
                 $table->unique([
                     'empresa_id', 'identificacion'
                 ]);
@@ -39,6 +41,6 @@ class CreateControladorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('controladores');
+        Schema::dropIfExists('aserradores');
     }
 }

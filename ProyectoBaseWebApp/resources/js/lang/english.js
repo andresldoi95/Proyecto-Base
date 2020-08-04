@@ -47,6 +47,7 @@ export default {
         codigo: "Code"
     },
     title: {
+        aserradores: "Aserradores",
         login: "Login",
         access: "Access to the system with your username and password",
         dashboard: "Dashboard",
@@ -64,9 +65,11 @@ export default {
         destinos: "Destines",
         materiales: "Materials",
         correos: "E-mails",
-        controladores: "Controllers"
+        controladores: "Controllers",
+        seleccione: "Select..."
     },
     etiqueta: {
+        procedencia: "Provenance",
         username: "Username",
         password: "Password",
         modulos: "Modules",

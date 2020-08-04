@@ -1974,6 +1974,234 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/aserradores/Aserradores.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/aserradores/Aserradores.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layouts/MasterForm */ "./resources/js/components/layouts/MasterForm.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    MasterForm: _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      form: {
+        nombre: "",
+        id: "",
+        _method: undefined,
+        identificacion: "",
+        procedencia_id: ""
+      },
+      acciones: [],
+      errores: {
+        nombre: undefined,
+        identificacion: undefined,
+        procedencia_id: undefined
+      },
+      procedencias: []
+    };
+  },
+  methods: {
+    canceled: function canceled() {
+      this.limpiar();
+    },
+    limpiar: function limpiar() {
+      this.form.id = "";
+      this.form._method = undefined;
+      this.form.nombre = "";
+      this.form.identificacion = "";
+      this.form.procedencia_id = "";
+    },
+    adding: function adding() {
+      this.limpiar();
+    },
+    realizarAccion: function realizarAccion(type, aserradores) {
+      var _this = this;
+
+      if (type === "E") {
+        var aserradoresId = [];
+
+        for (var i = 0; i < aserradores.length; i++) {
+          aserradoresId.push(aserradores[i].id);
+        }
+
+        this.$http.post("http://127.0.0.1:8000/api" + "/aserradores", {
+          aserradores: aserradoresId,
+          _method: "DELETE"
+        }).then(function () {
+          _this.$buefy.toast.open({
+            message: _this.$t("message.guardado_generico"),
+            type: "is-success"
+          });
+
+          _this.$refs.masterForm.submit();
+        })["catch"](function () {
+          _this.$buefy.toast.open({
+            message: _this.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        });
+      }
+    },
+    editar: function editar(aserrador) {
+      this.form.id = aserrador.id;
+      this.form.nombre = aserrador.nombre;
+      this.form.identificacion = aserrador.identificacion;
+      this.form.procedencia_id = aserrador.procedencia_id;
+    },
+    limpiarErrores: function limpiarErrores() {
+      this.errores.nombre = undefined;
+      this.errores.identificacion = undefined;
+      this.errores.procedencia_id = undefined;
+    },
+    submitFormulario: function submitFormulario() {
+      var _this2 = this;
+
+      this.limpiarErrores();
+      var path = "http://127.0.0.1:8000/api" + "/aserradores";
+
+      if (this.form.id !== "") {
+        path += "/" + this.form.id;
+        this.form._method = "PUT";
+      } else this.form._method = undefined;
+
+      this.$http.post(path, this.form).then(function () {
+        _this2.$buefy.toast.open({
+          message: _this2.$t("message.guardado_generico"),
+          type: "is-success"
+        });
+
+        _this2.$refs.masterForm.submit();
+      })["catch"](function (_ref) {
+        var response = _ref.response;
+        var status = response.status;
+
+        if (status === 422) {
+          _this2.errores.identificacion = response.data.errors.identificacion;
+          _this2.errores.nombre = response.data.errors.nombre;
+          _this2.errores.procedencia_id = response.data.errors.procedencia_id;
+        } else {
+          _this2.$buefy.toast.open({
+            message: _this2.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        }
+      });
+    },
+    cargarProcedencias: function cargarProcedencias() {
+      var _this3 = this;
+
+      this.$http.get("http://127.0.0.1:8000/api" + "/procedencias/listado").then(function (_ref2) {
+        var data = _ref2.data;
+        _this3.procedencias = data;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.cargarProcedencias();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/controladores/Controladores.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/controladores/Controladores.vue?vue&type=script&lang=js& ***!
@@ -4431,6 +4659,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -23837,6 +24071,230 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/aserradores/Aserradores.vue?vue&type=template&id=d3412cb8&":
+/*!********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/aserradores/Aserradores.vue?vue&type=template&id=d3412cb8& ***!
+  \********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", { staticClass: "hero" }, [
+    _c("div", { staticClass: "hero-body" }, [
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _c("h1", { staticClass: "title" }, [
+            _vm._v(_vm._s(_vm.$t("title.aserradores")))
+          ]),
+          _vm._v(" "),
+          _c(
+            "masterForm",
+            {
+              ref: "masterForm",
+              attrs: {
+                resource: "/api/aserradores",
+                isPaginated: false,
+                columns: [
+                  {
+                    label: _vm.$t("message.id"),
+                    field: "id",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("etiqueta.procedencia"),
+                    field: "procedencia.descripcion",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.nombre"),
+                    field: "nombre",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.identificacion"),
+                    field: "identificacion",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.status"),
+                    field: "estado",
+                    sortable: true
+                  }
+                ]
+              },
+              on: {
+                adding: _vm.adding,
+                canceled: _vm.canceled,
+                realizarAccion: _vm.realizarAccion,
+                editar: _vm.editar,
+                submitFormulario: _vm.submitFormulario
+              }
+            },
+            [
+              _c("div", { staticClass: "columns" }, [
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      { attrs: { label: _vm.$t("message.id") } },
+                      [
+                        _c("b-input", {
+                          attrs: { readonly: "" },
+                          model: {
+                            value: _vm.form.id,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "id", $$v)
+                            },
+                            expression: "form.id"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.nombre
+                            ? _vm.errores.nombre[0]
+                            : "",
+                          type: _vm.errores.nombre ? "is-danger" : "",
+                          label: _vm.$t("message.nombre")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.nombre,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "nombre", $$v)
+                            },
+                            expression: "form.nombre"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.procedencia_id
+                            ? _vm.errores.procedencia_id[0]
+                            : "",
+                          type: _vm.errores.procedencia_id ? "is-danger" : "",
+                          label: _vm.$t("etiqueta.procedencia")
+                        }
+                      },
+                      [
+                        _c(
+                          "b-select",
+                          {
+                            attrs: {
+                              expanded: "",
+                              placeholder: _vm.$t("title.seleccione")
+                            },
+                            model: {
+                              value: _vm.form.procedencia_id,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "procedencia_id", $$v)
+                              },
+                              expression: "form.procedencia_id"
+                            }
+                          },
+                          _vm._l(_vm.procedencias, function(option) {
+                            return _c(
+                              "option",
+                              {
+                                key: option.id,
+                                domProps: { value: option.id }
+                              },
+                              [_vm._v(_vm._s(option.descripcion))]
+                            )
+                          }),
+                          0
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.identificacion
+                            ? _vm.errores.identificacion[0]
+                            : "",
+                          type: _vm.errores.identificacion ? "is-danger" : "",
+                          label: _vm.$t("message.identificacion")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.identificacion,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "identificacion", $$v)
+                            },
+                            expression: "form.identificacion"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ])
+            ]
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/controladores/Controladores.vue?vue&type=template&id=f4ef6510&":
 /*!************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/controladores/Controladores.vue?vue&type=template&id=f4ef6510& ***!
@@ -26464,6 +26922,15 @@ var render = function() {
                             label: _vm.$t("title.controladores"),
                             tag: "router-link",
                             to: "/admin/controladores"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("b-menu-item", {
+                          attrs: {
+                            icon: "account-multiple-outline",
+                            label: _vm.$t("title.aserradores"),
+                            tag: "router-link",
+                            to: "/admin/aserradores"
                           }
                         })
                       ],
@@ -48581,6 +49048,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/aserradores/Aserradores.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/js/components/admin/aserradores/Aserradores.vue ***!
+  \*******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Aserradores_vue_vue_type_template_id_d3412cb8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Aserradores.vue?vue&type=template&id=d3412cb8& */ "./resources/js/components/admin/aserradores/Aserradores.vue?vue&type=template&id=d3412cb8&");
+/* harmony import */ var _Aserradores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Aserradores.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/aserradores/Aserradores.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Aserradores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Aserradores_vue_vue_type_template_id_d3412cb8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Aserradores_vue_vue_type_template_id_d3412cb8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/aserradores/Aserradores.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/aserradores/Aserradores.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/admin/aserradores/Aserradores.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Aserradores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Aserradores.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/aserradores/Aserradores.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Aserradores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/aserradores/Aserradores.vue?vue&type=template&id=d3412cb8&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/admin/aserradores/Aserradores.vue?vue&type=template&id=d3412cb8& ***!
+  \**************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Aserradores_vue_vue_type_template_id_d3412cb8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Aserradores.vue?vue&type=template&id=d3412cb8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/aserradores/Aserradores.vue?vue&type=template&id=d3412cb8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Aserradores_vue_vue_type_template_id_d3412cb8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Aserradores_vue_vue_type_template_id_d3412cb8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/controladores/Controladores.vue":
 /*!***********************************************************************!*\
   !*** ./resources/js/components/admin/controladores/Controladores.vue ***!
@@ -49899,6 +50435,7 @@ __webpack_require__.r(__webpack_exports__);
     codigo: "Code"
   },
   title: {
+    aserradores: "Aserradores",
     login: "Login",
     access: "Access to the system with your username and password",
     dashboard: "Dashboard",
@@ -49916,9 +50453,11 @@ __webpack_require__.r(__webpack_exports__);
     destinos: "Destines",
     materiales: "Materials",
     correos: "E-mails",
-    controladores: "Controllers"
+    controladores: "Controllers",
+    seleccione: "Select..."
   },
   etiqueta: {
+    procedencia: "Provenance",
     username: "Username",
     password: "Password",
     modulos: "Modules",
@@ -49996,6 +50535,7 @@ __webpack_require__.r(__webpack_exports__);
     codigo: "Código"
   },
   title: {
+    aserradores: "Aserradores",
     login: "Iniciar sesión",
     access: "Accede al sistema con tu nombre de usuario y contraseña",
     dashboard: "Dashboard",
@@ -50012,9 +50552,11 @@ __webpack_require__.r(__webpack_exports__);
     procedencias: "Procedencias",
     destinos: "Destinos",
     materiales: "Materiales",
-    controladores: "Controladores"
+    controladores: "Controladores",
+    seleccione: "Seleccione..."
   },
   etiqueta: {
+    procedencia: "Procedencia",
     username: "Nombre de usuario",
     password: "Contraseña",
     acciones: "Acciones",
@@ -50158,6 +50700,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_materiales_Materiales__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../components/admin/materiales/Materiales */ "./resources/js/components/admin/materiales/Materiales.vue");
 /* harmony import */ var _components_admin_correos_Correos__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../components/admin/correos/Correos */ "./resources/js/components/admin/correos/Correos.vue");
 /* harmony import */ var _components_admin_controladores_Controladores__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../components/admin/controladores/Controladores */ "./resources/js/components/admin/controladores/Controladores.vue");
+/* harmony import */ var _components_admin_aserradores_Aserradores__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../components/admin/aserradores/Aserradores */ "./resources/js/components/admin/aserradores/Aserradores.vue");
+
 
 
 
@@ -50292,6 +50836,13 @@ __webpack_require__.r(__webpack_exports__);
         requiresAuth: true
       },
       name: "Controladores"
+    }, {
+      component: _components_admin_aserradores_Aserradores__WEBPACK_IMPORTED_MODULE_17__["default"],
+      path: "aserradores",
+      meta: {
+        requiresAuth: true
+      },
+      name: "Aserradores"
     }]
   }]
 });
