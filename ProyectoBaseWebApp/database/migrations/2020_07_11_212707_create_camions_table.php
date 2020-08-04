@@ -13,7 +13,7 @@ class CreateCamionsTable extends Migration
      */
     public function up()
     {
-        if (Schema::hasTable('camiones'))
+        if (!Schema::hasTable('camiones'))
             Schema::create('camiones', function (Blueprint $table) {
                 $table->id();
                 $table->timestamps();

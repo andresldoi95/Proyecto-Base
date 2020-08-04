@@ -8,7 +8,11 @@ export default {
         recuperar: "Recuperar cuenta"
     },
     message: {
-        identificacion: "Número de identificación",
+        placa: "Placa",
+        tipo_camion: "Tipo de camión",
+        alto: "Alto",
+        ancho: "Ancho",
+        identificacion: "Identificación",
         email_inexistente:
             "El e-mail proporcionado no está registrado en el sistema",
         link_enviado:
@@ -69,7 +73,8 @@ export default {
         destinos: "Destinos",
         materiales: "Materiales",
         controladores: "Controladores",
-        seleccione: "Seleccione..."
+        seleccione: "Seleccione...",
+        camiones: "Camiones"
     },
     etiqueta: {
         procedencia: "Procedencia",

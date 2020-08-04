@@ -8,6 +8,10 @@ export default {
         recuperar: "Recover account"
     },
     message: {
+        placa: "Placa",
+        tipo_camion: "Truck type",
+        alto: "Height",
+        ancho: "Width",
         identificacion: "Identification number",
         email_inexistente: "The given e-mail is not registered in the system",
         link_enviado: "The reset link has been sent to your email address",
@@ -66,7 +70,8 @@ export default {
         materiales: "Materials",
         correos: "E-mails",
         controladores: "Controllers",
-        seleccione: "Select..."
+        seleccione: "Select...",
+        camiones: "Trucks"
     },
     etiqueta: {
         procedencia: "Provenance",

@@ -115,6 +115,14 @@ Route::group(['middleware' => 'auth:api'], function () {
             'create', 'edit', 'show'
         ]
     ]);
+    Route::group(['prefix' => 'camiones'], function () {
+        Route::delete('/', 'CamionApiController@destroy');
+    });
+    Route::resource('camiones', 'CamionApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
     Route::group(['prefix' => 'roles'], function () {
         Route::delete('/', 'RolApiController@destroy');
     });

@@ -16,6 +16,7 @@ import Materiales from "../components/admin/materiales/Materiales";
 import Correos from "../components/admin/correos/Correos";
 import Controladores from "../components/admin/controladores/Controladores";
 import Aserradores from "../components/admin/aserradores/Aserradores";
+import Camiones from "../components/admin/camiones/Camiones";
 export default {
     mode: "history",
     routes: [
@@ -158,6 +159,14 @@ export default {
                         requiresAuth: true
                     },
                     name: "Aserradores"
+                },
+                {
+                    component: Camiones,
+                    path: "camiones",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "Camiones"
                 }
             ]
         }

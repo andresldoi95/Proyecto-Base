@@ -2202,6 +2202,275 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/camiones/Camiones.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/camiones/Camiones.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layouts/MasterForm */ "./resources/js/components/layouts/MasterForm.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    MasterForm: _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      form: {
+        camionero: "",
+        id: "",
+        _method: undefined,
+        identificacion_camionero: "",
+        tipo_camion: "B",
+        ancho: 0,
+        alto: 0,
+        placa: ""
+      },
+      acciones: [],
+      errores: {
+        camionero: undefined,
+        identificacion_camionero: undefined,
+        ancho: undefined,
+        alto: undefined,
+        tipo_camion: undefined,
+        placa: undefined
+      }
+    };
+  },
+  methods: {
+    canceled: function canceled() {
+      this.limpiar();
+    },
+    limpiar: function limpiar() {
+      this.form.id = "";
+      this.form._method = undefined;
+      this.form.camionero = "";
+      this.form.identificacion_camionero = "";
+      this.form.ancho = 0;
+      this.form.alto = 0;
+      this.form.tipo_camion = "B";
+      this.form.placa = "";
+    },
+    adding: function adding() {
+      this.limpiar();
+    },
+    realizarAccion: function realizarAccion(type, camiones) {
+      var _this = this;
+
+      if (type === "E") {
+        var camionesId = [];
+
+        for (var i = 0; i < camiones.length; i++) {
+          camionesId.push(camiones[i].id);
+        }
+
+        this.$http.post("http://127.0.0.1:8000/api" + "/camiones", {
+          camiones: camionesId,
+          _method: "DELETE"
+        }).then(function () {
+          _this.$buefy.toast.open({
+            message: _this.$t("message.guardado_generico"),
+            type: "is-success"
+          });
+
+          _this.$refs.masterForm.submit();
+        })["catch"](function () {
+          _this.$buefy.toast.open({
+            message: _this.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        });
+      }
+    },
+    editar: function editar(camion) {
+      this.form.id = camion.id;
+      this.form.camionero = camion.camionero;
+      this.form.identificacion_camionero = camion.identificacion_camionero;
+      this.form.tipo_camion = camion.tipo_camion;
+      this.form.ancho = camion.ancho;
+      this.form.alto = camion.alto;
+      this.form.placa = camion.placa;
+    },
+    limpiarErrores: function limpiarErrores() {
+      this.errores.camionero = undefined;
+      this.errores.identificacion_camionero = undefined;
+      this.errores.tipo_camion = undefined;
+      this.errores.ancho = undefined;
+      this.errores.alto = undefined;
+      this.errores.placa = undefined;
+    },
+    submitFormulario: function submitFormulario() {
+      var _this2 = this;
+
+      this.limpiarErrores();
+      var path = "http://127.0.0.1:8000/api" + "/camiones";
+
+      if (this.form.id !== "") {
+        path += "/" + this.form.id;
+        this.form._method = "PUT";
+      } else this.form._method = undefined;
+
+      this.$http.post(path, this.form).then(function () {
+        _this2.$buefy.toast.open({
+          message: _this2.$t("message.guardado_generico"),
+          type: "is-success"
+        });
+
+        _this2.$refs.masterForm.submit();
+      })["catch"](function (_ref) {
+        var response = _ref.response;
+        var status = response.status;
+
+        if (status === 422) {
+          _this2.errores.identificacion_camionero = response.data.errors.identificacion_camionero;
+          _this2.errores.camionero = response.data.errors.camionero;
+          _this2.errores.tipo_camion = response.data.errors.tipo_camion;
+          _this2.errores.alto = response.data.errors.alto;
+          _this2.errores.ancho = response.data.errors.ancho;
+          _this2.errores.placa = response.data.errors.placa;
+        } else {
+          _this2.$buefy.toast.open({
+            message: _this2.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/controladores/Controladores.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/controladores/Controladores.vue?vue&type=script&lang=js& ***!
@@ -4659,6 +4928,12 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -24295,6 +24570,343 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/camiones/Camiones.vue?vue&type=template&id=460c6318&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/camiones/Camiones.vue?vue&type=template&id=460c6318& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", { staticClass: "hero" }, [
+    _c("div", { staticClass: "hero-body" }, [
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _c("h1", { staticClass: "title" }, [
+            _vm._v(_vm._s(_vm.$t("title.camiones")))
+          ]),
+          _vm._v(" "),
+          _c(
+            "masterForm",
+            {
+              ref: "masterForm",
+              attrs: {
+                resource: "/api/camiones",
+                isPaginated: false,
+                columns: [
+                  {
+                    label: _vm.$t("message.id"),
+                    field: "id",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.tipo_camion"),
+                    field: "descripcion_tipo_camion",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.nombre"),
+                    field: "camionero",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.identificacion"),
+                    field: "identificacion_camionero",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.placa"),
+                    field: "placa",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.alto"),
+                    field: "alto",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.ancho"),
+                    field: "ancho",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.status"),
+                    field: "estado",
+                    sortable: true
+                  }
+                ]
+              },
+              on: {
+                adding: _vm.adding,
+                canceled: _vm.canceled,
+                realizarAccion: _vm.realizarAccion,
+                editar: _vm.editar,
+                submitFormulario: _vm.submitFormulario
+              }
+            },
+            [
+              _c("div", { staticClass: "columns" }, [
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      { attrs: { label: _vm.$t("message.id") } },
+                      [
+                        _c("b-input", {
+                          attrs: { readonly: "" },
+                          model: {
+                            value: _vm.form.id,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "id", $$v)
+                            },
+                            expression: "form.id"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.camionero
+                            ? _vm.errores.camionero[0]
+                            : "",
+                          type: _vm.errores.camionero ? "is-danger" : "",
+                          label: _vm.$t("message.nombre")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.camionero,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "camionero", $$v)
+                            },
+                            expression: "form.camionero"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.identificacion_camionero
+                            ? _vm.errores.identificacion_camionero[0]
+                            : "",
+                          type: _vm.errores.identificacion_camionero
+                            ? "is-danger"
+                            : "",
+                          label: _vm.$t("message.identificacion")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.identificacion_camionero,
+                            callback: function($$v) {
+                              _vm.$set(
+                                _vm.form,
+                                "identificacion_camionero",
+                                $$v
+                              )
+                            },
+                            expression: "form.identificacion_camionero"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.tipo_camion
+                            ? _vm.errores.tipo_camion[0]
+                            : "",
+                          type: _vm.errores.tipo_camion ? "is-danger" : "",
+                          label: _vm.$t("message.tipo_camion")
+                        }
+                      },
+                      [
+                        _c(
+                          "b-select",
+                          {
+                            attrs: {
+                              expanded: "",
+                              placeholder: _vm.$t("title.seleccione")
+                            },
+                            model: {
+                              value: _vm.form.tipo_camion,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "tipo_camion", $$v)
+                              },
+                              expression: "form.tipo_camion"
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "B" } }, [
+                              _vm._v("Bananero")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "T" } }, [
+                              _vm._v("Trailer")
+                            ])
+                          ]
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.placa
+                            ? _vm.errores.placa[0]
+                            : "",
+                          type: _vm.errores.placa ? "is-danger" : "",
+                          label: _vm.$t("message.placa")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.placa,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "placa", $$v)
+                            },
+                            expression: "form.placa"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.alto ? _vm.errores.alto[0] : "",
+                          type: _vm.errores.alto ? "is-danger" : "",
+                          label: _vm.$t("message.alto")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.alto,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "alto", $$v)
+                            },
+                            expression: "form.alto"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.ancho
+                            ? _vm.errores.ancho[0]
+                            : "",
+                          type: _vm.errores.ancho ? "is-danger" : "",
+                          label: _vm.$t("message.ancho")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.ancho,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "ancho", $$v)
+                            },
+                            expression: "form.ancho"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ])
+            ]
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/controladores/Controladores.vue?vue&type=template&id=f4ef6510&":
 /*!************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/controladores/Controladores.vue?vue&type=template&id=f4ef6510& ***!
@@ -26931,6 +27543,15 @@ var render = function() {
                             label: _vm.$t("title.aserradores"),
                             tag: "router-link",
                             to: "/admin/aserradores"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("b-menu-item", {
+                          attrs: {
+                            icon: "dump-truck",
+                            label: _vm.$t("title.camiones"),
+                            tag: "router-link",
+                            to: "/admin/camiones"
                           }
                         })
                       ],
@@ -49117,6 +49738,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/camiones/Camiones.vue":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/admin/camiones/Camiones.vue ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Camiones_vue_vue_type_template_id_460c6318___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Camiones.vue?vue&type=template&id=460c6318& */ "./resources/js/components/admin/camiones/Camiones.vue?vue&type=template&id=460c6318&");
+/* harmony import */ var _Camiones_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Camiones.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/camiones/Camiones.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Camiones_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Camiones_vue_vue_type_template_id_460c6318___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Camiones_vue_vue_type_template_id_460c6318___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/camiones/Camiones.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/camiones/Camiones.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/components/admin/camiones/Camiones.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Camiones_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Camiones.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/camiones/Camiones.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Camiones_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/camiones/Camiones.vue?vue&type=template&id=460c6318&":
+/*!********************************************************************************************!*\
+  !*** ./resources/js/components/admin/camiones/Camiones.vue?vue&type=template&id=460c6318& ***!
+  \********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Camiones_vue_vue_type_template_id_460c6318___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Camiones.vue?vue&type=template&id=460c6318& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/camiones/Camiones.vue?vue&type=template&id=460c6318&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Camiones_vue_vue_type_template_id_460c6318___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Camiones_vue_vue_type_template_id_460c6318___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/controladores/Controladores.vue":
 /*!***********************************************************************!*\
   !*** ./resources/js/components/admin/controladores/Controladores.vue ***!
@@ -50396,6 +51086,10 @@ __webpack_require__.r(__webpack_exports__);
     recuperar: "Recover account"
   },
   message: {
+    placa: "Placa",
+    tipo_camion: "Truck type",
+    alto: "Height",
+    ancho: "Width",
     identificacion: "Identification number",
     email_inexistente: "The given e-mail is not registered in the system",
     link_enviado: "The reset link has been sent to your email address",
@@ -50454,7 +51148,8 @@ __webpack_require__.r(__webpack_exports__);
     materiales: "Materials",
     correos: "E-mails",
     controladores: "Controllers",
-    seleccione: "Select..."
+    seleccione: "Select...",
+    camiones: "Trucks"
   },
   etiqueta: {
     procedencia: "Provenance",
@@ -50494,7 +51189,11 @@ __webpack_require__.r(__webpack_exports__);
     recuperar: "Recuperar cuenta"
   },
   message: {
-    identificacion: "Número de identificación",
+    placa: "Placa",
+    tipo_camion: "Tipo de camión",
+    alto: "Alto",
+    ancho: "Ancho",
+    identificacion: "Identificación",
     email_inexistente: "El e-mail proporcionado no está registrado en el sistema",
     link_enviado: "El link de recuperación ha sido enviado a su dirección de correo electrónico",
     derechosReservados: "Todos los derechos reservados",
@@ -50553,7 +51252,8 @@ __webpack_require__.r(__webpack_exports__);
     destinos: "Destinos",
     materiales: "Materiales",
     controladores: "Controladores",
-    seleccione: "Seleccione..."
+    seleccione: "Seleccione...",
+    camiones: "Camiones"
   },
   etiqueta: {
     procedencia: "Procedencia",
@@ -50701,6 +51401,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_correos_Correos__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../components/admin/correos/Correos */ "./resources/js/components/admin/correos/Correos.vue");
 /* harmony import */ var _components_admin_controladores_Controladores__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../components/admin/controladores/Controladores */ "./resources/js/components/admin/controladores/Controladores.vue");
 /* harmony import */ var _components_admin_aserradores_Aserradores__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../components/admin/aserradores/Aserradores */ "./resources/js/components/admin/aserradores/Aserradores.vue");
+/* harmony import */ var _components_admin_camiones_Camiones__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../components/admin/camiones/Camiones */ "./resources/js/components/admin/camiones/Camiones.vue");
+
 
 
 
@@ -50843,6 +51545,13 @@ __webpack_require__.r(__webpack_exports__);
         requiresAuth: true
       },
       name: "Aserradores"
+    }, {
+      component: _components_admin_camiones_Camiones__WEBPACK_IMPORTED_MODULE_18__["default"],
+      path: "camiones",
+      meta: {
+        requiresAuth: true
+      },
+      name: "Camiones"
     }]
   }]
 });

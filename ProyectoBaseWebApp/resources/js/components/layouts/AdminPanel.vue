@@ -84,6 +84,12 @@
                 tag="router-link"
                 to="/admin/aserradores"
               ></b-menu-item>
+              <b-menu-item
+                icon="dump-truck"
+                :label="$t('title.camiones')"
+                tag="router-link"
+                to="/admin/camiones"
+              ></b-menu-item>
             </b-menu-list>
           </b-menu>
         </div>
