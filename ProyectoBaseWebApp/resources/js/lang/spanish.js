@@ -8,6 +8,7 @@ export default {
         recuperar: "Recuperar cuenta"
     },
     message: {
+        identificacion: "Número de identificación",
         email_inexistente:
             "El e-mail proporcionado no está registrado en el sistema",
         link_enviado:
@@ -65,7 +66,8 @@ export default {
         espesores: "Espesores",
         procedencias: "Procedencias",
         destinos: "Destinos",
-        materiales: "Materiales"
+        materiales: "Materiales",
+        controladores: "Controladores"
     },
     etiqueta: {
         username: "Nombre de usuario",

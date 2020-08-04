@@ -8,6 +8,7 @@ export default {
         recuperar: "Recover account"
     },
     message: {
+        identificacion: "Identification number",
         email_inexistente: "The given e-mail is not registered in the system",
         link_enviado: "The reset link has been sent to your email address",
         derechosReservados: "All rights reserved",
@@ -62,7 +63,8 @@ export default {
         procedencias: "Provenances",
         destinos: "Destines",
         materiales: "Materials",
-        correos: "Correos electrónicos"
+        correos: "E-mails",
+        controladores: "Controllers"
     },
     etiqueta: {
         username: "Username",

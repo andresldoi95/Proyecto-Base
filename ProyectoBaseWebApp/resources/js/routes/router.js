@@ -14,6 +14,7 @@ import Procedencias from "../components/admin/procedencias/Procedencias";
 import Destinos from "../components/admin/destinos/Destinos";
 import Materiales from "../components/admin/materiales/Materiales";
 import Correos from "../components/admin/correos/Correos";
+import Controladores from "../components/admin/controladores/Controladores";
 export default {
     mode: "history",
     routes: [
@@ -140,6 +141,14 @@ export default {
                         requiresAuth: true
                     },
                     name: "Correos"
+                },
+                {
+                    component: Controladores,
+                    path: "controladores",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "Controladores"
                 }
             ]
         }

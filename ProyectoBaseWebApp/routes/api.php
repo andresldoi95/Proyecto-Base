@@ -87,6 +87,14 @@ Route::group(['middleware' => 'auth:api'], function () {
             'create', 'edit', 'show'
         ]
     ]);
+    Route::group(['prefix' => 'controladores'], function () {
+        Route::delete('/', 'ControladorApiController@destroy');
+    });
+    Route::resource('controladores', 'ControladorApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
     Route::group(['prefix' => 'espesores'], function () {
         Route::delete('/', 'EspesorApiController@destroy');
     });

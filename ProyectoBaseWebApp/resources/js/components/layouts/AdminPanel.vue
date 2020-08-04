@@ -72,6 +72,12 @@
                 tag="router-link"
                 to="/admin/correos"
               ></b-menu-item>
+              <b-menu-item
+                icon="nature-people"
+                :label="$t('title.controladores')"
+                tag="router-link"
+                to="/admin/controladores"
+              ></b-menu-item>
             </b-menu-list>
           </b-menu>
         </div>
@@ -90,11 +96,11 @@
 
 <script>
 export default {
-  data: function() {
+  data: function () {
     return {
-      open: false
+      open: false,
     };
-  }
+  },
 };
 </script>
 
