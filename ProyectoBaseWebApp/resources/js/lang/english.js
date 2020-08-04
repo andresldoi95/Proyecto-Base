@@ -61,7 +61,8 @@ export default {
         espesores: "Thickness",
         procedencias: "Provenances",
         destinos: "Destines",
-        materiales: "Materials"
+        materiales: "Materials",
+        correos: "Correos electrónicos"
     },
     etiqueta: {
         username: "Username",

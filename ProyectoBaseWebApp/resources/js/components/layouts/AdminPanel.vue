@@ -66,6 +66,12 @@
                 tag="router-link"
                 to="/admin/materiales"
               ></b-menu-item>
+              <b-menu-item
+                icon="email"
+                :label="$t('title.correos')"
+                tag="router-link"
+                to="/admin/correos"
+              ></b-menu-item>
             </b-menu-list>
           </b-menu>
         </div>

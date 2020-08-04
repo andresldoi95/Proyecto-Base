@@ -79,6 +79,14 @@ Route::group(['middleware' => 'auth:api'], function () {
             'create', 'edit', 'show'
         ]
     ]);
+    Route::group(['prefix' => 'correos'], function () {
+        Route::delete('/', 'CorreoApiController@destroy');
+    });
+    Route::resource('correos', 'CorreoApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
     Route::group(['prefix' => 'espesores'], function () {
         Route::delete('/', 'EspesorApiController@destroy');
     });

@@ -13,6 +13,7 @@ import Espesores from "../components/admin/espesores/Espesores";
 import Procedencias from "../components/admin/procedencias/Procedencias";
 import Destinos from "../components/admin/destinos/Destinos";
 import Materiales from "../components/admin/materiales/Materiales";
+import Correos from "../components/admin/correos/Correos";
 export default {
     mode: "history",
     routes: [
@@ -131,6 +132,14 @@ export default {
                         requiresAuth: true
                     },
                     name: "Materiales"
+                },
+                {
+                    component: Correos,
+                    path: "correos",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "Correos"
                 }
             ]
         }
