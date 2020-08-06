@@ -18,7 +18,7 @@ class CreateCorreosTable extends Migration
                 $table->id();
                 $table->unsignedBigInteger('empresa_id');
                 $table->string('nombre');
-                $table->string('email');
+                $table->string('email', 150);
                 $table->char('estado', 1)->default('A');
                 $table->timestamps();
                 $table->unsignedBigInteger('creador_id')->nullable();
