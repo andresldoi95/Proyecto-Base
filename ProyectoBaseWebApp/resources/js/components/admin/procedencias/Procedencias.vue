@@ -4,6 +4,14 @@
       <div class="container">
         <h1 class="title">{{ $t('title.procedencias') }}</h1>
         <masterForm
+          :typeOptions="[
+                {
+                    value: 'E',
+                    text: $t('message.delete'),
+                    visible: $store.getters.permiteAccion('eliminar_procedencias')
+                }
+            ]"
+          :createButton="$store.getters.permiteAccion('crear_procedencias')"
           @adding="adding"
           @canceled="canceled"
           @realizarAccion="realizarAccion"
@@ -84,38 +92,38 @@
 import MasterForm from "../../layouts/MasterForm";
 export default {
   components: { MasterForm },
-  data: function() {
+  data: function () {
     return {
       form: {
         codigo: "",
         descripcion: "",
         id: "",
         _method: undefined,
-        email: ""
+        email: "",
       },
       acciones: [],
       errores: {
         codigo: undefined,
         descripcion: undefined,
-        email: undefined
-      }
+        email: undefined,
+      },
     };
   },
   methods: {
-    canceled: function() {
+    canceled: function () {
       this.limpiar();
     },
-    limpiar: function() {
+    limpiar: function () {
       this.form.id = "";
       this.form._method = undefined;
       this.form.codigo = "";
       this.form.descripcion = "";
       this.form.email = "";
     },
-    adding: function() {
+    adding: function () {
       this.limpiar();
     },
-    realizarAccion: function(type, procedencias) {
+    realizarAccion: function (type, procedencias) {
       if (type === "E") {
         let procedenciasId = [];
         for (let i = 0; i < procedencias.length; i++)
@@ -123,34 +131,34 @@ export default {
         this.$http
           .post(process.env.MIX_APP_URL_API + "/procedencias", {
             procedencias: procedenciasId,
-            _method: "DELETE"
+            _method: "DELETE",
           })
           .then(() => {
             this.$buefy.toast.open({
               message: this.$t("message.guardado_generico"),
-              type: "is-success"
+              type: "is-success",
             });
             this.$refs.masterForm.submit();
           })
           .catch(() => {
             this.$buefy.toast.open({
               message: this.$t("message.generic_error"),
-              type: "is-danger"
+              type: "is-danger",
             });
           });
       }
     },
-    editar: function(procedencia) {
+    editar: function (procedencia) {
       this.form.id = procedencia.id;
       this.form.codigo = procedencia.codigo;
       this.form.descripcion = procedencia.descripcion;
       this.form.email = procedencia.email;
     },
-    limpiarErrores: function() {
+    limpiarErrores: function () {
       this.errores.descripcion = undefined;
       this.errores.codigo = undefined;
     },
-    submitFormulario: function() {
+    submitFormulario: function () {
       this.limpiarErrores();
       let path = process.env.MIX_APP_URL_API + "/procedencias";
       if (this.form.id !== "") {
@@ -162,7 +170,7 @@ export default {
         .then(() => {
           this.$buefy.toast.open({
             message: this.$t("message.guardado_generico"),
-            type: "is-success"
+            type: "is-success",
           });
           this.$refs.masterForm.submit();
         })
@@ -174,11 +182,11 @@ export default {
           } else {
             this.$buefy.toast.open({
               message: this.$t("message.generic_error"),
-              type: "is-danger"
+              type: "is-danger",
             });
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>
