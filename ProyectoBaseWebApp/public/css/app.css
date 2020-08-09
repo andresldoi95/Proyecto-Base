@@ -40132,5 +40132,13 @@ MIT (https://github.com/Wikiki/bulma-steps/blob/master/LICENSE)
 
 .backgrounded {
   background-image: url("/img/background.jpg");
+  background-size: cover;
+}
+
+.carded {
+  background-color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-radius: 15px;
 }
 

@@ -13,6 +13,7 @@
           <b-menu class="is-custom-mobile">
             <b-menu-list :label="$t('title.menu')">
               <b-menu-item
+                v-show="$store.state.nombre_empresa_actual !== ''"
                 to="/admin"
                 tag="router-link"
                 icon="monitor"
@@ -25,66 +26,77 @@
                 to="/admin/empresas"
               ></b-menu-item>
               <b-menu-item
+                v-show="$store.state.nombre_empresa_actual !== ''"
                 icon="account-lock"
                 :label="$t('title.roles')"
                 tag="router-link"
                 to="/admin/roles"
               ></b-menu-item>
               <b-menu-item
+                v-show="$store.state.nombre_empresa_actual !== ''"
                 icon="account-multiple"
                 :label="$t('title.usuarios')"
                 tag="router-link"
                 to="/admin/usuarios"
               ></b-menu-item>
               <b-menu-item
+                v-show="$store.state.nombre_empresa_actual !== ''"
                 icon="ruler"
                 :label="$t('title.largos')"
                 tag="router-link"
                 to="/admin/largos"
               ></b-menu-item>
               <b-menu-item
+                v-show="$store.state.nombre_empresa_actual !== ''"
                 icon="weight"
                 :label="$t('title.espesores')"
                 tag="router-link"
                 to="/admin/espesores"
               ></b-menu-item>
               <b-menu-item
+                v-show="$store.state.nombre_empresa_actual !== ''"
                 icon="source-branch"
                 :label="$t('title.procedencias')"
                 tag="router-link"
                 to="/admin/procedencias"
               ></b-menu-item>
               <b-menu-item
+                v-show="$store.state.nombre_empresa_actual !== ''"
                 icon="map-marker"
                 :label="$t('title.destinos')"
                 tag="router-link"
                 to="/admin/destinos"
               ></b-menu-item>
               <b-menu-item
+                v-show="$store.state.nombre_empresa_actual !== ''"
                 icon="material-ui"
                 :label="$t('title.materiales')"
                 tag="router-link"
                 to="/admin/materiales"
               ></b-menu-item>
               <b-menu-item
+                v-show="$store.state.nombre_empresa_actual !== ''"
                 icon="email"
                 :label="$t('title.correos')"
                 tag="router-link"
                 to="/admin/correos"
               ></b-menu-item>
               <b-menu-item
+                v-show="$store.state.nombre_empresa_actual !== ''"
                 icon="nature-people"
                 :label="$t('title.controladores')"
                 tag="router-link"
                 to="/admin/controladores"
               ></b-menu-item>
               <b-menu-item
+                v-show="$store.state.nombre_empresa_actual !== ''"
                 icon="account-multiple-outline"
                 :label="$t('title.aserradores')"
                 tag="router-link"
                 to="/admin/aserradores"
               ></b-menu-item>
               <b-menu-item
+                v-show="$store.state.nombre_empresa_actual !== ''"
                 icon="dump-truck"
                 :label="$t('title.camiones')"
                 tag="router-link"

@@ -69,10 +69,21 @@ $link: $primary;
 $link-invert: $primary-invert;
 $link-focus-border: $primary;
 
+$carded-margin: 20px;
+$carded-radius: 15px;
+
 // Import Bulma and Buefy styles
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
 
 .backgrounded {
     background-image: url("/img/background.jpg");
+    background-size: cover;
+}
+
+.carded {
+    background-color: $white;
+    margin-top: $carded-margin;
+    margin-bottom: $carded-margin;
+    border-radius: $carded-radius;
 }

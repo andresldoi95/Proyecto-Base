@@ -4772,6 +4772,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     submit: function submit() {
@@ -5043,6 +5050,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5095,6 +5114,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -26898,7 +26925,7 @@ var render = function() {
     "div",
     { staticClass: "backgrounded columns is-vcentered is-centered" },
     [
-      _c("div", { staticClass: "column is-one-third" }, [
+      _c("div", { staticClass: "carded column is-one-third" }, [
         _c("section", { staticClass: "hero" }, [
           _c("div", { staticClass: "hero-body" }, [
             _c(
@@ -27196,63 +27223,82 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "columns is-vcentered is-centered" }, [
-    _c("div", { staticClass: "column is-half" }, [
-      _c("section", { staticClass: "hero" }, [
-        _c("div", { staticClass: "hero-body" }, [
-          _c("div", { staticClass: "container" }, [
-            _c("h1", { staticClass: "title" }, [
-              _vm._v(_vm._s(_vm.$t("title.recuperar_cuenta")))
-            ]),
-            _vm._v(" "),
-            _c("h2", { staticClass: "subtitle" }, [
-              _vm._v(_vm._s(_vm.$t("title.recuperar_cuenta_sub")))
-            ]),
-            _vm._v(" "),
+  return _c(
+    "div",
+    { staticClass: "backgrounded columns is-vcentered is-centered" },
+    [
+      _c("div", { staticClass: "carded column is-one-third" }, [
+        _c("section", { staticClass: "hero" }, [
+          _c("div", { staticClass: "hero-body" }, [
             _c(
-              "form",
-              {
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.submit($event)
-                  }
-                }
-              },
+              "div",
+              { staticClass: "container" },
               [
+                _c("center", [
+                  _c("figure", { staticClass: "image is-128x128" }, [
+                    _c("img", { attrs: { src: "/img/logo.png", alt: "Logo" } })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("center", [
+                  _c("h1", { staticClass: "title" }, [
+                    _vm._v(_vm._s(_vm.$t("title.recuperar_cuenta")))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("h2", { staticClass: "subtitle" }, [
+                  _vm._v(_vm._s(_vm.$t("title.recuperar_cuenta_sub")))
+                ]),
+                _vm._v(" "),
                 _c(
-                  "b-field",
+                  "form",
                   {
-                    attrs: {
-                      message: _vm.errores.email ? _vm.errores.email[0] : "",
-                      type: _vm.errores.email ? "is-danger" : "",
-                      label: _vm.$t("message.email")
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.submit($event)
+                      }
                     }
                   },
                   [
-                    _c("b-input", {
-                      model: {
-                        value: _vm.form.email,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "email", $$v)
-                        },
-                        expression: "form.email"
-                      }
-                    })
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.email
+                            ? _vm.errores.email[0]
+                            : "",
+                          type: _vm.errores.email ? "is-danger" : "",
+                          label: _vm.$t("message.email")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.email,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "email", $$v)
+                            },
+                            expression: "form.email"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-button",
+                      {
+                        attrs: {
+                          expanded: "",
+                          "native-type": "submit",
+                          type: "is-primary"
+                        }
+                      },
+                      [_vm._v(_vm._s(_vm.$t("button.enviar_link")))]
+                    )
                   ],
                   1
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-button",
-                  {
-                    attrs: {
-                      expanded: "",
-                      "native-type": "submit",
-                      type: "is-primary"
-                    }
-                  },
-                  [_vm._v(_vm._s(_vm.$t("button.enviar_link")))]
                 )
               ],
               1
@@ -27260,8 +27306,8 @@ var render = function() {
           ])
         ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -27465,6 +27511,16 @@ var render = function() {
                       { attrs: { label: _vm.$t("title.menu") } },
                       [
                         _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "",
+                              expression:
+                                "$store.state.nombre_empresa_actual !== ''"
+                            }
+                          ],
                           attrs: {
                             to: "/admin",
                             tag: "router-link",
@@ -27483,6 +27539,16 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "",
+                              expression:
+                                "$store.state.nombre_empresa_actual !== ''"
+                            }
+                          ],
                           attrs: {
                             icon: "account-lock",
                             label: _vm.$t("title.roles"),
@@ -27492,6 +27558,16 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "",
+                              expression:
+                                "$store.state.nombre_empresa_actual !== ''"
+                            }
+                          ],
                           attrs: {
                             icon: "account-multiple",
                             label: _vm.$t("title.usuarios"),
@@ -27501,6 +27577,16 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "",
+                              expression:
+                                "$store.state.nombre_empresa_actual !== ''"
+                            }
+                          ],
                           attrs: {
                             icon: "ruler",
                             label: _vm.$t("title.largos"),
@@ -27510,6 +27596,16 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "",
+                              expression:
+                                "$store.state.nombre_empresa_actual !== ''"
+                            }
+                          ],
                           attrs: {
                             icon: "weight",
                             label: _vm.$t("title.espesores"),
@@ -27519,6 +27615,16 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "",
+                              expression:
+                                "$store.state.nombre_empresa_actual !== ''"
+                            }
+                          ],
                           attrs: {
                             icon: "source-branch",
                             label: _vm.$t("title.procedencias"),
@@ -27528,6 +27634,16 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "",
+                              expression:
+                                "$store.state.nombre_empresa_actual !== ''"
+                            }
+                          ],
                           attrs: {
                             icon: "map-marker",
                             label: _vm.$t("title.destinos"),
@@ -27537,6 +27653,16 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "",
+                              expression:
+                                "$store.state.nombre_empresa_actual !== ''"
+                            }
+                          ],
                           attrs: {
                             icon: "material-ui",
                             label: _vm.$t("title.materiales"),
@@ -27546,6 +27672,16 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "",
+                              expression:
+                                "$store.state.nombre_empresa_actual !== ''"
+                            }
+                          ],
                           attrs: {
                             icon: "email",
                             label: _vm.$t("title.correos"),
@@ -27555,6 +27691,16 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "",
+                              expression:
+                                "$store.state.nombre_empresa_actual !== ''"
+                            }
+                          ],
                           attrs: {
                             icon: "nature-people",
                             label: _vm.$t("title.controladores"),
@@ -27564,6 +27710,16 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "",
+                              expression:
+                                "$store.state.nombre_empresa_actual !== ''"
+                            }
+                          ],
                           attrs: {
                             icon: "account-multiple-outline",
                             label: _vm.$t("title.aserradores"),
@@ -27573,6 +27729,16 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "",
+                              expression:
+                                "$store.state.nombre_empresa_actual !== ''"
+                            }
+                          ],
                           attrs: {
                             icon: "dump-truck",
                             label: _vm.$t("title.camiones"),
@@ -27740,13 +27906,19 @@ var render = function() {
               )
             : _vm._e(),
           _vm._v(" "),
-          _c("b-navbar-item", { attrs: { tag: "router-link", to: "/" } }, [
-            _vm._v(_vm._s(_vm.$t("link.home")))
-          ]),
+          _vm.$store.state.usuario.id !== ""
+            ? _c("b-navbar-item", { attrs: { tag: "router-link", to: "/" } }, [
+                _vm._v(_vm._s(_vm.$t("link.home")))
+              ])
+            : _vm._e(),
           _vm._v(" "),
-          _c("b-navbar-item", { attrs: { tag: "router-link", to: "/admin" } }, [
-            _vm._v(_vm._s(_vm.$t("link.admin")))
-          ])
+          _vm.$store.state.usuario.id !== ""
+            ? _c(
+                "b-navbar-item",
+                { attrs: { tag: "router-link", to: "/admin" } },
+                [_vm._v(_vm._s(_vm.$t("link.admin")))]
+              )
+            : _vm._e()
         ],
         1
       ),
