@@ -63,5 +63,205 @@ class AccionSeeder extends Seeder
             'descripcion' => 'Consultar roles de usuario',
             'modulo_id' => 'roles'
         ]);
+        Accion::create([
+            'id' => 'crear_aserradores',
+            'descripcion' => 'Crear aserradores',
+            'modulo_id' => 'aserradores'
+        ]);
+        Accion::create([
+            'id' => 'editar_aserradores',
+            'descripcion' => 'Editar aserradores',
+            'modulo_id' => 'aserradores'
+        ]);
+        Accion::create([
+            'id' => 'eliminar_aserradores',
+            'descripcion' => 'Eliminar aserradores',
+            'modulo_id' => 'aserradores'
+        ]);
+        Accion::create([
+            'id' => 'reactivar_aserradores',
+            'descripcion' => 'Re-activar aserradores',
+            'modulo_id' => 'aserradores'
+        ]);
+        Accion::create([
+            'id' => 'consultar_aserradores',
+            'descripcion' => 'Consultar aserradores',
+            'modulo_id' => 'aserradores'
+        ]);
+        Accion::create([
+            'id' => 'crear_camiones',
+            'descripcion' => 'Crear camiones',
+            'modulo_id' => 'camiones'
+        ]);
+        Accion::create([
+            'id' => 'editar_camiones',
+            'descripcion' => 'Editar camiones',
+            'modulo_id' => 'camiones'
+        ]);
+        Accion::create([
+            'id' => 'eliminar_camiones',
+            'descripcion' => 'Eliminar camiones',
+            'modulo_id' => 'camiones'
+        ]);
+        Accion::create([
+            'id' => 'reactivar_camiones',
+            'descripcion' => 'Re-activar camiones',
+            'modulo_id' => 'camiones'
+        ]);
+        Accion::create([
+            'id' => 'consultar_camiones',
+            'descripcion' => 'Consultar camiones',
+            'modulo_id' => 'camiones'
+        ]);
+        Accion::create([
+            'id' => 'crear_controladores',
+            'descripcion' => 'Crear controladores',
+            'modulo_id' => 'controladores'
+        ]);
+        Accion::create([
+            'id' => 'editar_controladores',
+            'descripcion' => 'Editar controladores',
+            'modulo_id' => 'controladores'
+        ]);
+        Accion::create([
+            'id' => 'eliminar_controladores',
+            'descripcion' => 'Eliminar controladores',
+            'modulo_id' => 'controladores'
+        ]);
+        Accion::create([
+            'id' => 'reactivar_controladores',
+            'descripcion' => 'Re-activar controladores',
+            'modulo_id' => 'controladores'
+        ]);
+        Accion::create([
+            'id' => 'consultar_controladores',
+            'descripcion' => 'Consultar controladores',
+            'modulo_id' => 'controladores'
+        ]);
+        Accion::create([
+            'id' => 'crear_correos',
+            'descripcion' => 'Crear correos',
+            'modulo_id' => 'correos'
+        ]);
+        Accion::create([
+            'id' => 'editar_correos',
+            'descripcion' => 'Editar correos',
+            'modulo_id' => 'correos'
+        ]);
+        Accion::create([
+            'id' => 'eliminar_correos',
+            'descripcion' => 'Eliminar correos',
+            'modulo_id' => 'correos'
+        ]);
+        Accion::create([
+            'id' => 'reactivar_correos',
+            'descripcion' => 'Re-activar correos',
+            'modulo_id' => 'correos'
+        ]);
+        Accion::create([
+            'id' => 'consultar_correos',
+            'descripcion' => 'Consultar correos',
+            'modulo_id' => 'correos'
+        ]);
+        Accion::create([
+            'id' => 'crear_destinos',
+            'descripcion' => 'Crear destinos',
+            'modulo_id' => 'destinos'
+        ]);
+        Accion::create([
+            'id' => 'editar_destinos',
+            'descripcion' => 'Editar destinos',
+            'modulo_id' => 'destinos'
+        ]);
+        Accion::create([
+            'id' => 'eliminar_destinos',
+            'descripcion' => 'Eliminar destinos',
+            'modulo_id' => 'destinos'
+        ]);
+        Accion::create([
+            'id' => 'reactivar_destinos',
+            'descripcion' => 'Re-activar destinos',
+            'modulo_id' => 'destinos'
+        ]);
+        Accion::create([
+            'id' => 'consultar_destinos',
+            'descripcion' => 'Consultar destinos',
+            'modulo_id' => 'destinos'
+        ]);
+        Accion::create([
+            'id' => 'crear_largos',
+            'descripcion' => 'Crear destinos',
+            'modulo_id' => 'destinos'
+        ]);
+        Accion::create([
+            'id' => 'editar_largos',
+            'descripcion' => 'Editar largos',
+            'modulo_id' => 'largos'
+        ]);
+        Accion::create([
+            'id' => 'eliminar_largos',
+            'descripcion' => 'Eliminar largos',
+            'modulo_id' => 'largos'
+        ]);
+        Accion::create([
+            'id' => 'reactivar_largos',
+            'descripcion' => 'Re-activar largos',
+            'modulo_id' => 'largos'
+        ]);
+        Accion::create([
+            'id' => 'consultar_largos',
+            'descripcion' => 'Consultar largos',
+            'modulo_id' => 'largos'
+        ]);
+        Accion::create([
+            'id' => 'crear_materiales',
+            'descripcion' => 'Crear materiales',
+            'modulo_id' => 'materiales'
+        ]);
+        Accion::create([
+            'id' => 'editar_materiales',
+            'descripcion' => 'Editar materiales',
+            'modulo_id' => 'materiales'
+        ]);
+        Accion::create([
+            'id' => 'eliminar_materiales',
+            'descripcion' => 'Eliminar materiales',
+            'modulo_id' => 'materiales'
+        ]);
+        Accion::create([
+            'id' => 'reactivar_materiales',
+            'descripcion' => 'Re-activar materiales',
+            'modulo_id' => 'materiales'
+        ]);
+        Accion::create([
+            'id' => 'consultar_materiales',
+            'descripcion' => 'Consultar materiales',
+            'modulo_id' => 'materiales'
+        ]);
+        Accion::create([
+            'id' => 'crear_procedencias',
+            'descripcion' => 'Crear procedencias',
+            'modulo_id' => 'procedencias'
+        ]);
+        Accion::create([
+            'id' => 'editar_procedencias',
+            'descripcion' => 'Editar procedencias',
+            'modulo_id' => 'procedencias'
+        ]);
+        Accion::create([
+            'id' => 'eliminar_procedencias',
+            'descripcion' => 'Eliminar procedencias',
+            'modulo_id' => 'procedencias'
+        ]);
+        Accion::create([
+            'id' => 'reactivar_procedencias',
+            'descripcion' => 'Re-activar procedencias',
+            'modulo_id' => 'procedencias'
+        ]);
+        Accion::create([
+            'id' => 'consultar_procedencias',
+            'descripcion' => 'Consultar procedencias',
+            'modulo_id' => 'procedencias'
+        ]);
     }
 }

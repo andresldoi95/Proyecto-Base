@@ -15,7 +15,7 @@ class CreateModulosEmpresaTable extends Migration
     {
         Schema::create('modulos_empresa', function (Blueprint $table) {
             $table->unsignedBigInteger('empresa_id');
-            $table->string('modulo_id', 10);
+            $table->string('modulo_id', 25);
             $table->foreign('empresa_id')->references('id')->on('empresas');
             $table->foreign('modulo_id')->references('id')->on('modulos');
             $table->primary([

@@ -4544,7 +4544,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$http.post("http://127.0.0.1:8000" + "/oauth/token", {
         grant_type: "password",
         client_id: "2",
-        client_secret: "fkqQS643LevMfyMfKFknMvj2kMUSSZFpuUEj5S9K",
+        client_secret: "orgthBZAnJ9TzFmhMjbOsbeqeYNGkFTqZ8Sgkcb3",
         username: this.form.username,
         password: this.form.password
       }).then(function (_ref) {
@@ -5096,8 +5096,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      appName: "ProyectoBase",
-      appAuthor: "Andrés León",
+      appName: "Cosechas",
+      appAuthor: "Techtraining",
       linkAuthor: "http://127.0.0.1:8000"
     };
   }
