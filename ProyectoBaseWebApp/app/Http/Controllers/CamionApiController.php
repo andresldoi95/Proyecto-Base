@@ -14,7 +14,7 @@ class CamionApiController extends Controller
         $user = $request->user();
         $status = $request->input('status');
         $search = $request->input('search');
-        return Camion::where('empresa_id', $user->empresa_id)->orderBy('camionero')
+        return Camion::where('empresa_id', $user->empresa_id)
             ->orderBy('camionero')
             ->where(function ($query) use ($status) {
                 if ($status !== 'T')

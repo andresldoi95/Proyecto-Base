@@ -4116,6 +4116,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4180,12 +4188,14 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     editar: function editar(rol) {
-      this.form.id = rol.id;
-      this.form.nombre = rol.nombre;
-      this.form.descripcion = rol.descripcion;
+      if (this.$store.getters.permiteAccion("editar_roles")) {
+        this.form.id = rol.id;
+        this.form.nombre = rol.nombre;
+        this.form.descripcion = rol.descripcion;
 
-      for (var i = 0; i < rol.acciones.length; i++) {
-        this.form.acciones.push(rol.acciones[i].id);
+        for (var i = 0; i < rol.acciones.length; i++) {
+          this.form.acciones.push(rol.acciones[i].id);
+        }
       }
     },
     limpiarErrores: function limpiarErrores() {
@@ -4251,6 +4261,14 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layouts/MasterForm */ "./resources/js/components/layouts/MasterForm.vue");
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4544,7 +4562,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$http.post("http://127.0.0.1:8000" + "/oauth/token", {
         grant_type: "password",
         client_id: "2",
-        client_secret: "orgthBZAnJ9TzFmhMjbOsbeqeYNGkFTqZ8Sgkcb3",
+        client_secret: "oFlPysSiwkL5wOp2T2ruCVHjd1zX4T4Ja8wPN6db",
         username: this.form.username,
         password: this.form.password
       }).then(function (_ref) {
@@ -5062,6 +5080,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -5300,6 +5340,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     editable: {
@@ -5315,7 +5360,7 @@ __webpack_require__.r(__webpack_exports__);
     createButton: {
       type: Boolean,
       required: false,
-      "default": true
+      "default": false
     },
     sortOrderDefault: {
       type: String,
@@ -5380,7 +5425,8 @@ __webpack_require__.r(__webpack_exports__);
       "default": function _default() {
         return [{
           value: "E",
-          text: this.$t("message.delete")
+          text: this.$t("message.delete"),
+          visible: false
         }];
       }
     }
@@ -26466,6 +26512,14 @@ var render = function() {
             {
               ref: "masterForm",
               attrs: {
+                typeOptions: [
+                  {
+                    value: "E",
+                    text: _vm.$t("message.delete"),
+                    visible: _vm.$store.getters.permiteAccion("eliminar_roles")
+                  }
+                ],
+                createButton: _vm.$store.getters.permiteAccion("crear_roles"),
                 resource: "/api/roles",
                 isPaginated: false,
                 columns: [
@@ -26667,6 +26721,18 @@ var render = function() {
             {
               ref: "masterForm",
               attrs: {
+                typeOptions: [
+                  {
+                    value: "E",
+                    text: _vm.$t("message.delete"),
+                    visible: _vm.$store.getters.permiteAccion(
+                      "eliminar_usuarios"
+                    )
+                  }
+                ],
+                createButton: _vm.$store.getters.permiteAccion(
+                  "crear_usuarios"
+                ),
                 resource: "/api/usuarios",
                 columns: [
                   {
@@ -27544,9 +27610,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value:
-                                _vm.$store.state.nombre_empresa_actual !== "",
+                                _vm.$store.state.nombre_empresa_actual !== "" &&
+                                (_vm.$store.getters.permiteAccion(
+                                  "crear_roles"
+                                ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "editar_roles"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "consultar_roles"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "eliminar_roles"
+                                  )),
                               expression:
-                                "$store.state.nombre_empresa_actual !== ''"
+                                "$store.state.nombre_empresa_actual !== '' && ($store.getters.permiteAccion('crear_roles') ||\n              $store.getters.permiteAccion('editar_roles') || $store.getters.permiteAccion('consultar_roles') ||\n              $store.getters.permiteAccion('eliminar_roles'))"
                             }
                           ],
                           attrs: {
@@ -27563,9 +27641,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value:
-                                _vm.$store.state.nombre_empresa_actual !== "",
+                                _vm.$store.state.nombre_empresa_actual !== "" &&
+                                (_vm.$store.getters.permiteAccion(
+                                  "crear_usuarios"
+                                ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "editar_usuarios"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "consultar_usuarios"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "eliminar_usuarios"
+                                  )),
                               expression:
-                                "$store.state.nombre_empresa_actual !== ''"
+                                "$store.state.nombre_empresa_actual !== '' && ($store.getters.permiteAccion('crear_usuarios') ||\n              $store.getters.permiteAccion('editar_usuarios') || $store.getters.permiteAccion('consultar_usuarios') ||\n              $store.getters.permiteAccion('eliminar_usuarios'))"
                             }
                           ],
                           attrs: {
@@ -27582,9 +27672,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value:
-                                _vm.$store.state.nombre_empresa_actual !== "",
+                                _vm.$store.state.nombre_empresa_actual !== "" &&
+                                (_vm.$store.getters.permiteAccion(
+                                  "crear_largos"
+                                ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "editar_largos"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "consultar_largos"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "eliminar_largos"
+                                  )),
                               expression:
-                                "$store.state.nombre_empresa_actual !== ''"
+                                "$store.state.nombre_empresa_actual !== '' && ($store.getters.permiteAccion('crear_largos') ||\n              $store.getters.permiteAccion('editar_largos') || $store.getters.permiteAccion('consultar_largos') ||\n              $store.getters.permiteAccion('eliminar_largos'))"
                             }
                           ],
                           attrs: {
@@ -27601,9 +27703,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value:
-                                _vm.$store.state.nombre_empresa_actual !== "",
+                                _vm.$store.state.nombre_empresa_actual !== "" &&
+                                (_vm.$store.getters.permiteAccion(
+                                  "crear_espesores"
+                                ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "editar_espesores"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "consultar_espesores"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "eliminar_espesores"
+                                  )),
                               expression:
-                                "$store.state.nombre_empresa_actual !== ''"
+                                "$store.state.nombre_empresa_actual !== '' && ($store.getters.permiteAccion('crear_espesores') ||\n              $store.getters.permiteAccion('editar_espesores') || $store.getters.permiteAccion('consultar_espesores') ||\n              $store.getters.permiteAccion('eliminar_espesores'))"
                             }
                           ],
                           attrs: {
@@ -27620,9 +27734,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value:
-                                _vm.$store.state.nombre_empresa_actual !== "",
+                                _vm.$store.state.nombre_empresa_actual !== "" &&
+                                (_vm.$store.getters.permiteAccion(
+                                  "crear_procedencias"
+                                ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "editar_procedencias"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "consultar_procedencias"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "eliminar_procedencias"
+                                  )),
                               expression:
-                                "$store.state.nombre_empresa_actual !== ''"
+                                "$store.state.nombre_empresa_actual !== '' && ($store.getters.permiteAccion('crear_procedencias') ||\n              $store.getters.permiteAccion('editar_procedencias') || $store.getters.permiteAccion('consultar_procedencias') ||\n              $store.getters.permiteAccion('eliminar_procedencias'))"
                             }
                           ],
                           attrs: {
@@ -27639,9 +27765,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value:
-                                _vm.$store.state.nombre_empresa_actual !== "",
+                                _vm.$store.state.nombre_empresa_actual !== "" &&
+                                (_vm.$store.getters.permiteAccion(
+                                  "crear_destinos"
+                                ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "editar_destinos"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "consultar_destinos"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "eliminar_destinos"
+                                  )),
                               expression:
-                                "$store.state.nombre_empresa_actual !== ''"
+                                "$store.state.nombre_empresa_actual !== '' && ($store.getters.permiteAccion('crear_destinos') ||\n              $store.getters.permiteAccion('editar_destinos') || $store.getters.permiteAccion('consultar_destinos') ||\n              $store.getters.permiteAccion('eliminar_destinos'))"
                             }
                           ],
                           attrs: {
@@ -27658,9 +27796,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value:
-                                _vm.$store.state.nombre_empresa_actual !== "",
+                                _vm.$store.state.nombre_empresa_actual !== "" &&
+                                (_vm.$store.getters.permiteAccion(
+                                  "crear_materiales"
+                                ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "editar_materiales"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "consultar_materiales"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "eliminar_materiales"
+                                  )),
                               expression:
-                                "$store.state.nombre_empresa_actual !== ''"
+                                "$store.state.nombre_empresa_actual !== '' && ($store.getters.permiteAccion('crear_materiales') ||\n              $store.getters.permiteAccion('editar_materiales') || $store.getters.permiteAccion('consultar_materiales') ||\n              $store.getters.permiteAccion('eliminar_materiales'))"
                             }
                           ],
                           attrs: {
@@ -27677,9 +27827,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value:
-                                _vm.$store.state.nombre_empresa_actual !== "",
+                                _vm.$store.state.nombre_empresa_actual !== "" &&
+                                (_vm.$store.getters.permiteAccion(
+                                  "crear_correos"
+                                ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "editar_correos"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "consultar_correos"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "eliminar_correos"
+                                  )),
                               expression:
-                                "$store.state.nombre_empresa_actual !== ''"
+                                "$store.state.nombre_empresa_actual !== '' && ($store.getters.permiteAccion('crear_correos') ||\n              $store.getters.permiteAccion('editar_correos') || $store.getters.permiteAccion('consultar_correos') ||\n              $store.getters.permiteAccion('eliminar_correos'))"
                             }
                           ],
                           attrs: {
@@ -27696,9 +27858,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value:
-                                _vm.$store.state.nombre_empresa_actual !== "",
+                                _vm.$store.state.nombre_empresa_actual !== "" &&
+                                (_vm.$store.getters.permiteAccion(
+                                  "crear_controladores"
+                                ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "editar_controladores"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "consultar_controladores"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "eliminar_controladores"
+                                  )),
                               expression:
-                                "$store.state.nombre_empresa_actual !== ''"
+                                "$store.state.nombre_empresa_actual !== '' && ($store.getters.permiteAccion('crear_controladores') ||\n              $store.getters.permiteAccion('editar_controladores') || $store.getters.permiteAccion('consultar_controladores') ||\n              $store.getters.permiteAccion('eliminar_controladores'))"
                             }
                           ],
                           attrs: {
@@ -27715,9 +27889,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value:
-                                _vm.$store.state.nombre_empresa_actual !== "",
+                                _vm.$store.state.nombre_empresa_actual !== "" &&
+                                (_vm.$store.getters.permiteAccion(
+                                  "crear_aserradores"
+                                ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "editar_aserradores"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "consultar_aserradores"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "eliminar_aserradores"
+                                  )),
                               expression:
-                                "$store.state.nombre_empresa_actual !== ''"
+                                "$store.state.nombre_empresa_actual !== '' && ($store.getters.permiteAccion('crear_aserradores') ||\n              $store.getters.permiteAccion('editar_aserradores') || $store.getters.permiteAccion('consultar_aserradores') ||\n              $store.getters.permiteAccion('eliminar_aserradores'))"
                             }
                           ],
                           attrs: {
@@ -27734,9 +27920,21 @@ var render = function() {
                               name: "show",
                               rawName: "v-show",
                               value:
-                                _vm.$store.state.nombre_empresa_actual !== "",
+                                _vm.$store.state.nombre_empresa_actual !== "" &&
+                                (_vm.$store.getters.permiteAccion(
+                                  "crear_camiones"
+                                ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "editar_camiones"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "consultar_camiones"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "eliminar_camiones"
+                                  )),
                               expression:
-                                "$store.state.nombre_empresa_actual !== ''"
+                                "$store.state.nombre_empresa_actual !== '' && ($store.getters.permiteAccion('crear_camiones') ||\n              $store.getters.permiteAccion('editar_camiones') || $store.getters.permiteAccion('consultar_camiones') ||\n              $store.getters.permiteAccion('eliminar_camiones'))"
                             }
                           ],
                           attrs: {
@@ -28107,7 +28305,18 @@ var render = function() {
                   _vm._l(_vm.typeOptions, function(type) {
                     return _c(
                       "option",
-                      { key: type.value, domProps: { value: type.value } },
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: type.visible,
+                            expression: "type.visible"
+                          }
+                        ],
+                        key: type.value,
+                        domProps: { value: type.value }
+                      },
                       [_vm._v(_vm._s(type.text))]
                     )
                   })
@@ -51451,7 +51660,8 @@ __webpack_require__.r(__webpack_exports__);
     materiales: "Materiales",
     controladores: "Controladores",
     seleccione: "Seleccione...",
-    camiones: "Camiones"
+    camiones: "Camiones",
+    correos: "Correos"
   },
   etiqueta: {
     procedencia: "Procedencia",
@@ -51498,6 +51708,15 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 var urlApi = "http://127.0.0.1:8000/api";
 /* harmony default export */ __webpack_exports__["default"] = ({
+  getters: {
+    permiteAccion: function permiteAccion(state) {
+      return function (id) {
+        return state.acciones.find(function (accion) {
+          return accion.id === id;
+        });
+      };
+    }
+  },
   state: {
     empresas: [],
     acciones: [],
@@ -51538,10 +51757,15 @@ var urlApi = "http://127.0.0.1:8000/api";
     },
     setOnlyLang: function setOnlyLang(state, locale) {
       state.locale = locale;
+    },
+    cambiarAcciones: function cambiarAcciones(state, data) {
+      state.acciones = data.acciones;
     }
   },
   actions: {
     loggedIn: function loggedIn(context, token) {
+      var _this = this;
+
       context.commit("loggedIn", token);
 
       this._vm.$http.get(urlApi + "/usuario").then(function (_ref) {
@@ -51552,6 +51776,13 @@ var urlApi = "http://127.0.0.1:8000/api";
           context.commit("cambiarEmpresaActual", {
             id: data.usuario.empresa.id,
             nombre: data.usuario.empresa.nombre
+          });
+
+          _this._vm.$http.get(urlApi + "/acciones-por-usuario").then(function (_ref2) {
+            var data = _ref2.data;
+            context.commit("cambiarAcciones", {
+              acciones: data
+            });
           });
         }
       });

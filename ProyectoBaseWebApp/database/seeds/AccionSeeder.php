@@ -24,12 +24,7 @@ class AccionSeeder extends Seeder
         ]);
         Accion::create([
             'id' => 'eliminar_usuarios',
-            'descripcion' => 'Eliminar usuarios',
-            'modulo_id' => 'usuarios'
-        ]);
-        Accion::create([
-            'id' => 'reactivar_usuarios',
-            'descripcion' => 'Re-activar usuarios',
+            'descripcion' => 'Eliminar/Re-activar usuarios',
             'modulo_id' => 'usuarios'
         ]);
         Accion::create([
@@ -50,12 +45,7 @@ class AccionSeeder extends Seeder
         ]);
         Accion::create([
             'id' => 'eliminar_roles',
-            'descripcion' => 'Eliminar roles de usuario',
-            'modulo_id' => 'roles'
-        ]);
-        Accion::create([
-            'id' => 'reactivar_roles',
-            'descripcion' => 'Re-activar roles de usuario',
+            'descripcion' => 'Eliminar/Re-activar roles de usuario',
             'modulo_id' => 'roles'
         ]);
         Accion::create([
@@ -75,12 +65,7 @@ class AccionSeeder extends Seeder
         ]);
         Accion::create([
             'id' => 'eliminar_aserradores',
-            'descripcion' => 'Eliminar aserradores',
-            'modulo_id' => 'aserradores'
-        ]);
-        Accion::create([
-            'id' => 'reactivar_aserradores',
-            'descripcion' => 'Re-activar aserradores',
+            'descripcion' => 'Eliminar/Re-activar aserradores',
             'modulo_id' => 'aserradores'
         ]);
         Accion::create([
@@ -100,12 +85,7 @@ class AccionSeeder extends Seeder
         ]);
         Accion::create([
             'id' => 'eliminar_camiones',
-            'descripcion' => 'Eliminar camiones',
-            'modulo_id' => 'camiones'
-        ]);
-        Accion::create([
-            'id' => 'reactivar_camiones',
-            'descripcion' => 'Re-activar camiones',
+            'descripcion' => 'Eliminar/Re-activar camiones',
             'modulo_id' => 'camiones'
         ]);
         Accion::create([
@@ -125,12 +105,7 @@ class AccionSeeder extends Seeder
         ]);
         Accion::create([
             'id' => 'eliminar_controladores',
-            'descripcion' => 'Eliminar controladores',
-            'modulo_id' => 'controladores'
-        ]);
-        Accion::create([
-            'id' => 'reactivar_controladores',
-            'descripcion' => 'Re-activar controladores',
+            'descripcion' => 'Eliminar/Re-activar controladores',
             'modulo_id' => 'controladores'
         ]);
         Accion::create([
@@ -150,12 +125,7 @@ class AccionSeeder extends Seeder
         ]);
         Accion::create([
             'id' => 'eliminar_correos',
-            'descripcion' => 'Eliminar correos',
-            'modulo_id' => 'correos'
-        ]);
-        Accion::create([
-            'id' => 'reactivar_correos',
-            'descripcion' => 'Re-activar correos',
+            'descripcion' => 'Eliminar/Re-activar correos',
             'modulo_id' => 'correos'
         ]);
         Accion::create([
@@ -175,12 +145,7 @@ class AccionSeeder extends Seeder
         ]);
         Accion::create([
             'id' => 'eliminar_destinos',
-            'descripcion' => 'Eliminar destinos',
-            'modulo_id' => 'destinos'
-        ]);
-        Accion::create([
-            'id' => 'reactivar_destinos',
-            'descripcion' => 'Re-activar destinos',
+            'descripcion' => 'Eliminar/Re-activar destinos',
             'modulo_id' => 'destinos'
         ]);
         Accion::create([
@@ -200,12 +165,7 @@ class AccionSeeder extends Seeder
         ]);
         Accion::create([
             'id' => 'eliminar_largos',
-            'descripcion' => 'Eliminar largos',
-            'modulo_id' => 'largos'
-        ]);
-        Accion::create([
-            'id' => 'reactivar_largos',
-            'descripcion' => 'Re-activar largos',
+            'descripcion' => 'Eliminar/Re-activar largos',
             'modulo_id' => 'largos'
         ]);
         Accion::create([
@@ -225,12 +185,7 @@ class AccionSeeder extends Seeder
         ]);
         Accion::create([
             'id' => 'eliminar_materiales',
-            'descripcion' => 'Eliminar materiales',
-            'modulo_id' => 'materiales'
-        ]);
-        Accion::create([
-            'id' => 'reactivar_materiales',
-            'descripcion' => 'Re-activar materiales',
+            'descripcion' => 'Eliminar/Re-activar materiales',
             'modulo_id' => 'materiales'
         ]);
         Accion::create([
@@ -250,12 +205,7 @@ class AccionSeeder extends Seeder
         ]);
         Accion::create([
             'id' => 'eliminar_procedencias',
-            'descripcion' => 'Eliminar procedencias',
-            'modulo_id' => 'procedencias'
-        ]);
-        Accion::create([
-            'id' => 'reactivar_procedencias',
-            'descripcion' => 'Re-activar procedencias',
+            'descripcion' => 'Eliminar/Re-activar procedencias',
             'modulo_id' => 'procedencias'
         ]);
         Accion::create([

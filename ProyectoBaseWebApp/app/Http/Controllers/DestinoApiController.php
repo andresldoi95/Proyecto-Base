@@ -14,7 +14,7 @@ class DestinoApiController extends Controller
         $user = $request->user();
         $status = $request->input('status');
         $search = $request->input('search');
-        return Destino::where('empresa_id', $user->empresa_id)->orderBy('descripcion')
+        return Destino::where('empresa_id', $user->empresa_id)
             ->orderBy('descripcion')
             ->where(function ($query) use ($status) {
                 if ($status !== 'T')

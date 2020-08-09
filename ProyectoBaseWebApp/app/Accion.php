@@ -13,6 +13,10 @@ class Accion extends Model
     {
         return $query->where('estado', 'A');
     }
+    public function roles()
+    {
+        return $this->belongsToMany('App\Rol', 'permisos', 'accion_id', 'rol_id');
+    }
     protected $table = 'acciones';
     public $incrementing = false;
 }

@@ -4,6 +4,14 @@
       <div class="container">
         <h1 class="title">{{ $t('title.usuarios') }}</h1>
         <masterForm
+          :typeOptions="[
+                {
+                    value: 'E',
+                    text: $t('message.delete'),
+                    visible: $store.getters.permiteAccion('eliminar_usuarios')
+                }
+            ]"
+          :createButton="$store.getters.permiteAccion('crear_usuarios')"
           @adding="adding"
           @canceled="canceled"
           @realizarAccion="realizarAccion"
@@ -91,7 +99,7 @@
 import MasterForm from "../../layouts/MasterForm";
 export default {
   components: { MasterForm },
-  data: function() {
+  data: function () {
     return {
       form: {
         name: "",
@@ -100,22 +108,22 @@ export default {
         _method: undefined,
         roles: [],
         password: "",
-        password_confirmation: ""
+        password_confirmation: "",
       },
       roles: [],
       errores: {
         name: undefined,
         email: undefined,
         password: undefined,
-        password_confirmation: undefined
-      }
+        password_confirmation: undefined,
+      },
     };
   },
   methods: {
-    canceled: function() {
+    canceled: function () {
       this.limpiar();
     },
-    limpiar: function() {
+    limpiar: function () {
       this.form.id = "";
       this.form._method = undefined;
       this.form.name = "";
@@ -124,10 +132,10 @@ export default {
       this.form.password_confirmation = "";
       this.form.roles.splice(0, this.form.roles.length);
     },
-    adding: function() {
+    adding: function () {
       this.limpiar();
     },
-    realizarAccion: function(type, usuarios) {
+    realizarAccion: function (type, usuarios) {
       if (type === "E") {
         let usuariosId = [];
         for (let i = 0; i < usuarios.length; i++)
@@ -135,24 +143,24 @@ export default {
         this.$http
           .post(process.env.MIX_APP_URL_API + "/usuario", {
             usuarios: usuariosId,
-            _method: "DELETE"
+            _method: "DELETE",
           })
           .then(() => {
             this.$buefy.toast.open({
               message: this.$t("message.guardado_generico"),
-              type: "is-success"
+              type: "is-success",
             });
             this.$refs.masterForm.submit();
           })
           .catch(() => {
             this.$buefy.toast.open({
               message: this.$t("message.generic_error"),
-              type: "is-danger"
+              type: "is-danger",
             });
           });
       }
     },
-    editar: function(usuario) {
+    editar: function (usuario) {
       this.form.id = usuario.id;
       this.form.name = usuario.name;
       this.form.email = usuario.email;
@@ -161,18 +169,18 @@ export default {
       this.form.password = "";
       this.form.password_confirmation = "";
     },
-    limpiarErrores: function() {
+    limpiarErrores: function () {
       this.errores.name = undefined;
       this.errores.email = undefined;
       this.errores.password = undefined;
       this.errores.password_confirmation = undefined;
     },
-    submitFormulario: function() {
+    submitFormulario: function () {
       this.limpiarErrores();
       if (this.form.roles.length === 0) {
         this.$buefy.toast.open({
           message: this.$t("message.debe_seleccionar_roles"),
-          type: "is-warning"
+          type: "is-warning",
         });
         return;
       }
@@ -186,7 +194,7 @@ export default {
         .then(() => {
           this.$buefy.toast.open({
             message: this.$t("message.guardado_generico"),
-            type: "is-success"
+            type: "is-success",
           });
           this.$refs.masterForm.submit();
         })
@@ -201,21 +209,21 @@ export default {
           } else {
             this.$buefy.toast.open({
               message: this.$t("message.generic_error"),
-              type: "is-danger"
+              type: "is-danger",
             });
           }
         });
     },
-    cargarRoles: function() {
+    cargarRoles: function () {
       this.$http
         .get(process.env.MIX_APP_URL_API + "/roles/listado")
         .then(({ data }) => {
           this.roles = data;
         });
-    }
+    },
   },
-  mounted: function() {
+  mounted: function () {
     this.cargarRoles();
-  }
+  },
 };
 </script>

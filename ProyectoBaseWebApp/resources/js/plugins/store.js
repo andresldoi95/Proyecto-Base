@@ -1,6 +1,11 @@
 const urlApi = process.env.MIX_APP_URL_API;
 
 export default {
+    getters: {
+        permiteAccion: state => id => {
+            return state.acciones.find(accion => accion.id === id);
+        }
+    },
     state: {
         empresas: [],
         acciones: [],
@@ -39,6 +44,9 @@ export default {
         },
         setOnlyLang(state, locale) {
             state.locale = locale;
+        },
+        cambiarAcciones(state, data) {
+            state.acciones = data.acciones;
         }
     },
     actions: {
@@ -51,6 +59,13 @@ export default {
                         id: data.usuario.empresa.id,
                         nombre: data.usuario.empresa.nombre
                     });
+                    this._vm.$http
+                        .get(urlApi + "/acciones-por-usuario")
+                        .then(({ data }) => {
+                            context.commit("cambiarAcciones", {
+                                acciones: data
+                            });
+                        });
                 }
             });
         },

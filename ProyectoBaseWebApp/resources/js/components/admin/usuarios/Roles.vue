@@ -4,6 +4,14 @@
       <div class="container">
         <h1 class="title">{{ $t('title.roles') }}</h1>
         <masterForm
+          :typeOptions="[
+                {
+                    value: 'E',
+                    text: $t('message.delete'),
+                    visible: $store.getters.permiteAccion('eliminar_roles')
+                }
+            ]"
+          :createButton="$store.getters.permiteAccion('crear_roles')"
           @adding="adding"
           @canceled="canceled"
           @realizarAccion="realizarAccion"
@@ -74,49 +82,49 @@
 import MasterForm from "../../layouts/MasterForm";
 export default {
   components: { MasterForm },
-  data: function() {
+  data: function () {
     return {
       form: {
         nombre: "",
         descripcion: "",
         id: "",
         _method: undefined,
-        acciones: []
+        acciones: [],
       },
       acciones: [],
       errores: {
         nombre: undefined,
-        descripcion: undefined
-      }
+        descripcion: undefined,
+      },
     };
   },
   methods: {
-    canceled: function() {
+    canceled: function () {
       this.limpiar();
     },
-    limpiar: function() {
+    limpiar: function () {
       this.form.id = "";
       this.form._method = undefined;
       this.form.nombre = "";
       this.form.descripcion = "";
       this.form.acciones.splice(0, this.form.acciones.length);
     },
-    adding: function() {
+    adding: function () {
       this.limpiar();
     },
-    realizarAccion: function(type, roles) {
+    realizarAccion: function (type, roles) {
       if (type === "E") {
         let rolesId = [];
         for (let i = 0; i < roles.length; i++) rolesId.push(roles[i].id);
         this.$http
           .post(process.env.MIX_APP_URL_API + "/roles", {
             roles: rolesId,
-            _method: "DELETE"
+            _method: "DELETE",
           })
           .then(() => {
             this.$buefy.toast.open({
               message: this.$t("message.guardado_generico"),
-              type: "is-success"
+              type: "is-success",
             });
             this.$store.commit(
               "reload",
@@ -126,23 +134,25 @@ export default {
           .catch(() => {
             this.$buefy.toast.open({
               message: this.$t("message.generic_error"),
-              type: "is-danger"
+              type: "is-danger",
             });
           });
       }
     },
-    editar: function(rol) {
-      this.form.id = rol.id;
-      this.form.nombre = rol.nombre;
-      this.form.descripcion = rol.descripcion;
-      for (let i = 0; i < rol.acciones.length; i++)
-        this.form.acciones.push(rol.acciones[i].id);
+    editar: function (rol) {
+      if (this.$store.getters.permiteAccion("editar_roles")) {
+        this.form.id = rol.id;
+        this.form.nombre = rol.nombre;
+        this.form.descripcion = rol.descripcion;
+        for (let i = 0; i < rol.acciones.length; i++)
+          this.form.acciones.push(rol.acciones[i].id);
+      }
     },
-    limpiarErrores: function() {
+    limpiarErrores: function () {
       this.errores.descripcion = undefined;
       this.errores.nombre = undefined;
     },
-    submitFormulario: function() {
+    submitFormulario: function () {
       this.limpiarErrores();
       let path = process.env.MIX_APP_URL_API + "/roles";
       if (this.form.id !== "") {
@@ -154,7 +164,7 @@ export default {
         .then(() => {
           this.$buefy.toast.open({
             message: this.$t("message.guardado_generico"),
-            type: "is-success"
+            type: "is-success",
           });
           this.$store.commit(
             "reload",
@@ -169,21 +179,21 @@ export default {
           } else {
             this.$buefy.toast.open({
               message: this.$t("message.generic_error"),
-              type: "is-danger"
+              type: "is-danger",
             });
           }
         });
     },
-    cargarAcciones: function() {
+    cargarAcciones: function () {
       this.$http
         .get(process.env.MIX_APP_URL_API + "/acciones")
         .then(({ data }) => {
           this.acciones = data;
         });
-    }
+    },
   },
-  mounted: function() {
+  mounted: function () {
     this.cargarAcciones();
-  }
+  },
 };
 </script>
