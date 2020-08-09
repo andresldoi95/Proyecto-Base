@@ -4529,6 +4529,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     submit: function submit() {
@@ -26887,104 +26894,123 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "columns is-vcentered is-centered" }, [
-    _c("div", { staticClass: "column is-half" }, [
-      _c("section", { staticClass: "hero" }, [
-        _c("div", { staticClass: "hero-body" }, [
-          _c("div", { staticClass: "container" }, [
-            _c("h1", { staticClass: "title" }, [
-              _vm._v(_vm._s(_vm.$t("title.login")))
-            ]),
-            _vm._v(" "),
-            _c("h2", { staticClass: "subtitle" }, [
-              _vm._v(_vm._s(_vm.$t("title.access")))
-            ]),
-            _vm._v(" "),
+  return _c(
+    "div",
+    { staticClass: "backgrounded columns is-vcentered is-centered" },
+    [
+      _c("div", { staticClass: "column is-one-third" }, [
+        _c("section", { staticClass: "hero" }, [
+          _c("div", { staticClass: "hero-body" }, [
             _c(
-              "form",
-              {
-                on: {
-                  submit: function($event) {
-                    $event.preventDefault()
-                    return _vm.submit($event)
-                  }
-                }
-              },
+              "div",
+              { staticClass: "container" },
               [
+                _c("center", [
+                  _c("figure", { staticClass: "image is-128x128" }, [
+                    _c("img", { attrs: { src: "/img/logo.png", alt: "Logo" } })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("center", [
+                  _c("h1", { staticClass: "title" }, [
+                    _vm._v(_vm._s(_vm.$t("title.login")))
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("h2", { staticClass: "subtitle" }, [
+                  _vm._v(_vm._s(_vm.$t("title.access")))
+                ]),
+                _vm._v(" "),
                 _c(
-                  "b-field",
+                  "form",
                   {
-                    attrs: {
-                      message: _vm.errores.username
-                        ? _vm.errores.username[0]
-                        : "",
-                      type: _vm.errores.username ? "is-danger" : "",
-                      label: _vm.$t("etiqueta.username")
+                    on: {
+                      submit: function($event) {
+                        $event.preventDefault()
+                        return _vm.submit($event)
+                      }
                     }
                   },
                   [
-                    _c("b-input", {
-                      model: {
-                        value: _vm.form.username,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "username", $$v)
-                        },
-                        expression: "form.username"
-                      }
-                    })
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.username
+                            ? _vm.errores.username[0]
+                            : "",
+                          type: _vm.errores.username ? "is-danger" : "",
+                          label: _vm.$t("etiqueta.username")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.username,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "username", $$v)
+                            },
+                            expression: "form.username"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.password
+                            ? _vm.errores.password[0]
+                            : "",
+                          type: _vm.errores.password ? "is-danger" : "",
+                          label: _vm.$t("etiqueta.password")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          attrs: { type: "password" },
+                          model: {
+                            value: _vm.form.password,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "password", $$v)
+                            },
+                            expression: "form.password"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "b-button",
+                      {
+                        attrs: {
+                          expanded: "",
+                          "native-type": "submit",
+                          type: "is-primary"
+                        }
+                      },
+                      [_vm._v(_vm._s(_vm.$t("button.login")))]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      { attrs: { to: { name: "Recuperar" } } },
+                      [_vm._v(_vm._s(_vm.$t("link.recuperar")))]
+                    )
                   ],
                   1
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-field",
-                  {
-                    attrs: {
-                      message: _vm.errores.password
-                        ? _vm.errores.password[0]
-                        : "",
-                      type: _vm.errores.password ? "is-danger" : "",
-                      label: _vm.$t("etiqueta.password")
-                    }
-                  },
-                  [
-                    _c("b-input", {
-                      attrs: { type: "password" },
-                      model: {
-                        value: _vm.form.password,
-                        callback: function($$v) {
-                          _vm.$set(_vm.form, "password", $$v)
-                        },
-                        expression: "form.password"
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "b-button",
-                  {
-                    attrs: {
-                      expanded: "",
-                      "native-type": "submit",
-                      type: "is-primary"
-                    }
-                  },
-                  [_vm._v(_vm._s(_vm.$t("button.login")))]
-                ),
-                _vm._v(" "),
-                _c("router-link", { attrs: { to: { name: "Recuperar" } } }, [
-                  _vm._v(_vm._s(_vm.$t("link.recuperar")))
-                ])
+                )
               ],
               1
             )
           ])
         ])
       ])
-    ])
-  ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

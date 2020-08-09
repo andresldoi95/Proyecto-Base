@@ -1,10 +1,17 @@
 <template>
-  <div class="columns is-vcentered is-centered">
-    <div class="column is-half">
+  <div class="backgrounded columns is-vcentered is-centered">
+    <div class="column is-one-third">
       <section class="hero">
         <div class="hero-body">
           <div class="container">
-            <h1 class="title">{{ $t('title.login') }}</h1>
+            <center>
+              <figure class="image is-128x128">
+                <img src="/img/logo.png" alt="Logo" />
+              </figure>
+            </center>
+            <center>
+              <h1 class="title">{{ $t('title.login') }}</h1>
+            </center>
             <h2 class="subtitle">{{ $t('title.access') }}</h2>
             <form @submit.prevent="submit">
               <b-field
@@ -34,14 +41,14 @@
 <script>
 export default {
   methods: {
-    submit: function() {
+    submit: function () {
       this.$http
         .post(process.env.MIX_APP_URL + "/oauth/token", {
           grant_type: "password",
           client_id: process.env.MIX_CLIENT_ID,
           client_secret: process.env.MIX_CLIENT_SECRET,
           username: this.form.username,
-          password: this.form.password
+          password: this.form.password,
         })
         .then(({ data }) => {
           this.$session.start();
@@ -50,7 +57,7 @@ export default {
           this.$session.set("oauth2", token);
           this.$buefy.toast.open(this.$t("message.acceso_exitoso"));
           this.$router.push({
-            name: "Home"
+            name: "Home",
           });
         })
         .catch(({ response }) => {
@@ -58,30 +65,30 @@ export default {
           if (status === 400) {
             this.$buefy.toast.open({
               message: this.$t("message.invalid_credentials"),
-              type: "is-danger"
+              type: "is-danger",
             });
           }
         });
-    }
+    },
   },
-  data: function() {
+  data: function () {
     return {
       form: {
         username: "",
-        password: ""
+        password: "",
       },
       errores: {
         username: undefined,
-        password: undefined
-      }
+        password: undefined,
+      },
     };
   },
-  mounted: function() {
+  mounted: function () {
     if (this.$session.exists()) {
       this.$router.push({
-        name: "Home"
+        name: "Home",
       });
     }
-  }
+  },
 };
 </script>
