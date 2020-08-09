@@ -4,6 +4,14 @@
       <div class="container">
         <h1 class="title">{{ $t('title.controladores') }}</h1>
         <masterForm
+          :typeOptions="[
+            {
+                value: 'E',
+                text: $t('message.delete'),
+                visible: $store.getters.permiteAccion('eliminar_controladores')
+            }
+        ]"
+          :createButton="$store.getters.permiteAccion('crear_controladores')"
           @adding="adding"
           @canceled="canceled"
           @realizarAccion="realizarAccion"

@@ -4,6 +4,14 @@
       <div class="container">
         <h1 class="title">{{ $t('title.espesores') }}</h1>
         <masterForm
+          :typeOptions="[
+                {
+                    value: 'E',
+                    text: $t('message.delete'),
+                    visible: $store.getters.permiteAccion('eliminar_espesores')
+                }
+            ]"
+          :createButton="$store.getters.permiteAccion('crear_espesores')"
           @adding="adding"
           @canceled="canceled"
           @realizarAccion="realizarAccion"
@@ -84,38 +92,38 @@
 import MasterForm from "../../layouts/MasterForm";
 export default {
   components: { MasterForm },
-  data: function() {
+  data: function () {
     return {
       form: {
         valor: "",
         descripcion: "",
         id: "",
         _method: undefined,
-        color: ""
+        color: "",
       },
       acciones: [],
       errores: {
         valor: undefined,
         descripcion: undefined,
-        color: undefined
-      }
+        color: undefined,
+      },
     };
   },
   methods: {
-    canceled: function() {
+    canceled: function () {
       this.limpiar();
     },
-    limpiar: function() {
+    limpiar: function () {
       this.form.id = "";
       this.form._method = undefined;
       this.form.valor = "";
       this.form.descripcion = "";
       this.form.color = "";
     },
-    adding: function() {
+    adding: function () {
       this.limpiar();
     },
-    realizarAccion: function(type, espesores) {
+    realizarAccion: function (type, espesores) {
       if (type === "E") {
         let espesoresId = [];
         for (let i = 0; i < espesores.length; i++)
@@ -123,35 +131,35 @@ export default {
         this.$http
           .post(process.env.MIX_APP_URL_API + "/espesores", {
             espesores: espesoresId,
-            _method: "DELETE"
+            _method: "DELETE",
           })
           .then(() => {
             this.$buefy.toast.open({
               message: this.$t("message.guardado_generico"),
-              type: "is-success"
+              type: "is-success",
             });
             this.$refs.masterForm.submit();
           })
           .catch(() => {
             this.$buefy.toast.open({
               message: this.$t("message.generic_error"),
-              type: "is-danger"
+              type: "is-danger",
             });
           });
       }
     },
-    editar: function(espesor) {
+    editar: function (espesor) {
       this.form.id = espesor.id;
       this.form.valor = espesor.valor;
       this.form.descripcion = espesor.descripcion;
       this.form.color = espesor.color;
     },
-    limpiarErrores: function() {
+    limpiarErrores: function () {
       this.errores.descripcion = undefined;
       this.errores.valor = undefined;
       this.errores.color = undefined;
     },
-    submitFormulario: function() {
+    submitFormulario: function () {
       this.limpiarErrores();
       let path = process.env.MIX_APP_URL_API + "/espesores";
       if (this.form.id !== "") {
@@ -163,7 +171,7 @@ export default {
         .then(() => {
           this.$buefy.toast.open({
             message: this.$t("message.guardado_generico"),
-            type: "is-success"
+            type: "is-success",
           });
           this.$refs.masterForm.submit();
         })
@@ -176,11 +184,11 @@ export default {
           } else {
             this.$buefy.toast.open({
               message: this.$t("message.generic_error"),
-              type: "is-danger"
+              type: "is-danger",
             });
           }
         });
-    }
-  }
+    },
+  },
 };
 </script>
