@@ -14,7 +14,7 @@ class ControladorApiController extends Controller
         $user = $request->user();
         $status = $request->input('status');
         $search = $request->input('search');
-        return Controlador::where('empresa_id', $user->empresa_id)->orderBy('nombre')
+        return Controlador::where('empresa_id', $user->empresa_id)
             ->orderBy('nombre')
             ->where(function ($query) use ($status) {
                 if ($status !== 'T')

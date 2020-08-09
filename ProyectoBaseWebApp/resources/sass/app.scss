@@ -1,4 +1,89 @@
-//
-@import "~buefy/dist/buefy.css";
-
 @import "~@mdi/font/scss/materialdesignicons";
+
+@import "~bulma/sass/utilities/_all";
+
+@font-face {
+    font-family: "Proxima Nova";
+    src: url("/fonts/Mark\ Simonson\ -\ Proxima\ Nova\ Light.otf")
+        format("opentype");
+}
+
+$family-sans-serif: "Proxima Nova";
+$family-primary: $family-sans-serif;
+$family-secondary: $family-sans-serif;
+// Set your colors
+$primary: #001295;
+$primary-invert: findColorInvert($primary);
+$twitter: #4099ff;
+$twitter-invert: findColorInvert($twitter);
+$success: #0ce017;
+$success-invert: findColorInvert($success);
+$info: #00a79d;
+$info-invert: findColorInvert($info);
+// Setup $colors to use as bulma classes (e.g. 'is-twitter')
+$colors: (
+    "white": (
+        $white,
+        $black
+    ),
+    "black": (
+        $black,
+        $white
+    ),
+    "light": (
+        $light,
+        $light-invert
+    ),
+    "dark": (
+        $dark,
+        $dark-invert
+    ),
+    "primary": (
+        $primary,
+        $primary-invert
+    ),
+    "info": (
+        $info,
+        $info-invert
+    ),
+    "success": (
+        $success,
+        $success-invert
+    ),
+    "warning": (
+        $warning,
+        $warning-invert
+    ),
+    "danger": (
+        $danger,
+        $danger-invert
+    ),
+    "twitter": (
+        $twitter,
+        $twitter-invert
+    )
+);
+
+// Links
+$link: $primary;
+$link-invert: $primary-invert;
+$link-focus-border: $primary;
+
+$carded-margin: 20px;
+$carded-radius: 15px;
+
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
+
+.backgrounded {
+    background-image: url("/img/background.jpg");
+    background-size: cover;
+}
+
+.carded {
+    background-color: $white;
+    margin-top: $carded-margin;
+    margin-bottom: $carded-margin;
+    border-radius: $carded-radius;
+}

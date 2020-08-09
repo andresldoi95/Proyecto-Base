@@ -19,7 +19,7 @@ class ProcedenciaApiController extends Controller
         $user = $request->user();
         $status = $request->input('status');
         $search = $request->input('search');
-        return Procedencia::where('empresa_id', $user->empresa_id)->orderBy('descripcion')
+        return Procedencia::where('empresa_id', $user->empresa_id)
             ->orderBy('descripcion')
             ->where(function ($query) use ($status) {
                 if ($status !== 'T')

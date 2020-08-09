@@ -74,7 +74,8 @@ export default {
         materiales: "Materiales",
         controladores: "Controladores",
         seleccione: "Seleccione...",
-        camiones: "Camiones"
+        camiones: "Camiones",
+        correos: "Correos"
     },
     etiqueta: {
         procedencia: "Procedencia",

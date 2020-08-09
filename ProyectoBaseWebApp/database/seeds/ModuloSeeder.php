@@ -20,5 +20,41 @@ class ModuloSeeder extends Seeder
             'id' => 'roles',
             'nombre' => 'Roles de usuario'
         ]);
+        Modulo::create([
+            'id' => 'aserradores',
+            'nombre' => 'Aserradores'
+        ]);
+        Modulo::create([
+            'id' => 'camiones',
+            'nombre' => 'Camiones'
+        ]);
+        Modulo::create([
+            'id' => 'controladores',
+            'nombre' => 'Controladores'
+        ]);
+        Modulo::create([
+            'id' => 'correos',
+            'nombre' => 'Correos'
+        ]);
+        Modulo::create([
+            'id' => 'destinos',
+            'nombre' => 'Destinos'
+        ]);
+        Modulo::create([
+            'id' => 'espesores',
+            'nombre' => 'Espesores'
+        ]);
+        Modulo::create([
+            'id' => 'largos',
+            'nombre' => 'Largos'
+        ]);
+        Modulo::create([
+            'id' => 'materiales',
+            'nombre' => 'Materiales'
+        ]);
+        Modulo::create([
+            'id' => 'procedencias',
+            'nombre' => 'Procedencias'
+        ]);
     }
 }

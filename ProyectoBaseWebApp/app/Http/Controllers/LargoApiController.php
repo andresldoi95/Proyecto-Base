@@ -13,7 +13,7 @@ class LargoApiController extends Controller
         $user = $request->user();
         $status = $request->input('status');
         $search = $request->input('search');
-        return Largo::where('empresa_id', $user->empresa_id)->orderBy('descripcion')
+        return Largo::where('empresa_id', $user->empresa_id)
             ->orderBy('descripcion')
             ->where(function ($query) use ($status) {
                 if ($status !== 'T')

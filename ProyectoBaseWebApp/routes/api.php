@@ -130,6 +130,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('modulos', 'ModuloApiController@index');
 
     Route::get('acciones', 'AccionApiController@index');
+
+    Route::get('acciones-por-usuario', 'AccionApiController@accionesPorUsuario');
 });
 
 Route::post('/reset', 'UsuarioApiController@reset');

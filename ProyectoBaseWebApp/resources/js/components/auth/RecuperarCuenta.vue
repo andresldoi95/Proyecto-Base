@@ -1,10 +1,17 @@
 <template>
-  <div class="columns is-vcentered is-centered">
-    <div class="column is-half">
+  <div class="backgrounded columns is-vcentered is-centered">
+    <div class="carded column is-one-third">
       <section class="hero">
         <div class="hero-body">
           <div class="container">
-            <h1 class="title">{{ $t('title.recuperar_cuenta') }}</h1>
+            <center>
+              <figure class="image is-128x128">
+                <img src="/img/logo.png" alt="Logo" />
+              </figure>
+            </center>
+            <center>
+              <h1 class="title">{{ $t('title.recuperar_cuenta') }}</h1>
+            </center>
             <h2 class="subtitle">{{ $t('title.recuperar_cuenta_sub') }}</h2>
             <form @submit.prevent="submit">
               <b-field
@@ -30,7 +37,7 @@
 <script>
 export default {
   methods: {
-    submit: function() {
+    submit: function () {
       this.$http
         .post(process.env.MIX_APP_URL_API + "/reset", this.form)
         .then(() => {
@@ -44,21 +51,21 @@ export default {
           } else {
             this.$buefy.toast.open({
               message: this.$t("message.generic_error"),
-              type: "is-danger"
+              type: "is-danger",
             });
           }
         });
-    }
+    },
   },
-  data: function() {
+  data: function () {
     return {
       form: {
-        email: ""
+        email: "",
       },
       errores: {
-        email: undefined
-      }
+        email: undefined,
+      },
     };
-  }
+  },
 };
 </script>
