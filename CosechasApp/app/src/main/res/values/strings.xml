@@ -13,4 +13,6 @@
     <string name="open">Abrir</string>
     <string name="close">Cerrar</string>
     <string name="logged_out">Has cerrado sesión exitósamente</string>
+    <string name="update_db">Actualizar base de datos</string>
+    <string name="opcion_no_disponible">Opción no disponible</string>
 </resources>
