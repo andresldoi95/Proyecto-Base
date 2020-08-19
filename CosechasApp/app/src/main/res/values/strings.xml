@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CosechasApp</string>
+    <string name="login_iniciar_sesion">Iniciar sesión</string>
+    <string name="login_username">Nombre de usuario o E-mail</string>
+    <string name="login_password">Contraseña</string>
+    <string name="username_required">El nombre de usuario o e-mail es requerido</string>
+    <string name="password_required">La contraseña es requerida</string>
+    <string name="invalid_credentials">Credenciales inválidas</string>
+    <string name="acceso_exitoso">Acceso exitoso</string>
+    <string name="error_generico">Hubo un error, intente nuevamente.</string>
+    <string name="welcome">Bienvenido(a),</string>
+</resources>
