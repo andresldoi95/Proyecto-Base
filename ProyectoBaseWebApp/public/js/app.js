@@ -2076,6 +2076,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2212,6 +2220,14 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layouts/MasterForm */ "./resources/js/components/layouts/MasterForm.vue");
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2549,6 +2565,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2667,6 +2691,14 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layouts/MasterForm */ "./resources/js/components/layouts/MasterForm.vue");
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2935,6 +2967,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3057,6 +3097,14 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layouts/MasterForm */ "./resources/js/components/layouts/MasterForm.vue");
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3344,6 +3392,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3468,6 +3524,14 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layouts/MasterForm */ "./resources/js/components/layouts/MasterForm.vue");
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3722,6 +3786,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3840,6 +3912,14 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layouts/MasterForm */ "./resources/js/components/layouts/MasterForm.vue");
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -24456,6 +24536,18 @@ var render = function() {
             {
               ref: "masterForm",
               attrs: {
+                typeOptions: [
+                  {
+                    value: "E",
+                    text: _vm.$t("message.delete"),
+                    visible: _vm.$store.getters.permiteAccion(
+                      "eliminar_aserradores"
+                    )
+                  }
+                ],
+                createButton: _vm.$store.getters.permiteAccion(
+                  "crear_aserradores"
+                ),
                 resource: "/api/aserradores",
                 isPaginated: false,
                 columns: [
@@ -24680,6 +24772,18 @@ var render = function() {
             {
               ref: "masterForm",
               attrs: {
+                typeOptions: [
+                  {
+                    value: "E",
+                    text: _vm.$t("message.delete"),
+                    visible: _vm.$store.getters.permiteAccion(
+                      "eliminar_camiones"
+                    )
+                  }
+                ],
+                createButton: _vm.$store.getters.permiteAccion(
+                  "crear_camiones"
+                ),
                 resource: "/api/camiones",
                 isPaginated: false,
                 columns: [
@@ -25017,6 +25121,18 @@ var render = function() {
             {
               ref: "masterForm",
               attrs: {
+                typeOptions: [
+                  {
+                    value: "E",
+                    text: _vm.$t("message.delete"),
+                    visible: _vm.$store.getters.permiteAccion(
+                      "eliminar_controladores"
+                    )
+                  }
+                ],
+                createButton: _vm.$store.getters.permiteAccion(
+                  "crear_controladores"
+                ),
                 resource: "/api/controladores",
                 isPaginated: false,
                 columns: [
@@ -25186,6 +25302,16 @@ var render = function() {
             {
               ref: "masterForm",
               attrs: {
+                typeOptions: [
+                  {
+                    value: "E",
+                    text: _vm.$t("message.delete"),
+                    visible: _vm.$store.getters.permiteAccion(
+                      "eliminar_correos"
+                    )
+                  }
+                ],
+                createButton: _vm.$store.getters.permiteAccion("crear_correos"),
                 resource: "/api/correos",
                 isPaginated: false,
                 columns: [
@@ -25355,6 +25481,18 @@ var render = function() {
             {
               ref: "masterForm",
               attrs: {
+                typeOptions: [
+                  {
+                    value: "E",
+                    text: _vm.$t("message.delete"),
+                    visible: _vm.$store.getters.permiteAccion(
+                      "eliminar_destinos"
+                    )
+                  }
+                ],
+                createButton: _vm.$store.getters.permiteAccion(
+                  "crear_destinos"
+                ),
                 resource: "/api/destinos",
                 isPaginated: false,
                 columns: [
@@ -25561,6 +25699,14 @@ var render = function() {
             {
               ref: "masterForm",
               attrs: {
+                typeOptions: [
+                  {
+                    value: "E",
+                    text: _vm.$t("message.delete"),
+                    visible: true
+                  }
+                ],
+                createButton: "",
                 resource: "/api/empresas",
                 isPaginated: false,
                 columns: [
@@ -25762,6 +25908,18 @@ var render = function() {
             {
               ref: "masterForm",
               attrs: {
+                typeOptions: [
+                  {
+                    value: "E",
+                    text: _vm.$t("message.delete"),
+                    visible: _vm.$store.getters.permiteAccion(
+                      "eliminar_espesores"
+                    )
+                  }
+                ],
+                createButton: _vm.$store.getters.permiteAccion(
+                  "crear_espesores"
+                ),
                 resource: "/api/espesores",
                 isPaginated: false,
                 columns: [
@@ -25968,6 +26126,14 @@ var render = function() {
             {
               ref: "masterForm",
               attrs: {
+                typeOptions: [
+                  {
+                    value: "E",
+                    text: _vm.$t("message.delete"),
+                    visible: _vm.$store.getters.permiteAccion("eliminar_largos")
+                  }
+                ],
+                createButton: _vm.$store.getters.permiteAccion("crear_largos"),
                 resource: "/api/largos",
                 isPaginated: false,
                 columns: [
@@ -26137,6 +26303,18 @@ var render = function() {
             {
               ref: "masterForm",
               attrs: {
+                typeOptions: [
+                  {
+                    value: "E",
+                    text: _vm.$t("message.delete"),
+                    visible: _vm.$store.getters.permiteAccion(
+                      "eliminar_materiales"
+                    )
+                  }
+                ],
+                createButton: _vm.$store.getters.permiteAccion(
+                  "crear_materiales"
+                ),
                 resource: "/api/materiales",
                 isPaginated: false,
                 columns: [
@@ -26306,6 +26484,18 @@ var render = function() {
             {
               ref: "masterForm",
               attrs: {
+                typeOptions: [
+                  {
+                    value: "E",
+                    text: _vm.$t("message.delete"),
+                    visible: _vm.$store.getters.permiteAccion(
+                      "eliminar_procedencias"
+                    )
+                  }
+                ],
+                createButton: _vm.$store.getters.permiteAccion(
+                  "crear_procedencias"
+                ),
                 resource: "/api/procedencias",
                 isPaginated: false,
                 columns: [

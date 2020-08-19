@@ -9,4 +9,8 @@
     <string name="acceso_exitoso">Acceso exitoso</string>
     <string name="error_generico">Hubo un error, intente nuevamente.</string>
     <string name="welcome">Bienvenido(a),</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="open">Abrir</string>
+    <string name="close">Cerrar</string>
+    <string name="logged_out">Has cerrado sesión exitósamente</string>
 </resources>
