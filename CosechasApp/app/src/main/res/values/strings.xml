@@ -19,5 +19,9 @@
     <string name="importando_datos">Importando datos...</string>
     <string name="importando_empresas">Importando empresas...</string>
     <string name="empresas_importadas">Empresas importadas...</string>
+    <string name="importando_camiones">Importando camiones...</string>
+    <string name="camiones_importados">Camiones importados...</string>
+    <string name="importando_controladores">Importando controladores...</string>
+    <string name="controladores_importados">Controladores importados...</string>
     <string name="importacion_finalizada">La importación ha finalizado...</string>
 </resources>

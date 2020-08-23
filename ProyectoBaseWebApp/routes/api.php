@@ -94,6 +94,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     ]);
     Route::group(['prefix' => 'controladores'], function () {
         Route::delete('/', 'ControladorApiController@destroy');
+        Route::get('/all', 'ControladorApiController@all');
     });
     Route::resource('controladores', 'ControladorApiController', [
         'except' => [
@@ -118,6 +119,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     ]);
     Route::group(['prefix' => 'camiones'], function () {
         Route::delete('/', 'CamionApiController@destroy');
+        Route::get('/all', 'CamionApiController@all');
     });
     Route::resource('camiones', 'CamionApiController', [
         'except' => [

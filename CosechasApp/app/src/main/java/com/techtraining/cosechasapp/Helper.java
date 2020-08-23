@@ -12,7 +12,7 @@ public class Helper {
     public static final String SHARED_PREFERENCES_NAME = "cosechas";
     public static final String AUTH_HEADER = "Authorization";
     public static final String AUTH_TYPE = "Bearer ";
-    public static final int DB_VERSION = 2;
+    public static final int DB_VERSION = 4;
     public static final String DB_NAME = "cosechas";
     public static final String CURRENT_ID = "currentId";
 }

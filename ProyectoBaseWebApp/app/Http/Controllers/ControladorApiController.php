@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 
 class ControladorApiController extends Controller
 {
+    public function all()
+    {
+        return Controlador::all();
+    }
     public function index(Request $request)
     {
         $user = $request->user();
