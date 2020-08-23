@@ -8,8 +8,6 @@ import android.widget.Toast;
 import com.techtraining.cosechasapp.DBManager;
 import com.techtraining.cosechasapp.R;
 import com.techtraining.cosechasapp.db.AppDatabase;
-import com.techtraining.cosechasapp.db.Espesor;
-import com.techtraining.cosechasapp.db.EspesorDao;
 import com.techtraining.cosechasapp.db.Largo;
 import com.techtraining.cosechasapp.db.LargoDao;
 

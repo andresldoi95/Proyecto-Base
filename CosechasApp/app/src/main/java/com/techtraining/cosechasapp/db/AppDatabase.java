@@ -6,7 +6,7 @@ import androidx.room.RoomDatabase;
 import com.techtraining.cosechasapp.Helper;
 
 @Database(entities = {User.class, Empresa.class, Camion.class, Controlador.class, Procedencia.class, Aserrador.class, Destino.class,
-Espesor.class, Largo.class, Material.class}, version = Helper.DB_VERSION)
+Espesor.class, Largo.class, Material.class, CodigoAserrador.class}, version = Helper.DB_VERSION)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
     public abstract EmpresaDao empresaDao();
@@ -18,4 +18,5 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract EspesorDao espesorDao();
     public abstract LargoDao largoDao();
     public abstract MaterialDao materialDao();
+    public abstract CodigoAserradorDao codigoAserradorDao();
 }

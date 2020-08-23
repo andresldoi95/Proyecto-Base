@@ -35,5 +35,7 @@
     <string name="largos_importados">Largos importados...</string>
     <string name="importando_materiales">Importando materiales...</string>
     <string name="materiales_importados">Materiales importados...</string>
+    <string name="importando_codigos_aserradores">Importando códigos de aserradores...</string>
+    <string name="codigos_aserradores_importados">Códigos de aserradores importados...</string>
     <string name="importacion_finalizada">La importación ha finalizado...</string>
 </resources>
