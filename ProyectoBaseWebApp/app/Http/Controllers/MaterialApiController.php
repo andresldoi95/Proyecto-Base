@@ -72,7 +72,7 @@ class MaterialApiController extends Controller
         $materiales = $request->input('materiales');
         Material::whereIn('id', $materiales)
             ->update([
-                'estado' => DB::raw('if(estado = "A", "I", "A")')
+                'estado' => DB::raw("iif(estado = 'A', 'I', 'A')")
             ]);
     }
 }

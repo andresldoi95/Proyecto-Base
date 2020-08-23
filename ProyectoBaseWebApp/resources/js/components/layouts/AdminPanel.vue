@@ -116,6 +116,15 @@
                 to="/admin/aserradores"
               ></b-menu-item>
               <b-menu-item
+                v-show="$store.state.nombre_empresa_actual !== '' && ($store.getters.permiteAccion('crear_codigos_aserradores') ||
+                $store.getters.permiteAccion('editar_codigos_aserradores') || $store.getters.permiteAccion('consultar_codigos_aserradores') ||
+                $store.getters.permiteAccion('eliminar_codigos_aserradores'))"
+                icon="code-array"
+                :label="$t('title.codigos-aserradores')"
+                tag="router-link"
+                to="/admin/codigos-aserradores"
+              ></b-menu-item>
+              <b-menu-item
                 v-show="$store.state.nombre_empresa_actual !== '' && ($store.getters.permiteAccion('crear_camiones') ||
                 $store.getters.permiteAccion('editar_camiones') || $store.getters.permiteAccion('consultar_camiones') ||
                 $store.getters.permiteAccion('eliminar_camiones'))"

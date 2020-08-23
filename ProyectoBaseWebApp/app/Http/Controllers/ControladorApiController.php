@@ -70,7 +70,7 @@ class ControladorApiController extends Controller
         $controladores = $request->input('controladores');
         Controlador::whereIn('id', $controladores)
             ->update([
-                'estado' => DB::raw('if(estado = "A", "I", "A")')
+                'estado' => DB::raw("iif(estado = 'A', 'I', 'A')")
             ]);
     }
 }

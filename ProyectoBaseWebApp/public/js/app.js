@@ -2210,6 +2210,242 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/aserradores/CodigosAserradores.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/aserradores/CodigosAserradores.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layouts/MasterForm */ "./resources/js/components/layouts/MasterForm.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    MasterForm: _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      form: {
+        descripcion: "",
+        id: "",
+        _method: undefined,
+        codigo: "",
+        aserrador_id: ""
+      },
+      acciones: [],
+      errores: {
+        descripcion: undefined,
+        codigo: undefined,
+        aserrador_id: undefined
+      },
+      aserradores: []
+    };
+  },
+  methods: {
+    canceled: function canceled() {
+      this.limpiar();
+    },
+    limpiar: function limpiar() {
+      this.form.id = "";
+      this.form._method = undefined;
+      this.form.descripcion = "";
+      this.form.codigo = "";
+      this.form.aserrador_id = "";
+    },
+    adding: function adding() {
+      this.limpiar();
+    },
+    realizarAccion: function realizarAccion(type, codigosAserradores) {
+      var _this = this;
+
+      if (type === "E") {
+        var codigosAserradoresId = [];
+
+        for (var i = 0; i < codigosAserradores.length; i++) {
+          codigosAserradoresId.push(codigosAserradores[i].id);
+        }
+
+        this.$http.post("http://127.0.0.1:8000/api" + "/codigos-aserradores", {
+          codigosAserradores: codigosAserradoresId,
+          _method: "DELETE"
+        }).then(function () {
+          _this.$buefy.toast.open({
+            message: _this.$t("message.guardado_generico"),
+            type: "is-success"
+          });
+
+          _this.$refs.masterForm.submit();
+        })["catch"](function () {
+          _this.$buefy.toast.open({
+            message: _this.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        });
+      }
+    },
+    editar: function editar(codigoAserrador) {
+      this.form.id = codigoAserrador.id;
+      this.form.descripcion = codigoAserrador.descripcion;
+      this.form.codigo = codigoAserrador.codigo;
+      this.form.aserrador_id = codigoAserrador.aserrador_id;
+    },
+    limpiarErrores: function limpiarErrores() {
+      this.errores.descripcion = undefined;
+      this.errores.codigo = undefined;
+      this.errores.aserrador_id = undefined;
+    },
+    submitFormulario: function submitFormulario() {
+      var _this2 = this;
+
+      this.limpiarErrores();
+      var path = "http://127.0.0.1:8000/api" + "/codigos-aserradores";
+
+      if (this.form.id !== "") {
+        path += "/" + this.form.id;
+        this.form._method = "PUT";
+      } else this.form._method = undefined;
+
+      this.$http.post(path, this.form).then(function () {
+        _this2.$buefy.toast.open({
+          message: _this2.$t("message.guardado_generico"),
+          type: "is-success"
+        });
+
+        _this2.$refs.masterForm.submit();
+      })["catch"](function (_ref) {
+        var response = _ref.response;
+        var status = response.status;
+
+        if (status === 422) {
+          _this2.errores.codigo = response.data.errors.codigo;
+          _this2.errores.descripcion = response.data.errors.descripcion;
+          _this2.errores.aserrador_id = response.data.errors.aserrador_id;
+        } else {
+          _this2.$buefy.toast.open({
+            message: _this2.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        }
+      });
+    },
+    cargarAserradores: function cargarAserradores() {
+      var _this3 = this;
+
+      this.$http.get("http://127.0.0.1:8000/api" + "/aserradores/listado").then(function (_ref2) {
+        var data = _ref2.data;
+        _this3.aserradores = data;
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.cargarAserradores();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/camiones/Camiones.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/camiones/Camiones.vue?vue&type=script&lang=js& ***!
@@ -5040,6 +5276,15 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -24742,6 +24987,249 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/aserradores/CodigosAserradores.vue?vue&type=template&id=63f28e40&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/aserradores/CodigosAserradores.vue?vue&type=template&id=63f28e40& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", { staticClass: "hero" }, [
+    _c("div", { staticClass: "hero-body" }, [
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _c("h1", { staticClass: "title" }, [
+            _vm._v(_vm._s(_vm.$t("title.codigos-aserradores")))
+          ]),
+          _vm._v(" "),
+          _c(
+            "masterForm",
+            {
+              ref: "masterForm",
+              attrs: {
+                typeOptions: [
+                  {
+                    value: "E",
+                    text: _vm.$t("message.delete"),
+                    visible: _vm.$store.getters.permiteAccion(
+                      "eliminar_codigos_aserradores"
+                    )
+                  }
+                ],
+                createButton: _vm.$store.getters.permiteAccion(
+                  "crear_codigos_aserradores"
+                ),
+                resource: "/api/codigos-aserradores",
+                isPaginated: false,
+                columns: [
+                  {
+                    label: _vm.$t("message.id"),
+                    field: "id",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("etiqueta.aserrador"),
+                    field: "aserrador.nombre",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.descripcion"),
+                    field: "descripcion",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.codigo"),
+                    field: "codigo",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.status"),
+                    field: "estado",
+                    sortable: true
+                  }
+                ]
+              },
+              on: {
+                adding: _vm.adding,
+                canceled: _vm.canceled,
+                realizarAccion: _vm.realizarAccion,
+                editar: _vm.editar,
+                submitFormulario: _vm.submitFormulario
+              }
+            },
+            [
+              _c("div", { staticClass: "columns" }, [
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      { attrs: { label: _vm.$t("message.id") } },
+                      [
+                        _c("b-input", {
+                          attrs: { readonly: "" },
+                          model: {
+                            value: _vm.form.id,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "id", $$v)
+                            },
+                            expression: "form.id"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.descripcion
+                            ? _vm.errores.descripcion[0]
+                            : "",
+                          type: _vm.errores.descripcion ? "is-danger" : "",
+                          label: _vm.$t("message.descripcion")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.descripcion,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "descripcion", $$v)
+                            },
+                            expression: "form.descripcion"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.aserrador_id
+                            ? _vm.errores.aserrador_id[0]
+                            : "",
+                          type: _vm.errores.aserrador_id ? "is-danger" : "",
+                          label: _vm.$t("etiqueta.aserrador")
+                        }
+                      },
+                      [
+                        _c(
+                          "b-select",
+                          {
+                            attrs: {
+                              expanded: "",
+                              placeholder: _vm.$t("title.seleccione")
+                            },
+                            model: {
+                              value: _vm.form.aserrador_id,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "aserrador_id", $$v)
+                              },
+                              expression: "form.aserrador_id"
+                            }
+                          },
+                          _vm._l(_vm.aserradores, function(option) {
+                            return _c(
+                              "option",
+                              {
+                                key: option.id,
+                                domProps: { value: option.id }
+                              },
+                              [
+                                _vm._v(
+                                  _vm._s(option.nombre) +
+                                    " (" +
+                                    _vm._s(option.identificacion) +
+                                    ")"
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.codigo
+                            ? _vm.errores.codigo[0]
+                            : "",
+                          type: _vm.errores.codigo ? "is-danger" : "",
+                          label: _vm.$t("message.codigo")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.codigo,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "codigo", $$v)
+                            },
+                            expression: "form.codigo"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ])
+            ]
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/camiones/Camiones.vue?vue&type=template&id=460c6318&":
 /*!**************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/camiones/Camiones.vue?vue&type=template&id=460c6318& ***!
@@ -28101,6 +28589,37 @@ var render = function() {
                             label: _vm.$t("title.aserradores"),
                             tag: "router-link",
                             to: "/admin/aserradores"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "" &&
+                                (_vm.$store.getters.permiteAccion(
+                                  "crear_codigos_aserradores"
+                                ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "editar_codigos_aserradores"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "consultar_codigos_aserradores"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "eliminar_codigos_aserradores"
+                                  )),
+                              expression:
+                                "$store.state.nombre_empresa_actual !== '' && ($store.getters.permiteAccion('crear_codigos_aserradores') ||\n              $store.getters.permiteAccion('editar_codigos_aserradores') || $store.getters.permiteAccion('consultar_codigos_aserradores') ||\n              $store.getters.permiteAccion('eliminar_codigos_aserradores'))"
+                            }
+                          ],
+                          attrs: {
+                            icon: "code-array",
+                            label: _vm.$t("title.codigos-aserradores"),
+                            tag: "router-link",
+                            to: "/admin/codigos-aserradores"
                           }
                         }),
                         _vm._v(" "),
@@ -50335,6 +50854,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/aserradores/CodigosAserradores.vue":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/admin/aserradores/CodigosAserradores.vue ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CodigosAserradores_vue_vue_type_template_id_63f28e40___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CodigosAserradores.vue?vue&type=template&id=63f28e40& */ "./resources/js/components/admin/aserradores/CodigosAserradores.vue?vue&type=template&id=63f28e40&");
+/* harmony import */ var _CodigosAserradores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CodigosAserradores.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/aserradores/CodigosAserradores.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _CodigosAserradores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _CodigosAserradores_vue_vue_type_template_id_63f28e40___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _CodigosAserradores_vue_vue_type_template_id_63f28e40___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/aserradores/CodigosAserradores.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/aserradores/CodigosAserradores.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/admin/aserradores/CodigosAserradores.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CodigosAserradores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CodigosAserradores.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/aserradores/CodigosAserradores.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_CodigosAserradores_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/aserradores/CodigosAserradores.vue?vue&type=template&id=63f28e40&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/admin/aserradores/CodigosAserradores.vue?vue&type=template&id=63f28e40& ***!
+  \*********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CodigosAserradores_vue_vue_type_template_id_63f28e40___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./CodigosAserradores.vue?vue&type=template&id=63f28e40& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/aserradores/CodigosAserradores.vue?vue&type=template&id=63f28e40&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CodigosAserradores_vue_vue_type_template_id_63f28e40___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CodigosAserradores_vue_vue_type_template_id_63f28e40___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/camiones/Camiones.vue":
 /*!*************************************************************!*\
   !*** ./resources/js/components/admin/camiones/Camiones.vue ***!
@@ -51726,6 +52314,7 @@ __webpack_require__.r(__webpack_exports__);
     codigo: "Code"
   },
   title: {
+    "codigos-aserradores": "Aserradores codes",
     aserradores: "Aserradores",
     login: "Login",
     access: "Access to the system with your username and password",
@@ -51754,7 +52343,8 @@ __webpack_require__.r(__webpack_exports__);
     password: "Password",
     modulos: "Modules",
     acciones: "Actions",
-    roles: "Roles"
+    roles: "Roles",
+    aserrador: "Aserrador"
   },
   button: {
     login: "Login",
@@ -51831,6 +52421,7 @@ __webpack_require__.r(__webpack_exports__);
     codigo: "Código"
   },
   title: {
+    "codigos-aserradores": "Códigos de aserradores",
     aserradores: "Aserradores",
     login: "Iniciar sesión",
     access: "Accede al sistema con tu nombre de usuario y contraseña",
@@ -51859,7 +52450,8 @@ __webpack_require__.r(__webpack_exports__);
     password: "Contraseña",
     acciones: "Acciones",
     roles: "Roles",
-    modulos: "Módulos"
+    modulos: "Módulos",
+    aserrador: "Aserrador"
   },
   button: {
     login: "Iniciar sesión",
@@ -51903,7 +52495,7 @@ var urlApi = "http://127.0.0.1:8000/api";
       return function (id) {
         return state.acciones.find(function (accion) {
           return accion.id === id;
-        });
+        }) != null;
       };
     }
   },
@@ -52021,6 +52613,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_controladores_Controladores__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../components/admin/controladores/Controladores */ "./resources/js/components/admin/controladores/Controladores.vue");
 /* harmony import */ var _components_admin_aserradores_Aserradores__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../components/admin/aserradores/Aserradores */ "./resources/js/components/admin/aserradores/Aserradores.vue");
 /* harmony import */ var _components_admin_camiones_Camiones__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../components/admin/camiones/Camiones */ "./resources/js/components/admin/camiones/Camiones.vue");
+/* harmony import */ var _components_admin_aserradores_CodigosAserradores__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../components/admin/aserradores/CodigosAserradores */ "./resources/js/components/admin/aserradores/CodigosAserradores.vue");
+
 
 
 
@@ -52164,6 +52758,13 @@ __webpack_require__.r(__webpack_exports__);
         requiresAuth: true
       },
       name: "Aserradores"
+    }, {
+      component: _components_admin_aserradores_CodigosAserradores__WEBPACK_IMPORTED_MODULE_19__["default"],
+      path: "codigos-aserradores",
+      meta: {
+        requiresAuth: true
+      },
+      name: "CodigosAserradores"
     }, {
       component: _components_admin_camiones_Camiones__WEBPACK_IMPORTED_MODULE_18__["default"],
       path: "camiones",

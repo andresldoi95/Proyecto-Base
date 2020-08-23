@@ -86,7 +86,7 @@ class CamionApiController extends Controller
         $camiones = $request->input('camiones');
         Camion::whereIn('id', $camiones)
             ->update([
-                'estado' => DB::raw('if(estado = "A", "I", "A")')
+                'estado' => DB::raw("iif(estado = 'A', 'I', 'A')")
             ]);
     }
 }

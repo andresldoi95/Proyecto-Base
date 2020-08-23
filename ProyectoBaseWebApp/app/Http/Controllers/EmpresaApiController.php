@@ -71,7 +71,7 @@ class EmpresaApiController extends Controller
         $empresas = $request->input('empresas');
         Empresa::whereIn('id', $empresas)
             ->update([
-                'estado' => DB::raw('if(estado = "A", "I", "A")')
+                'estado' => DB::raw("iif(estado = 'A', 'I', 'A')")
             ]);
     }
 }

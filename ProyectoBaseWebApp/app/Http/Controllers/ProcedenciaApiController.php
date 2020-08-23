@@ -79,7 +79,7 @@ class ProcedenciaApiController extends Controller
         $procedencias = $request->input('procedencias');
         Procedencia::whereIn('id', $procedencias)
             ->update([
-                'estado' => DB::raw('if(estado = "A", "I", "A")')
+                'estado' => DB::raw("iif(estado = 'A', 'I', 'A')")
             ]);
     }
 }

@@ -74,7 +74,7 @@ class DestinoApiController extends Controller
         $destinos = $request->input('destinos');
         Destino::whereIn('id', $destinos)
             ->update([
-                'estado' => DB::raw('if(estado = "A", "I", "A")')
+                'estado' => DB::raw("iif(estado = 'A', 'I', 'A')")
             ]);
     }
 }

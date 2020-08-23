@@ -117,8 +117,18 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'aserradores'], function () {
         Route::delete('/', 'AserradorApiController@destroy');
         Route::get('/all', 'AserradorApiController@all');
+        Route::get('/listado', 'AserradorApiController@listado');
     });
     Route::resource('aserradores', 'AserradorApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
+    Route::group(['prefix' => 'codigos-aserradores'], function () {
+        Route::delete('/', 'CodigoAserradorApiController@destroy');
+        Route::get('/all', 'CodigoAserradorApiController@all');
+    });
+    Route::resource('codigos-aserradores', 'CodigoAserradorApiController', [
         'except' => [
             'create', 'edit', 'show'
         ]

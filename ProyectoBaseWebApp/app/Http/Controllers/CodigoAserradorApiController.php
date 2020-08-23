@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
+use App\CodigoAserrador;
 use Illuminate\Http\Request;
-use App\Largo;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 
-class LargoApiController extends Controller
+class CodigoAserradorApiController extends Controller
 {
     public function all()
     {
-        return Largo::all();
+        return CodigoAserrador::all();
     }
     public function index(Request $request)
     {
         $user = $request->user();
         $status = $request->input('status');
         $search = $request->input('search');
-        return Largo::where('empresa_id', $user->empresa_id)
+        return CodigoAserrador::with('aserrador')->where('empresa_id', $user->empresa_id)
             ->orderBy('descripcion')
             ->where(function ($query) use ($status) {
                 if ($status !== 'T')
@@ -32,37 +33,46 @@ class LargoApiController extends Controller
     }
     public function store(Request $request)
     {
+        $user = $request->user();
         $request->validate([
             'descripcion' => 'required|max:255',
-            'valor' => 'required|numeric'
+            'codigo' => [
+                'required', 'max:20', Rule::unique('codigos_aserradores')->where('empresa_id', $user->empresa_id)
+            ],
+            'aserrador_id' => 'required|exists:aserradores,id'
         ]);
-        $user = $request->user();
-        Largo::create([
+        CodigoAserrador::create([
             'descripcion' => $request->input('descripcion'),
             'creador_id' => $user->id,
             'empresa_id' => $user->empresa_id,
-            'valor' => $request->input('valor')
+            'codigo' => $request->input('codigo'),
+            'aserrador_id' => $request->input('aserrador_id')
         ]);
     }
     public function update(Request $request, $id)
     {
+        $user = $request->user();
         $request->validate([
             'descripcion' => 'required|max:255',
-            'valor' => 'required|numeric'
+            'codigo' => [
+                'required', 'max:20', Rule::unique('codigos_aserradores')->where('empresa_id', $user->empresa_id)->ignore($id)
+            ],
+            'aserrador_id' => 'required|exists:aserradores,id'
         ]);
-        $largo = Largo::findOrFail($id);
-        $largo->descripcion = $request->input('descripcion');
-        $largo->valor = $request->input('valor');
-        $largo->modificador_id = $request->user()->id;
-        $largo->save();
+        $codigoAserrador = CodigoAserrador::findOrFail($id);
+        $codigoAserrador->descripcion = $request->input('descripcion');
+        $codigoAserrador->codigo = $request->input('codigo');
+        $codigoAserrador->modificador_id = $user->id;
+        $codigoAserrador->aserrador_id = $request->input('aserrador_id');
+        $codigoAserrador->save();
     }
     public function destroy(Request $request)
     {
         $request->validate([
-            'largos' => 'required|array'
+            'codigosAserradores' => 'required|array'
         ]);
-        $largos = $request->input('largos');
-        Largo::whereIn('id', $largos)
+        $codigosAserradores = $request->input('codigosAserradores');
+        CodigoAserrador::whereIn('id', $codigosAserradores)
             ->update([
                 'estado' => DB::raw("iif(estado = 'A', 'I', 'A')")
             ]);

@@ -105,7 +105,7 @@ class UsuarioApiController extends Controller
         DB::table('privilegios')->whereIn('usuario_id', $usuarios)
             ->whereIn('rol_id', Rol::where('empresa_id', $user->empresa_id)->get()->pluck('id')->all())
             ->update([
-                'estado' => DB::raw('if(estado = "A", "I", "A")')
+                'estado' => DB::raw("iif(estado = 'A', 'I', 'A')")
             ]);
     }
     public function perfil(Request $request)

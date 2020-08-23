@@ -233,5 +233,25 @@ class AccionSeeder extends Seeder
             'descripcion' => 'Consultar espesores',
             'modulo_id' => 'espesores'
         ]);
+        Accion::create([
+            'id' => 'crear_codigos_aserradores',
+            'descripcion' => 'Crear códigos de aserradores',
+            'modulo_id' => 'aserradores'
+        ]);
+        Accion::create([
+            'id' => 'editar_codigos_aserradores',
+            'descripcion' => 'Editar códigos de aserradores',
+            'modulo_id' => 'aserradores'
+        ]);
+        Accion::create([
+            'id' => 'eliminar_codigos_aserradores',
+            'descripcion' => 'Eliminar/Re-activar códigos aserradores',
+            'modulo_id' => 'aserradores'
+        ]);
+        Accion::create([
+            'id' => 'consultar_codigos_aserradores',
+            'descripcion' => 'Consultar códigos aserradores',
+            'modulo_id' => 'aserradores'
+        ]);
     }
 }

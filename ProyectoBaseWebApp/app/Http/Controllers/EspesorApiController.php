@@ -68,7 +68,7 @@ class EspesorApiController extends Controller
         $espesores = $request->input('espesores');
         Espesor::whereIn('id', $espesores)
             ->update([
-                'estado' => DB::raw('if(estado = "A", "I", "A")')
+                'estado' => DB::raw("iif(estado = 'A', 'I', 'A')")
             ]);
     }
 }

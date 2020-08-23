@@ -3,7 +3,7 @@ const urlApi = process.env.MIX_APP_URL_API;
 export default {
     getters: {
         permiteAccion: state => id => {
-            return state.acciones.find(accion => accion.id === id);
+            return state.acciones.find(accion => accion.id === id) != null;
         }
     },
     state: {
