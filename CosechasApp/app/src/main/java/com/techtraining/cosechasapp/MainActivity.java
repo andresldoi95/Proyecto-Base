@@ -38,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
     private ActionBarDrawerToggle toggle;
     private Menu menu;
     private ProgressBar spinner;
+    private void importar() {
+        spinner.setVisibility(View.VISIBLE);
+        new ImportarDatos(MainActivity.this).execute();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
                         finish();
                         break;
                     case R.id.nav_update_db:
-                        spinner.setVisibility(View.VISIBLE);
-                        new ImportarDatos(MainActivity.this).execute();
+                        importar();
                         break;
                 }
                 if(drawerLayout.isDrawerOpen(GravityCompat.START))
@@ -95,6 +98,12 @@ public class MainActivity extends AppCompatActivity {
                         editor.putInt(Helper.CURRENT_ID, currentId);
                         editor.commit();
                         new InsertUpdateUser(getApplicationContext(), currentId, nombre, response.getString("email")).execute();
+                        String primeraVez = preferences.getString(Helper.FIRST_TIME_NAME, "N");
+                        if (primeraVez.equals("N")) {
+                            importar();
+                            editor.putString(Helper.FIRST_TIME_NAME, "S");
+                            editor.commit();
+                        }
                     }
                     catch (JSONException ex) {
                         Toast.makeText(MainActivity.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
