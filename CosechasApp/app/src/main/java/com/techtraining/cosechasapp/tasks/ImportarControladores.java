@@ -43,6 +43,7 @@ public class ImportarControladores extends AsyncTask<Void, Void, Void>  {
                     controlador = new Controlador();
                     controlador.id = id;
                     controlador.nombre = jsonObject.getString("nombre");
+                    controlador.empresaId = jsonObject.getInt("empresa_id");
                     controlador.identificacion = jsonObject.getString("identificacion");
                     controlador.estado = jsonObject.getString("estado");
                     controladorDao.insertOne(controlador);
@@ -51,6 +52,7 @@ public class ImportarControladores extends AsyncTask<Void, Void, Void>  {
                     controlador.nombre = jsonObject.getString("nombre");
                     controlador.identificacion = jsonObject.getString("identificacion");
                     controlador.estado = jsonObject.getString("estado");
+                    controlador.empresaId = jsonObject.getInt("empresa_id");
                     controladorDao.update(controlador);
                 }
             }

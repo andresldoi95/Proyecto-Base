@@ -9,6 +9,10 @@ use Illuminate\Validation\Rule;
 
 class ProcedenciaApiController extends Controller
 {
+    public function all()
+    {
+        return Procedencia::all();
+    }
     public function listado(Request $request)
     {
         $user = $request->user();

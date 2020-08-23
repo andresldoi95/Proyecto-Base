@@ -112,11 +112,38 @@ public class ImportarDatos extends AsyncTask<Void, Void, Void> {
         };
         networkManager.addToRequestQueue(jsonArrayRequest);
     }
+    private void importarProcedencias() {
+        String url = Helper.URL_API + "/procedencias/all";
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                new ImportarProcedencias(context, response).execute();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                String mensaje = error.getMessage();
+                if (mensaje != null)
+                    Log.e(ImportarDatos.class.getName(), mensaje);
+                else
+                    Log.e(ImportarDatos.class.getName(), context.getString(R.string.error_generico));
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put(Helper.AUTH_HEADER, Helper.AUTH_TYPE + sharedPreferences.getString(Helper.USER_TOKEN_NAME, null));
+                return params;
+            }
+        };
+        networkManager.addToRequestQueue(jsonArrayRequest);
+    }
     @Override
     protected Void doInBackground(Void... voids) {
         sharedPreferences = context.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
         importarEmpresas();
         importarControladores();
+        importarProcedencias();
         importarCamiones();
         return null;
     }

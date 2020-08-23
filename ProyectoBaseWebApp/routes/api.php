@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::group(['prefix' => 'procedencias'], function () {
         Route::get('/listado', 'ProcedenciaApiController@listado');
+        Route::get('/all', 'ProcedenciaApiController@all');
     });
 
     Route::resource('roles', 'RolApiController', [

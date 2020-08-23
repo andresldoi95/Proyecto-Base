@@ -23,5 +23,7 @@
     <string name="camiones_importados">Camiones importados...</string>
     <string name="importando_controladores">Importando controladores...</string>
     <string name="controladores_importados">Controladores importados...</string>
+    <string name="importando_procedencias">Importando procedencias...</string>
+    <string name="procedencias_importadas">Procedencias importadas...</string>
     <string name="importacion_finalizada">La importación ha finalizado...</string>
 </resources>
