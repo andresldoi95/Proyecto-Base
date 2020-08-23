@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class EmpresaApiController extends Controller
 {
+    public function all()
+    {
+        return Empresa::all();
+    }
     public function index(Request $request)
     {
         $status = $request->input('status');

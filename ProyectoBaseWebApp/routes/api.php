@@ -31,11 +31,12 @@ Route::group(['middleware' => 'auth:api'], function () {
     ]);
     Route::resource('empresas', 'EmpresaApiController', [
         'except' => [
-            'create', 'edit'
+            'create', 'edit', 'show'
         ]
     ]);
     Route::group(['prefix' => 'empresas'], function () {
         Route::delete('/', 'EmpresaApiController@destroy');
+        Route::get('all', 'EmpresaApiController@all');
     });
 
     Route::group(['prefix' => 'roles'], function () {

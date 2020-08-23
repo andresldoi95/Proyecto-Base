@@ -15,15 +15,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.google.android.material.navigation.NavigationView;
+import com.techtraining.cosechasapp.tasks.ImportarDatos;
+import com.techtraining.cosechasapp.tasks.InsertUpdateUser;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -67,6 +67,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.nav_update_db:
                         spinner.setVisibility(View.VISIBLE);
+                        new ImportarDatos(MainActivity.this).execute();
                         break;
                 }
                 if(drawerLayout.isDrawerOpen(GravityCompat.START))
@@ -74,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        SharedPreferences preferences = getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+        final SharedPreferences preferences = getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE);
         final String token = preferences.getString(Helper.USER_TOKEN_NAME, null);
         if (token == null) {
             startActivity(new Intent(this, LoginActivity.class));
@@ -89,6 +90,11 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         String nombre = response.getString("name");
                         Toast.makeText(MainActivity.this, getString(R.string.welcome) + " " + nombre, Toast.LENGTH_SHORT).show();
+                        int currentId = response.getInt("id");
+                        SharedPreferences.Editor editor = preferences.edit();
+                        editor.putInt(Helper.CURRENT_ID, currentId);
+                        editor.commit();
+                        new InsertUpdateUser(getApplicationContext(), currentId, nombre, response.getString("email")).execute();
                     }
                     catch (JSONException ex) {
                         Toast.makeText(MainActivity.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
