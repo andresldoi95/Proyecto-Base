@@ -221,6 +221,99 @@ public class ImportarDatos extends AsyncTask<Void, Void, Void> {
         ));
         networkManager.addToRequestQueue(jsonArrayRequest);
     }
+    private void importarEspesores() {
+        String url = Helper.URL_API + "/espesores/all";
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                new ImportarEspesores(context, response).execute();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                String mensaje = error.getMessage();
+                if (mensaje != null)
+                    Log.e(ImportarDatos.class.getName(), mensaje);
+                else
+                    error.printStackTrace();
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put(Helper.AUTH_HEADER, Helper.AUTH_TYPE + sharedPreferences.getString(Helper.USER_TOKEN_NAME, null));
+                return params;
+            }
+        };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                Helper.DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+        networkManager.addToRequestQueue(jsonArrayRequest);
+    }
+    private void importarLargos() {
+        String url = Helper.URL_API + "/largos/all";
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                new ImportarLargos(context, response).execute();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                String mensaje = error.getMessage();
+                if (mensaje != null)
+                    Log.e(ImportarDatos.class.getName(), mensaje);
+                else
+                    error.printStackTrace();
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put(Helper.AUTH_HEADER, Helper.AUTH_TYPE + sharedPreferences.getString(Helper.USER_TOKEN_NAME, null));
+                return params;
+            }
+        };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                Helper.DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+        networkManager.addToRequestQueue(jsonArrayRequest);
+    }
+    private void importarMateriales() {
+        String url = Helper.URL_API + "/materiales/all";
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                new ImportarMateriales(context, response).execute();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                String mensaje = error.getMessage();
+                if (mensaje != null)
+                    Log.e(ImportarDatos.class.getName(), mensaje);
+                else
+                    error.printStackTrace();
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put(Helper.AUTH_HEADER, Helper.AUTH_TYPE + sharedPreferences.getString(Helper.USER_TOKEN_NAME, null));
+                return params;
+            }
+        };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                Helper.DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+        networkManager.addToRequestQueue(jsonArrayRequest);
+    }
     @Override
     protected Void doInBackground(Void... voids) {
         sharedPreferences = context.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
@@ -229,6 +322,9 @@ public class ImportarDatos extends AsyncTask<Void, Void, Void> {
         importarProcedencias();
         importarAserradores();
         importarDestinos();
+        importarEspesores();
+        importarLargos();
+        importarMateriales();
         importarCamiones();
         return null;
     }

@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class LargoApiController extends Controller
 {
+    public function all()
+    {
+        return Largo::all();
+    }
     public function index(Request $request)
     {
         $user = $request->user();

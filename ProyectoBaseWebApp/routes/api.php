@@ -55,6 +55,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     ]);
     Route::group(['prefix' => 'largos'], function () {
         Route::delete('/', 'LargoApiController@destroy');
+        Route::get('/all', 'LargoApiController@all');
     });
     Route::resource('largos', 'LargoApiController', [
         'except' => [
@@ -80,6 +81,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     ]);
     Route::group(['prefix' => 'materiales'], function () {
         Route::delete('/', 'MaterialApiController@destroy');
+        Route::get('/all', 'MaterialApiController@all');
     });
     Route::resource('materiales', 'MaterialApiController', [
         'except' => [
@@ -105,6 +107,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     ]);
     Route::group(['prefix' => 'espesores'], function () {
         Route::delete('/', 'EspesorApiController@destroy');
+        Route::get('/all', 'EspesorApiController@all');
     });
     Route::resource('espesores', 'EspesorApiController', [
         'except' => [

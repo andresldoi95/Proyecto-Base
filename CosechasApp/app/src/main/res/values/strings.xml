@@ -29,5 +29,11 @@
     <string name="aserradores_importados">Aserradores importados...</string>
     <string name="importando_destinos">Importando destinos...</string>
     <string name="destinos_importados">Destinos importados...</string>
+    <string name="importando_espesores">Importando espesores...</string>
+    <string name="espesores_importados">Espesores importados...</string>
+    <string name="importando_largos">Importando largos...</string>
+    <string name="largos_importados">Largos importados...</string>
+    <string name="importando_materiales">Importando materiales...</string>
+    <string name="materiales_importados">Materiales importados...</string>
     <string name="importacion_finalizada">La importación ha finalizado...</string>
 </resources>

@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class EspesorApiController extends Controller
 {
+    public function all()
+    {
+        return Espesor::all();
+    }
     public function index(Request $request)
     {
         $user = $request->user();

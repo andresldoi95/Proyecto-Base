@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 
 class MaterialApiController extends Controller
 {
+    public function all()
+    {
+        return Material::all();
+    }
     public function index(Request $request)
     {
         $user = $request->user();
