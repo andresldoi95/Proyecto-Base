@@ -27,5 +27,7 @@
     <string name="procedencias_importadas">Procedencias importadas...</string>
     <string name="importando_aserradores">Importando aserradores...</string>
     <string name="aserradores_importados">Aserradores importados...</string>
+    <string name="importando_destinos">Importando destinos...</string>
+    <string name="destinos_importados">Destinos importados...</string>
     <string name="importacion_finalizada">La importación ha finalizado...</string>
 </resources>

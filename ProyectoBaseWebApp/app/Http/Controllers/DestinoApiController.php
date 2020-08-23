@@ -9,6 +9,10 @@ use Illuminate\Validation\Rule;
 
 class DestinoApiController extends Controller
 {
+    public function all()
+    {
+        return Destino::all();
+    }
     public function index(Request $request)
     {
         $user = $request->user();

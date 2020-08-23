@@ -71,6 +71,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     ]);
     Route::group(['prefix' => 'destinos'], function () {
         Route::delete('/', 'DestinoApiController@destroy');
+        Route::get('/all', 'DestinoApiController@all');
     });
     Route::resource('destinos', 'DestinoApiController', [
         'except' => [
