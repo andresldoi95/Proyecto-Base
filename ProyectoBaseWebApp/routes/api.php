@@ -112,6 +112,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     ]);
     Route::group(['prefix' => 'aserradores'], function () {
         Route::delete('/', 'AserradorApiController@destroy');
+        Route::get('/all', 'AserradorApiController@all');
     });
     Route::resource('aserradores', 'AserradorApiController', [
         'except' => [

@@ -9,6 +9,10 @@ use Illuminate\Validation\Rule;
 
 class AserradorApiController extends Controller
 {
+    public function all()
+    {
+        return Aserrador::all();
+    }
     public function index(Request $request)
     {
         $user = $request->user();

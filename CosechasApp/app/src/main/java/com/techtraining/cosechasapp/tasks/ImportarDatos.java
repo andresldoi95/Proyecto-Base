@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -48,7 +49,7 @@ public class ImportarDatos extends AsyncTask<Void, Void, Void> {
                 if (mensaje != null)
                     Log.e(ImportarDatos.class.getName(), mensaje);
                 else
-                    Log.e(ImportarDatos.class.getName(), context.getString(R.string.error_generico));
+                    error.printStackTrace();
             }
         }){
             @Override
@@ -58,6 +59,11 @@ public class ImportarDatos extends AsyncTask<Void, Void, Void> {
                 return params;
             }
         };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+            Helper.DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
         networkManager.addToRequestQueue(jsonArrayRequest);
     }
     private void importarCamiones() {
@@ -74,7 +80,7 @@ public class ImportarDatos extends AsyncTask<Void, Void, Void> {
                 if (mensaje != null)
                     Log.e(ImportarDatos.class.getName(), mensaje);
                 else
-                    Log.e(ImportarDatos.class.getName(), context.getString(R.string.error_generico));
+                    error.printStackTrace();
             }
         }){
             @Override
@@ -84,6 +90,11 @@ public class ImportarDatos extends AsyncTask<Void, Void, Void> {
                 return params;
             }
         };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                Helper.DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
         networkManager.addToRequestQueue(jsonArrayRequest);
     }
     private void importarControladores() {
@@ -100,7 +111,7 @@ public class ImportarDatos extends AsyncTask<Void, Void, Void> {
                 if (mensaje != null)
                     Log.e(ImportarDatos.class.getName(), mensaje);
                 else
-                    Log.e(ImportarDatos.class.getName(), context.getString(R.string.error_generico));
+                    error.printStackTrace();
             }
         }){
             @Override
@@ -110,6 +121,11 @@ public class ImportarDatos extends AsyncTask<Void, Void, Void> {
                 return params;
             }
         };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                Helper.DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
         networkManager.addToRequestQueue(jsonArrayRequest);
     }
     private void importarProcedencias() {
@@ -126,7 +142,7 @@ public class ImportarDatos extends AsyncTask<Void, Void, Void> {
                 if (mensaje != null)
                     Log.e(ImportarDatos.class.getName(), mensaje);
                 else
-                    Log.e(ImportarDatos.class.getName(), context.getString(R.string.error_generico));
+                    error.printStackTrace();
             }
         }){
             @Override
@@ -136,6 +152,42 @@ public class ImportarDatos extends AsyncTask<Void, Void, Void> {
                 return params;
             }
         };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                Helper.DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+        networkManager.addToRequestQueue(jsonArrayRequest);
+    }
+    private void importarAserradores() {
+        String url = Helper.URL_API + "/aserradores/all";
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                new ImportarAserradores(context, response).execute();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                String mensaje = error.getMessage();
+                if (mensaje != null)
+                    Log.e(ImportarDatos.class.getName(), mensaje);
+                else
+                    error.printStackTrace();
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put(Helper.AUTH_HEADER, Helper.AUTH_TYPE + sharedPreferences.getString(Helper.USER_TOKEN_NAME, null));
+                return params;
+            }
+        };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                Helper.DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
         networkManager.addToRequestQueue(jsonArrayRequest);
     }
     @Override
@@ -144,6 +196,7 @@ public class ImportarDatos extends AsyncTask<Void, Void, Void> {
         importarEmpresas();
         importarControladores();
         importarProcedencias();
+        importarAserradores();
         importarCamiones();
         return null;
     }

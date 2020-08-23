@@ -18,7 +18,6 @@ public class NetworkManager {
     private NetworkManager(Context context) {
         ctx = context;
         requestQueue = getRequestQueue();
-
         imageLoader = new ImageLoader(requestQueue,
                 new ImageLoader.ImageCache() {
                     private final LruCache<String, Bitmap>
