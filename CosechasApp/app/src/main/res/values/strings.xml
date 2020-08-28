@@ -14,6 +14,8 @@
     <string name="close">Cerrar</string>
     <string name="logged_out">Has cerrado sesión exitósamente</string>
     <string name="update_db">Actualizar base de datos</string>
+    <string name="nueva_cosecha">Nueva cosecha</string>
+    <string name="cosechas_terminadas">Cosechas terminadas</string>
     <string name="opcion_no_disponible">Opción no disponible</string>
 
     <string name="importando_datos">Importando datos...</string>
@@ -38,4 +40,24 @@
     <string name="importando_codigos_aserradores">Importando códigos de aserradores...</string>
     <string name="codigos_aserradores_importados">Códigos de aserradores importados...</string>
     <string name="importacion_finalizada">La importación ha finalizado...</string>
+
+    <string name="tv_camion">Camión</string>
+    <string name="tv_controlador">Controlador</string>
+    <string name="tv_destino">Destino</string>
+    <string name="tv_origen">Procedencia</string>
+    <string name="tv_material">Material</string>
+    <string name="tv_codigo_po">Código PO</string>
+    <string name="hint_po">Será manual cuando no exista</string>
+
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+
+    <string name="camion_requerido">El camión es requerido.</string>
+    <string name="controlador_requerido">El controlador es requerido.</string>
+    <string name="destino_requerido">El destino es requerido.</string>
+    <string name="procedencia_requerida">La procedencia es requerida.</string>
+    <string name="material_requerido">El material es requerido.</string>
+    <string name="codigo_po_requerido">El código PO es requerido.</string>
+
+    <string name="cosecha_almacenada">Los datos de la cosecha han sido almacenados.</string>
 </resources>

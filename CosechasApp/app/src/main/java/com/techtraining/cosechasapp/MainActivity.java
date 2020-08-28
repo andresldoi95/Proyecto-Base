@@ -72,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.nav_update_db:
                         importar();
                         break;
+                    case R.id.nav_nueva_cosecha:
+                        Intent intentNuevaCosecha = new Intent(MainActivity.this, NuevaCosechaActivity.class);
+                        startActivity(intentNuevaCosecha);
+                        break;
                 }
                 if(drawerLayout.isDrawerOpen(GravityCompat.START))
                     drawerLayout.closeDrawer(GravityCompat.START);

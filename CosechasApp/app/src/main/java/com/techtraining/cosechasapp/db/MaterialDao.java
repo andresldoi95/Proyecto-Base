@@ -12,6 +12,9 @@ public interface MaterialDao {
     @Query("SELECT * FROM material")
     List<Material> getAll();
 
+    @Query("SELECT * FROM material WHERE estado = 'A'")
+    List<Material> getAllActive();
+
     @Query("SELECT * FROM material WHERE id IN (:materialsIds)")
     List<Material> loadAllByIds(int[] materialsIds);
 

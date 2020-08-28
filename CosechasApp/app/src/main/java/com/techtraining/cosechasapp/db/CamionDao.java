@@ -12,6 +12,9 @@ public interface CamionDao {
     @Query("SELECT * FROM camion")
     List<Camion> getAll();
 
+    @Query("SELECT * FROM camion WHERE estado = 'A'")
+    List<Camion> getAllActive();
+
     @Query("SELECT * FROM camion WHERE id IN (:camionesIds)")
     List<Camion> loadAllByIds(int[] camionesIds);
 

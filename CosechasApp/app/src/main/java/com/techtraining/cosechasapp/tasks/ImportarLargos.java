@@ -45,12 +45,14 @@ public class ImportarLargos extends AsyncTask<Void, Void, Void> {
                     largo.descripcion = jsonObject.getString("descripcion");
                     largo.valor = jsonObject.getDouble("valor");
                     largo.empresaId = jsonObject.getInt("empresa_id");
+                    largo.estado = jsonObject.getString("estado");
                     largoDao.insertOne(largo);
                 }
                 else {
                     largo.descripcion = jsonObject.getString("descripcion");
                     largo.valor = jsonObject.getDouble("valor");
                     largo.empresaId = jsonObject.getInt("empresa_id");
+                    largo.estado = jsonObject.getString("estado");
                     largoDao.update(largo);
                 }
             }

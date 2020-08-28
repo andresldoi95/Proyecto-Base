@@ -46,6 +46,7 @@ public class ImportarDestinos extends AsyncTask<Void, Void, Void> {
                     destino.codigo = jsonObject.getString("codigo");
                     destino.email = jsonObject.getString("email");
                     destino.empresaId = jsonObject.getInt("empresa_id");
+                    destino.estado = jsonObject.getString("estado");
                     destinoDao.insertOne(destino);
                 }
                 else {
@@ -53,6 +54,7 @@ public class ImportarDestinos extends AsyncTask<Void, Void, Void> {
                     destino.codigo = jsonObject.getString("codigo");
                     destino.email = jsonObject.getString("email");
                     destino.empresaId = jsonObject.getInt("empresa_id");
+                    destino.estado = jsonObject.getString("estado");
                     destinoDao.update(destino);
                 }
             }

@@ -46,6 +46,7 @@ public class ImportarProcedencias extends AsyncTask<Void, Void, Void> {
                     procedencia.codigo = jsonObject.getString("codigo");
                     procedencia.email = jsonObject.getString("email");
                     procedencia.empresaId = jsonObject.getInt("empresa_id");
+                    procedencia.estado = jsonObject.getString("estado");
                     procedenciaDao.insertOne(procedencia);
                 }
                 else {
@@ -53,6 +54,7 @@ public class ImportarProcedencias extends AsyncTask<Void, Void, Void> {
                     procedencia.codigo = jsonObject.getString("codigo");
                     procedencia.email = jsonObject.getString("email");
                     procedencia.empresaId = jsonObject.getInt("empresa_id");
+                    procedencia.estado = jsonObject.getString("estado");
                     procedenciaDao.update(procedencia);
                 }
             }

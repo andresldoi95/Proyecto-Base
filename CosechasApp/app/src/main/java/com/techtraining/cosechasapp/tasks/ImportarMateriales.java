@@ -45,12 +45,14 @@ public class ImportarMateriales extends AsyncTask<Void, Void, Void> {
                     material.descripcion = jsonObject.getString("descripcion");
                     material.codigo = jsonObject.getString("codigo");
                     material.empresaId = jsonObject.getInt("empresa_id");
+                    material.estado = jsonObject.getString("estado");
                     materialDao.insertOne(material);
                 }
                 else {
                     material.descripcion = jsonObject.getString("descripcion");
                     material.codigo = jsonObject.getString("codigo");
                     material.empresaId = jsonObject.getInt("empresa_id");
+                    material.estado = jsonObject.getString("estado");
                     materialDao.update(material);
                 }
             }

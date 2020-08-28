@@ -22,4 +22,9 @@ public class Destino {
 
     @ColumnInfo(name = "estado")
     public String estado;
+
+    @Override
+    public String toString() {
+        return this.descripcion + " (" + this.codigo + ")";
+    }
 }
