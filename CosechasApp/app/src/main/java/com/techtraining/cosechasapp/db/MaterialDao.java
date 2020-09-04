@@ -12,7 +12,7 @@ public interface MaterialDao {
     @Query("SELECT * FROM material")
     List<Material> getAll();
 
-    @Query("SELECT * FROM material WHERE estado = 'A'")
+    @Query("SELECT * FROM material WHERE estado = 'A' ORDER BY descripcion")
     List<Material> getAllActive();
 
     @Query("SELECT * FROM material WHERE id IN (:materialsIds)")

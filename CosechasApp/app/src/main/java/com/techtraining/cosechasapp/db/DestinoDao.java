@@ -12,7 +12,7 @@ public interface DestinoDao {
     @Query("SELECT * FROM destino")
     List<Destino> getAll();
 
-    @Query("SELECT * FROM destino WHERE estado = 'A'")
+    @Query("SELECT * FROM destino WHERE estado = 'A' ORDER BY descripcion")
     List<Destino> getAllActive();
 
     @Query("SELECT * FROM destino WHERE id IN (:destinosIds)")

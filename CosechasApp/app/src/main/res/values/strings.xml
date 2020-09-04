@@ -60,4 +60,7 @@
     <string name="codigo_po_requerido">El código PO es requerido.</string>
 
     <string name="cosecha_almacenada">Los datos de la cosecha han sido almacenados.</string>
+
+    <string name="exportar">Exportar</string>
+    <string name="anular">Anular</string>
 </resources>

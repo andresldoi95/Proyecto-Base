@@ -8,6 +8,9 @@ export default {
         recuperar: "Recuperar cuenta"
     },
     message: {
+        constante: "Constante",
+        factor_hueco: "Factor hueco",
+        ancho_bulto: "Ancho de bulto",
         placa: "Placa",
         tipo_camion: "Tipo de camión",
         alto: "Alto",
@@ -55,6 +58,7 @@ export default {
         codigo: "Código"
     },
     title: {
+        parametros: "Parámetros",
         "codigos-aserradores": "Códigos de aserradores",
         aserradores: "Aserradores",
         login: "Iniciar sesión",

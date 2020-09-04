@@ -213,7 +213,7 @@ class AccionSeeder extends Seeder
         //     'descripcion' => 'Consultar procedencias',
         //     'modulo_id' => 'procedencias'
         // ]);
-        Accion::create([
+        /*Accion::create([
             'id' => 'crear_espesores',
             'descripcion' => 'Crear espesores',
             'modulo_id' => 'espesores'
@@ -252,6 +252,11 @@ class AccionSeeder extends Seeder
             'id' => 'consultar_codigos_aserradores',
             'descripcion' => 'Consultar códigos aserradores',
             'modulo_id' => 'aserradores'
+        ]);*/
+        Accion::create([
+            'id' => 'configurar_parametros',
+            'descripcion' => 'Configurar parámetros',
+            'modulo_id' => 'roles'
         ]);
     }
 }

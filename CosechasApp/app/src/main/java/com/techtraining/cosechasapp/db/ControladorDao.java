@@ -12,7 +12,7 @@ public interface ControladorDao {
     @Query("SELECT * FROM controlador")
     List<Controlador> getAll();
 
-    @Query("SELECT * FROM controlador WHERE estado = 'A'")
+    @Query("SELECT * FROM controlador WHERE estado = 'A' ORDER BY nombre")
     List<Controlador> getAllActive();
 
     @Query("SELECT * FROM controlador WHERE id IN (:controladoresIds)")

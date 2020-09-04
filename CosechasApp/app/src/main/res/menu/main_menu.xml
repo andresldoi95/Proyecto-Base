@@ -5,10 +5,6 @@
         android:icon="@android:drawable/ic_menu_rotate"
         android:title="@string/update_db" />
     <item
-        android:id="@+id/nav_logout"
-        android:icon="@android:drawable/ic_menu_close_clear_cancel"
-        android:title="@string/logout" />
-    <item
         android:id="@+id/nav_nueva_cosecha"
         android:icon="@android:drawable/ic_menu_add"
         android:title="@string/nueva_cosecha" />
@@ -16,4 +12,8 @@
         android:id="@+id/nav_cosechas_terminadas"
         android:icon="@android:drawable/ic_menu_search"
         android:title="@string/cosechas_terminadas" />
+    <item
+        android:id="@+id/nav_logout"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        android:title="@string/logout" />
 </menu>

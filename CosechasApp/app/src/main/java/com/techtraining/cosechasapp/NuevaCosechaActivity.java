@@ -105,6 +105,7 @@ public class NuevaCosechaActivity extends AppCompatActivity {
                     cosecha.destinoId = selectedDestino.id;
                     cosecha.materialId = selectedMaterial.id;
                     cosecha.origenId = selectedProcedencia.id;
+                    cosecha.estado = "P";
                     new GuardarCabeceraCosecha(NuevaCosechaActivity.this, cosecha).execute();
                 }
             }

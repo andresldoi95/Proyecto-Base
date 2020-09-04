@@ -12,7 +12,7 @@ public interface ProcedenciaDao {
     @Query("SELECT * FROM procedencia")
     List<Procedencia> getAll();
 
-    @Query("SELECT * FROM procedencia WHERE estado = 'A'")
+    @Query("SELECT * FROM procedencia WHERE estado = 'A' ORDER BY descripcion")
     List<Procedencia> getAllActive();
 
     @Query("SELECT * FROM procedencia WHERE id IN (:procedenciasIds)")

@@ -13,6 +13,12 @@ public interface CosechaDao {
     @Query("SELECT * FROM cosecha")
     List<Cosecha> getAll();
 
+    @Query("SELECT * FROM cosecha WHERE estado = 'P' ORDER BY codigo_po")
+    List<Cosecha> getPendientes();
+
+    @Query("SELECT * FROM cosecha WHERE estado = 'F' ORDER BY codigo_po")
+    List<Cosecha> getFinalizadas();
+
     @Query("SELECT * FROM cosecha WHERE id IN (:cosechasIds)")
     List<Cosecha> loadAllByIds(String[] cosechasIds);
 
