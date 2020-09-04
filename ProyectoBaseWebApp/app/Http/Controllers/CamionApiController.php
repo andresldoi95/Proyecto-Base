@@ -18,7 +18,7 @@ class CamionApiController extends Controller
         $user = $request->user();
         $status = $request->input('status');
         $search = $request->input('search');
-        return Camion::where('empresa_id', $user->empresa_id)
+        return Camion::with('filas')->where('empresa_id', $user->empresa_id)
             ->orderBy('camionero')
             ->where(function ($query) use ($status) {
                 if ($status !== 'T')
@@ -42,9 +42,11 @@ class CamionApiController extends Controller
             'tipo_camion' => 'required|max:1',
             'alto' => 'required|numeric',
             'ancho' => 'required|numeric',
-            'placa' => 'required|max:10'
+            'placa' => 'required|max:10',
+            'filas.*.filas' => 'required|integer',
+            'filas.*.columnas' => 'required|integer'
         ]);
-        Camion::create([
+        $camion = Camion::create([
             'tipo_camion' => $request->input('tipo_camion'),
             'camionero' => $request->input('camionero'),
             'creador_id' => $user->id,
@@ -54,6 +56,14 @@ class CamionApiController extends Controller
             'alto' => $request->input('alto'),
             'placa' => $request->input('placa')
         ]);
+        $filas = $request->input('filas');
+        foreach ($filas as $fila) {
+            $camion->filas()->create([
+                'id' => uniqid('t' . date('YmdHi'), true),
+                'filas' => $fila['filas'],
+                'columnas' => $fila['columnas']
+            ]);
+        }
     }
     public function update(Request $request, $id)
     {
@@ -66,7 +76,9 @@ class CamionApiController extends Controller
             'tipo_camion' => 'required|max:1',
             'alto' => 'required|numeric',
             'ancho' => 'required|numeric',
-            'placa' => 'required|max:10'
+            'placa' => 'required|max:10',
+            'filas.*.filas' => 'required|integer',
+            'filas.*.columnas' => 'required|integer'
         ]);
         $camion = Camion::findOrFail($id);
         $camion->camionero = $request->input('camionero');
@@ -77,6 +89,15 @@ class CamionApiController extends Controller
         $camion->alto = $request->input('alto');
         $camion->placa = $request->input('placa');
         $camion->save();
+        $camion->filas()->delete();
+        $filas = $request->input('filas');
+        foreach ($filas as $fila) {
+            $camion->filas()->create([
+                'id' => uniqid('t' . date('YmdHi'), true),
+                'filas' => $fila['filas'],
+                'columnas' => $fila['columnas']
+            ]);
+        }
     }
     public function destroy(Request $request)
     {

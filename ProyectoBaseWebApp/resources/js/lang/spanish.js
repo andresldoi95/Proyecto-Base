@@ -8,6 +8,10 @@ export default {
         recuperar: "Recuperar cuenta"
     },
     message: {
+        sinDatos: "Sin datos",
+        filas: "Filas",
+        columnas: "Columnas",
+        agregar_fila: "Agregar fila",
         constante: "Constante",
         factor_hueco: "Factor hueco",
         ancho_bulto: "Ancho de bulto",

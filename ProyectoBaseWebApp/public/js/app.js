@@ -2456,6 +2456,12 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layouts/MasterForm */ "./resources/js/components/layouts/MasterForm.vue");
+/* harmony import */ var _FilasCamion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FilasCamion */ "./resources/js/components/admin/camiones/FilasCamion.vue");
+//
+//
+//
+//
+//
 //
 //
 //
@@ -2592,9 +2598,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    MasterForm: _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__["default"]
+    MasterForm: _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__["default"],
+    FilasCamion: _FilasCamion__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -2606,17 +2614,11 @@ __webpack_require__.r(__webpack_exports__);
         tipo_camion: "B",
         ancho: 0,
         alto: 0,
-        placa: ""
+        placa: "",
+        filas: []
       },
       acciones: [],
-      errores: {
-        camionero: undefined,
-        identificacion_camionero: undefined,
-        ancho: undefined,
-        alto: undefined,
-        tipo_camion: undefined,
-        placa: undefined
-      }
+      errores: {}
     };
   },
   methods: {
@@ -2632,6 +2634,8 @@ __webpack_require__.r(__webpack_exports__);
       this.form.alto = 0;
       this.form.tipo_camion = "B";
       this.form.placa = "";
+      this.form.filas.splice(0, this.form.filas.length);
+      this.limpiarErrores();
     },
     adding: function adding() {
       this.limpiar();
@@ -2672,14 +2676,17 @@ __webpack_require__.r(__webpack_exports__);
       this.form.ancho = camion.ancho;
       this.form.alto = camion.alto;
       this.form.placa = camion.placa;
+      this.form.filas.splice(0, this.form.filas.length);
+
+      for (var i = 0; i < camion.filas.length; i++) {
+        this.form.filas.push({
+          filas: camion.filas[i].filas,
+          columnas: camion.filas[i].columnas
+        });
+      }
     },
     limpiarErrores: function limpiarErrores() {
-      this.errores.camionero = undefined;
-      this.errores.identificacion_camionero = undefined;
-      this.errores.tipo_camion = undefined;
-      this.errores.ancho = undefined;
-      this.errores.alto = undefined;
-      this.errores.placa = undefined;
+      this.errores = {};
     },
     submitFormulario: function submitFormulario() {
       var _this2 = this;
@@ -2704,12 +2711,7 @@ __webpack_require__.r(__webpack_exports__);
         var status = response.status;
 
         if (status === 422) {
-          _this2.errores.identificacion_camionero = response.data.errors.identificacion_camionero;
-          _this2.errores.camionero = response.data.errors.camionero;
-          _this2.errores.tipo_camion = response.data.errors.tipo_camion;
-          _this2.errores.alto = response.data.errors.alto;
-          _this2.errores.ancho = response.data.errors.ancho;
-          _this2.errores.placa = response.data.errors.placa;
+          _this2.errores = response.data.errors;
         } else {
           _this2.$buefy.toast.open({
             message: _this2.$t("message.generic_error"),
@@ -2717,6 +2719,111 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/camiones/FilasCamion.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/camiones/FilasCamion.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    errores: {
+      type: Object,
+      required: false,
+      "default": function _default() {
+        return {};
+      }
+    },
+    value: {
+      type: Array,
+      required: false,
+      "default": function _default() {
+        return [];
+      }
+    }
+  },
+  data: function data() {
+    return {
+      modelValue: this.value
+    };
+  },
+  methods: {
+    agregar: function agregar() {
+      this.modelValue.push({
+        filas: 0,
+        columnas: 0
+      });
+    },
+    eliminar: function eliminar(index) {
+      this.modelValue.splice(index, 1);
     }
   }
 });
@@ -25690,6 +25797,26 @@ var render = function() {
                   ],
                   1
                 )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "columns" }, [
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c("filas-camion", {
+                      attrs: { errores: _vm.errores },
+                      model: {
+                        value: _vm.form.filas,
+                        callback: function($$v) {
+                          _vm.$set(_vm.form, "filas", $$v)
+                        },
+                        expression: "form.filas"
+                      }
+                    })
+                  ],
+                  1
+                )
               ])
             ]
           )
@@ -25698,6 +25825,216 @@ var render = function() {
       )
     ])
   ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/camiones/FilasCamion.vue?vue&type=template&id=5b8f2dd2&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/camiones/FilasCamion.vue?vue&type=template&id=5b8f2dd2& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    [
+      _c("b-field", { attrs: { grouped: "", "group-multiline": "" } }, [
+        _c(
+          "div",
+          { staticClass: "control" },
+          [
+            _c(
+              "b-button",
+              {
+                attrs: {
+                  "icon-left": "plus",
+                  "native-type": "button",
+                  type: "is-success"
+                },
+                on: { click: _vm.agregar }
+              },
+              [
+                _vm._v(
+                  "\n              " +
+                    _vm._s(_vm.$t("message.agregar_fila")) +
+                    "\n          "
+                )
+              ]
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "b-table" }, [
+        _c("div", { staticClass: "table-wrapper" }, [
+          _c("table", { staticClass: "table is-striped is-narrow" }, [
+            _c("thead", [
+              _c("tr", [
+                _c("th", [
+                  _vm._v(
+                    "\n                          " +
+                      _vm._s(_vm.$t("message.filas")) +
+                      "\n                      "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("th", [
+                  _vm._v(
+                    "\n                          " +
+                      _vm._s(_vm.$t("message.columnas")) +
+                      "\n                      "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("th")
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "tbody",
+              [
+                _c(
+                  "tr",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.modelValue.length === 0,
+                        expression: "modelValue.length === 0"
+                      }
+                    ]
+                  },
+                  [
+                    _c("td", { attrs: { colspan: "3" } }, [
+                      _c("strong", [
+                        _vm._v(
+                          "\n                              " +
+                            _vm._s(_vm.$t("message.sinDatos")) +
+                            "\n                          "
+                        )
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _vm._l(_vm.modelValue, function(fila, index) {
+                  return _c("tr", { key: index }, [
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "b-field",
+                          {
+                            attrs: {
+                              message: _vm.errores.hasOwnProperty(
+                                "filas." + index + ".filas"
+                              )
+                                ? _vm.errores["filas." + index + ".filas"][0]
+                                : "",
+                              type: _vm.errores.hasOwnProperty(
+                                "filas." + index + ".filas"
+                              )
+                                ? "is-danger"
+                                : ""
+                            }
+                          },
+                          [
+                            _c("b-input", {
+                              model: {
+                                value: fila.filas,
+                                callback: function($$v) {
+                                  _vm.$set(fila, "filas", $$v)
+                                },
+                                expression: "fila.filas"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c(
+                          "b-field",
+                          {
+                            attrs: {
+                              message: _vm.errores.hasOwnProperty(
+                                "filas." + index + ".columnas"
+                              )
+                                ? _vm.errores["filas." + index + ".columnas"][0]
+                                : "",
+                              type: _vm.errores.hasOwnProperty(
+                                "filas." + index + ".columnas"
+                              )
+                                ? "is-danger"
+                                : ""
+                            }
+                          },
+                          [
+                            _c("b-input", {
+                              model: {
+                                value: fila.columnas,
+                                callback: function($$v) {
+                                  _vm.$set(fila, "columnas", $$v)
+                                },
+                                expression: "fila.columnas"
+                              }
+                            })
+                          ],
+                          1
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "td",
+                      [
+                        _c("b-button", {
+                          attrs: {
+                            "icon-left": "delete",
+                            "native-type": "button",
+                            type: "is-danger"
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.eliminar(index)
+                            }
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ])
+                })
+              ],
+              2
+            )
+          ])
+        ])
+      ])
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -51297,6 +51634,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/camiones/FilasCamion.vue":
+/*!****************************************************************!*\
+  !*** ./resources/js/components/admin/camiones/FilasCamion.vue ***!
+  \****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _FilasCamion_vue_vue_type_template_id_5b8f2dd2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./FilasCamion.vue?vue&type=template&id=5b8f2dd2& */ "./resources/js/components/admin/camiones/FilasCamion.vue?vue&type=template&id=5b8f2dd2&");
+/* harmony import */ var _FilasCamion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./FilasCamion.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/camiones/FilasCamion.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _FilasCamion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _FilasCamion_vue_vue_type_template_id_5b8f2dd2___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _FilasCamion_vue_vue_type_template_id_5b8f2dd2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/camiones/FilasCamion.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/camiones/FilasCamion.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************!*\
+  !*** ./resources/js/components/admin/camiones/FilasCamion.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FilasCamion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./FilasCamion.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/camiones/FilasCamion.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_FilasCamion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/camiones/FilasCamion.vue?vue&type=template&id=5b8f2dd2&":
+/*!***********************************************************************************************!*\
+  !*** ./resources/js/components/admin/camiones/FilasCamion.vue?vue&type=template&id=5b8f2dd2& ***!
+  \***********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FilasCamion_vue_vue_type_template_id_5b8f2dd2___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./FilasCamion.vue?vue&type=template&id=5b8f2dd2& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/camiones/FilasCamion.vue?vue&type=template&id=5b8f2dd2&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FilasCamion_vue_vue_type_template_id_5b8f2dd2___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FilasCamion_vue_vue_type_template_id_5b8f2dd2___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/controladores/Controladores.vue":
 /*!***********************************************************************!*\
   !*** ./resources/js/components/admin/controladores/Controladores.vue ***!
@@ -52645,6 +53051,10 @@ __webpack_require__.r(__webpack_exports__);
     recuperar: "Recover account"
   },
   message: {
+    sinDatos: "No data",
+    filas: "Rows",
+    columnas: "Columns",
+    agregar_fila: "Add row",
     constante: "Constant",
     factor_hueco: "Hole factor",
     ancho_bulto: "Bundle width",
@@ -52754,6 +53164,10 @@ __webpack_require__.r(__webpack_exports__);
     recuperar: "Recuperar cuenta"
   },
   message: {
+    sinDatos: "Sin datos",
+    filas: "Filas",
+    columnas: "Columnas",
+    agregar_fila: "Agregar fila",
     constante: "Constante",
     factor_hueco: "Factor hueco",
     ancho_bulto: "Ancho de bulto",
