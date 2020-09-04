@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">CosechasApp</string>
+    <string name="login_iniciar_sesion">Iniciar sesión</string>
+    <string name="login_username">Nombre de usuario o E-mail</string>
+    <string name="login_password">Contraseña</string>
+    <string name="username_required">El nombre de usuario o e-mail es requerido</string>
+    <string name="password_required">La contraseña es requerida</string>
+    <string name="invalid_credentials">Credenciales inválidas</string>
+    <string name="acceso_exitoso">Acceso exitoso</string>
+    <string name="error_generico">Hubo un error, intente nuevamente.</string>
+    <string name="welcome">Bienvenido(a),</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="open">Abrir</string>
+    <string name="close">Cerrar</string>
+    <string name="logged_out">Has cerrado sesión exitósamente</string>
+    <string name="update_db">Actualizar base de datos</string>
+    <string name="opcion_no_disponible">Opción no disponible</string>
+
+    <string name="importando_datos">Importando datos...</string>
+    <string name="importando_empresas">Importando empresas...</string>
+    <string name="empresas_importadas">Empresas importadas...</string>
+    <string name="importando_camiones">Importando camiones...</string>
+    <string name="camiones_importados">Camiones importados...</string>
+    <string name="importando_controladores">Importando controladores...</string>
+    <string name="controladores_importados">Controladores importados...</string>
+    <string name="importando_procedencias">Importando procedencias...</string>
+    <string name="procedencias_importadas">Procedencias importadas...</string>
+    <string name="importando_aserradores">Importando aserradores...</string>
+    <string name="aserradores_importados">Aserradores importados...</string>
+    <string name="importando_destinos">Importando destinos...</string>
+    <string name="destinos_importados">Destinos importados...</string>
+    <string name="importando_espesores">Importando espesores...</string>
+    <string name="espesores_importados">Espesores importados...</string>
+    <string name="importando_largos">Importando largos...</string>
+    <string name="largos_importados">Largos importados...</string>
+    <string name="importando_materiales">Importando materiales...</string>
+    <string name="materiales_importados">Materiales importados...</string>
+    <string name="importando_codigos_aserradores">Importando códigos de aserradores...</string>
+    <string name="codigos_aserradores_importados">Códigos de aserradores importados...</string>
+    <string name="importacion_finalizada">La importación ha finalizado...</string>
+</resources>

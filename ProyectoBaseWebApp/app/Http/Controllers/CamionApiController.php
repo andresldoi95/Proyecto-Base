@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 
 class CamionApiController extends Controller
 {
+    public function all()
+    {
+        return Camion::all();
+    }
     public function index(Request $request)
     {
         $user = $request->user();
@@ -82,7 +86,7 @@ class CamionApiController extends Controller
         $camiones = $request->input('camiones');
         Camion::whereIn('id', $camiones)
             ->update([
-                'estado' => DB::raw('if(estado = "A", "I", "A")')
+                'estado' => DB::raw("iif(estado = 'A', 'I', 'A')")
             ]);
     }
 }

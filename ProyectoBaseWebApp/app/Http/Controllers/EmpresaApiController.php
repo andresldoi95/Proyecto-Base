@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class EmpresaApiController extends Controller
 {
+    public function all()
+    {
+        return Empresa::all();
+    }
     public function index(Request $request)
     {
         $status = $request->input('status');
@@ -67,7 +71,7 @@ class EmpresaApiController extends Controller
         $empresas = $request->input('empresas');
         Empresa::whereIn('id', $empresas)
             ->update([
-                'estado' => DB::raw('if(estado = "A", "I", "A")')
+                'estado' => DB::raw("iif(estado = 'A', 'I', 'A')")
             ]);
     }
 }

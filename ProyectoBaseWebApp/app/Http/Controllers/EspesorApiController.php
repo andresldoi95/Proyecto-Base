@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class EspesorApiController extends Controller
 {
+    public function all()
+    {
+        return Espesor::all();
+    }
     public function index(Request $request)
     {
         $user = $request->user();
@@ -64,7 +68,7 @@ class EspesorApiController extends Controller
         $espesores = $request->input('espesores');
         Espesor::whereIn('id', $espesores)
             ->update([
-                'estado' => DB::raw('if(estado = "A", "I", "A")')
+                'estado' => DB::raw("iif(estado = 'A', 'I', 'A')")
             ]);
     }
 }

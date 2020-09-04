@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class LargoApiController extends Controller
 {
+    public function all()
+    {
+        return Largo::all();
+    }
     public function index(Request $request)
     {
         $user = $request->user();
@@ -60,7 +64,7 @@ class LargoApiController extends Controller
         $largos = $request->input('largos');
         Largo::whereIn('id', $largos)
             ->update([
-                'estado' => DB::raw('if(estado = "A", "I", "A")')
+                'estado' => DB::raw("iif(estado = 'A', 'I', 'A')")
             ]);
     }
 }

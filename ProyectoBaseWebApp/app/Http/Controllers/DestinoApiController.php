@@ -9,6 +9,10 @@ use Illuminate\Validation\Rule;
 
 class DestinoApiController extends Controller
 {
+    public function all()
+    {
+        return Destino::all();
+    }
     public function index(Request $request)
     {
         $user = $request->user();
@@ -70,7 +74,7 @@ class DestinoApiController extends Controller
         $destinos = $request->input('destinos');
         Destino::whereIn('id', $destinos)
             ->update([
-                'estado' => DB::raw('if(estado = "A", "I", "A")')
+                'estado' => DB::raw("iif(estado = 'A', 'I', 'A')")
             ]);
     }
 }

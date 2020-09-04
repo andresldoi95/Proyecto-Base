@@ -51,6 +51,7 @@ export default {
         codigo: "Code"
     },
     title: {
+        "codigos-aserradores": "Aserradores codes",
         aserradores: "Aserradores",
         login: "Login",
         access: "Access to the system with your username and password",
@@ -79,7 +80,8 @@ export default {
         password: "Password",
         modulos: "Modules",
         acciones: "Actions",
-        roles: "Roles"
+        roles: "Roles",
+        aserrador: "Aserrador"
     },
     button: {
         login: "Login",

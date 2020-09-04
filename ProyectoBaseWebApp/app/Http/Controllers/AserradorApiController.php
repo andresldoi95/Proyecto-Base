@@ -9,6 +9,17 @@ use Illuminate\Validation\Rule;
 
 class AserradorApiController extends Controller
 {
+    public function listado(Request $request)
+    {
+        return Aserrador::current($request->user()->empresa_id)
+            ->active()
+            ->orderBy('nombre')
+            ->get();
+    }
+    public function all()
+    {
+        return Aserrador::all();
+    }
     public function index(Request $request)
     {
         $user = $request->user();
@@ -70,7 +81,7 @@ class AserradorApiController extends Controller
         $aserradores = $request->input('aserradores');
         Aserrador::whereIn('id', $aserradores)
             ->update([
-                'estado' => DB::raw('if(estado = "A", "I", "A")')
+                'estado' => DB::raw("iif(estado = 'A', 'I', 'A')")
             ]);
     }
 }

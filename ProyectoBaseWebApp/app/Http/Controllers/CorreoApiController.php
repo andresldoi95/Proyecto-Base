@@ -66,7 +66,7 @@ class CorreoApiController extends Controller
         $correos = $request->input('correos');
         Correo::whereIn('id', $correos)
             ->update([
-                'estado' => DB::raw('if(estado = "A", "I", "A")')
+                'estado' => DB::raw("iif(estado = 'A', 'I', 'A')")
             ]);
     }
 }

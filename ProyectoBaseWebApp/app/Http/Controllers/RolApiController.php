@@ -73,7 +73,7 @@ class RolApiController extends Controller
         $roles = $request->input('roles');
         Rol::whereIn('id', $roles)
             ->update([
-                'estado' => DB::raw('if(estado = "A", "I", "A")')
+                'estado' => DB::raw("iif(estado = 'A', 'I', 'A')")
             ]);
     }
 }

@@ -17,6 +17,7 @@ import Correos from "../components/admin/correos/Correos";
 import Controladores from "../components/admin/controladores/Controladores";
 import Aserradores from "../components/admin/aserradores/Aserradores";
 import Camiones from "../components/admin/camiones/Camiones";
+import CodigosAserradores from "../components/admin/aserradores/CodigosAserradores";
 export default {
     mode: "history",
     routes: [
@@ -159,6 +160,14 @@ export default {
                         requiresAuth: true
                     },
                     name: "Aserradores"
+                },
+                {
+                    component: CodigosAserradores,
+                    path: "codigos-aserradores",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "CodigosAserradores"
                 },
                 {
                     component: Camiones,

@@ -31,11 +31,12 @@ Route::group(['middleware' => 'auth:api'], function () {
     ]);
     Route::resource('empresas', 'EmpresaApiController', [
         'except' => [
-            'create', 'edit'
+            'create', 'edit', 'show'
         ]
     ]);
     Route::group(['prefix' => 'empresas'], function () {
         Route::delete('/', 'EmpresaApiController@destroy');
+        Route::get('all', 'EmpresaApiController@all');
     });
 
     Route::group(['prefix' => 'roles'], function () {
@@ -44,6 +45,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::group(['prefix' => 'procedencias'], function () {
         Route::get('/listado', 'ProcedenciaApiController@listado');
+        Route::get('/all', 'ProcedenciaApiController@all');
     });
 
     Route::resource('roles', 'RolApiController', [
@@ -53,6 +55,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     ]);
     Route::group(['prefix' => 'largos'], function () {
         Route::delete('/', 'LargoApiController@destroy');
+        Route::get('/all', 'LargoApiController@all');
     });
     Route::resource('largos', 'LargoApiController', [
         'except' => [
@@ -69,6 +72,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     ]);
     Route::group(['prefix' => 'destinos'], function () {
         Route::delete('/', 'DestinoApiController@destroy');
+        Route::get('/all', 'DestinoApiController@all');
     });
     Route::resource('destinos', 'DestinoApiController', [
         'except' => [
@@ -77,6 +81,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     ]);
     Route::group(['prefix' => 'materiales'], function () {
         Route::delete('/', 'MaterialApiController@destroy');
+        Route::get('/all', 'MaterialApiController@all');
     });
     Route::resource('materiales', 'MaterialApiController', [
         'except' => [
@@ -93,6 +98,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     ]);
     Route::group(['prefix' => 'controladores'], function () {
         Route::delete('/', 'ControladorApiController@destroy');
+        Route::get('/all', 'ControladorApiController@all');
     });
     Route::resource('controladores', 'ControladorApiController', [
         'except' => [
@@ -101,6 +107,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     ]);
     Route::group(['prefix' => 'espesores'], function () {
         Route::delete('/', 'EspesorApiController@destroy');
+        Route::get('/all', 'EspesorApiController@all');
     });
     Route::resource('espesores', 'EspesorApiController', [
         'except' => [
@@ -109,14 +116,26 @@ Route::group(['middleware' => 'auth:api'], function () {
     ]);
     Route::group(['prefix' => 'aserradores'], function () {
         Route::delete('/', 'AserradorApiController@destroy');
+        Route::get('/all', 'AserradorApiController@all');
+        Route::get('/listado', 'AserradorApiController@listado');
     });
     Route::resource('aserradores', 'AserradorApiController', [
         'except' => [
             'create', 'edit', 'show'
         ]
     ]);
+    Route::group(['prefix' => 'codigos-aserradores'], function () {
+        Route::delete('/', 'CodigoAserradorApiController@destroy');
+        Route::get('/all', 'CodigoAserradorApiController@all');
+    });
+    Route::resource('codigos-aserradores', 'CodigoAserradorApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
     Route::group(['prefix' => 'camiones'], function () {
         Route::delete('/', 'CamionApiController@destroy');
+        Route::get('/all', 'CamionApiController@all');
     });
     Route::resource('camiones', 'CamionApiController', [
         'except' => [
