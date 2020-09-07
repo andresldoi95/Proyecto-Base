@@ -40,6 +40,8 @@
     <string name="importando_codigos_aserradores">Importando códigos de aserradores...</string>
     <string name="codigos_aserradores_importados">Códigos de aserradores importados...</string>
     <string name="importacion_finalizada">La importación ha finalizado...</string>
+    <string name="importando_parametros">Importando parametrizaciones...</string>
+    <string name="parametros_importados">Parametrizaciones importadas...</string>
 
     <string name="tv_camion">Camión</string>
     <string name="tv_controlador">Controlador</string>

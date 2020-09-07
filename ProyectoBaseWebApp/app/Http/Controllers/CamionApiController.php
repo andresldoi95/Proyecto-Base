@@ -11,7 +11,7 @@ class CamionApiController extends Controller
 {
     public function all()
     {
-        return Camion::all();
+        return Camion::with('filas')->all();
     }
     public function index(Request $request)
     {
