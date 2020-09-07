@@ -3,8 +3,12 @@ package com.techtraining.cosechasapp;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -82,34 +86,55 @@ public class NuevaCosechaActivity extends AppCompatActivity {
                 NuevaCosechaActivity.this.onBackPressed();
             }
         });
-        final SharedPreferences preferences = getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE);
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (formularioValido()) {
-                    Camion selectedCamion = (Camion) spnCamion.getSelectedItem();
-                    Controlador selectedControlador = (Controlador) spnControlador.getSelectedItem();
-                    Destino selectedDestino = (Destino) spnDestino.getSelectedItem();
-                    Material selectedMaterial = (Material) spnMaterial.getSelectedItem();
-                    Procedencia selectedProcedencia = (Procedencia) spnOrigen.getSelectedItem();
-                    String cosechaId = preferences.getString(Helper.CURRENT_COSECHA_ID_NAME, null);
-                    if (cosechaId == null){
-                        UUID uuid = UUID.randomUUID();
-                        cosechaId = uuid.toString();
-                    }
-                    Cosecha cosecha = new Cosecha();
-                    cosecha.id = cosechaId;
-                    cosecha.camionId = selectedCamion.id;
-                    cosecha.codigoPo = etCodigoPo.getText().toString();
-                    cosecha.controladorId = selectedControlador.id;
-                    cosecha.destinoId = selectedDestino.id;
-                    cosecha.materialId = selectedMaterial.id;
-                    cosecha.origenId = selectedProcedencia.id;
-                    cosecha.estado = "P";
-                    new GuardarCabeceraCosecha(NuevaCosechaActivity.this, cosecha).execute();
-                }
+                if (formularioValido())
+                    guardar();
             }
         });
         new CargarDatosNuevaCosecha(this).execute();
+    }
+    private void guardar() {
+        final SharedPreferences preferences = getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+        Camion selectedCamion = (Camion) spnCamion.getSelectedItem();
+        Controlador selectedControlador = (Controlador) spnControlador.getSelectedItem();
+        Destino selectedDestino = (Destino) spnDestino.getSelectedItem();
+        Material selectedMaterial = (Material) spnMaterial.getSelectedItem();
+        Procedencia selectedProcedencia = (Procedencia) spnOrigen.getSelectedItem();
+        String cosechaId = preferences.getString(Helper.CURRENT_COSECHA_ID_NAME, null);
+        if (cosechaId == null){
+            UUID uuid = UUID.randomUUID();
+            cosechaId = uuid.toString();
+        }
+        Cosecha cosecha = new Cosecha();
+        cosecha.id = cosechaId;
+        cosecha.camionId = selectedCamion.id;
+        cosecha.codigoPo = etCodigoPo.getText().toString();
+        cosecha.controladorId = selectedControlador.id;
+        cosecha.destinoId = selectedDestino.id;
+        cosecha.materialId = selectedMaterial.id;
+        cosecha.origenId = selectedProcedencia.id;
+        cosecha.estado = "P";
+        new GuardarCabeceraCosecha(NuevaCosechaActivity.this, cosecha).execute();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.nueva_cosecha_menu, menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.nav_continuar:
+                if (formularioValido()) {
+                    guardar();
+                    Intent intent = new Intent(NuevaCosechaActivity.this, LlenadoCamion.class);
+                    startActivity(intent);
+                }
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

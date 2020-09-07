@@ -65,4 +65,6 @@
 
     <string name="exportar">Exportar</string>
     <string name="anular">Anular</string>
+
+    <string name="continuar">Continuar</string>
 </resources>
