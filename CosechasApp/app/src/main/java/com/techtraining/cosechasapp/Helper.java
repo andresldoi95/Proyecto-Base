@@ -18,7 +18,7 @@ public class Helper {
     public static final String SHARED_PREFERENCES_NAME = "cosechas";
     public static final String AUTH_HEADER = "Authorization";
     public static final String AUTH_TYPE = "Bearer ";
-    public static final int DB_VERSION = 14;
+    public static final int DB_VERSION = 15;
     public static final String DB_NAME = "cosechas";
     public static final String CURRENT_ID = "currentId";
     public static final int DEFAULT_TIMEOUT = 15000;

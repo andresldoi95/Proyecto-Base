@@ -10,8 +10,6 @@ import com.techtraining.cosechasapp.R;
 import com.techtraining.cosechasapp.db.AppDatabase;
 import com.techtraining.cosechasapp.db.Parametro;
 import com.techtraining.cosechasapp.db.ParametroDao;
-import com.techtraining.cosechasapp.db.Procedencia;
-import com.techtraining.cosechasapp.db.ProcedenciaDao;
 
 import org.json.JSONArray;
 import org.json.JSONException;
