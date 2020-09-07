@@ -22,4 +22,8 @@ public class Procedencia {
 
     @ColumnInfo(name = "estado")
     public String estado;
+
+    public String toString() {
+        return this.descripcion + " (" + this.codigo + ")";
+    }
 }

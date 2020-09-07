@@ -18,6 +18,7 @@ import Controladores from "../components/admin/controladores/Controladores";
 import Aserradores from "../components/admin/aserradores/Aserradores";
 import Camiones from "../components/admin/camiones/Camiones";
 import CodigosAserradores from "../components/admin/aserradores/CodigosAserradores";
+import Parametros from "../components/admin/parametros/Parametros";
 export default {
     mode: "history",
     routes: [
@@ -176,6 +177,14 @@ export default {
                         requiresAuth: true
                     },
                     name: "Camiones"
+                },
+                {
+                    component: Parametros,
+                    path: "parametros",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "Parametros"
                 }
             ]
         }

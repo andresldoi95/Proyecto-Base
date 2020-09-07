@@ -19,4 +19,8 @@ public class Material {
 
     @ColumnInfo(name = "estado")
     public String estado;
+
+    public String toString() {
+        return this.descripcion + " (" + this.codigo + ")";
+    }
 }

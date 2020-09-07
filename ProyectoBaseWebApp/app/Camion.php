@@ -13,6 +13,10 @@ class Camion extends Model
     protected $appends = [
         'descripcion_tipo_camion'
     ];
+    public function filas()
+    {
+        return $this->hasMany('App\FilaCamion');
+    }
     public function getDescripcionTipoCamionAttribute()
     {
         switch ($this->tipo_camion) {

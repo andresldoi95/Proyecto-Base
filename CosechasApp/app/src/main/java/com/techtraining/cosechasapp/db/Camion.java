@@ -31,4 +31,8 @@ public class Camion {
 
     @ColumnInfo(name = "estado")
     public String estado;
+    @Override
+    public String toString() {
+        return this.placa;
+    }
 }

@@ -133,6 +133,13 @@
                 tag="router-link"
                 to="/admin/camiones"
               ></b-menu-item>
+              <b-menu-item
+                v-show="$store.state.nombre_empresa_actual !== '' && $store.getters.permiteAccion('configurar_parametros')"
+                icon="cog"
+                :label="$t('title.parametros')"
+                tag="router-link"
+                to="/admin/parametros"
+              ></b-menu-item>
             </b-menu-list>
           </b-menu>
         </div>

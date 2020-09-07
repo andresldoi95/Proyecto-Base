@@ -9,4 +9,6 @@
     <dimen name="logo_image_dw_width">120dp</dimen>
     <dimen name="logo_image_dw_height">120dp</dimen>
     <dimen name="logo_image_dw_margin_top">75dp</dimen>
+    <dimen name="padding_updown_item">20dp</dimen>
+    <dimen name="padding_side_item">15dp</dimen>
 </resources>

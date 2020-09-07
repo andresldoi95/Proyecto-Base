@@ -127,6 +127,11 @@
               </b-field>
             </div>
           </div>
+          <div class="columns">
+              <div class="column">
+                  <filas-camion :errores="errores" v-model="form.filas"></filas-camion>
+              </div>
+          </div>
         </masterForm>
       </div>
     </div>
@@ -135,8 +140,9 @@
 
 <script>
 import MasterForm from "../../layouts/MasterForm";
+import FilasCamion from "./FilasCamion";
 export default {
-  components: { MasterForm },
+  components: { MasterForm, FilasCamion },
   data: function () {
     return {
       form: {
@@ -148,16 +154,10 @@ export default {
         ancho: 0,
         alto: 0,
         placa: "",
+        filas: []
       },
       acciones: [],
-      errores: {
-        camionero: undefined,
-        identificacion_camionero: undefined,
-        ancho: undefined,
-        alto: undefined,
-        tipo_camion: undefined,
-        placa: undefined,
-      },
+      errores: {},
     };
   },
   methods: {
@@ -173,6 +173,8 @@ export default {
       this.form.alto = 0;
       this.form.tipo_camion = "B";
       this.form.placa = "";
+      this.form.filas.splice(0, this.form.filas.length);
+      this.limpiarErrores();
     },
     adding: function () {
       this.limpiar();
@@ -210,14 +212,16 @@ export default {
       this.form.ancho = camion.ancho;
       this.form.alto = camion.alto;
       this.form.placa = camion.placa;
+      this.form.filas.splice(0, this.form.filas.length);
+        for (let i = 0; i < camion.filas.length; i++) {
+            this.form.filas.push({
+                filas: camion.filas[i].filas,
+                columnas: camion.filas[i].columnas
+            });
+        }
     },
     limpiarErrores: function () {
-      this.errores.camionero = undefined;
-      this.errores.identificacion_camionero = undefined;
-      this.errores.tipo_camion = undefined;
-      this.errores.ancho = undefined;
-      this.errores.alto = undefined;
-      this.errores.placa = undefined;
+      this.errores = {};
     },
     submitFormulario: function () {
       this.limpiarErrores();
@@ -238,13 +242,7 @@ export default {
         .catch(({ response }) => {
           let status = response.status;
           if (status === 422) {
-            this.errores.identificacion_camionero =
-              response.data.errors.identificacion_camionero;
-            this.errores.camionero = response.data.errors.camionero;
-            this.errores.tipo_camion = response.data.errors.tipo_camion;
-            this.errores.alto = response.data.errors.alto;
-            this.errores.ancho = response.data.errors.ancho;
-            this.errores.placa = response.data.errors.placa;
+            this.errores = response.data.errors;
           } else {
             this.$buefy.toast.open({
               message: this.$t("message.generic_error"),
