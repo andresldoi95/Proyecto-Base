@@ -14,6 +14,10 @@ class ParametroApiController extends Controller
                 ->first()
         ];
     }
+    public function all()
+    {
+        return Parametro::all();
+    }
     public function store(Request $request)
     {
         $request->validate([
