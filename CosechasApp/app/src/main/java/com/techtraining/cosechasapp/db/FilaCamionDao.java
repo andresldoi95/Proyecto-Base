@@ -16,7 +16,10 @@ public interface FilaCamionDao {
     List<FilaCamion> loadAllByIds(int[] filasCamionId);
 
     @Query("SELECT * FROM filacamion WHERE id = (:filaCamionId)")
-    FilaCamion loadById(int filaCamionId);
+    FilaCamion loadById(String filaCamionId);
+
+    @Query("SELECT * FROM filacamion WHERE camion_id = (:camionId)")
+    List<FilaCamion> loadByCamion(int camionId);
 
     @Update
     void update(FilaCamion filaCamion);

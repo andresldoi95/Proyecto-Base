@@ -3,6 +3,7 @@ package com.techtraining.cosechasapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
@@ -10,7 +11,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -36,11 +36,32 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
-    private Menu menu;
     private ProgressBar spinner;
+    private AppCompatButton btnActualizar;
+    private AppCompatButton btnNuevaCosecha;
+    private  AppCompatButton btnCosechasTerminadas;
+    private AppCompatButton btnCerrarSesion;
     private void importar() {
         spinner.setVisibility(View.VISIBLE);
         new ImportarDatos(MainActivity.this).execute();
+    }
+    private void logout() {
+        SharedPreferences sharedPreferences = getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(Helper.USER_TOKEN_NAME, null);
+        editor.commit();
+        Toast.makeText(MainActivity.this, R.string.logged_out, Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    private void nuevaCosecha() {
+        Intent intentNuevaCosecha = new Intent(MainActivity.this, NuevaCosechaActivity.class);
+        startActivity(intentNuevaCosecha);
+    }
+    private void cosechasTerminadas() {
+        Intent intentCosechasTerminadas = new Intent(MainActivity.this, CosechasTerminadasActivity.class);
+        startActivity(intentCosechasTerminadas);
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +73,34 @@ public class MainActivity extends AppCompatActivity {
         spinner = findViewById(R.id.progressBar);
         spinner.setVisibility(View.INVISIBLE);
         drawerLayout.addDrawerListener(toggle);
+        btnActualizar = findViewById(R.id.btnActualizar);
+        btnCerrarSesion = findViewById(R.id.btnCerrarSesion);
+        btnCosechasTerminadas = findViewById(R.id.btnCosechasTerminadas);
+        btnNuevaCosecha = findViewById(R.id.btnNuevaCosecha);
+        btnActualizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                importar();
+            }
+        });
+        btnCerrarSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
+        btnCosechasTerminadas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cosechasTerminadas();
+            }
+        });
+        btnNuevaCosecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nuevaCosecha();
+            }
+        });
         toggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -60,25 +109,16 @@ public class MainActivity extends AppCompatActivity {
                 int id = menuItem.getItemId();
                 switch (id) {
                     case R.id.nav_logout:
-                        SharedPreferences sharedPreferences = getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE);
-                        SharedPreferences.Editor editor = sharedPreferences.edit();
-                        editor.putString(Helper.USER_TOKEN_NAME, null);
-                        editor.commit();
-                        Toast.makeText(MainActivity.this, R.string.logged_out, Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                        finish();
+                        logout();
                         break;
                     case R.id.nav_update_db:
                         importar();
                         break;
                     case R.id.nav_nueva_cosecha:
-                        Intent intentNuevaCosecha = new Intent(MainActivity.this, NuevaCosechaActivity.class);
-                        startActivity(intentNuevaCosecha);
+                        nuevaCosecha();
                         break;
                     case R.id.nav_cosechas_terminadas:
-                        Intent intentCosechasTerminadas = new Intent(MainActivity.this, CosechasTerminadasActivity.class);
-                        startActivity(intentCosechasTerminadas);
+                        cosechasTerminadas();
                         break;
                 }
                 if(drawerLayout.isDrawerOpen(GravityCompat.START))

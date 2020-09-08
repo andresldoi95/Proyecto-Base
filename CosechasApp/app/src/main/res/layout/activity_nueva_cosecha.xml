@@ -109,17 +109,6 @@
             app:layout_constraintTop_toBottomOf="@id/tvCodigoPo"
             android:layout_height="wrap_content"></EditText>
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnGuardar"
-            android:layout_marginTop="@dimen/space_form_margin"
-            android:textColor="@color/colorWhite"
-            android:layout_marginLeft="@dimen/side_form_margin"
-            android:layout_marginRight="@dimen/side_form_margin"
-            android:background="@color/colorPrimary"
-            android:layout_width="match_parent"
-            android:text="@string/guardar"
-            app:layout_constraintTop_toBottomOf="@id/etCodigoPo"
-            android:layout_height="wrap_content"></androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCancelar"
             android:layout_marginTop="@dimen/space_form_margin"
             android:textColor="@color/colorWhite"

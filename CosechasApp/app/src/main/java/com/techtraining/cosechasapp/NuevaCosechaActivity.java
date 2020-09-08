@@ -31,7 +31,6 @@ public class NuevaCosechaActivity extends AppCompatActivity {
     public Spinner spnDestino;
     public Spinner spnOrigen;
     public Spinner spnMaterial;
-    private AppCompatButton btnGuardar;
     private AppCompatButton btnCancelar;
     public EditText etCodigoPo;
     private boolean formularioValido() {
@@ -77,20 +76,12 @@ public class NuevaCosechaActivity extends AppCompatActivity {
         spnDestino = findViewById(R.id.spnDestino);
         spnOrigen = findViewById(R.id.spnOrigen);
         spnMaterial = findViewById(R.id.spnMaterial);
-        btnGuardar = findViewById(R.id.btnGuardar);
         btnCancelar = findViewById(R.id.btnCancelar);
         etCodigoPo = findViewById(R.id.etCodigoPo);
         btnCancelar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 NuevaCosechaActivity.this.onBackPressed();
-            }
-        });
-        btnGuardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (formularioValido())
-                    guardar();
             }
         });
         new CargarDatosNuevaCosecha(this).execute();

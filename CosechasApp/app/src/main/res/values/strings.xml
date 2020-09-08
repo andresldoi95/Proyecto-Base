@@ -13,7 +13,7 @@
     <string name="open">Abrir</string>
     <string name="close">Cerrar</string>
     <string name="logged_out">Has cerrado sesión exitósamente</string>
-    <string name="update_db">Actualizar base de datos</string>
+    <string name="update_db">Importar información</string>
     <string name="nueva_cosecha">Nueva cosecha</string>
     <string name="cosechas_terminadas">Cosechas terminadas</string>
     <string name="opcion_no_disponible">Opción no disponible</string>
@@ -67,4 +67,14 @@
     <string name="anular">Anular</string>
 
     <string name="continuar">Continuar</string>
+
+    <string name="llenado_camion">Llenado de camión</string>
+
+    <string name="fila">Fila</string>
+
+    <string name="plantilla">Plantilla</string>
+    <string name="bultos">Bultos</string>
+    <string name="espesor">Espesor</string>
+    <string name="largo">Largo</string>
+    <string name="datos_bloque">Datos de bloque</string>
 </resources>

@@ -13,7 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LlenadoCamion"></activity>
+        <activity android:name=".ItemCosechaActivity" android:parentActivityName=".FilaCosechaCamionActivity"></activity>
+        <activity
+            android:name=".FilaCosechaCamionActivity"
+            android:parentActivityName=".LlenadoCamion" />
+        <activity
+            android:name=".LlenadoCamion"
+            android:parentActivityName=".NuevaCosechaActivity" />
         <activity
             android:name=".CosechasTerminadasActivity"
             android:parentActivityName=".MainActivity" />
