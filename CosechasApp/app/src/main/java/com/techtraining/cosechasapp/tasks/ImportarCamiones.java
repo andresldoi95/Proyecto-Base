@@ -3,12 +3,9 @@ package com.techtraining.cosechasapp.tasks;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.techtraining.cosechasapp.DBManager;
-import com.techtraining.cosechasapp.MainActivity;
 import com.techtraining.cosechasapp.R;
 import com.techtraining.cosechasapp.db.AppDatabase;
 import com.techtraining.cosechasapp.db.Camion;
@@ -91,9 +88,7 @@ public class ImportarCamiones extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Void aVoid) {
         toast.setText(R.string.camiones_importados);
         toast.show();
-        ProgressBar spinner = ((MainActivity) context).findViewById(R.id.progressBar);
         toast.setText(R.string.importacion_finalizada);
         toast.show();
-        spinner.setVisibility(View.INVISIBLE);
     }
 }

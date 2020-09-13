@@ -77,4 +77,12 @@
     <string name="espesor">Espesor</string>
     <string name="largo">Largo</string>
     <string name="datos_bloque">Datos de bloque</string>
+
+    <string name="plantilla_requerida">La plantilla es requerida.</string>
+    <string name="bultos_requeridos">Los bultos son requeridos.</string>
+    <string name="espesor_requerido">El espesor es requerido.</string>
+    <string name="largo_requerido">El largo es requerido.</string>
+
+    <string name="bloque_guardado">Los datos del bloque han sido almacenados exitósamente.</string>
+    <string name="parametros_requeridos">No se ha realizado las parametrizaciones respectivas.</string>
 </resources>

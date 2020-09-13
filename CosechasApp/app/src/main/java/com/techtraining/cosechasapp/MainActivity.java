@@ -36,13 +36,11 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private ActionBarDrawerToggle toggle;
-    private ProgressBar spinner;
     private AppCompatButton btnActualizar;
     private AppCompatButton btnNuevaCosecha;
     private  AppCompatButton btnCosechasTerminadas;
     private AppCompatButton btnCerrarSesion;
     private void importar() {
-        spinner.setVisibility(View.VISIBLE);
         new ImportarDatos(MainActivity.this).execute();
     }
     private void logout() {
@@ -70,8 +68,6 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout=findViewById(R.id.drawer_layout);
         navigationView=findViewById(R.id.nav_view);
         toggle = new ActionBarDrawerToggle(this, drawerLayout,R.string.open, R.string.close);
-        spinner = findViewById(R.id.progressBar);
-        spinner.setVisibility(View.INVISIBLE);
         drawerLayout.addDrawerListener(toggle);
         btnActualizar = findViewById(R.id.btnActualizar);
         btnCerrarSesion = findViewById(R.id.btnCerrarSesion);

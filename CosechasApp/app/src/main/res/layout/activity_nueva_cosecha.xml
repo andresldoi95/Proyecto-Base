@@ -10,9 +10,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="@dimen/single_form_updown_margin"
+        android:paddingTop="@dimen/single_form_updown_margin"
         tools:context=".NuevaCosechaActivity">
         <TextView
-            android:layout_marginTop="@dimen/single_form_updown_margin"
             android:id="@+id/tvCamion"
             android:layout_width="match_parent"
             android:text="@string/tv_camion"
@@ -108,17 +109,5 @@
             android:layout_marginRight="@dimen/side_form_margin"
             app:layout_constraintTop_toBottomOf="@id/tvCodigoPo"
             android:layout_height="wrap_content"></EditText>
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btnCancelar"
-            android:layout_marginTop="@dimen/space_form_margin"
-            android:textColor="@color/colorWhite"
-            android:layout_marginLeft="@dimen/side_form_margin"
-            android:layout_marginRight="@dimen/side_form_margin"
-            android:background="@color/colorAccent"
-            android:layout_width="match_parent"
-            android:text="@string/cancelar"
-            android:layout_marginBottom="@dimen/single_form_updown_margin"
-            app:layout_constraintTop_toBottomOf="@id/btnGuardar"
-            android:layout_height="wrap_content"></androidx.appcompat.widget.AppCompatButton>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -7,7 +7,7 @@ import com.techtraining.cosechasapp.Helper;
 
 @Database(entities = {User.class, Empresa.class, Camion.class, Controlador.class, Procedencia.class, Aserrador.class, Destino.class,
 Espesor.class, Largo.class, Material.class, CodigoAserrador.class, Cosecha.class,
-Parametro.class, FilaCamion.class}, version = Helper.DB_VERSION, exportSchema = false)
+Parametro.class, FilaCamion.class, FilaCosecha.class, ItemFilaCosecha.class}, version = Helper.DB_VERSION, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
     public abstract EmpresaDao empresaDao();
@@ -23,4 +23,6 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract CosechaDao cosechaDao();
     public abstract ParametroDao parametroDao();
     public abstract FilaCamionDao filaCamionDao();
+    public abstract FilaCosechaDao filaCosechaDao();
+    public abstract ItemFilaCosechaDao itemFilaCosechaDao();
 }

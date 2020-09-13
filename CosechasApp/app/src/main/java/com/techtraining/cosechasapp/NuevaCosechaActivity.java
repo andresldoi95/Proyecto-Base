@@ -31,7 +31,6 @@ public class NuevaCosechaActivity extends AppCompatActivity {
     public Spinner spnDestino;
     public Spinner spnOrigen;
     public Spinner spnMaterial;
-    private AppCompatButton btnCancelar;
     public EditText etCodigoPo;
     private boolean formularioValido() {
         Camion selectedCamion = (Camion) spnCamion.getSelectedItem();
@@ -76,14 +75,7 @@ public class NuevaCosechaActivity extends AppCompatActivity {
         spnDestino = findViewById(R.id.spnDestino);
         spnOrigen = findViewById(R.id.spnOrigen);
         spnMaterial = findViewById(R.id.spnMaterial);
-        btnCancelar = findViewById(R.id.btnCancelar);
         etCodigoPo = findViewById(R.id.etCodigoPo);
-        btnCancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                NuevaCosechaActivity.this.onBackPressed();
-            }
-        });
         new CargarDatosNuevaCosecha(this).execute();
     }
     private void guardar() {

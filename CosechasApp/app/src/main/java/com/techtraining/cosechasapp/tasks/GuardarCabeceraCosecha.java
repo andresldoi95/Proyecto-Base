@@ -11,6 +11,15 @@ import com.techtraining.cosechasapp.R;
 import com.techtraining.cosechasapp.db.AppDatabase;
 import com.techtraining.cosechasapp.db.Cosecha;
 import com.techtraining.cosechasapp.db.CosechaDao;
+import com.techtraining.cosechasapp.db.FilaCamion;
+import com.techtraining.cosechasapp.db.FilaCamionDao;
+import com.techtraining.cosechasapp.db.FilaCosecha;
+import com.techtraining.cosechasapp.db.FilaCosechaDao;
+import com.techtraining.cosechasapp.db.ItemFilaCosecha;
+import com.techtraining.cosechasapp.db.ItemFilaCosechaDao;
+
+import java.util.List;
+import java.util.UUID;
 
 public class GuardarCabeceraCosecha extends AsyncTask<Void, Void, Void> {
     private Context context;
@@ -32,6 +41,38 @@ public class GuardarCabeceraCosecha extends AsyncTask<Void, Void, Void> {
         }
         else
             cosechaDao.update(cosecha);
+        FilaCosechaDao filaCosechaDao = appDatabase.filaCosechaDao();
+        ItemFilaCosechaDao itemFilaCosechaDao = appDatabase.itemFilaCosechaDao();
+        List<FilaCosecha> filasCosecha = filaCosechaDao.loadByCosecha(cosecha.id);
+        if (filasCosecha.size() == 0) {
+            FilaCamionDao filaCamionDao = appDatabase.filaCamionDao();
+            List<FilaCamion> filasCamion = filaCamionDao.loadByCamion(cosecha.camionId);
+            for (int i = 0; i < filasCamion.size(); i++) {
+                FilaCamion filaCamion = filasCamion.get(i);
+                FilaCosecha filaCosecha = new FilaCosecha();
+                filaCosecha.id = UUID.randomUUID().toString();
+                filaCosecha.indice = i;
+                filaCosecha.cosechaId = cosecha.id;
+                filaCosecha.bultos = 0;
+                filaCosecha.bft = 0;
+                filaCosecha.columnas = filaCamion.columnas;
+                filaCosecha.filas = filaCamion.filas;
+                filaCosechaDao.insertOne(filaCosecha);
+                for (int j = 0; j < filaCosecha.filas; j++) {
+                    for (int k = 0; k < filaCosecha.columnas; k++) {
+                        ItemFilaCosecha item = new ItemFilaCosecha();
+                        item.id = UUID.randomUUID().toString();
+                        item.plantilla = 0;
+                        item.filaId = filaCosecha.id;
+                        item.bft = 0;
+                        item.bultos = 0;
+                        item.columna = k;
+                        item.fila = j;
+                        itemFilaCosechaDao.insertOne(item);
+                    }
+                }
+            }
+        }
         return null;
     }
 

@@ -36,12 +36,12 @@ public class FilaCosechaCamionAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflter.inflate(R.layout.item_fila_cosecha_camion, null);
-        TextView tvFila = (TextView) view.findViewById(R.id.tvFila);
-        TextView tvColumna = (TextView) view.findViewById(R.id.tvColumna);
-        TextView tvBft = (TextView) view.findViewById(R.id.tvBft);
+        TextView tvFila = view.findViewById(R.id.tvFila);
+        TextView tvColumna = view.findViewById(R.id.tvColumna);
+        TextView tvBft = view.findViewById(R.id.tvBft);
         ItemFilaCosecha itemFilaCosecha = items.get(i);
-        tvFila.setText(String.valueOf(itemFilaCosecha.fila));
-        tvColumna.setText(String.valueOf(itemFilaCosecha.columna));
+        tvFila.setText(String.valueOf(itemFilaCosecha.fila + 1));
+        tvColumna.setText(String.valueOf(itemFilaCosecha.columna + 1));
         tvBft.setText(String.valueOf(itemFilaCosecha.bft));
         return view;
     }

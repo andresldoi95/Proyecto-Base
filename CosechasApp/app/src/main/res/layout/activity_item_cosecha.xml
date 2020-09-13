@@ -25,6 +25,7 @@
         android:inputType="numberDecimal"
         android:layout_height="wrap_content"></EditText>
     <TextView
+        android:layout_marginTop="@dimen/space_form_margin"
         android:layout_marginLeft="@dimen/side_form_margin"
         android:layout_marginRight="@dimen/side_form_margin"
         app:layout_constraintTop_toBottomOf="@id/etPlantilla"
@@ -42,6 +43,7 @@
         android:id="@+id/etBultos"
         android:layout_height="wrap_content"></EditText>
     <TextView
+        android:layout_marginTop="@dimen/space_form_margin"
         android:layout_marginLeft="@dimen/side_form_margin"
         android:layout_marginRight="@dimen/side_form_margin"
         app:layout_constraintTop_toBottomOf="@id/etBultos"
@@ -58,6 +60,7 @@
         android:id="@+id/spnEspesor"
         android:layout_height="wrap_content"></Spinner>
     <TextView
+        android:layout_marginTop="@dimen/space_form_margin"
         android:layout_marginLeft="@dimen/side_form_margin"
         android:layout_marginRight="@dimen/side_form_margin"
         app:layout_constraintTop_toBottomOf="@id/spnEspesor"
@@ -74,12 +77,14 @@
         android:id="@+id/spnLargo"
         android:layout_height="wrap_content"></Spinner>
     <androidx.appcompat.widget.AppCompatButton
+        android:layout_marginTop="@dimen/space_form_margin"
         app:layout_constraintTop_toBottomOf="@id/spnLargo"
         android:layout_width="match_parent"
         android:layout_marginLeft="@dimen/side_form_margin"
         android:layout_marginRight="@dimen/side_form_margin"
         android:textColor="@color/colorWhite"
         android:background="@color/colorPrimary"
+        android:id="@+id/btnGuardar"
         android:text="@string/guardar"
         android:layout_height="wrap_content"></androidx.appcompat.widget.AppCompatButton>
 </androidx.constraintlayout.widget.ConstraintLayout>

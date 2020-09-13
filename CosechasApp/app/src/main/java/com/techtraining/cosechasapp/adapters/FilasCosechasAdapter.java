@@ -13,7 +13,6 @@ import com.techtraining.cosechasapp.db.FilaCosecha;
 import java.util.List;
 
 public class FilasCosechasAdapter extends ArrayAdapter<FilaCosecha> {
-    private List<FilaCosecha> dataSet;
     Context mContext;
 
     private static class ViewHolder {
@@ -25,7 +24,6 @@ public class FilasCosechasAdapter extends ArrayAdapter<FilaCosecha> {
 
     public FilasCosechasAdapter(List<FilaCosecha> data, Context context) {
         super(context, R.layout.item_fila_camion, data);
-        this.dataSet = data;
         this.mContext=context;
 
     }
@@ -39,10 +37,10 @@ public class FilasCosechasAdapter extends ArrayAdapter<FilaCosecha> {
             viewHolder = new FilasCosechasAdapter.ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.item_fila_camion, parent, false);
-            viewHolder.tvFilas = (TextView) convertView.findViewById(R.id.tvFilas);
-            viewHolder.tvColumnas = (TextView) convertView.findViewById(R.id.tvColumnas);
-            viewHolder.tvBft = (TextView) convertView.findViewById(R.id.tvBft);
-            viewHolder.tvIndice = (TextView) convertView.findViewById(R.id.tvIndice);
+            viewHolder.tvFilas = convertView.findViewById(R.id.tvFilas);
+            viewHolder.tvColumnas = convertView.findViewById(R.id.tvColumnas);
+            viewHolder.tvBft = convertView.findViewById(R.id.tvBft);
+            viewHolder.tvIndice = convertView.findViewById(R.id.tvIndice);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (FilasCosechasAdapter.ViewHolder) convertView.getTag();
@@ -50,7 +48,7 @@ public class FilasCosechasAdapter extends ArrayAdapter<FilaCosecha> {
         viewHolder.tvFilas.setText(String.valueOf(dataModel.filas));
         viewHolder.tvColumnas.setText(String.valueOf(dataModel.columnas));
         viewHolder.tvBft.setText(String.valueOf(dataModel.bft));
-        viewHolder.tvIndice.setText(String.valueOf(dataModel.indice));
+        viewHolder.tvIndice.setText(String.valueOf(dataModel.indice + 1));
         return convertView;
     }
 }

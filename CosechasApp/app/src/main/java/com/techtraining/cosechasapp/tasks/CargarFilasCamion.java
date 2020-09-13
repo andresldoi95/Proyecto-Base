@@ -14,7 +14,6 @@ import com.techtraining.cosechasapp.LlenadoCamion;
 import com.techtraining.cosechasapp.adapters.FilasCosechasAdapter;
 import com.techtraining.cosechasapp.db.AppDatabase;
 import com.techtraining.cosechasapp.db.Cosecha;
-import com.techtraining.cosechasapp.db.FilaCamion;
 import com.techtraining.cosechasapp.db.FilaCosecha;
 import java.util.UUID;
 import java.util.ArrayList;
@@ -34,19 +33,7 @@ public class CargarFilasCamion extends AsyncTask<Void, Void, Void> {
         String id = preferences.getString(Helper.CURRENT_COSECHA_ID_NAME, null);
         if (id != null) {
             Cosecha cosecha = appDatabase.cosechaDao().loadById(id);
-            List<FilaCamion> filasCamion = appDatabase.filaCamionDao().loadByCamion(cosecha.camionId);
-            filas = new ArrayList<>();
-            for (int i = 0; i < filasCamion.size(); i++) {
-                FilaCosecha fila = new FilaCosecha();
-                fila.filas = filasCamion.get(i).filas;
-                fila.columnas = filasCamion.get(i).columnas;
-                fila.bft = 0;
-                fila.bultos = 0;
-                fila.cosechaId = cosecha.id;
-                fila.indice = i + 1;
-                fila.id = UUID.randomUUID().toString();
-                filas.add(fila);
-            }
+            filas = appDatabase.filaCosechaDao().loadByCosecha(cosecha.id);
         }
         return null;
     }
@@ -61,9 +48,9 @@ public class CargarFilasCamion extends AsyncTask<Void, Void, Void> {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Intent intent = new Intent(activity, FilaCosechaCamionActivity.class);
                     FilaCosecha fila = filas .get(position);
-                    intent.putExtra(FilaCosechaCamionActivity.FILAS_NAME, fila.filas);
-                    intent.putExtra(FilaCosechaCamionActivity.COLUMNAS_NAME, fila.columnas);
-                    intent.putExtra(FilaCosechaCamionActivity.FILA_NAME, fila.indice);
+                    SharedPreferences.Editor editor = activity.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE).edit();
+                    editor.putString(Helper.CURRENT_FILA_NAME, fila.id);
+                    editor.commit();
                     activity.startActivity(intent);
                 }
             });
