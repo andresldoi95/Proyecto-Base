@@ -80,6 +80,15 @@ Route::group(['middleware' => 'auth:api'], function () {
             'create', 'edit', 'show'
         ]
     ]);
+    Route::group(['prefix' => 'origenes-madera'], function () {
+        Route::delete('/', 'OrigenMaderaApiController@destroy');
+        Route::get('/all', 'OrigenMaderaApiController@all');
+    });
+    Route::resource('origenes-madera', 'OrigenMaderaApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
     Route::group(['prefix' => 'procedencias'], function () {
         Route::delete('/', 'ProcedenciaApiController@destroy');
     });

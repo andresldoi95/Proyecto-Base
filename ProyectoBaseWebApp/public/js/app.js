@@ -4421,6 +4421,244 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/origenes-madera/OrigenesMadera.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/origenes-madera/OrigenesMadera.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layouts/MasterForm */ "./resources/js/components/layouts/MasterForm.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    MasterForm: _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      form: {
+        hectareas: "",
+        descripcion: "",
+        id: "",
+        _method: undefined,
+        anio_cultivo: "",
+        volumen_inventario: ""
+      },
+      acciones: [],
+      errores: {
+        hectareas: undefined,
+        descripcion: undefined,
+        anio_cultivo: undefined,
+        volumen_inventario: undefined
+      }
+    };
+  },
+  methods: {
+    canceled: function canceled() {
+      this.limpiar();
+    },
+    limpiar: function limpiar() {
+      this.form.id = "";
+      this.form._method = undefined;
+      this.form.hectareas = "";
+      this.form.descripcion = "";
+      this.form.anio_cultivo = "";
+      this.form.volumen_inventario = "";
+    },
+    adding: function adding() {
+      this.limpiar();
+    },
+    realizarAccion: function realizarAccion(type, origenes_madera) {
+      var _this = this;
+
+      if (type === "E") {
+        var origenes_maderaId = [];
+
+        for (var i = 0; i < origenes_madera.length; i++) {
+          origenes_maderaId.push(origenes_madera[i].id);
+        }
+
+        this.$http.post("http://127.0.0.1:8000/api" + "/origenes-madera", {
+          origenesMadera: origenes_maderaId,
+          _method: "DELETE"
+        }).then(function () {
+          _this.$buefy.toast.open({
+            message: _this.$t("message.guardado_generico"),
+            type: "is-success"
+          });
+
+          _this.$refs.masterForm.submit();
+        })["catch"](function () {
+          _this.$buefy.toast.open({
+            message: _this.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        });
+      }
+    },
+    editar: function editar(origenMadera) {
+      this.form.id = origenMadera.id;
+      this.form.hectareas = origenMadera.hectareas;
+      this.form.descripcion = origenMadera.descripcion;
+      this.form.anio_cultivo = origenMadera.anio_cultivo;
+      this.form.volumen_inventario = origenMadera.volumen_inventario;
+    },
+    limpiarErrores: function limpiarErrores() {
+      this.errores.descripcion = undefined;
+      this.errores.hectareas = undefined;
+      this.errores.anio_cultivo = undefined;
+      this.errores.volumen_inventario = undefined;
+    },
+    submitFormulario: function submitFormulario() {
+      var _this2 = this;
+
+      this.limpiarErrores();
+      var path = "http://127.0.0.1:8000/api" + "/origenes-madera";
+
+      if (this.form.id !== "") {
+        path += "/" + this.form.id;
+        this.form._method = "PUT";
+      } else this.form._method = undefined;
+
+      this.$http.post(path, this.form).then(function () {
+        _this2.$buefy.toast.open({
+          message: _this2.$t("message.guardado_generico"),
+          type: "is-success"
+        });
+
+        _this2.$refs.masterForm.submit();
+      })["catch"](function (_ref) {
+        var response = _ref.response;
+        var status = response.status;
+
+        if (status === 422) {
+          _this2.errores.hectareas = response.data.errors.hectareas;
+          _this2.errores.volumen_inventario = response.data.errors.volumen_inventario;
+          _this2.errores.anio_cultivo = response.data.errors.anio_cultivo;
+          _this2.errores.descripcion = response.data.errors.descripcion;
+        } else {
+          _this2.$buefy.toast.open({
+            message: _this2.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/parametros/Parametros.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/parametros/Parametros.vue?vue&type=script&lang=js& ***!
@@ -5873,6 +6111,19 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -27990,6 +28241,263 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/origenes-madera/OrigenesMadera.vue?vue&type=template&id=240341dd&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/origenes-madera/OrigenesMadera.vue?vue&type=template&id=240341dd& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", { staticClass: "hero" }, [
+    _c("div", { staticClass: "hero-body" }, [
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _c("h1", { staticClass: "title" }, [
+            _vm._v(_vm._s(_vm.$t("title.origenes_madera")))
+          ]),
+          _vm._v(" "),
+          _c(
+            "masterForm",
+            {
+              ref: "masterForm",
+              attrs: {
+                typeOptions: [
+                  {
+                    value: "E",
+                    text: _vm.$t("message.delete"),
+                    visible: _vm.$store.getters.permiteAccion(
+                      "eliminar_origenes_madera"
+                    )
+                  }
+                ],
+                createButton: _vm.$store.getters.permiteAccion(
+                  "crear_origenes_madera"
+                ),
+                resource: "/api/origenes-madera",
+                isPaginated: false,
+                columns: [
+                  {
+                    label: _vm.$t("message.id"),
+                    field: "id",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.descripcion"),
+                    field: "descripcion",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.anio_cultivo"),
+                    field: "anio_cultivo",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.hectareas"),
+                    field: "hectareas",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.volumen_inventario"),
+                    field: "volumen_inventario",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.status"),
+                    field: "estado",
+                    sortable: true
+                  }
+                ]
+              },
+              on: {
+                adding: _vm.adding,
+                canceled: _vm.canceled,
+                realizarAccion: _vm.realizarAccion,
+                editar: _vm.editar,
+                submitFormulario: _vm.submitFormulario
+              }
+            },
+            [
+              _c("div", { staticClass: "columns" }, [
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      { attrs: { label: _vm.$t("message.id") } },
+                      [
+                        _c("b-input", {
+                          attrs: { readonly: "" },
+                          model: {
+                            value: _vm.form.id,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "id", $$v)
+                            },
+                            expression: "form.id"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.descripcion
+                            ? _vm.errores.descripcion[0]
+                            : "",
+                          type: _vm.errores.descripcion ? "is-danger" : "",
+                          label: _vm.$t("message.descripcion")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.descripcion,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "descripcion", $$v)
+                            },
+                            expression: "form.descripcion"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.anio_cultivo
+                            ? _vm.errores.anio_cultivo[0]
+                            : "",
+                          type: _vm.errores.anio_cultivo ? "is-danger" : "",
+                          label: _vm.$t("message.anio_cultivo")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.anio_cultivo,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "anio_cultivo", $$v)
+                            },
+                            expression: "form.anio_cultivo"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.volumen_inventario
+                            ? _vm.errores.volumen_inventario[0]
+                            : "",
+                          type: _vm.errores.volumen_inventario
+                            ? "is-danger"
+                            : "",
+                          label: _vm.$t("message.volumen_inventario")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.volumen_inventario,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "volumen_inventario", $$v)
+                            },
+                            expression: "form.volumen_inventario"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.hectareas
+                            ? _vm.errores.hectareas[0]
+                            : "",
+                          type: _vm.errores.hectareas ? "is-danger" : "",
+                          label: _vm.$t("message.hectareas")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.hectareas,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "hectareas", $$v)
+                            },
+                            expression: "form.hectareas"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ])
+            ]
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/parametros/Parametros.vue?vue&type=template&id=e63267d8&":
 /*!******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/parametros/Parametros.vue?vue&type=template&id=e63267d8& ***!
@@ -29788,6 +30296,37 @@ var render = function() {
                             label: _vm.$t("title.formatos_entrega"),
                             tag: "router-link",
                             to: "/admin/formatos-entrega"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "" &&
+                                (_vm.$store.getters.permiteAccion(
+                                  "crear_origenes_madera"
+                                ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "editar_origenes_madera"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "consultar_origenes_madera"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "eliminar_origenes_madera"
+                                  )),
+                              expression:
+                                "\n                $store.state.nombre_empresa_actual !== '' &&\n                ($store.getters.permiteAccion('crear_origenes_madera') ||\n                  $store.getters.permiteAccion('editar_origenes_madera') ||\n                  $store.getters.permiteAccion('consultar_origenes_madera') ||\n                  $store.getters.permiteAccion('eliminar_origenes_madera'))\n              "
+                            }
+                          ],
+                          attrs: {
+                            icon: "format-align-bottom",
+                            label: _vm.$t("title.origenes_madera"),
+                            tag: "router-link",
+                            to: "/admin/origenes-madera"
                           }
                         }),
                         _vm._v(" "),
@@ -53051,6 +53590,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/origenes-madera/OrigenesMadera.vue":
+/*!**************************************************************************!*\
+  !*** ./resources/js/components/admin/origenes-madera/OrigenesMadera.vue ***!
+  \**************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _OrigenesMadera_vue_vue_type_template_id_240341dd___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OrigenesMadera.vue?vue&type=template&id=240341dd& */ "./resources/js/components/admin/origenes-madera/OrigenesMadera.vue?vue&type=template&id=240341dd&");
+/* harmony import */ var _OrigenesMadera_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OrigenesMadera.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/origenes-madera/OrigenesMadera.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _OrigenesMadera_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _OrigenesMadera_vue_vue_type_template_id_240341dd___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _OrigenesMadera_vue_vue_type_template_id_240341dd___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/origenes-madera/OrigenesMadera.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/origenes-madera/OrigenesMadera.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************!*\
+  !*** ./resources/js/components/admin/origenes-madera/OrigenesMadera.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OrigenesMadera_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./OrigenesMadera.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/origenes-madera/OrigenesMadera.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OrigenesMadera_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/origenes-madera/OrigenesMadera.vue?vue&type=template&id=240341dd&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/components/admin/origenes-madera/OrigenesMadera.vue?vue&type=template&id=240341dd& ***!
+  \*********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrigenesMadera_vue_vue_type_template_id_240341dd___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./OrigenesMadera.vue?vue&type=template&id=240341dd& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/origenes-madera/OrigenesMadera.vue?vue&type=template&id=240341dd&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrigenesMadera_vue_vue_type_template_id_240341dd___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrigenesMadera_vue_vue_type_template_id_240341dd___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/parametros/Parametros.vue":
 /*!*****************************************************************!*\
   !*** ./resources/js/components/admin/parametros/Parametros.vue ***!
@@ -53985,6 +54593,9 @@ __webpack_require__.r(__webpack_exports__);
     recuperar: "Recover account"
   },
   message: {
+    hectareas: "Miles",
+    anio_cultivo: "Year",
+    volumen_inventario: "Inventory volumen",
     sinDatos: "No data",
     filas: "Rows",
     columnas: "Columns",
@@ -54059,7 +54670,8 @@ __webpack_require__.r(__webpack_exports__);
     seleccione: "Select...",
     camiones: "Trucks",
     tipos_madera: "Wood types",
-    formatos_entrega: "Delivery formats"
+    formatos_entrega: "Delivery formats",
+    origenes_madera: "Wood source"
   },
   etiqueta: {
     procedencia: "Provenance",
@@ -54100,6 +54712,9 @@ __webpack_require__.r(__webpack_exports__);
     recuperar: "Recuperar cuenta"
   },
   message: {
+    hectareas: "Hectáreas",
+    anio_cultivo: "Año de cultivo",
+    volumen_inventario: "Volumen de inventario",
     sinDatos: "Sin datos",
     filas: "Filas",
     columnas: "Columnas",
@@ -54176,7 +54791,8 @@ __webpack_require__.r(__webpack_exports__);
     camiones: "Camiones",
     correos: "Correos",
     tipos_madera: "Tipos de madera",
-    formatos_entrega: "Formatos de entrega"
+    formatos_entrega: "Formatos de entrega",
+    origenes_madera: "Orígenes de madera"
   },
   etiqueta: {
     procedencia: "Procedencia",
@@ -54351,6 +54967,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_parametros_Parametros__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../components/admin/parametros/Parametros */ "./resources/js/components/admin/parametros/Parametros.vue");
 /* harmony import */ var _components_admin_tipos_madera_TiposMadera__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../components/admin/tipos-madera/TiposMadera */ "./resources/js/components/admin/tipos-madera/TiposMadera.vue");
 /* harmony import */ var _components_admin_formatos_entrega_FormatosEntrega__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../components/admin/formatos-entrega/FormatosEntrega */ "./resources/js/components/admin/formatos-entrega/FormatosEntrega.vue");
+/* harmony import */ var _components_admin_origenes_madera_OrigenesMadera__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../components/admin/origenes-madera/OrigenesMadera */ "./resources/js/components/admin/origenes-madera/OrigenesMadera.vue");
+
 
 
 
@@ -54533,6 +55151,13 @@ __webpack_require__.r(__webpack_exports__);
         requiresAuth: true
       },
       name: "FormatosEntrega"
+    }, {
+      component: _components_admin_origenes_madera_OrigenesMadera__WEBPACK_IMPORTED_MODULE_23__["default"],
+      path: "origenes-madera",
+      meta: {
+        requiresAuth: true
+      },
+      name: "OrigenesMadera"
     }]
   }]
 });

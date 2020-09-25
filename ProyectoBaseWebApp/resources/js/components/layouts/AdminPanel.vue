@@ -82,6 +82,19 @@
               <b-menu-item
                 v-show="
                   $store.state.nombre_empresa_actual !== '' &&
+                  ($store.getters.permiteAccion('crear_origenes_madera') ||
+                    $store.getters.permiteAccion('editar_origenes_madera') ||
+                    $store.getters.permiteAccion('consultar_origenes_madera') ||
+                    $store.getters.permiteAccion('eliminar_origenes_madera'))
+                "
+                icon="format-align-bottom"
+                :label="$t('title.origenes_madera')"
+                tag="router-link"
+                to="/admin/origenes-madera"
+              ></b-menu-item>
+              <b-menu-item
+                v-show="
+                  $store.state.nombre_empresa_actual !== '' &&
                   ($store.getters.permiteAccion('crear_espesores') ||
                     $store.getters.permiteAccion('editar_espesores') ||
                     $store.getters.permiteAccion('consultar_espesores') ||
