@@ -80,7 +80,9 @@ export default {
         correos: "E-mails",
         controladores: "Controllers",
         seleccione: "Select...",
-        camiones: "Trucks"
+        camiones: "Trucks",
+        tipos_madera: "Wood types",
+        formatos_entrega: "Delivery formats"
     },
     etiqueta: {
         procedencia: "Provenance",

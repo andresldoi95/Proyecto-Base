@@ -109,5 +109,103 @@
             android:layout_marginRight="@dimen/side_form_margin"
             app:layout_constraintTop_toBottomOf="@id/tvCodigoPo"
             android:layout_height="wrap_content"></EditText>
+        <TextView
+            android:layout_marginTop="@dimen/space_form_margin"
+            android:id="@+id/tvAnioCultivo"
+            android:layout_width="match_parent"
+            android:text="Año de cultivo"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/etCodigoPo"
+            android:layout_height="wrap_content"></TextView>
+        <Spinner
+            android:layout_width="match_parent"
+            android:id="@+id/spnAnioCultivo"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvAnioCultivo"
+            android:layout_height="wrap_content"></Spinner>
+        <TextView
+            android:layout_marginTop="@dimen/space_form_margin"
+            android:id="@+id/tvOrigenMadera"
+            android:layout_width="match_parent"
+            android:text="Origen de la madera"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/spnAnioCultivo"
+            android:layout_height="wrap_content"></TextView>
+        <Spinner
+            android:layout_width="match_parent"
+            android:id="@+id/spnOrigenMadera"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvOrigenMadera"
+            android:layout_height="wrap_content"></Spinner>
+        <TextView
+            android:layout_marginTop="@dimen/space_form_margin"
+            android:id="@+id/tvFechaTumba"
+            android:layout_width="match_parent"
+            android:text="Fecha de tumba"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/spnOrigenMadera"
+            android:layout_height="wrap_content"></TextView>
+        <EditText
+            android:id="@+id/etFechaTumba"
+            android:layout_width="match_parent"
+            android:hint="Indique la fecha de tumba..."
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvFechaTumba"
+            android:layout_height="wrap_content"></EditText>
+        <TextView
+            android:layout_marginTop="@dimen/space_form_margin"
+            android:id="@+id/tvGuiaForestal"
+            android:layout_width="match_parent"
+            android:text="Guía forestal"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/spnOrigenMadera"
+            android:layout_height="wrap_content"></TextView>
+        <EditText
+            android:id="@+id/etGuiaForestal"
+            android:layout_width="match_parent"
+            android:hint="Indique la guía forestal..."
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvFechaTumba"
+            android:layout_height="wrap_content"></EditText>
+        <TextView
+            android:layout_marginTop="@dimen/space_form_margin"
+            android:id="@+id/tvTipoMadera"
+            android:layout_width="match_parent"
+            android:text="Tipo de madera"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/etGuiaForestal"
+            android:layout_height="wrap_content"></TextView>
+        <Spinner
+            android:layout_width="match_parent"
+            android:id="@+id/spnTipoMadera"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvTipoMadera"
+            android:layout_height="wrap_content"></Spinner>
+        <TextView
+            android:layout_marginTop="@dimen/space_form_margin"
+            android:id="@+id/tvFormatoEntrega"
+            android:layout_width="match_parent"
+            android:text="Formato de entrega"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/spnTipoMadera"
+            android:layout_height="wrap_content"></TextView>
+        <Spinner
+            android:layout_width="match_parent"
+            android:id="@+id/spnFormatoEntrega"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvFormatoEntrega"
+            android:layout_height="wrap_content"></Spinner>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

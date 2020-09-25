@@ -84,7 +84,9 @@ export default {
         controladores: "Controladores",
         seleccione: "Seleccione...",
         camiones: "Camiones",
-        correos: "Correos"
+        correos: "Correos",
+        tipos_madera: "Tipos de madera",
+        formatos_entrega: "Formatos de entrega"
     },
     etiqueta: {
         procedencia: "Procedencia",
