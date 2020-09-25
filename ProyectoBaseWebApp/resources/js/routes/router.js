@@ -19,6 +19,9 @@ import Aserradores from "../components/admin/aserradores/Aserradores";
 import Camiones from "../components/admin/camiones/Camiones";
 import CodigosAserradores from "../components/admin/aserradores/CodigosAserradores";
 import Parametros from "../components/admin/parametros/Parametros";
+import TiposMadera from "../components/admin/tipos-madera/TiposMadera";
+import FormatosEntrega from "../components/admin/formatos-entrega/FormatosEntrega";
+import OrigenesMadera from "../components/admin/origenes-madera/OrigenesMadera";
 export default {
     mode: "history",
     routes: [
@@ -185,6 +188,30 @@ export default {
                         requiresAuth: true
                     },
                     name: "Parametros"
+                },
+                {
+                    component: TiposMadera,
+                    path: "tipos-madera",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "TiposMadera"
+                },
+                {
+                    component: FormatosEntrega,
+                    path: "formatos-entrega",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "FormatosEntrega"
+                },
+                {
+                    component: OrigenesMadera,
+                    path: "origenes-madera",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "OrigenesMadera"
                 }
             ]
         }

@@ -12,9 +12,6 @@ public interface ParametroDao {
     @Query("SELECT * FROM parametro")
     List<Parametro> getAll();
 
-    @Query("SELECT * FROM parametro")
-    List<Parametro> getAllActive();
-
     @Query("SELECT * FROM parametro WHERE id IN (:parametrosIds)")
     List<Parametro> loadAllByIds(int[] parametrosIds);
 

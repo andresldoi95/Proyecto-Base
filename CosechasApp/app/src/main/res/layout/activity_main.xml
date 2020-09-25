@@ -8,12 +8,70 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity"
     tools:openDrawer="start">
-    <ProgressBar
-        style="?android:attr/progressBarStyleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/progressBar"
-        android:progressDrawable="@android:drawable/progress_indeterminate_horizontal" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.appcompat.widget.AppCompatButton
+            android:padding="@dimen/menu_button_padding"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:background="@color/colorGrey"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="@dimen/menu_margin_top"
+            app:layout_constraintRight_toRightOf="parent"
+            android:drawableTop="@android:drawable/ic_menu_rotate"
+            android:text="@string/update_db"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            android:layout_width="match_parent"
+            android:id="@+id/btnActualizar"
+            android:layout_height="wrap_content"></androidx.appcompat.widget.AppCompatButton>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnNuevaCosecha"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            android:padding="@dimen/menu_button_padding"
+            app:layout_constraintTop_toBottomOf="@id/btnActualizar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="@dimen/menu_margin_top"
+            app:layout_constraintRight_toRightOf="parent"
+            android:drawableTop="@android:drawable/ic_menu_add"
+            android:text="@string/nueva_cosecha"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></androidx.appcompat.widget.AppCompatButton>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCosechasTerminadas"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            android:padding="@dimen/menu_button_padding"
+            app:layout_constraintTop_toBottomOf="@id/btnNuevaCosecha"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:background="@color/colorSuccess"
+            android:textColor="@color/colorGrey"
+            android:layout_marginTop="@dimen/menu_margin_top"
+            app:layout_constraintRight_toRightOf="parent"
+            android:drawableTop="@android:drawable/ic_menu_upload"
+            android:text="@string/cosechas_terminadas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></androidx.appcompat.widget.AppCompatButton>
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCerrarSesion"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            android:padding="@dimen/menu_button_padding"
+            app:layout_constraintTop_toBottomOf="@id/btnCosechasTerminadas"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorWhite"
+            android:layout_marginTop="@dimen/menu_margin_top"
+            app:layout_constraintRight_toRightOf="parent"
+            android:drawableTop="@android:drawable/ic_menu_close_clear_cancel"
+            android:text="@string/logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></androidx.appcompat.widget.AppCompatButton>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/nav_view"
         android:layout_gravity="start"

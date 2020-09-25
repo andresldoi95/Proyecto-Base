@@ -62,6 +62,33 @@ Route::group(['middleware' => 'auth:api'], function () {
             'create', 'edit', 'show'
         ]
     ]);
+    Route::group(['prefix' => 'tipos-madera'], function () {
+        Route::delete('/', 'TipoMaderaApiController@destroy');
+        Route::get('/all', 'TipoMaderaApiController@all');
+    });
+    Route::resource('tipos-madera', 'TipoMaderaApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
+    Route::group(['prefix' => 'formatos-entrega'], function () {
+        Route::delete('/', 'FormatoEntregaApiController@destroy');
+        Route::get('/all', 'FormatoEntregaApiController@all');
+    });
+    Route::resource('formatos-entrega', 'FormatoEntregaApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
+    Route::group(['prefix' => 'origenes-madera'], function () {
+        Route::delete('/', 'OrigenMaderaApiController@destroy');
+        Route::get('/all', 'OrigenMaderaApiController@all');
+    });
+    Route::resource('origenes-madera', 'OrigenMaderaApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
     Route::group(['prefix' => 'procedencias'], function () {
         Route::delete('/', 'ProcedenciaApiController@destroy');
     });

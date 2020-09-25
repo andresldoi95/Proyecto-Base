@@ -12,6 +12,9 @@ public interface EspesorDao {
     @Query("SELECT * FROM espesor")
     List<Espesor> getAll();
 
+    @Query("SELECT * FROM espesor WHERE estado = 'A'")
+    List<Espesor> getAllActive();
+
     @Query("SELECT * FROM espesor WHERE id IN (:espesoresIds)")
     List<Espesor> loadAllByIds(int[] espesoresIds);
 

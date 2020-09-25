@@ -253,10 +253,90 @@ class AccionSeeder extends Seeder
             'descripcion' => 'Consultar códigos aserradores',
             'modulo_id' => 'aserradores'
         ]);*/
-        Accion::create([
+        /*Accion::create([
             'id' => 'configurar_parametros',
             'descripcion' => 'Configurar parámetros',
             'modulo_id' => 'roles'
+        ]);*/
+        Accion::create([
+            'id' => 'crear_tipos_madera',
+            'descripcion' => 'Crear tipos de madera',
+            'modulo_id' => 'tipos_madera'
+        ]);
+        Accion::create([
+            'id' => 'editar_tipos_madera',
+            'descripcion' => 'Editar tipos de madera',
+            'modulo_id' => 'tipos_madera'
+        ]);
+        Accion::create([
+            'id' => 'eliminar_tipos_madera',
+            'descripcion' => 'Eliminar/Re-activar tipos de madera',
+            'modulo_id' => 'tipos_madera'
+        ]);
+        Accion::create([
+            'id' => 'consultar_tipos_madera',
+            'descripcion' => 'Consultar tipos de madera',
+            'modulo_id' => 'tipos_madera'
+        ]);
+        Accion::create([
+            'id' => 'crear_tipos_bulto',
+            'descripcion' => 'Crear tipos de bulto',
+            'modulo_id' => 'tipos_bulto'
+        ]);
+        Accion::create([
+            'id' => 'editar_tipos_bulto',
+            'descripcion' => 'Editar tipos de bulto',
+            'modulo_id' => 'tipos_bulto'
+        ]);
+        Accion::create([
+            'id' => 'eliminar_tipos_bulto',
+            'descripcion' => 'Eliminar/Re-activar tipos de bulto',
+            'modulo_id' => 'tipos_bulto'
+        ]);
+        Accion::create([
+            'id' => 'consultar_tipos_bulto',
+            'descripcion' => 'Consultar tipos de bulto',
+            'modulo_id' => 'tipos_bulto'
+        ]);
+        Accion::create([
+            'id' => 'crear_origenes_madera',
+            'descripcion' => 'Crear orígenes de madera',
+            'modulo_id' => 'origenes_madera'
+        ]);
+        Accion::create([
+            'id' => 'editar_origenes_madera',
+            'descripcion' => 'Editar orígenes de madera',
+            'modulo_id' => 'origenes_madera'
+        ]);
+        Accion::create([
+            'id' => 'eliminar_origenes_madera',
+            'descripcion' => 'Eliminar/Re-activar orígenes de madera',
+            'modulo_id' => 'origenes_madera'
+        ]);
+        Accion::create([
+            'id' => 'consultar_origenes_madera',
+            'descripcion' => 'Consultar orígenes de madera',
+            'modulo_id' => 'origenes_madera'
+        ]);
+        Accion::create([
+            'id' => 'crear_formatos_entrega',
+            'descripcion' => 'Crear formatos de entrega',
+            'modulo_id' => 'formatos_entrega'
+        ]);
+        Accion::create([
+            'id' => 'editar_formatos_entrega',
+            'descripcion' => 'Editar formatos de entrega',
+            'modulo_id' => 'formatos_entrega'
+        ]);
+        Accion::create([
+            'id' => 'eliminar_formatos_entrega',
+            'descripcion' => 'Eliminar/Re-activar formatos de entrega',
+            'modulo_id' => 'formatos_entrega'
+        ]);
+        Accion::create([
+            'id' => 'consultar_formatos_entrega',
+            'descripcion' => 'Consultar formatos de entrega',
+            'modulo_id' => 'formatos_entrega'
         ]);
     }
 }

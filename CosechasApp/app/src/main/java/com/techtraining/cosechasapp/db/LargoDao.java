@@ -12,6 +12,9 @@ public interface LargoDao {
     @Query("SELECT * FROM largo")
     List<Largo> getAll();
 
+    @Query("SELECT * FROM largo WHERE estado = 'A'")
+    List<Largo> getAllActive();
+
     @Query("SELECT * FROM largo WHERE id IN (:largosIds)")
     List<Largo> loadAllByIds(int[] largosIds);
 

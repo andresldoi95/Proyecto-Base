@@ -12,7 +12,7 @@ class ModuloSeeder extends Seeder
      */
     public function run()
     {
-        Modulo::create([
+        /*Modulo::create([
             'id' => 'usuarios',
             'nombre' => 'Usuarios'
         ]);
@@ -55,6 +55,22 @@ class ModuloSeeder extends Seeder
         Modulo::create([
             'id' => 'procedencias',
             'nombre' => 'Procedencias'
+        ]);*/
+        Modulo::create([
+            'id' => 'tipos_madera',
+            'nombre' => 'Tipos de madera'
+        ]);
+        Modulo::create([
+            'id' => 'formatos_entrega',
+            'nombre' => 'Formatos de entrega'
+        ]);
+        Modulo::create([
+            'id' => 'origenes_madera',
+            'nombre' => 'Orígenes de madera'
+        ]);
+        Modulo::create([
+            'id' => 'tipos_bulto',
+            'nombre' => 'Tipos de bulto'
         ]);
     }
 }

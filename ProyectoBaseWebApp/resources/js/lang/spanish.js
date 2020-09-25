@@ -8,6 +8,9 @@ export default {
         recuperar: "Recuperar cuenta"
     },
     message: {
+        hectareas: "Hectáreas",
+        anio_cultivo: "Año de cultivo",
+        volumen_inventario: "Volumen de inventario",
         sinDatos: "Sin datos",
         filas: "Filas",
         columnas: "Columnas",
@@ -84,7 +87,10 @@ export default {
         controladores: "Controladores",
         seleccione: "Seleccione...",
         camiones: "Camiones",
-        correos: "Correos"
+        correos: "Correos",
+        tipos_madera: "Tipos de madera",
+        formatos_entrega: "Formatos de entrega",
+        origenes_madera: "Orígenes de madera"
     },
     etiqueta: {
         procedencia: "Procedencia",

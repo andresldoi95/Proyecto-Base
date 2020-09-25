@@ -11,4 +11,7 @@
     <dimen name="logo_image_dw_margin_top">75dp</dimen>
     <dimen name="padding_updown_item">20dp</dimen>
     <dimen name="padding_side_item">15dp</dimen>
+    <dimen name="menu_margin_top">20dp</dimen>
+    <dimen name="menu_button_padding">10dp</dimen>
+    <dimen name="item_fila_camion_margin">2dp</dimen>
 </resources>

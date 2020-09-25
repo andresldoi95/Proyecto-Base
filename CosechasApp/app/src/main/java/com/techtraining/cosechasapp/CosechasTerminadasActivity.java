@@ -29,17 +29,11 @@ public class CosechasTerminadasActivity extends AppCompatActivity {
     private void exportar() {
 
     }
-    private void anular() {
-
-    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_exportar:
                 exportar();
-                return true;
-            case R.id.nav_anular:
-                anular();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
