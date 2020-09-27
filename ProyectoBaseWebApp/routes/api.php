@@ -119,6 +119,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'materiales'], function () {
         Route::delete('/', 'MaterialApiController@destroy');
         Route::get('/all', 'MaterialApiController@all');
+        Route::get('/listado', 'MaterialApiController@listado');
     });
     Route::resource('materiales', 'MaterialApiController', [
         'except' => [

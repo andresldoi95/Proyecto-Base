@@ -95,6 +95,7 @@ export default {
         tipos_bulto: "Package types"
     },
     etiqueta: {
+        materiales: 'Materials',
         procedencia: "Provenance",
         username: "Username",
         password: "Password",

@@ -99,6 +99,7 @@ export default {
         tipos_bulto: "Tipos de bulto"
     },
     etiqueta: {
+        materiales: 'Materiales',
         procedencia: "Procedencia",
         username: "Nombre de usuario",
         password: "Contraseña",

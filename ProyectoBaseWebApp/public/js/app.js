@@ -4776,6 +4776,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4788,14 +4797,16 @@ __webpack_require__.r(__webpack_exports__);
         descripcion: "",
         id: "",
         _method: undefined,
-        email: ""
+        email: "",
+        materiales: []
       },
       acciones: [],
       errores: {
         codigo: undefined,
         descripcion: undefined,
         email: undefined
-      }
+      },
+      materiales: []
     };
   },
   methods: {
@@ -4808,6 +4819,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.codigo = "";
       this.form.descripcion = "";
       this.form.email = "";
+      this.form.materiales.splice(0, this.form.materiales.length);
     },
     adding: function adding() {
       this.limpiar();
@@ -4845,6 +4857,11 @@ __webpack_require__.r(__webpack_exports__);
       this.form.codigo = procedencia.codigo;
       this.form.descripcion = procedencia.descripcion;
       this.form.email = procedencia.email;
+      this.form.materiales.splice(0, this.form.materiales.length);
+
+      for (var i = 0; i < procedencia.materiales.length; i++) {
+        this.form.materiales.push(procedencia.materiales[i].id);
+      }
     },
     limpiarErrores: function limpiarErrores() {
       this.errores.descripcion = undefined;
@@ -4883,6 +4900,14 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     }
+  },
+  mounted: function mounted() {
+    var _this3 = this;
+
+    this.$http.get("http://127.0.0.1:8000/api" + '/materiales/listado').then(function (_ref2) {
+      var data = _ref2.data;
+      _this3.materiales = data;
+    });
   }
 });
 
@@ -28840,6 +28865,43 @@ var render = function() {
                     )
                   ],
                   1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "label",
+                      { staticClass: "label", attrs: { for: "materiales" } },
+                      [_vm._v(_vm._s(_vm.$t("etiqueta.materiales")))]
+                    ),
+                    _vm._v(" "),
+                    _vm._l(_vm.materiales, function(material) {
+                      return _c(
+                        "div",
+                        { key: material.id, staticClass: "field" },
+                        [
+                          _c(
+                            "b-checkbox",
+                            {
+                              attrs: { "native-value": material.id },
+                              model: {
+                                value: _vm.form.materiales,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.form, "materiales", $$v)
+                                },
+                                expression: "form.materiales"
+                              }
+                            },
+                            [_vm._v(_vm._s(material.descripcion))]
+                          )
+                        ],
+                        1
+                      )
+                    })
+                  ],
+                  2
                 )
               ])
             ]
@@ -54986,6 +55048,7 @@ __webpack_require__.r(__webpack_exports__);
     tipos_bulto: "Package types"
   },
   etiqueta: {
+    materiales: 'Materials',
     procedencia: "Provenance",
     username: "Username",
     password: "Password",
@@ -55113,6 +55176,7 @@ __webpack_require__.r(__webpack_exports__);
     tipos_bulto: "Tipos de bulto"
   },
   etiqueta: {
+    materiales: 'Materiales',
     procedencia: "Procedencia",
     username: "Nombre de usuario",
     password: "Contraseña",
