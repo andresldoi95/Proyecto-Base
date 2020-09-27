@@ -60,7 +60,10 @@ export default {
         color: "Color",
         codigo: "Code",
         largo: "Large",
-        espesor: "Thickness"
+        espesor: "Thickness",
+        factor_hueco_bultos: 'Hole factor (packages)',
+        factor_hueco_sueltos: 'Hole factor (free)',
+        codigo_vendor: 'Vendor code'
     },
     title: {
         parametros: "Parameters",

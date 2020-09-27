@@ -2,39 +2,40 @@
   <section class="hero">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title">{{ $t('title.parametros') }}</h1>
+        <h1 class="title">{{ $t("title.parametros") }}</h1>
         <form @submit.prevent="submitFormulario">
           <div class="columns">
             <div class="column">
               <b-field
-                :message="errores.factor_hueco?errores.factor_hueco[0]:''"
-                :type="errores.factor_hueco?'is-danger':''"
-                :label="$t('message.factor_hueco')"
+                :message="
+                  errores.factor_hueco_bultos
+                    ? errores.factor_hueco_bultos[0]
+                    : ''
+                "
+                :type="errores.factor_hueco_bultos ? 'is-danger' : ''"
+                :label="$t('message.factor_hueco_bultos')"
               >
-                <b-input v-model="form.factor_hueco"></b-input>
+                <b-input v-model="form.factor_hueco_bultos"></b-input>
               </b-field>
             </div>
             <div class="column">
               <b-field
-                :message="errores.constante?errores.constante[0]:''"
-                :type="errores.constante?'is-danger':''"
-                :label="$t('message.constante')"
+                :message="
+                  errores.factor_hueco_sueltos
+                    ? errores.factor_hueco_sueltos[0]
+                    : ''
+                "
+                :type="errores.factor_hueco_sueltos ? 'is-danger' : ''"
+                :label="$t('message.factor_hueco_sueltos')"
               >
-                <b-input v-model="form.constante"></b-input>
-              </b-field>
-            </div>
-            <div class="column">
-              <b-field
-                :message="errores.ancho_bulto?errores.ancho_bulto[0]:''"
-                :type="errores.ancho_bulto?'is-danger':''"
-                :label="$t('message.ancho_bulto')"
-              >
-                <b-input v-model="form.ancho_bulto"></b-input>
+                <b-input v-model="form.factor_hueco_sueltos"></b-input>
               </b-field>
             </div>
           </div>
           <div class="buttons">
-            <b-button native-type="submit" type="is-primary">{{ $t('message.guardar') }}</b-button>
+            <b-button native-type="submit" type="is-primary">{{
+              $t("message.guardar")
+            }}</b-button>
           </div>
         </form>
       </div>
@@ -47,23 +48,20 @@ export default {
   data: function () {
     return {
       form: {
-        ancho_bulto: "",
-        constante: "",
-        factor_hueco: "",
+        factor_hueco_sueltos: "",
+        factor_hueco_bultos: "",
       },
       acciones: [],
       errores: {
-        ancho_bulto: undefined,
-        constante: undefined,
-        factor_hueco: undefined,
+        factor_hueco_sueltos: undefined,
+        factor_hueco_bultos: undefined,
       },
     };
   },
   methods: {
     limpiarErrores: function () {
-      this.errores.ancho_bulto = undefined;
-      this.errores.constante = undefined;
-      this.errores.factor_hueco = undefined;
+      this.errores.factor_hueco_sueltos = undefined;
+      this.errores.factor_hueco_bultos = undefined;
     },
     submitFormulario: function () {
       this.limpiarErrores();
@@ -79,9 +77,10 @@ export default {
         .catch(({ response }) => {
           let status = response.status;
           if (status === 422) {
-            this.errores.constante = response.data.errors.constante;
-            this.errores.ancho_bulto = response.data.errors.ancho_bulto;
-            this.errores.factor_hueco = response.data.errors.factor_hueco;
+            this.errores.factor_hueco_bultos =
+              response.data.errors.factor_hueco_bultos;
+            this.errores.factor_hueco_sueltos =
+              response.data.errors.factor_hueco_sueltos;
           } else {
             this.$buefy.toast.open({
               message: this.$t("message.generic_error"),
@@ -92,14 +91,13 @@ export default {
     },
   },
   mounted: function () {
-      let path = process.env.MIX_APP_URL_API + "/parametros";
-      this.$http.get(path).then(({data}) => {
-          if (data.parametros !== null) {
-              this.form.ancho_bulto = data.parametros.ancho_bulto;
-              this.form.constante = data.parametros.constante;
-              this.form.factor_hueco = data.parametros.factor_hueco;
-          }
-      });
-  }
+    let path = process.env.MIX_APP_URL_API + "/parametros";
+    this.$http.get(path).then(({ data }) => {
+      if (data.parametros !== null) {
+        this.form.factor_hueco_sueltos = data.parametros.factor_hueco_sueltos;
+        this.form.factor_hueco_bultos = data.parametros.factor_hueco_bultos;
+      }
+    });
+  },
 };
 </script>
