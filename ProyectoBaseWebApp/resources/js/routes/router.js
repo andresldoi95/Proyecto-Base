@@ -20,6 +20,7 @@ import Camiones from "../components/admin/camiones/Camiones";
 import CodigosAserradores from "../components/admin/aserradores/CodigosAserradores";
 import Parametros from "../components/admin/parametros/Parametros";
 import TiposMadera from "../components/admin/tipos-madera/TiposMadera";
+import TiposBulto from "../components/admin/tipos-bulto/TiposBulto";
 import FormatosEntrega from "../components/admin/formatos-entrega/FormatosEntrega";
 import OrigenesMadera from "../components/admin/origenes-madera/OrigenesMadera";
 export default {
@@ -196,6 +197,14 @@ export default {
                         requiresAuth: true
                     },
                     name: "TiposMadera"
+                },
+                {
+                    component: TiposBulto,
+                    path: "tipos-bulto",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "TiposBulto"
                 },
                 {
                     component: FormatosEntrega,

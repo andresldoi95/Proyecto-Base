@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class EspesorApiController extends Controller
 {
+    public function listado(Request $request)
+    {
+        $user = $request->user();
+        return Espesor::active()->orderBy('descripcion')->where('empresa_id', $user->empresa_id)->get();
+    }
     public function all()
     {
         return Espesor::all();

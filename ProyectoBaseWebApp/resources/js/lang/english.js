@@ -58,7 +58,9 @@ export default {
         password: "Password",
         valor: "Value",
         color: "Color",
-        codigo: "Code"
+        codigo: "Code",
+        largo: "Large",
+        espesor: "Thickness"
     },
     title: {
         parametros: "Parameters",
@@ -86,7 +88,8 @@ export default {
         camiones: "Trucks",
         tipos_madera: "Wood types",
         formatos_entrega: "Delivery formats",
-        origenes_madera: "Wood source"
+        origenes_madera: "Wood source",
+        tipos_bulto: "Package types"
     },
     etiqueta: {
         procedencia: "Provenance",

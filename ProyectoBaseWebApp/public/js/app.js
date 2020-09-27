@@ -4991,6 +4991,275 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/tipos-bulto/TiposBulto.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/tipos-bulto/TiposBulto.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layouts/MasterForm */ "./resources/js/components/layouts/MasterForm.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    MasterForm: _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      form: {
+        ancho: "",
+        codigo: "",
+        id: "",
+        _method: undefined,
+        largo_id: "",
+        espesor_id: ""
+      },
+      errores: {
+        ancho: undefined,
+        codigo: undefined,
+        largo_id: undefined,
+        espesor_id: undefined
+      },
+      espesores: [],
+      largos: []
+    };
+  },
+  methods: {
+    cargarEspesores: function cargarEspesores() {
+      var _this = this;
+
+      this.$http.get("http://127.0.0.1:8000/api" + "/espesores/listado").then(function (_ref) {
+        var data = _ref.data;
+        _this.espesores = data;
+      });
+    },
+    cargarLargos: function cargarLargos() {
+      var _this2 = this;
+
+      this.$http.get("http://127.0.0.1:8000/api" + "/largos/listado").then(function (_ref2) {
+        var data = _ref2.data;
+        _this2.largos = data;
+      });
+    },
+    canceled: function canceled() {
+      this.limpiar();
+    },
+    limpiar: function limpiar() {
+      this.form.id = "";
+      this.form._method = undefined;
+      this.form.ancho = "";
+      this.form.codigo = "";
+      this.form.largo_id = "";
+      this.form.espesor_id = "";
+    },
+    adding: function adding() {
+      this.limpiar();
+    },
+    realizarAccion: function realizarAccion(type, tipos_bulto) {
+      var _this3 = this;
+
+      if (type === "E") {
+        var tipos_bultoId = [];
+
+        for (var i = 0; i < tipos_bulto.length; i++) {
+          tipos_bultoId.push(tipos_bulto[i].id);
+        }
+
+        this.$http.post("http://127.0.0.1:8000/api" + "/tipos-bulto", {
+          tiposBulto: tipos_bultoId,
+          _method: "DELETE"
+        }).then(function () {
+          _this3.$buefy.toast.open({
+            message: _this3.$t("message.guardado_generico"),
+            type: "is-success"
+          });
+
+          _this3.$refs.masterForm.submit();
+        })["catch"](function () {
+          _this3.$buefy.toast.open({
+            message: _this3.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        });
+      }
+    },
+    editar: function editar(tipoBulto) {
+      this.form.id = tipoBulto.id;
+      this.form.ancho = tipoBulto.ancho;
+      this.form.codigo = tipoBulto.codigo;
+      this.form.espesor_id = tipoBulto.espesor_id;
+      this.form.largo_id = tipoBulto.largo_id;
+    },
+    limpiarErrores: function limpiarErrores() {
+      this.errores.codigo = undefined;
+      this.errores.ancho = undefined;
+      this.errores.largo_id = undefined;
+      this.errores.espesor_id = undefined;
+    },
+    submitFormulario: function submitFormulario() {
+      var _this4 = this;
+
+      this.limpiarErrores();
+      var path = "http://127.0.0.1:8000/api" + "/tipos-bulto";
+
+      if (this.form.id !== "") {
+        path += "/" + this.form.id;
+        this.form._method = "PUT";
+      } else this.form._method = undefined;
+
+      this.$http.post(path, this.form).then(function () {
+        _this4.$buefy.toast.open({
+          message: _this4.$t("message.guardado_generico"),
+          type: "is-success"
+        });
+
+        _this4.$refs.masterForm.submit();
+      })["catch"](function (_ref3) {
+        var response = _ref3.response;
+        var status = response.status;
+
+        if (status === 422) {
+          _this4.errores.ancho = response.data.errors.ancho;
+          _this4.errores.codigo = response.data.errors.codigo;
+          _this4.errores.largo_id = response.data.errors.largo_id;
+          _this4.errores.espesor_id = response.data.errors.espesor_id;
+        } else {
+          _this4.$buefy.toast.open({
+            message: _this4.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        }
+      });
+    }
+  },
+  mounted: function mounted() {
+    this.cargarEspesores();
+    this.cargarLargos();
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/tipos-madera/TiposMadera.vue?vue&type=script&lang=js&":
 /*!*****************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/tipos-madera/TiposMadera.vue?vue&type=script&lang=js& ***!
@@ -6111,6 +6380,19 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -28872,6 +29154,296 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/tipos-bulto/TiposBulto.vue?vue&type=template&id=6e0e7a69&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/tipos-bulto/TiposBulto.vue?vue&type=template&id=6e0e7a69& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", { staticClass: "hero" }, [
+    _c("div", { staticClass: "hero-body" }, [
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _c("h1", { staticClass: "title" }, [
+            _vm._v(_vm._s(_vm.$t("title.tipos_bulto")))
+          ]),
+          _vm._v(" "),
+          _c(
+            "masterForm",
+            {
+              ref: "masterForm",
+              attrs: {
+                typeOptions: [
+                  {
+                    value: "E",
+                    text: _vm.$t("message.delete"),
+                    visible: _vm.$store.getters.permiteAccion(
+                      "eliminar_tipos_bulto"
+                    )
+                  }
+                ],
+                createButton: _vm.$store.getters.permiteAccion(
+                  "crear_tipos_bulto"
+                ),
+                resource: "/api/tipos-bulto",
+                isPaginated: false,
+                columns: [
+                  {
+                    label: _vm.$t("message.id"),
+                    field: "id",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.codigo"),
+                    field: "codigo",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.ancho"),
+                    field: "ancho",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.status"),
+                    field: "estado",
+                    sortable: true
+                  }
+                ]
+              },
+              on: {
+                adding: _vm.adding,
+                canceled: _vm.canceled,
+                realizarAccion: _vm.realizarAccion,
+                editar: _vm.editar,
+                submitFormulario: _vm.submitFormulario
+              }
+            },
+            [
+              _c("div", { staticClass: "columns" }, [
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      { attrs: { label: _vm.$t("message.id") } },
+                      [
+                        _c("b-input", {
+                          attrs: { readonly: "" },
+                          model: {
+                            value: _vm.form.id,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "id", $$v)
+                            },
+                            expression: "form.id"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.codigo
+                            ? _vm.errores.codigo[0]
+                            : "",
+                          type: _vm.errores.codigo ? "is-danger" : "",
+                          label: _vm.$t("message.codigo")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.codigo,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "codigo", $$v)
+                            },
+                            expression: "form.codigo"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.ancho
+                            ? _vm.errores.ancho[0]
+                            : "",
+                          type: _vm.errores.ancho ? "is-danger" : "",
+                          label: _vm.$t("message.ancho")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.ancho,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "ancho", $$v)
+                            },
+                            expression: "form.ancho"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.espesor_id
+                            ? _vm.errores.espesor_id[0]
+                            : "",
+                          type: _vm.errores.espesor_id ? "is-danger" : "",
+                          label: _vm.$t("message.espesor")
+                        }
+                      },
+                      [
+                        _c(
+                          "b-select",
+                          {
+                            attrs: {
+                              expanded: "",
+                              placeholder: _vm.$t("title.seleccione")
+                            },
+                            model: {
+                              value: _vm.form.espesor_id,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "espesor_id", $$v)
+                              },
+                              expression: "form.espesor_id"
+                            }
+                          },
+                          _vm._l(_vm.espesores, function(espesor) {
+                            return _c(
+                              "option",
+                              {
+                                key: espesor.id,
+                                domProps: { value: espesor.id }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(espesor.descripcion) +
+                                    "\n                "
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.largo_id
+                            ? _vm.errores.largo_id[0]
+                            : "",
+                          type: _vm.errores.largo_id ? "is-danger" : "",
+                          label: _vm.$t("message.largo")
+                        }
+                      },
+                      [
+                        _c(
+                          "b-select",
+                          {
+                            attrs: {
+                              expanded: "",
+                              placeholder: _vm.$t("title.seleccione")
+                            },
+                            model: {
+                              value: _vm.form.largo_id,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "largo_id", $$v)
+                              },
+                              expression: "form.largo_id"
+                            }
+                          },
+                          _vm._l(_vm.largos, function(largo) {
+                            return _c(
+                              "option",
+                              { key: largo.id, domProps: { value: largo.id } },
+                              [
+                                _vm._v(
+                                  "\n                  " +
+                                    _vm._s(largo.descripcion) +
+                                    "\n                "
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ])
+            ]
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/tipos-madera/TiposMadera.vue?vue&type=template&id=37a16091&":
 /*!*********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/tipos-madera/TiposMadera.vue?vue&type=template&id=37a16091& ***!
@@ -30323,10 +30895,41 @@ var render = function() {
                             }
                           ],
                           attrs: {
-                            icon: "format-align-bottom",
+                            icon: "source-merge",
                             label: _vm.$t("title.origenes_madera"),
                             tag: "router-link",
                             to: "/admin/origenes-madera"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "" &&
+                                (_vm.$store.getters.permiteAccion(
+                                  "crear_tipos_bulto"
+                                ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "editar_tipos_bulto"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "consultar_tipos_bulto"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "eliminar_tipos_bulto"
+                                  )),
+                              expression:
+                                "\n                $store.state.nombre_empresa_actual !== '' &&\n                ($store.getters.permiteAccion('crear_tipos_bulto') ||\n                  $store.getters.permiteAccion('editar_tipos_bulto') ||\n                  $store.getters.permiteAccion('consultar_tipos_bulto') ||\n                  $store.getters.permiteAccion('eliminar_tipos_bulto'))\n              "
+                            }
+                          ],
+                          attrs: {
+                            icon: "package",
+                            label: _vm.$t("title.tipos_bulto"),
+                            tag: "router-link",
+                            to: "/admin/tipos-bulto"
                           }
                         }),
                         _vm._v(" "),
@@ -53797,6 +54400,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/tipos-bulto/TiposBulto.vue":
+/*!******************************************************************!*\
+  !*** ./resources/js/components/admin/tipos-bulto/TiposBulto.vue ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _TiposBulto_vue_vue_type_template_id_6e0e7a69___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TiposBulto.vue?vue&type=template&id=6e0e7a69& */ "./resources/js/components/admin/tipos-bulto/TiposBulto.vue?vue&type=template&id=6e0e7a69&");
+/* harmony import */ var _TiposBulto_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TiposBulto.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/tipos-bulto/TiposBulto.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _TiposBulto_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _TiposBulto_vue_vue_type_template_id_6e0e7a69___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _TiposBulto_vue_vue_type_template_id_6e0e7a69___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/tipos-bulto/TiposBulto.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/tipos-bulto/TiposBulto.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/admin/tipos-bulto/TiposBulto.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TiposBulto_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TiposBulto.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/tipos-bulto/TiposBulto.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_TiposBulto_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/tipos-bulto/TiposBulto.vue?vue&type=template&id=6e0e7a69&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/admin/tipos-bulto/TiposBulto.vue?vue&type=template&id=6e0e7a69& ***!
+  \*************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TiposBulto_vue_vue_type_template_id_6e0e7a69___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./TiposBulto.vue?vue&type=template&id=6e0e7a69& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/tipos-bulto/TiposBulto.vue?vue&type=template&id=6e0e7a69&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TiposBulto_vue_vue_type_template_id_6e0e7a69___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TiposBulto_vue_vue_type_template_id_6e0e7a69___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/tipos-madera/TiposMadera.vue":
 /*!********************************************************************!*\
   !*** ./resources/js/components/admin/tipos-madera/TiposMadera.vue ***!
@@ -54643,7 +55315,9 @@ __webpack_require__.r(__webpack_exports__);
     password: "Password",
     valor: "Value",
     color: "Color",
-    codigo: "Code"
+    codigo: "Code",
+    largo: "Large",
+    espesor: "Thickness"
   },
   title: {
     parametros: "Parameters",
@@ -54671,7 +55345,8 @@ __webpack_require__.r(__webpack_exports__);
     camiones: "Trucks",
     tipos_madera: "Wood types",
     formatos_entrega: "Delivery formats",
-    origenes_madera: "Wood source"
+    origenes_madera: "Wood source",
+    tipos_bulto: "Package types"
   },
   etiqueta: {
     procedencia: "Provenance",
@@ -54764,7 +55439,9 @@ __webpack_require__.r(__webpack_exports__);
     token_invalido: "Token inválido",
     valor: "Valor",
     color: "Color",
-    codigo: "Código"
+    codigo: "Código",
+    largo: "Large",
+    espesor: "Thickness"
   },
   title: {
     parametros: "Parámetros",
@@ -54792,7 +55469,8 @@ __webpack_require__.r(__webpack_exports__);
     correos: "Correos",
     tipos_madera: "Tipos de madera",
     formatos_entrega: "Formatos de entrega",
-    origenes_madera: "Orígenes de madera"
+    origenes_madera: "Orígenes de madera",
+    tipos_bulto: "Tipos de bulto"
   },
   etiqueta: {
     procedencia: "Procedencia",
@@ -54966,8 +55644,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_aserradores_CodigosAserradores__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../components/admin/aserradores/CodigosAserradores */ "./resources/js/components/admin/aserradores/CodigosAserradores.vue");
 /* harmony import */ var _components_admin_parametros_Parametros__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ../components/admin/parametros/Parametros */ "./resources/js/components/admin/parametros/Parametros.vue");
 /* harmony import */ var _components_admin_tipos_madera_TiposMadera__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ../components/admin/tipos-madera/TiposMadera */ "./resources/js/components/admin/tipos-madera/TiposMadera.vue");
-/* harmony import */ var _components_admin_formatos_entrega_FormatosEntrega__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../components/admin/formatos-entrega/FormatosEntrega */ "./resources/js/components/admin/formatos-entrega/FormatosEntrega.vue");
-/* harmony import */ var _components_admin_origenes_madera_OrigenesMadera__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../components/admin/origenes-madera/OrigenesMadera */ "./resources/js/components/admin/origenes-madera/OrigenesMadera.vue");
+/* harmony import */ var _components_admin_tipos_bulto_TiposBulto__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../components/admin/tipos-bulto/TiposBulto */ "./resources/js/components/admin/tipos-bulto/TiposBulto.vue");
+/* harmony import */ var _components_admin_formatos_entrega_FormatosEntrega__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../components/admin/formatos-entrega/FormatosEntrega */ "./resources/js/components/admin/formatos-entrega/FormatosEntrega.vue");
+/* harmony import */ var _components_admin_origenes_madera_OrigenesMadera__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../components/admin/origenes-madera/OrigenesMadera */ "./resources/js/components/admin/origenes-madera/OrigenesMadera.vue");
+
 
 
 
@@ -55145,14 +55825,21 @@ __webpack_require__.r(__webpack_exports__);
       },
       name: "TiposMadera"
     }, {
-      component: _components_admin_formatos_entrega_FormatosEntrega__WEBPACK_IMPORTED_MODULE_22__["default"],
+      component: _components_admin_tipos_bulto_TiposBulto__WEBPACK_IMPORTED_MODULE_22__["default"],
+      path: "tipos-bulto",
+      meta: {
+        requiresAuth: true
+      },
+      name: "TiposBulto"
+    }, {
+      component: _components_admin_formatos_entrega_FormatosEntrega__WEBPACK_IMPORTED_MODULE_23__["default"],
       path: "formatos-entrega",
       meta: {
         requiresAuth: true
       },
       name: "FormatosEntrega"
     }, {
-      component: _components_admin_origenes_madera_OrigenesMadera__WEBPACK_IMPORTED_MODULE_23__["default"],
+      component: _components_admin_origenes_madera_OrigenesMadera__WEBPACK_IMPORTED_MODULE_24__["default"],
       path: "origenes-madera",
       meta: {
         requiresAuth: true

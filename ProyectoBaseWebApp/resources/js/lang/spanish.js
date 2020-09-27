@@ -62,7 +62,9 @@ export default {
         token_invalido: "Token inválido",
         valor: "Valor",
         color: "Color",
-        codigo: "Código"
+        codigo: "Código",
+        largo: "Large",
+        espesor: "Thickness"
     },
     title: {
         parametros: "Parámetros",
@@ -90,7 +92,8 @@ export default {
         correos: "Correos",
         tipos_madera: "Tipos de madera",
         formatos_entrega: "Formatos de entrega",
-        origenes_madera: "Orígenes de madera"
+        origenes_madera: "Orígenes de madera",
+        tipos_bulto: "Tipos de bulto"
     },
     etiqueta: {
         procedencia: "Procedencia",
