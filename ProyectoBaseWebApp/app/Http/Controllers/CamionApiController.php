@@ -11,14 +11,14 @@ class CamionApiController extends Controller
 {
     public function all()
     {
-        return Camion::with('filas')->get();
+        return Camion::all();
     }
     public function index(Request $request)
     {
         $user = $request->user();
         $status = $request->input('status');
         $search = $request->input('search');
-        return Camion::with('filas')->where('empresa_id', $user->empresa_id)
+        return Camion::where('empresa_id', $user->empresa_id)
             ->orderBy('camionero')
             ->where(function ($query) use ($status) {
                 if ($status !== 'T')
@@ -44,7 +44,8 @@ class CamionApiController extends Controller
             'ancho' => 'required|numeric',
             'placa' => 'required|max:10',
             'filas.*.filas' => 'required|integer',
-            'filas.*.columnas' => 'required|integer'
+            'filas.*.columnas' => 'required|integer',
+            'codigo_vendor' => 'required|max:50'
         ]);
         $camion = Camion::create([
             'tipo_camion' => $request->input('tipo_camion'),
@@ -54,16 +55,10 @@ class CamionApiController extends Controller
             'identificacion_camionero' => $request->input('identificacion_camionero'),
             'ancho' => $request->input('ancho'),
             'alto' => $request->input('alto'),
-            'placa' => $request->input('placa')
+            'placa' => $request->input('placa'),
+            'codigo_vendor' => $request->input('codigo_vendor'),
+            'filas' => $request->input('filas')
         ]);
-        $filas = $request->input('filas');
-        foreach ($filas as $fila) {
-            $camion->filas()->create([
-                'id' => uniqid('t' . date('YmdHi'), true),
-                'filas' => $fila['filas'],
-                'columnas' => $fila['columnas']
-            ]);
-        }
     }
     public function update(Request $request, $id)
     {
@@ -77,8 +72,8 @@ class CamionApiController extends Controller
             'alto' => 'required|numeric',
             'ancho' => 'required|numeric',
             'placa' => 'required|max:10',
-            'filas.*.filas' => 'required|integer',
-            'filas.*.columnas' => 'required|integer'
+            'filas' => 'required|integer',
+            'codigo_vendor' => 'required|max:50'
         ]);
         $camion = Camion::findOrFail($id);
         $camion->camionero = $request->input('camionero');
@@ -87,17 +82,10 @@ class CamionApiController extends Controller
         $camion->tipo_camion = $request->input('tipo_camion');
         $camion->ancho = $request->input('ancho');
         $camion->alto = $request->input('alto');
+        $camion->codigo_vendor = $request->input('codigo_vendor');
         $camion->placa = $request->input('placa');
+        $camion->filas = $request->input('filas');
         $camion->save();
-        $camion->filas()->delete();
-        $filas = $request->input('filas');
-        foreach ($filas as $fila) {
-            $camion->filas()->create([
-                'id' => uniqid('t' . date('YmdHi'), true),
-                'filas' => $fila['filas'],
-                'columnas' => $fila['columnas']
-            ]);
-        }
     }
     public function destroy(Request $request)
     {

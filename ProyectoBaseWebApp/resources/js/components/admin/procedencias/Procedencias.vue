@@ -81,6 +81,15 @@
                 <b-input v-model="form.email"></b-input>
               </b-field>
             </div>
+            <div class="column">
+                <label class="label" for="materiales">{{ $t('etiqueta.materiales') }}</label>
+                <div v-for="material in materiales" :key="material.id" class="field">
+                    <b-checkbox
+                    v-model="form.materiales"
+                    :native-value="material.id"
+                    >{{ material.descripcion }}</b-checkbox>
+                </div>
+            </div>
           </div>
         </masterForm>
       </div>
@@ -100,13 +109,15 @@ export default {
         id: "",
         _method: undefined,
         email: "",
+        materiales: []
       },
       acciones: [],
       errores: {
         codigo: undefined,
         descripcion: undefined,
-        email: undefined,
+        email: undefined
       },
+      materiales: []
     };
   },
   methods: {
@@ -119,6 +130,7 @@ export default {
       this.form.codigo = "";
       this.form.descripcion = "";
       this.form.email = "";
+      this.form.materiales.splice(0, this.form.materiales.length);
     },
     adding: function () {
       this.limpiar();
@@ -153,6 +165,9 @@ export default {
       this.form.codigo = procedencia.codigo;
       this.form.descripcion = procedencia.descripcion;
       this.form.email = procedencia.email;
+      this.form.materiales.splice(0, this.form.materiales.length);
+      for (let i = 0; i < procedencia.materiales.length; i++)
+        this.form.materiales.push(procedencia.materiales[i].id);
     },
     limpiarErrores: function () {
       this.errores.descripcion = undefined;
@@ -188,5 +203,10 @@ export default {
         });
     },
   },
+  mounted: function () {
+      this.$http.get(process.env.MIX_APP_URL_API + '/materiales/listado').then(({data}) => {
+          this.materiales = data;
+      });
+  }
 };
 </script>

@@ -29,6 +29,12 @@ public class Camion {
     @ColumnInfo(name = "identificacion_camionero")
     public String identificacionCamionero;
 
+    @ColumnInfo(name = "filas")
+    public int filas;
+
+    @ColumnInfo(name = "codigo_vendor")
+    public String codigoVendor;
+
     @ColumnInfo(name = "estado")
     public String estado;
     @Override

@@ -26,7 +26,7 @@ class TipoMaderaApiController extends Controller
                     return $query;
             })
             ->where(function ($query) use ($search) {
-                return $query->where('descripcion', 'like', "%$search%")->orWhere('descripcion', 'like', "%$search%");
+                return $query->where('descripcion', 'like', "%$search%");
             })
             ->get();
     }

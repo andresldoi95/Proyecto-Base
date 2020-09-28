@@ -8,6 +8,8 @@ import android.widget.Toast;
 import com.techtraining.cosechasapp.DBManager;
 import com.techtraining.cosechasapp.R;
 import com.techtraining.cosechasapp.db.AppDatabase;
+import com.techtraining.cosechasapp.db.MaterialProcedencia;
+import com.techtraining.cosechasapp.db.MaterialProcedenciaDao;
 import com.techtraining.cosechasapp.db.Procedencia;
 import com.techtraining.cosechasapp.db.ProcedenciaDao;
 
@@ -56,6 +58,15 @@ public class ImportarProcedencias extends AsyncTask<Void, Void, Void> {
                     procedencia.empresaId = jsonObject.getInt("empresa_id");
                     procedencia.estado = jsonObject.getString("estado");
                     procedenciaDao.update(procedencia);
+                }
+                MaterialProcedenciaDao materialProcedenciaDao = appDatabase.materialProcedenciaDao();
+                materialProcedenciaDao.deleteByProcedencia(procedencia.id);
+                JSONArray materiales = jsonObject.getJSONArray("materiales");
+                for (int j = 0; j < materiales.length(); j++) {
+                    MaterialProcedencia materialProcedencia = new MaterialProcedencia();
+                    materialProcedencia.materialId = materiales.getJSONObject(j).getInt("id");
+                    materialProcedencia.procedenciaId = procedencia.id;
+                    materialProcedenciaDao.insertOne(materialProcedencia);
                 }
             }
             catch (JSONException ex) {

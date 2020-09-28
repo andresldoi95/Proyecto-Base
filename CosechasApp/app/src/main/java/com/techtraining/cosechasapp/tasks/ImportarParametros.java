@@ -42,16 +42,14 @@ public class ImportarParametros extends AsyncTask<Void, Void, Void> {
                 if (parametro == null) {
                     parametro = new Parametro();
                     parametro.id = id;
-                    parametro.factorHueco = jsonObject.getDouble("factor_hueco");
-                    parametro.constante = jsonObject.getDouble("constante");
-                    parametro.anchoBulto = jsonObject.getDouble("ancho_bulto");
+                    parametro.factorHuecoBultos = jsonObject.getDouble("factor_hueco_bultos");
+                    parametro.factorHuecoSueltos = jsonObject.getDouble("factor_hueco_sueltos");
                     parametro.empresaId = jsonObject.getInt("empresa_id");
                     parametroDao.insertOne(parametro);
                 }
                 else {
-                    parametro.factorHueco = jsonObject.getDouble("factor_hueco");
-                    parametro.constante = jsonObject.getDouble("constante");
-                    parametro.anchoBulto = jsonObject.getDouble("ancho_bulto");
+                    parametro.factorHuecoBultos = jsonObject.getDouble("factor_hueco_bultos");
+                    parametro.factorHuecoSueltos = jsonObject.getDouble("factor_hueco_sueltos");
                     parametro.empresaId = jsonObject.getInt("empresa_id");
                     parametroDao.update(parametro);
                 }

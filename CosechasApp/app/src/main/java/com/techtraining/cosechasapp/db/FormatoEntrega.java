@@ -5,16 +5,22 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class Parametro {
+public class FormatoEntrega {
     @PrimaryKey
     public int id;
 
-    @ColumnInfo(name = "factor_hueco_sueltos")
-    public double factorHuecoSueltos;
+    @ColumnInfo(name = "descripcion")
+    public String descripcion;
 
-    @ColumnInfo(name = "factor_hueco_bultos")
-    public double factorHuecoBultos;
 
     @ColumnInfo(name = "empresa_id")
     public int empresaId;
+
+    @ColumnInfo(name = "estado")
+    public String estado;
+
+    @Override
+    public String toString() {
+        return descripcion;
+    }
 }

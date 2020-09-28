@@ -10,8 +10,6 @@ import com.techtraining.cosechasapp.R;
 import com.techtraining.cosechasapp.db.AppDatabase;
 import com.techtraining.cosechasapp.db.Camion;
 import com.techtraining.cosechasapp.db.CamionDao;
-import com.techtraining.cosechasapp.db.FilaCamion;
-import com.techtraining.cosechasapp.db.FilaCamionDao;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,7 +38,6 @@ public class ImportarCamiones extends AsyncTask<Void, Void, Void> {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 int id = jsonObject.getInt("id");
                 CamionDao camionDao = appDatabase.camionDao();
-                FilaCamionDao filaCamionDao = appDatabase.filaCamionDao();
                 Camion camion = camionDao.loadById(id);
                 if (camion == null) {
                     camion = new Camion();
@@ -53,6 +50,8 @@ public class ImportarCamiones extends AsyncTask<Void, Void, Void> {
                     camion.camionero = jsonObject.getString("camionero");
                     camion.identificacionCamionero = jsonObject.getString("identificacion_camionero");
                     camion.estado = jsonObject.getString("estado");
+                    camion.filas = jsonObject.getInt("filas");
+                    camion.codigoVendor = jsonObject.getString("codigo_vendor");
                     camionDao.insertOne(camion);
                 }
                 else {
@@ -64,18 +63,9 @@ public class ImportarCamiones extends AsyncTask<Void, Void, Void> {
                     camion.camionero = jsonObject.getString("camionero");
                     camion.identificacionCamionero = jsonObject.getString("identificacion_camionero");
                     camion.estado = jsonObject.getString("estado");
+                    camion.filas = jsonObject.getInt("filas");
+                    camion.codigoVendor = jsonObject.getString("codigo_vendor");
                     camionDao.update(camion);
-                }
-                filaCamionDao.deleteByCamion(camion.id);
-                JSONArray filas = jsonObject.getJSONArray("filas");
-                for (int j = 0; j < filas.length(); j++) {
-                    JSONObject fila = filas.getJSONObject(j);
-                    FilaCamion filaCamion = new FilaCamion();
-                    filaCamion.id = fila.getString("id");
-                    filaCamion.camionId = camion.id;
-                    filaCamion.columnas = fila.getInt("columnas");
-                    filaCamion.filas = fila.getInt("filas");
-                    filaCamionDao.insertOne(filaCamion);
                 }
             }
             catch (JSONException ex) {

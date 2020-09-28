@@ -126,11 +126,24 @@
                 <b-input v-model="form.ancho"></b-input>
               </b-field>
             </div>
-          </div>
-          <div class="columns">
-              <div class="column">
-                  <filas-camion :errores="errores" v-model="form.filas"></filas-camion>
-              </div>
+            <div class="column">
+              <b-field
+                :message="errores.filas?errores.filas[0]:''"
+                :type="errores.filas?'is-danger':''"
+                :label="$t('message.filas')"
+              >
+                <b-input v-model="form.filas"></b-input>
+              </b-field>
+            </div>
+            <div class="column">
+              <b-field
+                :message="errores.codigo_vendor?errores.codigo_vendor[0]:''"
+                :type="errores.codigo_vendor?'is-danger':''"
+                :label="$t('message.codigo_vendor')"
+              >
+                <b-input v-model="form.codigo_vendor"></b-input>
+              </b-field>
+            </div>
           </div>
         </masterForm>
       </div>
@@ -140,9 +153,8 @@
 
 <script>
 import MasterForm from "../../layouts/MasterForm";
-import FilasCamion from "./FilasCamion";
 export default {
-  components: { MasterForm, FilasCamion },
+  components: { MasterForm },
   data: function () {
     return {
       form: {
@@ -154,7 +166,8 @@ export default {
         ancho: 0,
         alto: 0,
         placa: "",
-        filas: []
+        filas: 1,
+        codigo_vendor: ''
       },
       acciones: [],
       errores: {},
@@ -173,7 +186,8 @@ export default {
       this.form.alto = 0;
       this.form.tipo_camion = "B";
       this.form.placa = "";
-      this.form.filas.splice(0, this.form.filas.length);
+      this.form.filas = 1;
+      this.form.codigo_vendor = '';
       this.limpiarErrores();
     },
     adding: function () {
@@ -211,14 +225,9 @@ export default {
       this.form.tipo_camion = camion.tipo_camion;
       this.form.ancho = camion.ancho;
       this.form.alto = camion.alto;
+      this.form.codigo_vendor = camion.codigo_vendor;
       this.form.placa = camion.placa;
-      this.form.filas.splice(0, this.form.filas.length);
-        for (let i = 0; i < camion.filas.length; i++) {
-            this.form.filas.push({
-                filas: camion.filas[i].filas,
-                columnas: camion.filas[i].columnas
-            });
-        }
+      this.form.filas = camion.filas;
     },
     limpiarErrores: function () {
       this.errores = {};

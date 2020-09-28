@@ -58,7 +58,12 @@ export default {
         password: "Password",
         valor: "Value",
         color: "Color",
-        codigo: "Code"
+        codigo: "Code",
+        largo: "Large",
+        espesor: "Thickness",
+        factor_hueco_bultos: 'Hole factor (packages)',
+        factor_hueco_sueltos: 'Hole factor (free)',
+        codigo_vendor: 'Vendor code'
     },
     title: {
         parametros: "Parameters",
@@ -86,9 +91,11 @@ export default {
         camiones: "Trucks",
         tipos_madera: "Wood types",
         formatos_entrega: "Delivery formats",
-        origenes_madera: "Wood source"
+        origenes_madera: "Wood source",
+        tipos_bulto: "Package types"
     },
     etiqueta: {
+        materiales: 'Materials',
         procedencia: "Provenance",
         username: "Username",
         password: "Password",

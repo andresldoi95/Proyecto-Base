@@ -56,6 +56,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'largos'], function () {
         Route::delete('/', 'LargoApiController@destroy');
         Route::get('/all', 'LargoApiController@all');
+        Route::get('/listado', 'LargoApiController@listado');
     });
     Route::resource('largos', 'LargoApiController', [
         'except' => [
@@ -67,6 +68,15 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/all', 'TipoMaderaApiController@all');
     });
     Route::resource('tipos-madera', 'TipoMaderaApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
+    Route::group(['prefix' => 'tipos-bulto'], function () {
+        Route::delete('/', 'TipoBultoApiController@destroy');
+        Route::get('/all', 'TipoBultoApiController@all');
+    });
+    Route::resource('tipos-bulto', 'TipoBultoApiController', [
         'except' => [
             'create', 'edit', 'show'
         ]
@@ -109,6 +119,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'materiales'], function () {
         Route::delete('/', 'MaterialApiController@destroy');
         Route::get('/all', 'MaterialApiController@all');
+        Route::get('/listado', 'MaterialApiController@listado');
     });
     Route::resource('materiales', 'MaterialApiController', [
         'except' => [
@@ -135,6 +146,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'espesores'], function () {
         Route::delete('/', 'EspesorApiController@destroy');
         Route::get('/all', 'EspesorApiController@all');
+        Route::get('/listado', 'EspesorApiController@listado');
     });
     Route::resource('espesores', 'EspesorApiController', [
         'except' => [

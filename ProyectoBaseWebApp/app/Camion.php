@@ -8,15 +8,12 @@ class Camion extends Model
 {
     protected $table = 'camiones';
     protected $fillable = [
-        'tipo_camion', 'ancho', 'placa', 'alto', 'empresa_id', 'camionero', 'identificacion_camionero', 'estado', 'creador_id', 'modificador_id'
+        'tipo_camion', 'ancho', 'placa', 'alto', 'empresa_id', 'camionero', 'identificacion_camionero', 'estado', 'creador_id', 'modificador_id',
+        'codigo_vendor', 'filas'
     ];
     protected $appends = [
         'descripcion_tipo_camion'
     ];
-    public function filas()
-    {
-        return $this->hasMany('App\FilaCamion');
-    }
     public function getDescripcionTipoCamionAttribute()
     {
         switch ($this->tipo_camion) {

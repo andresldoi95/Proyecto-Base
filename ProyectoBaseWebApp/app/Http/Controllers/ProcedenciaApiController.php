@@ -16,14 +16,14 @@ class ProcedenciaApiController extends Controller
     public function listado(Request $request)
     {
         $user = $request->user();
-        return Procedencia::active()->orderBy('descripcion')->where('empresa_id', $user->empresa_id)->get();
+        return Procedencia::with('materiales')->active()->orderBy('descripcion')->where('empresa_id', $user->empresa_id)->get();
     }
     public function index(Request $request)
     {
         $user = $request->user();
         $status = $request->input('status');
         $search = $request->input('search');
-        return Procedencia::where('empresa_id', $user->empresa_id)
+        return Procedencia::with('materiales')->where('empresa_id', $user->empresa_id)
             ->orderBy('descripcion')
             ->where(function ($query) use ($status) {
                 if ($status !== 'T')
@@ -44,15 +44,17 @@ class ProcedenciaApiController extends Controller
             'codigo' => [
                 'required', 'max:20', Rule::unique('procedencias')->where('empresa_id', $user->empresa_id)
             ],
-            'email' => 'nullable|max:1000'
+            'email' => 'nullable|max:1000',
+            'materiales' => 'nullable|array'
         ]);
-        Procedencia::create([
+        $procedencia = Procedencia::create([
             'descripcion' => $request->input('descripcion'),
             'creador_id' => $user->id,
             'empresa_id' => $user->empresa_id,
             'codigo' => $request->input('codigo'),
             'email' => $request->input('email')
         ]);
+        $procedencia->materiales()->sync($request->input('materiales'));
     }
     public function update(Request $request, $id)
     {
@@ -62,7 +64,8 @@ class ProcedenciaApiController extends Controller
             'codigo' => [
                 'required', 'max:20', Rule::unique('procedencias')->where('empresa_id', $user->empresa_id)->ignore($id)
             ],
-            'email' => 'nullable|max:1000'
+            'email' => 'nullable|max:1000',
+            'materiales' => 'nullable|array'
         ]);
         $procedencia = Procedencia::findOrFail($id);
         $procedencia->descripcion = $request->input('descripcion');
@@ -70,6 +73,7 @@ class ProcedenciaApiController extends Controller
         $procedencia->modificador_id = $user->id;
         $procedencia->email = $request->input('email');
         $procedencia->save();
+        $procedencia->materiales()->sync($request->input('materiales'));
     }
     public function destroy(Request $request)
     {

@@ -376,6 +376,130 @@ public class ImportarDatos extends AsyncTask<Void, Void, Void> {
         ));
         networkManager.addToRequestQueue(jsonArrayRequest);
     }
+    private void importarTiposMadera() {
+        String url = Helper.URL_API + "/tipos-madera/all";
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                new ImportarTiposMadera(context, response).execute();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                String mensaje = error.getMessage();
+                if (mensaje != null)
+                    Log.e(ImportarDatos.class.getName(), mensaje);
+                else
+                    error.printStackTrace();
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put(Helper.AUTH_HEADER, Helper.AUTH_TYPE + sharedPreferences.getString(Helper.USER_TOKEN_NAME, null));
+                return params;
+            }
+        };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                Helper.DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+        networkManager.addToRequestQueue(jsonArrayRequest);
+    }
+    private void importarFormatosEntrega() {
+        String url = Helper.URL_API + "/formatos-entrega/all";
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                new ImportarFormatosEntrega(context, response).execute();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                String mensaje = error.getMessage();
+                if (mensaje != null)
+                    Log.e(ImportarDatos.class.getName(), mensaje);
+                else
+                    error.printStackTrace();
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put(Helper.AUTH_HEADER, Helper.AUTH_TYPE + sharedPreferences.getString(Helper.USER_TOKEN_NAME, null));
+                return params;
+            }
+        };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                Helper.DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+        networkManager.addToRequestQueue(jsonArrayRequest);
+    }
+    private void importarTiposBulto() {
+        String url = Helper.URL_API + "/tipos-bulto/all";
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                new ImportarTiposBulto(context, response).execute();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                String mensaje = error.getMessage();
+                if (mensaje != null)
+                    Log.e(ImportarDatos.class.getName(), mensaje);
+                else
+                    error.printStackTrace();
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put(Helper.AUTH_HEADER, Helper.AUTH_TYPE + sharedPreferences.getString(Helper.USER_TOKEN_NAME, null));
+                return params;
+            }
+        };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                Helper.DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+        networkManager.addToRequestQueue(jsonArrayRequest);
+    }
+    private void importarOrigenesMadera() {
+        String url = Helper.URL_API + "/origenes-madera/all";
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                new ImportarOrigenesMadera(context, response).execute();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                String mensaje = error.getMessage();
+                if (mensaje != null)
+                    Log.e(ImportarDatos.class.getName(), mensaje);
+                else
+                    error.printStackTrace();
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put(Helper.AUTH_HEADER, Helper.AUTH_TYPE + sharedPreferences.getString(Helper.USER_TOKEN_NAME, null));
+                return params;
+            }
+        };
+        jsonArrayRequest.setRetryPolicy(new DefaultRetryPolicy(
+                Helper.DEFAULT_TIMEOUT,
+                DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+        ));
+        networkManager.addToRequestQueue(jsonArrayRequest);
+    }
     @Override
     protected Void doInBackground(Void... voids) {
         sharedPreferences = context.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
@@ -389,6 +513,10 @@ public class ImportarDatos extends AsyncTask<Void, Void, Void> {
         importarMateriales();
         importarCodigosAserradores();
         importarParametros();
+        importarTiposMadera();
+        importarFormatosEntrega();
+        importarOrigenesMadera();
+        importarTiposBulto();
         importarCamiones();
         return null;
     }

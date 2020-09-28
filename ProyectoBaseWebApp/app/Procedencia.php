@@ -9,6 +9,9 @@ class Procedencia extends Model
     protected $fillable = [
         'empresa_id', 'descripcion', 'codigo', 'email', 'estado', 'creador_id', 'modificador_id'
     ];
+    public function materiales() {
+        return $this->belongsToMany('App\Material', 'materiales_procedencia', 'procedencia_id', 'material_id');
+    }
     public function scopeActive($query)
     {
         return $query->where('estado', 'A');

@@ -62,7 +62,12 @@ export default {
         token_invalido: "Token inválido",
         valor: "Valor",
         color: "Color",
-        codigo: "Código"
+        codigo: "Código",
+        largo: "Large",
+        espesor: "Thickness",
+        factor_hueco_bultos: 'Factor hueco (bultos)',
+        factor_hueco_sueltos: 'Factor hueco (sueltos)',
+        codigo_vendor: 'Código vendor'
     },
     title: {
         parametros: "Parámetros",
@@ -90,9 +95,11 @@ export default {
         correos: "Correos",
         tipos_madera: "Tipos de madera",
         formatos_entrega: "Formatos de entrega",
-        origenes_madera: "Orígenes de madera"
+        origenes_madera: "Orígenes de madera",
+        tipos_bulto: "Tipos de bulto"
     },
     etiqueta: {
+        materiales: 'Materiales',
         procedencia: "Procedencia",
         username: "Nombre de usuario",
         password: "Contraseña",

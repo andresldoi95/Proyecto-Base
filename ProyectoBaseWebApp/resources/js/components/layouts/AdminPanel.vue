@@ -87,10 +87,23 @@
                     $store.getters.permiteAccion('consultar_origenes_madera') ||
                     $store.getters.permiteAccion('eliminar_origenes_madera'))
                 "
-                icon="format-align-bottom"
+                icon="source-merge"
                 :label="$t('title.origenes_madera')"
                 tag="router-link"
                 to="/admin/origenes-madera"
+              ></b-menu-item>
+              <b-menu-item
+                v-show="
+                  $store.state.nombre_empresa_actual !== '' &&
+                  ($store.getters.permiteAccion('crear_tipos_bulto') ||
+                    $store.getters.permiteAccion('editar_tipos_bulto') ||
+                    $store.getters.permiteAccion('consultar_tipos_bulto') ||
+                    $store.getters.permiteAccion('eliminar_tipos_bulto'))
+                "
+                icon="package"
+                :label="$t('title.tipos_bulto')"
+                tag="router-link"
+                to="/admin/tipos-bulto"
               ></b-menu-item>
               <b-menu-item
                 v-show="
