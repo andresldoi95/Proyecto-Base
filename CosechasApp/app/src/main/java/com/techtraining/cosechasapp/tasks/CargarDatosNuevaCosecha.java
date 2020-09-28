@@ -49,6 +49,9 @@ public class CargarDatosNuevaCosecha extends AsyncTask<Void, Void, Void> {
         activity.spnOrigenMadera.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, origenesMadera));
         if (currentCosecha != null) {
             activity.etCodigoPo.setText(currentCosecha.codigoPo);
+            activity.etGuiaRemision.setText(currentCosecha.guiaRemision);
+            activity.etGuiaForestal.setText(currentCosecha.guiaForestal);
+            activity.etFechaTumba.setText(currentCosecha.fechaTumba);
             for (int i = 0; i < camiones.size(); i++) {
                 if (camiones.get(i).id == currentCosecha.camionId) {
                     activity.spnCamion.setSelection(i);

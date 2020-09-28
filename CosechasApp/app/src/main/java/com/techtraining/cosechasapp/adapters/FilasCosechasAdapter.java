@@ -16,8 +16,6 @@ public class FilasCosechasAdapter extends ArrayAdapter<FilaCosecha> {
     Context mContext;
 
     private static class ViewHolder {
-        TextView tvFilas;
-        TextView tvColumnas;
         TextView tvBft;
         TextView tvIndice;
     }
@@ -37,8 +35,6 @@ public class FilasCosechasAdapter extends ArrayAdapter<FilaCosecha> {
             viewHolder = new FilasCosechasAdapter.ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.item_fila_camion, parent, false);
-            viewHolder.tvFilas = convertView.findViewById(R.id.tvFilas);
-            viewHolder.tvColumnas = convertView.findViewById(R.id.tvColumnas);
             viewHolder.tvBft = convertView.findViewById(R.id.tvBft);
             viewHolder.tvIndice = convertView.findViewById(R.id.tvIndice);
             convertView.setTag(viewHolder);

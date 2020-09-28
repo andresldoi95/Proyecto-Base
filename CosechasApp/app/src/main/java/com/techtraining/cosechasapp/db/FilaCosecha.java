@@ -13,6 +13,9 @@ public class FilaCosecha {
     @ColumnInfo(name = "cosecha_id")
     public String cosechaId;
 
+    @ColumnInfo(name = "tipo_bulto_id")
+    public int tipoBultoId;
+
     @ColumnInfo(name = "indice")
     public int indice;
 

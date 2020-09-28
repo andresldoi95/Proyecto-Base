@@ -5,6 +5,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.Date;
+
 @Entity
 public class Cosecha {
     @PrimaryKey @NonNull
@@ -36,6 +38,24 @@ public class Cosecha {
 
     @ColumnInfo(name = "codigo_po")
     public String codigoPo;
+
+    @ColumnInfo(name = "fecha_tumba")
+    public String fechaTumba;
+
+    @ColumnInfo(name = "fecha_despacho")
+    public String fechaDespacho;
+
+    @ColumnInfo(name = "guia_remision")
+    public String guiaRemision;
+
+    @ColumnInfo(name = "guia_forestal")
+    public String guiaForestal;
+
+    @ColumnInfo(name = "dias_t2k")
+    public int diasT2k;
+
+    @ColumnInfo(name = "valor_flete")
+    public int valorFlete;
 
     @ColumnInfo(name = "estado")
     public String estado;

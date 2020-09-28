@@ -31,54 +31,19 @@
         app:layout_constraintTop_toBottomOf="@id/etPlantilla"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_width="wrap_content"
-        android:text="@string/bultos"
-        android:id="@+id/tvBultos"
-        android:layout_height="wrap_content"></TextView>
-    <EditText
-        android:layout_marginLeft="@dimen/side_form_margin"
-        android:layout_marginRight="@dimen/side_form_margin"
-        android:inputType="numberDecimal"
-        app:layout_constraintTop_toBottomOf="@id/tvBultos"
-        android:layout_width="match_parent"
-        android:id="@+id/etBultos"
-        android:layout_height="wrap_content"></EditText>
-    <TextView
-        android:layout_marginTop="@dimen/space_form_margin"
-        android:layout_marginLeft="@dimen/side_form_margin"
-        android:layout_marginRight="@dimen/side_form_margin"
-        app:layout_constraintTop_toBottomOf="@id/etBultos"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_width="wrap_content"
-        android:text="@string/espesor"
-        android:id="@+id/tvEspesor"
+        android:text="@string/tipo_bulto"
+        android:id="@+id/tvTipoBulto"
         android:layout_height="wrap_content"></TextView>
     <Spinner
         android:layout_marginLeft="@dimen/side_form_margin"
         android:layout_marginRight="@dimen/side_form_margin"
-        app:layout_constraintTop_toBottomOf="@id/tvEspesor"
+        app:layout_constraintTop_toBottomOf="@id/tvTipoBulto"
         android:layout_width="match_parent"
-        android:id="@+id/spnEspesor"
-        android:layout_height="wrap_content"></Spinner>
-    <TextView
-        android:layout_marginTop="@dimen/space_form_margin"
-        android:layout_marginLeft="@dimen/side_form_margin"
-        android:layout_marginRight="@dimen/side_form_margin"
-        app:layout_constraintTop_toBottomOf="@id/spnEspesor"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_width="wrap_content"
-        android:text="@string/largo"
-        android:id="@+id/tvLargo"
-        android:layout_height="wrap_content"></TextView>
-    <Spinner
-        android:layout_marginLeft="@dimen/side_form_margin"
-        android:layout_marginRight="@dimen/side_form_margin"
-        app:layout_constraintTop_toBottomOf="@id/tvLargo"
-        android:layout_width="match_parent"
-        android:id="@+id/spnLargo"
+        android:id="@+id/spnTipoBulto"
         android:layout_height="wrap_content"></Spinner>
     <androidx.appcompat.widget.AppCompatButton
         android:layout_marginTop="@dimen/space_form_margin"
-        app:layout_constraintTop_toBottomOf="@id/spnLargo"
+        app:layout_constraintTop_toBottomOf="@id/spnTipoBulto"
         android:layout_width="match_parent"
         android:layout_marginLeft="@dimen/side_form_margin"
         android:layout_marginRight="@dimen/side_form_margin"

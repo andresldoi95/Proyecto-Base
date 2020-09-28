@@ -58,6 +58,15 @@
     <string name="tv_material">Material</string>
     <string name="tv_codigo_po">Código PO</string>
     <string name="hint_po">Será manual cuando no exista</string>
+    <string name="tv_origen_madera">Origen de madera</string>
+    <string name="tv_tipo_madera">Tipo de madera</string>
+    <string name="tv_fecha_tumba">Fecha de tumba</string>
+    <string name="hint_fecha_tumba">Indique una fecha...</string>
+    <string name="tv_guia_remision">Guía de remisión</string>
+    <string name="hint_guia_remision">Escriba...</string>
+    <string name="tv_guia_forestal">Guía forestal</string>
+    <string name="hint_guia_forestal">Escriba...</string>
+    <string name="tv_formato_entrega">Formato de entrega</string>
 
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
@@ -68,6 +77,12 @@
     <string name="procedencia_requerida">La procedencia es requerida.</string>
     <string name="material_requerido">El material es requerido.</string>
     <string name="codigo_po_requerido">El código PO es requerido.</string>
+    <string name="fecha_tumba_requerida">La fecha de tumba es requerida</string>
+    <string name="tipo_madera_requerido">El tipo de madera es requerido.</string>
+    <string name="formato_entrega_requerido">El formato de entrega es requerido.</string>
+    <string name="origen_madera_requerido">El origen de madera es requerido</string>
+    <string name="tipo_bulto">Tipo de bulto</string>
+    <string name="tipo_bulto_requerido">El tipo de bulto es requerido</string>
 
     <string name="cosecha_almacenada">Los datos de la cosecha han sido almacenados.</string>
 
@@ -80,7 +95,7 @@
 
     <string name="fila">Fila</string>
 
-    <string name="plantilla">Plantilla</string>
+    <string name="plantilla">Plantilla (bultos)</string>
     <string name="bultos">Bultos</string>
     <string name="espesor">Espesor</string>
     <string name="largo">Largo</string>

@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import com.techtraining.cosechasapp.DBManager;
 import com.techtraining.cosechasapp.FilaCosechaCamionActivity;
 import com.techtraining.cosechasapp.Helper;
+import com.techtraining.cosechasapp.ItemCosechaActivity;
 import com.techtraining.cosechasapp.LlenadoCamion;
 import com.techtraining.cosechasapp.adapters.FilasCosechasAdapter;
 import com.techtraining.cosechasapp.db.AppDatabase;
@@ -46,7 +47,7 @@ public class CargarFilasCamion extends AsyncTask<Void, Void, Void> {
             activity.lvFilas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(activity, FilaCosechaCamionActivity.class);
+                    Intent intent = new Intent(activity, ItemCosechaActivity.class);
                     FilaCosecha fila = filas .get(position);
                     SharedPreferences.Editor editor = activity.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE).edit();
                     editor.putString(Helper.CURRENT_FILA_NAME, fila.id);
