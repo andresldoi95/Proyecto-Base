@@ -32,6 +32,9 @@ public class NuevaCosechaActivity extends AppCompatActivity {
     public Spinner spnOrigen;
     public Spinner spnMaterial;
     public EditText etCodigoPo;
+    public Spinner spnTipoMadera;
+    public Spinner spnFormatoEntrega;
+    public Spinner spnOrigenMadera;
     private boolean formularioValido() {
         Camion selectedCamion = (Camion) spnCamion.getSelectedItem();
         if (selectedCamion == null) {
@@ -76,6 +79,9 @@ public class NuevaCosechaActivity extends AppCompatActivity {
         spnOrigen = findViewById(R.id.spnOrigen);
         spnMaterial = findViewById(R.id.spnMaterial);
         etCodigoPo = findViewById(R.id.etCodigoPo);
+        spnTipoMadera = findViewById(R.id.spnTipoMadera);
+        spnFormatoEntrega = findViewById(R.id.spnFormatoEntrega);
+        spnOrigenMadera = findViewById(R.id.spnOrigenMadera);
         new CargarDatosNuevaCosecha(this).execute();
     }
     private void guardar() {
