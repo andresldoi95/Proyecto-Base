@@ -25,6 +25,15 @@ public class Cosecha {
     @ColumnInfo(name = "material_id")
     public int materialId;
 
+    @ColumnInfo(name = "tipo_madera_id")
+    public int tipoMaderaId;
+
+    @ColumnInfo(name = "origen_madera_id")
+    public int origenMaderaId;
+
+    @ColumnInfo(name = "formato_entrega_id")
+    public int formatoEntregaId;
+
     @ColumnInfo(name = "codigo_po")
     public String codigoPo;
 

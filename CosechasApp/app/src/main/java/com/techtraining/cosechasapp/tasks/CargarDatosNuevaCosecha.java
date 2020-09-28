@@ -12,8 +12,11 @@ import com.techtraining.cosechasapp.db.Camion;
 import com.techtraining.cosechasapp.db.Controlador;
 import com.techtraining.cosechasapp.db.Cosecha;
 import com.techtraining.cosechasapp.db.Destino;
+import com.techtraining.cosechasapp.db.FormatoEntrega;
 import com.techtraining.cosechasapp.db.Material;
+import com.techtraining.cosechasapp.db.OrigenMadera;
 import com.techtraining.cosechasapp.db.Procedencia;
+import com.techtraining.cosechasapp.db.TipoMadera;
 
 import java.util.List;
 
@@ -25,6 +28,9 @@ public class CargarDatosNuevaCosecha extends AsyncTask<Void, Void, Void> {
     private List<Destino> destinos;
     private List<Procedencia> procedencias;
     private List<Material> materiales;
+    private List<OrigenMadera> origenesMadera;
+    private List<TipoMadera> tiposMadera;
+    private List<FormatoEntrega> formatosEntrega;
     private Cosecha currentCosecha;
     public CargarDatosNuevaCosecha(Context context) {
         this.context = context;
@@ -38,6 +44,9 @@ public class CargarDatosNuevaCosecha extends AsyncTask<Void, Void, Void> {
         activity.spnDestino.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, destinos));
         activity.spnOrigen.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, procedencias));
         activity.spnMaterial.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, materiales));
+        activity.spnTipoMadera.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, tiposMadera));
+        activity.spnFormatoEntrega.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, formatosEntrega));
+        activity.spnOrigenMadera.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, origenesMadera));
         if (currentCosecha != null) {
             activity.etCodigoPo.setText(currentCosecha.codigoPo);
             for (int i = 0; i < camiones.size(); i++) {
@@ -70,6 +79,24 @@ public class CargarDatosNuevaCosecha extends AsyncTask<Void, Void, Void> {
                     break;
                 }
             }
+            for (int i = 0; i < tiposMadera.size(); i++) {
+                if (tiposMadera.get(i).id == currentCosecha.tipoMaderaId) {
+                    activity.spnTipoMadera.setSelection(i);
+                    break;
+                }
+            }
+            for (int i = 0; i < origenesMadera.size(); i++) {
+                if (origenesMadera.get(i).id == currentCosecha.origenMaderaId) {
+                    activity.spnOrigenMadera.setSelection(i);
+                    break;
+                }
+            }
+            for (int i = 0; i < formatosEntrega.size(); i++) {
+                if (formatosEntrega.get(i).id == currentCosecha.formatoEntregaId) {
+                    activity.spnFormatoEntrega.setSelection(i);
+                    break;
+                }
+            }
         }
     }
 
@@ -81,6 +108,9 @@ public class CargarDatosNuevaCosecha extends AsyncTask<Void, Void, Void> {
         destinos = appDatabase.destinoDao().getAllActive();
         procedencias = appDatabase.procedenciaDao().getAllActive();
         materiales = appDatabase.materialDao().getAllActive();
+        origenesMadera = appDatabase.origenMaderaDao().getAllActive();
+        tiposMadera = appDatabase.tipoMaderaDao().getAllActive();
+        formatosEntrega = appDatabase.formatoEntregaDao().getAllActive();
         String currentCosechaId = context.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE).getString(Helper.CURRENT_COSECHA_ID_NAME, null);
         if (currentCosechaId != null) {
             currentCosecha = appDatabase.cosechaDao().loadById(currentCosechaId);

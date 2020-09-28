@@ -45,8 +45,6 @@ public class FilasCosechasAdapter extends ArrayAdapter<FilaCosecha> {
         } else {
             viewHolder = (FilasCosechasAdapter.ViewHolder) convertView.getTag();
         }
-        viewHolder.tvFilas.setText(String.valueOf(dataModel.filas));
-        viewHolder.tvColumnas.setText(String.valueOf(dataModel.columnas));
         viewHolder.tvBft.setText(String.valueOf(dataModel.bft));
         viewHolder.tvIndice.setText(String.valueOf(dataModel.indice + 1));
         return convertView;

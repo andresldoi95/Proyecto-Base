@@ -11,7 +11,7 @@ class ProcedenciaApiController extends Controller
 {
     public function all()
     {
-        return Procedencia::all();
+        return Procedencia::with('materiales')->get();
     }
     public function listado(Request $request)
     {

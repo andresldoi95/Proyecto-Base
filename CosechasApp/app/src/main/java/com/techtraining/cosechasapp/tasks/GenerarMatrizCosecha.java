@@ -47,7 +47,7 @@ public class GenerarMatrizCosecha extends AsyncTask<Void, Void, Void> {
         if (filaCosecha != null) {
             final FilaCosechaCamionActivity activity = (FilaCosechaCamionActivity) context;
             activity.setTitle(context.getString(R.string.fila) + " " + String.valueOf(filaCosecha.indice + 1));
-            activity.grvMatriz.setNumColumns(filaCosecha.columnas);
+            //activity.grvMatriz.setNumColumns(filaCosecha.columnas);
             activity.grvMatriz.setAdapter(new FilaCosechaCamionAdapter(context, matriz));
             activity.grvMatriz.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
