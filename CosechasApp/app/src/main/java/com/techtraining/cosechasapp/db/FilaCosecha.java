@@ -21,10 +21,4 @@ public class FilaCosecha {
 
     @ColumnInfo(name = "bultos")
     public double bultos;
-
-    @ColumnInfo(name = "filas")
-    public int filas;
-
-    @ColumnInfo(name = "columnas")
-    public int columnas;
 }
