@@ -108,4 +108,10 @@
 
     <string name="bloque_guardado">Los datos del bloque han sido almacenados exitósamente.</string>
     <string name="parametros_requeridos">No se ha realizado las parametrizaciones respectivas.</string>
+
+    <string name="titulo_confirmacion">Pregunta</string>
+    <string name="mensaje_confirmacion">Seleccione el tipo de ingreso</string>
+    <string name="respuesta_bultos">Bultos</string>
+    <string name="respuesta_sueltos">Sueltos</string>
+    <string name="nuevo">Nuevo</string>
 </resources>

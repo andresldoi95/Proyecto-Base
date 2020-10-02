@@ -121,7 +121,7 @@ public class NuevaCosechaActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                         int finalMonth = month+1;
-                        final String selectedDate =  year + "-" + (finalMonth > 0?"0":"") + finalMonth + "-" + dayOfMonth;
+                        final String selectedDate =  year + "-" + (finalMonth  < 9?"0":"") + finalMonth + "-" + dayOfMonth;
                         etFechaTumba.setText(selectedDate);
                     }
                 });
@@ -168,6 +168,7 @@ public class NuevaCosechaActivity extends AppCompatActivity {
         inflater.inflate(R.menu.nueva_cosecha_menu, menu);
         return true;
     }
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_continuar:
