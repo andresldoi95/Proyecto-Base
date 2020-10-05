@@ -114,4 +114,6 @@
     <string name="respuesta_bultos">Bultos</string>
     <string name="respuesta_sueltos">Sueltos</string>
     <string name="nuevo">Nuevo</string>
+
+    <string name="ancho">Ancho</string>
 </resources>

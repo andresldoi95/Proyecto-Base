@@ -3,12 +3,16 @@ package com.techtraining.cosechasapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.techtraining.cosechasapp.db.FilaSuelto;
 import com.techtraining.cosechasapp.tasks.CargarSueltos;
 
 public class LlenadoSueltosActivity extends AppCompatActivity {
@@ -35,7 +39,11 @@ public class LlenadoSueltosActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_nuevo:
-                Intent intent = new Intent(LlenadoSueltosActivity.this, ItemCosechaActivity.class);
+                SharedPreferences.Editor editor = getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE).edit();
+                editor.putString(Helper.CURRENT_ITEM_SUELTO_NAME, null);
+                editor.commit();
+                Intent intent = new Intent(LlenadoSueltosActivity.this, ItemSueltosActivity.class);
+                intent.putExtra(Helper.INDICE_NAME, lvSueltos.getCount());
                 startActivity(intent);
                 return true;
             default:

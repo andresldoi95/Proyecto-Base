@@ -36,7 +36,6 @@ public class GuardarItemFilaCosecha extends AsyncTask<Void, Void, Void> {
         appDatabase = DBManager.getInstance(context);
         FilaCosechaDao filaCosechaDao = appDatabase.filaCosechaDao();
         ParametroDao parametroDao = appDatabase.parametroDao();
-        CosechaDao cosechaDao = appDatabase.cosechaDao();
         parametros = parametroDao.getAll();
         if (parametros.size() > 0) {
             Parametro parametro = parametros.get(0);
