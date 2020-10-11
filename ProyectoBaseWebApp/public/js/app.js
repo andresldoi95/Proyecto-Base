@@ -2060,30 +2060,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2095,16 +2071,13 @@ __webpack_require__.r(__webpack_exports__);
         nombre: "",
         id: "",
         _method: undefined,
-        identificacion: "",
-        procedencia_id: ""
+        identificacion: ""
       },
       acciones: [],
       errores: {
         nombre: undefined,
-        identificacion: undefined,
-        procedencia_id: undefined
-      },
-      procedencias: []
+        identificacion: undefined
+      }
     };
   },
   methods: {
@@ -2116,7 +2089,6 @@ __webpack_require__.r(__webpack_exports__);
       this.form._method = undefined;
       this.form.nombre = "";
       this.form.identificacion = "";
-      this.form.procedencia_id = "";
     },
     adding: function adding() {
       this.limpiar();
@@ -2153,12 +2125,10 @@ __webpack_require__.r(__webpack_exports__);
       this.form.id = aserrador.id;
       this.form.nombre = aserrador.nombre;
       this.form.identificacion = aserrador.identificacion;
-      this.form.procedencia_id = aserrador.procedencia_id;
     },
     limpiarErrores: function limpiarErrores() {
       this.errores.nombre = undefined;
       this.errores.identificacion = undefined;
-      this.errores.procedencia_id = undefined;
     },
     submitFormulario: function submitFormulario() {
       var _this2 = this;
@@ -2185,7 +2155,6 @@ __webpack_require__.r(__webpack_exports__);
         if (status === 422) {
           _this2.errores.identificacion = response.data.errors.identificacion;
           _this2.errores.nombre = response.data.errors.nombre;
-          _this2.errores.procedencia_id = response.data.errors.procedencia_id;
         } else {
           _this2.$buefy.toast.open({
             message: _this2.$t("message.generic_error"),
@@ -2193,18 +2162,7 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       });
-    },
-    cargarProcedencias: function cargarProcedencias() {
-      var _this3 = this;
-
-      this.$http.get("http://127.0.0.1:8000/api" + "/procedencias/listado").then(function (_ref2) {
-        var data = _ref2.data;
-        _this3.procedencias = data;
-      });
     }
-  },
-  mounted: function mounted() {
-    this.cargarProcedencias();
   }
 });
 
@@ -3832,6 +3790,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3842,11 +3828,15 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         descripcion: "",
         id: "",
-        _method: undefined
+        _method: undefined,
+        factor_hueco_sueltos: 0,
+        factor_hueco_bultos: 0
       },
       acciones: [],
       errores: {
-        descripcion: undefined
+        descripcion: undefined,
+        factor_hueco_sueltos: undefined,
+        factor_hueco_bultos: undefined
       }
     };
   },
@@ -3857,6 +3847,8 @@ __webpack_require__.r(__webpack_exports__);
     limpiar: function limpiar() {
       this.form.id = "";
       this.form._method = undefined;
+      this.form.factor_hueco_sueltos = undefined;
+      this.form.factor_hueco_bultos = undefined;
       this.form.descripcion = "";
     },
     adding: function adding() {
@@ -3893,9 +3885,13 @@ __webpack_require__.r(__webpack_exports__);
     editar: function editar(formatoEntrega) {
       this.form.id = formatoEntrega.id;
       this.form.descripcion = formatoEntrega.descripcion;
+      this.form.factor_hueco_sueltos = formatoEntrega.factor_hueco_sueltos;
+      this.form.factor_hueco_bultos = formatoEntrega.factor_hueco_bultos;
     },
     limpiarErrores: function limpiarErrores() {
       this.errores.descripcion = undefined;
+      this.errores.factor_hueco_sueltos = undefined;
+      this.errores.factor_hueco_bultos = undefined;
     },
     submitFormulario: function submitFormulario() {
       var _this2 = this;
@@ -4907,6 +4903,240 @@ __webpack_require__.r(__webpack_exports__);
     this.$http.get("http://127.0.0.1:8000/api" + '/materiales/listado').then(function (_ref2) {
       var data = _ref2.data;
       _this3.materiales = data;
+    });
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/tarifas/Tarifas.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/tarifas/Tarifas.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layouts/MasterForm */ "./resources/js/components/layouts/MasterForm.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    MasterForm: _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      origenesMadera: [],
+      destinos: [],
+      form: {
+        destino_id: "",
+        valor: "",
+        id: "",
+        _method: undefined,
+        origen_madera_id: ""
+      },
+      acciones: [],
+      errores: {
+        destino_id: undefined,
+        valor: undefined,
+        origen_madera_id: undefined
+      }
+    };
+  },
+  methods: {
+    canceled: function canceled() {
+      this.limpiar();
+    },
+    limpiar: function limpiar() {
+      this.form.id = "";
+      this.form._method = undefined;
+      this.form.destino_id = "";
+      this.form.valor = "";
+      this.form.origen_madera_id = "";
+    },
+    adding: function adding() {
+      this.limpiar();
+    },
+    realizarAccion: function realizarAccion(type, tarifas) {
+      var _this = this;
+
+      if (type === "E") {
+        var tarifasId = [];
+
+        for (var i = 0; i < tarifas.length; i++) {
+          tarifasId.push(tarifas[i].id);
+        }
+
+        this.$http.post("http://127.0.0.1:8000/api" + "/tarifas", {
+          tarifas: tarifasId,
+          _method: "DELETE"
+        }).then(function () {
+          _this.$buefy.toast.open({
+            message: _this.$t("message.guardado_generico"),
+            type: "is-success"
+          });
+
+          _this.$refs.masterForm.submit();
+        })["catch"](function () {
+          _this.$buefy.toast.open({
+            message: _this.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        });
+      }
+    },
+    editar: function editar(procedencia) {
+      this.form.id = procedencia.id;
+      this.form.destino_id = procedencia.destino_id;
+      this.form.valor = procedencia.valor;
+      this.form.origen_madera_id = procedencia.origen_madera_id;
+    },
+    limpiarErrores: function limpiarErrores() {
+      this.errores.valor = undefined;
+      this.errores.destino_id = undefined;
+    },
+    submitFormulario: function submitFormulario() {
+      var _this2 = this;
+
+      this.limpiarErrores();
+      var path = "http://127.0.0.1:8000/api" + "/tarifas";
+
+      if (this.form.id !== "") {
+        path += "/" + this.form.id;
+        this.form._method = "PUT";
+      } else this.form._method = undefined;
+
+      this.$http.post(path, this.form).then(function () {
+        _this2.$buefy.toast.open({
+          message: _this2.$t("message.guardado_generico"),
+          type: "is-success"
+        });
+
+        _this2.$refs.masterForm.submit();
+      })["catch"](function (_ref) {
+        var response = _ref.response;
+        var status = response.status;
+
+        if (status === 422) {
+          _this2.errores.destino_id = response.data.errors.destino_id;
+          _this2.errores.valor = response.data.errors.valor;
+        } else {
+          _this2.$buefy.toast.open({
+            message: _this2.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        }
+      });
+    }
+  },
+  mounted: function mounted() {
+    var _this3 = this;
+
+    this.$http.get("http://127.0.0.1:8000/api" + '/origenes-madera/listado').then(function (_ref2) {
+      var data = _ref2.data;
+      _this3.origenesMadera = data;
+    });
+    this.$http.get("http://127.0.0.1:8000/api" + '/destinos/listado').then(function (_ref3) {
+      var data = _ref3.data;
+      _this3.destinos = data;
     });
   }
 });
@@ -6302,6 +6532,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -25931,11 +26164,6 @@ var render = function() {
                     sortable: true
                   },
                   {
-                    label: _vm.$t("etiqueta.procedencia"),
-                    field: "procedencia.descripcion",
-                    sortable: true
-                  },
-                  {
                     label: _vm.$t("message.nombre"),
                     field: "nombre",
                     sortable: true
@@ -26012,56 +26240,6 @@ var render = function() {
                             expression: "form.nombre"
                           }
                         })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "column" },
-                  [
-                    _c(
-                      "b-field",
-                      {
-                        attrs: {
-                          message: _vm.errores.procedencia_id
-                            ? _vm.errores.procedencia_id[0]
-                            : "",
-                          type: _vm.errores.procedencia_id ? "is-danger" : "",
-                          label: _vm.$t("etiqueta.procedencia")
-                        }
-                      },
-                      [
-                        _c(
-                          "b-select",
-                          {
-                            attrs: {
-                              expanded: "",
-                              placeholder: _vm.$t("title.seleccione")
-                            },
-                            model: {
-                              value: _vm.form.procedencia_id,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "procedencia_id", $$v)
-                              },
-                              expression: "form.procedencia_id"
-                            }
-                          },
-                          _vm._l(_vm.procedencias, function(option) {
-                            return _c(
-                              "option",
-                              {
-                                key: option.id,
-                                domProps: { value: option.id }
-                              },
-                              [_vm._v(_vm._s(option.descripcion))]
-                            )
-                          }),
-                          0
-                        )
                       ],
                       1
                     )
@@ -27833,6 +28011,16 @@ var render = function() {
                     sortable: true
                   },
                   {
+                    label: _vm.$t("message.factor_hueco_bultos"),
+                    field: "factor_hueco_bultos",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.factor_hueco_sueltos"),
+                    field: "factor_hueco_sueltos",
+                    sortable: true
+                  },
+                  {
                     label: _vm.$t("message.status"),
                     field: "estado",
                     sortable: true
@@ -27897,6 +28085,74 @@ var render = function() {
                               _vm.$set(_vm.form, "descripcion", $$v)
                             },
                             expression: "form.descripcion"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.factor_hueco_bultos
+                            ? _vm.errores.factor_hueco_bultos[0]
+                            : "",
+                          type: _vm.errores.factor_hueco_bultos
+                            ? "is-danger"
+                            : "",
+                          label: _vm.$t("message.factor_hueco_bultos")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.factor_hueco_bultos,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "factor_hueco_bultos", $$v)
+                            },
+                            expression: "form.factor_hueco_bultos"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.factor_hueco_sueltos
+                            ? _vm.errores.factor_hueco_sueltos[0]
+                            : "",
+                          type: _vm.errores.factor_hueco_sueltos
+                            ? "is-danger"
+                            : "",
+                          label: _vm.$t("message.factor_hueco_sueltos")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.factor_hueco_sueltos,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "factor_hueco_sueltos", $$v)
+                            },
+                            expression: "form.factor_hueco_sueltos"
                           }
                         })
                       ],
@@ -28902,6 +29158,270 @@ var render = function() {
                     })
                   ],
                   2
+                )
+              ])
+            ]
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/tarifas/Tarifas.vue?vue&type=template&id=3a5972be&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/tarifas/Tarifas.vue?vue&type=template&id=3a5972be& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", { staticClass: "hero" }, [
+    _c("div", { staticClass: "hero-body" }, [
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _c("h1", { staticClass: "title" }, [
+            _vm._v(_vm._s(_vm.$t("title.tarifas")))
+          ]),
+          _vm._v(" "),
+          _c(
+            "masterForm",
+            {
+              ref: "masterForm",
+              attrs: {
+                typeOptions: [
+                  {
+                    value: "E",
+                    text: _vm.$t("message.delete"),
+                    visible: _vm.$store.getters.permiteAccion(
+                      "eliminar_tarifas"
+                    )
+                  }
+                ],
+                createButton: _vm.$store.getters.permiteAccion("crear_tarifas"),
+                resource: "/api/tarifas",
+                isPaginated: false,
+                columns: [
+                  {
+                    label: _vm.$t("message.id"),
+                    field: "id",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.destino"),
+                    field: "destino.descripcion",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.valor"),
+                    field: "valor",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.origen_madera"),
+                    field: "origen_madera.descripcion",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.status"),
+                    field: "estado",
+                    sortable: true
+                  }
+                ]
+              },
+              on: {
+                adding: _vm.adding,
+                canceled: _vm.canceled,
+                realizarAccion: _vm.realizarAccion,
+                editar: _vm.editar,
+                submitFormulario: _vm.submitFormulario
+              }
+            },
+            [
+              _c("div", { staticClass: "columns" }, [
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      { attrs: { label: _vm.$t("message.id") } },
+                      [
+                        _c("b-input", {
+                          attrs: { readonly: "" },
+                          model: {
+                            value: _vm.form.id,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "id", $$v)
+                            },
+                            expression: "form.id"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.valor
+                            ? _vm.errores.valor[0]
+                            : "",
+                          type: _vm.errores.valor ? "is-danger" : "",
+                          label: _vm.$t("message.valor")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.valor,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "valor", $$v)
+                            },
+                            expression: "form.valor"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.origen_madera_id
+                            ? _vm.errores.origen_madera_id[0]
+                            : "",
+                          type: _vm.errores.origen_madera_id ? "is-danger" : "",
+                          label: _vm.$t("message.origen_madera")
+                        }
+                      },
+                      [
+                        _c(
+                          "b-select",
+                          {
+                            attrs: {
+                              expanded: "",
+                              placeholder: _vm.$t("title.seleccione")
+                            },
+                            model: {
+                              value: _vm.form.origen_madera_id,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "origen_madera_id", $$v)
+                              },
+                              expression: "form.origen_madera_id"
+                            }
+                          },
+                          _vm._l(_vm.origenesMadera, function(origenMadera) {
+                            return _c(
+                              "option",
+                              {
+                                key: origenMadera.id,
+                                domProps: { value: origenMadera.id }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    " +
+                                    _vm._s(origenMadera.descripcion) +
+                                    "\n                "
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.destino_id
+                            ? _vm.errores.destino_id[0]
+                            : "",
+                          type: _vm.errores.destino_id ? "is-danger" : "",
+                          label: _vm.$t("message.destino")
+                        }
+                      },
+                      [
+                        _c(
+                          "b-select",
+                          {
+                            attrs: {
+                              expanded: "",
+                              placeholder: _vm.$t("title.seleccione")
+                            },
+                            model: {
+                              value: _vm.form.destino_id,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "destino_id", $$v)
+                              },
+                              expression: "form.destino_id"
+                            }
+                          },
+                          _vm._l(_vm.destinos, function(destino) {
+                            return _c(
+                              "option",
+                              {
+                                key: destino.id,
+                                domProps: { value: destino.id }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                    " +
+                                    _vm._s(destino.descripcion) +
+                                    "\n                "
+                                )
+                              ]
+                            )
+                          }),
+                          0
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
                 )
               ])
             ]
@@ -30706,6 +31226,37 @@ var render = function() {
                               value:
                                 _vm.$store.state.nombre_empresa_actual !== "" &&
                                 (_vm.$store.getters.permiteAccion(
+                                  "crear_largos"
+                                ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "editar_largos"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "consultar_largos"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "eliminar_largos"
+                                  )),
+                              expression:
+                                "\n                $store.state.nombre_empresa_actual !== '' &&\n                ($store.getters.permiteAccion('crear_largos') ||\n                  $store.getters.permiteAccion('editar_largos') ||\n                  $store.getters.permiteAccion('consultar_largos') ||\n                  $store.getters.permiteAccion('eliminar_largos'))\n              "
+                            }
+                          ],
+                          attrs: {
+                            icon: "size-l",
+                            label: _vm.$t("title.largos"),
+                            tag: "router-link",
+                            to: "/admin/largos"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "" &&
+                                (_vm.$store.getters.permiteAccion(
                                   "crear_espesores"
                                 ) ||
                                   _vm.$store.getters.permiteAccion(
@@ -30737,26 +31288,26 @@ var render = function() {
                               value:
                                 _vm.$store.state.nombre_empresa_actual !== "" &&
                                 (_vm.$store.getters.permiteAccion(
-                                  "crear_procedencias"
+                                  "crear_tarifas"
                                 ) ||
                                   _vm.$store.getters.permiteAccion(
-                                    "editar_procedencias"
+                                    "editar_tarifas"
                                   ) ||
                                   _vm.$store.getters.permiteAccion(
-                                    "consultar_procedencias"
+                                    "consultar_tarifas"
                                   ) ||
                                   _vm.$store.getters.permiteAccion(
-                                    "eliminar_procedencias"
+                                    "eliminar_tarifas"
                                   )),
                               expression:
-                                "\n                $store.state.nombre_empresa_actual !== '' &&\n                ($store.getters.permiteAccion('crear_procedencias') ||\n                  $store.getters.permiteAccion('editar_procedencias') ||\n                  $store.getters.permiteAccion('consultar_procedencias') ||\n                  $store.getters.permiteAccion('eliminar_procedencias'))\n              "
+                                "\n                $store.state.nombre_empresa_actual !== '' &&\n                ($store.getters.permiteAccion('crear_tarifas') ||\n                  $store.getters.permiteAccion('editar_tarifas') ||\n                  $store.getters.permiteAccion('consultar_tarifas') ||\n                  $store.getters.permiteAccion('eliminar_tarifas'))\n              "
                             }
                           ],
                           attrs: {
-                            icon: "source-branch",
-                            label: _vm.$t("title.procedencias"),
+                            icon: "table",
+                            label: _vm.$t("title.tarifas"),
                             tag: "router-link",
-                            to: "/admin/procedencias"
+                            to: "/admin/tarifas"
                           }
                         }),
                         _vm._v(" "),
@@ -30974,28 +31525,6 @@ var render = function() {
                             label: _vm.$t("title.camiones"),
                             tag: "router-link",
                             to: "/admin/camiones"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("b-menu-item", {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value:
-                                _vm.$store.state.nombre_empresa_actual !== "" &&
-                                _vm.$store.getters.permiteAccion(
-                                  "configurar_parametros"
-                                ),
-                              expression:
-                                "\n                $store.state.nombre_empresa_actual !== '' &&\n                $store.getters.permiteAccion('configurar_parametros')\n              "
-                            }
-                          ],
-                          attrs: {
-                            icon: "cog",
-                            label: _vm.$t("title.parametros"),
-                            tag: "router-link",
-                            to: "/admin/parametros"
                           }
                         })
                       ],
@@ -54096,6 +54625,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/tarifas/Tarifas.vue":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/admin/tarifas/Tarifas.vue ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _Tarifas_vue_vue_type_template_id_3a5972be___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Tarifas.vue?vue&type=template&id=3a5972be& */ "./resources/js/components/admin/tarifas/Tarifas.vue?vue&type=template&id=3a5972be&");
+/* harmony import */ var _Tarifas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Tarifas.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/tarifas/Tarifas.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _Tarifas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _Tarifas_vue_vue_type_template_id_3a5972be___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _Tarifas_vue_vue_type_template_id_3a5972be___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/tarifas/Tarifas.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/tarifas/Tarifas.vue?vue&type=script&lang=js&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/admin/tarifas/Tarifas.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tarifas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Tarifas.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/tarifas/Tarifas.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_Tarifas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/tarifas/Tarifas.vue?vue&type=template&id=3a5972be&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/admin/tarifas/Tarifas.vue?vue&type=template&id=3a5972be& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tarifas_vue_vue_type_template_id_3a5972be___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./Tarifas.vue?vue&type=template&id=3a5972be& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/tarifas/Tarifas.vue?vue&type=template&id=3a5972be&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tarifas_vue_vue_type_template_id_3a5972be___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Tarifas_vue_vue_type_template_id_3a5972be___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/tipos-bulto/TiposBulto.vue":
 /*!******************************************************************!*\
   !*** ./resources/js/components/admin/tipos-bulto/TiposBulto.vue ***!
@@ -54961,6 +55559,8 @@ __webpack_require__.r(__webpack_exports__);
     recuperar: "Recover account"
   },
   message: {
+    destino: 'Destine',
+    origen_madera: 'Wood Source',
     hectareas: "Miles",
     anio_cultivo: "Year",
     volumen_inventario: "Inventory volumen",
@@ -55019,6 +55619,7 @@ __webpack_require__.r(__webpack_exports__);
     codigo_vendor: 'Vendor code'
   },
   title: {
+    tarifas: 'Values',
     parametros: "Parameters",
     "codigos-aserradores": "Aserradores codes",
     aserradores: "Aserradores",
@@ -55087,6 +55688,8 @@ __webpack_require__.r(__webpack_exports__);
     recuperar: "Recuperar cuenta"
   },
   message: {
+    destino: 'Destino',
+    origen_madera: 'Origen de madera',
     hectareas: "Hectáreas",
     anio_cultivo: "Año de cultivo",
     volumen_inventario: "Volumen de inventario",
@@ -55147,6 +55750,7 @@ __webpack_require__.r(__webpack_exports__);
     codigo_vendor: 'Código vendor'
   },
   title: {
+    tarifas: 'Tarifas',
     parametros: "Parámetros",
     "codigos-aserradores": "Códigos de aserradores",
     aserradores: "Aserradores",
@@ -55351,6 +55955,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_tipos_bulto_TiposBulto__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ../components/admin/tipos-bulto/TiposBulto */ "./resources/js/components/admin/tipos-bulto/TiposBulto.vue");
 /* harmony import */ var _components_admin_formatos_entrega_FormatosEntrega__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../components/admin/formatos-entrega/FormatosEntrega */ "./resources/js/components/admin/formatos-entrega/FormatosEntrega.vue");
 /* harmony import */ var _components_admin_origenes_madera_OrigenesMadera__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../components/admin/origenes-madera/OrigenesMadera */ "./resources/js/components/admin/origenes-madera/OrigenesMadera.vue");
+/* harmony import */ var _components_admin_tarifas_Tarifas__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../components/admin/tarifas/Tarifas */ "./resources/js/components/admin/tarifas/Tarifas.vue");
+
 
 
 
@@ -55458,14 +56064,15 @@ __webpack_require__.r(__webpack_exports__);
         requiresAuth: true
       },
       name: "Espesores"
-    }, {
-      component: _components_admin_procedencias_Procedencias__WEBPACK_IMPORTED_MODULE_12__["default"],
-      path: "procedencias",
-      meta: {
-        requiresAuth: true
-      },
-      name: "Procedencias"
-    }, {
+    }, // {
+    //     component: Procedencias,
+    //     path: "procedencias",
+    //     meta: {
+    //         requiresAuth: true
+    //     },
+    //     name: "Procedencias"
+    // },
+    {
       component: _components_admin_destinos_Destinos__WEBPACK_IMPORTED_MODULE_13__["default"],
       path: "destinos",
       meta: {
@@ -55515,12 +56122,12 @@ __webpack_require__.r(__webpack_exports__);
       },
       name: "Camiones"
     }, {
-      component: _components_admin_parametros_Parametros__WEBPACK_IMPORTED_MODULE_20__["default"],
-      path: "parametros",
+      component: _components_admin_tarifas_Tarifas__WEBPACK_IMPORTED_MODULE_25__["default"],
+      path: "tarifas",
       meta: {
         requiresAuth: true
       },
-      name: "Parametros"
+      name: "Tarifas"
     }, {
       component: _components_admin_tipos_madera_TiposMadera__WEBPACK_IMPORTED_MODULE_21__["default"],
       path: "tipos-madera",

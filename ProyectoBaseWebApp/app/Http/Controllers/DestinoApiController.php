@@ -13,6 +13,11 @@ class DestinoApiController extends Controller
     {
         return Destino::all();
     }
+    public function listado(Request $request)
+    {
+        $user = $request->user();
+        return Destino::active()->orderBy('descripcion')->where('empresa_id', $user->empresa_id)->get();
+    }
     public function index(Request $request)
     {
         $user = $request->user();

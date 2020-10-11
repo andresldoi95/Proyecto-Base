@@ -32,6 +32,8 @@ import com.techtraining.cosechasapp.tasks.GuardarCabeceraCosecha;
 import java.util.UUID;
 
 public class NuevaCosechaActivity extends AppCompatActivity {
+    public EditText etDiasT2k;
+    public EditText etFechaDespacho;
     public Spinner spnCamion;
     public Spinner spnControlador;
     public Spinner spnDestino;
@@ -102,6 +104,8 @@ public class NuevaCosechaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setTitle(R.string.nueva_cosecha);
         setContentView(R.layout.activity_nueva_cosecha);
+        etDiasT2k = findViewById(R.id.etDiasT2k);
+        etFechaDespacho = findViewById(R.id.etFechaDespacho);
         etGuiaForestal = findViewById(R.id.etGuiaForestal);
         etGuiaRemision = findViewById(R.id.etGuiaRemision);
         spnCamion = findViewById(R.id.spnCamion);

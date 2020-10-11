@@ -108,6 +108,19 @@
               <b-menu-item
                 v-show="
                   $store.state.nombre_empresa_actual !== '' &&
+                  ($store.getters.permiteAccion('crear_largos') ||
+                    $store.getters.permiteAccion('editar_largos') ||
+                    $store.getters.permiteAccion('consultar_largos') ||
+                    $store.getters.permiteAccion('eliminar_largos'))
+                "
+                icon="size-l"
+                :label="$t('title.largos')"
+                tag="router-link"
+                to="/admin/largos"
+              ></b-menu-item>
+              <b-menu-item
+                v-show="
+                  $store.state.nombre_empresa_actual !== '' &&
                   ($store.getters.permiteAccion('crear_espesores') ||
                     $store.getters.permiteAccion('editar_espesores') ||
                     $store.getters.permiteAccion('consultar_espesores') ||
@@ -121,15 +134,15 @@
               <b-menu-item
                 v-show="
                   $store.state.nombre_empresa_actual !== '' &&
-                  ($store.getters.permiteAccion('crear_procedencias') ||
-                    $store.getters.permiteAccion('editar_procedencias') ||
-                    $store.getters.permiteAccion('consultar_procedencias') ||
-                    $store.getters.permiteAccion('eliminar_procedencias'))
+                  ($store.getters.permiteAccion('crear_tarifas') ||
+                    $store.getters.permiteAccion('editar_tarifas') ||
+                    $store.getters.permiteAccion('consultar_tarifas') ||
+                    $store.getters.permiteAccion('eliminar_tarifas'))
                 "
-                icon="source-branch"
-                :label="$t('title.procedencias')"
+                icon="table"
+                :label="$t('title.tarifas')"
                 tag="router-link"
-                to="/admin/procedencias"
+                to="/admin/tarifas"
               ></b-menu-item>
               <b-menu-item
                 v-show="
@@ -227,16 +240,6 @@
                 :label="$t('title.camiones')"
                 tag="router-link"
                 to="/admin/camiones"
-              ></b-menu-item>
-              <b-menu-item
-                v-show="
-                  $store.state.nombre_empresa_actual !== '' &&
-                  $store.getters.permiteAccion('configurar_parametros')
-                "
-                icon="cog"
-                :label="$t('title.parametros')"
-                tag="router-link"
-                to="/admin/parametros"
               ></b-menu-item>
             </b-menu-list>
           </b-menu>

@@ -212,5 +212,65 @@
             android:layout_marginRight="@dimen/side_form_margin"
             app:layout_constraintTop_toBottomOf="@id/tvFormatoEntrega"
             android:layout_height="wrap_content"></Spinner>
+        <TextView
+            android:layout_marginTop="@dimen/space_form_margin"
+            android:id="@+id/tvFechaDespacho"
+            android:layout_width="match_parent"
+            android:text="@string/fecha_despacho"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/spnFormatoEntrega"
+            android:layout_height="wrap_content"></TextView>
+        <EditText
+            android:inputType="date"
+            android:focusable="false"
+            android:clickable="false"
+            android:maxLines="1"
+            android:id="@+id/etFechaDespacho"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvFechaDespacho"
+            android:layout_height="wrap_content"></EditText>
+        <TextView
+            android:layout_marginTop="@dimen/space_form_margin"
+            android:id="@+id/tvDiasT2k"
+            android:layout_width="match_parent"
+            android:text="@string/dias_t2k"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/etFechaDespacho"
+            android:layout_height="wrap_content"></TextView>
+        <EditText
+            android:inputType="date"
+            android:focusable="false"
+            android:clickable="false"
+            android:maxLines="1"
+            android:id="@+id/etDiasT2k"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvDiasT2k"
+            android:layout_height="wrap_content"></EditText>
+        <TextView
+            android:layout_marginTop="@dimen/space_form_margin"
+            android:id="@+id/tvValorFlete"
+            android:layout_width="match_parent"
+            android:text="@string/valor_flete"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/etDiasT2k"
+            android:layout_height="wrap_content"></TextView>
+        <EditText
+            android:inputType="numberDecimal"
+            android:focusable="false"
+            android:clickable="false"
+            android:maxLines="1"
+            android:id="@+id/etValorFlete"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvValorFlete"
+            android:layout_height="wrap_content"></EditText>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

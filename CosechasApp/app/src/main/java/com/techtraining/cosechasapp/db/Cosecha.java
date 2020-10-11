@@ -45,14 +45,15 @@ public class Cosecha {
     @ColumnInfo(name = "fecha_despacho")
     public String fechaDespacho;
 
+    @ColumnInfo(name = "dias_t2k")
+    public String diasT2k;
+
     @ColumnInfo(name = "guia_remision")
     public String guiaRemision;
 
     @ColumnInfo(name = "guia_forestal")
     public String guiaForestal;
 
-    @ColumnInfo(name = "dias_t2k")
-    public int diasT2k;
 
     @ColumnInfo(name = "valor_flete")
     public int valorFlete;

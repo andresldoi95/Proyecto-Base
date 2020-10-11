@@ -23,6 +23,8 @@ import TiposMadera from "../components/admin/tipos-madera/TiposMadera";
 import TiposBulto from "../components/admin/tipos-bulto/TiposBulto";
 import FormatosEntrega from "../components/admin/formatos-entrega/FormatosEntrega";
 import OrigenesMadera from "../components/admin/origenes-madera/OrigenesMadera";
+import Tarifas from "../components/admin/tarifas/Tarifas";
+
 export default {
     mode: "history",
     routes: [
@@ -118,14 +120,14 @@ export default {
                     },
                     name: "Espesores"
                 },
-                {
-                    component: Procedencias,
-                    path: "procedencias",
-                    meta: {
-                        requiresAuth: true
-                    },
-                    name: "Procedencias"
-                },
+                // {
+                //     component: Procedencias,
+                //     path: "procedencias",
+                //     meta: {
+                //         requiresAuth: true
+                //     },
+                //     name: "Procedencias"
+                // },
                 {
                     component: Destinos,
                     path: "destinos",
@@ -183,12 +185,12 @@ export default {
                     name: "Camiones"
                 },
                 {
-                    component: Parametros,
-                    path: "parametros",
+                    component: Tarifas,
+                    path: "tarifas",
                     meta: {
                         requiresAuth: true
                     },
-                    name: "Parametros"
+                    name: "Tarifas"
                 },
                 {
                     component: TiposMadera,
