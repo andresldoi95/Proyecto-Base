@@ -5,8 +5,6 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.util.Date;
-
 @Entity
 public class Cosecha {
     @PrimaryKey @NonNull
@@ -21,8 +19,8 @@ public class Cosecha {
     @ColumnInfo(name = "destino_id")
     public int destinoId;
 
-    @ColumnInfo(name = "origen_id")
-    public int origenId;
+    @ColumnInfo(name = "aserrador_id")
+    public int aserradorId;
 
     @ColumnInfo(name = "material_id")
     public int materialId;
@@ -54,9 +52,11 @@ public class Cosecha {
     @ColumnInfo(name = "guia_forestal")
     public String guiaForestal;
 
+    @ColumnInfo(name = "tipo_llenado")
+    public String tipoLlenado;
 
     @ColumnInfo(name = "valor_flete")
-    public int valorFlete;
+    public double valorFlete;
 
     @ColumnInfo(name = "estado")
     public String estado;

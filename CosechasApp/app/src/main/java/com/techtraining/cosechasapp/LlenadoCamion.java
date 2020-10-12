@@ -15,12 +15,13 @@ public class LlenadoCamion extends AppCompatActivity {
         setContentView(R.layout.activity_llenado_camion);
         setTitle(R.string.llenado_camion);
         lvFilas = findViewById(R.id.lvFilas);
-
     }
-
+    public void cargarDatos() {
+        new CargarFilasCamion(LlenadoCamion.this).execute();
+    }
     @Override
     protected void onResume() {
-        new CargarFilasCamion(LlenadoCamion.this).execute();
+        cargarDatos();
         super.onResume();
     }
 }

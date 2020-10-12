@@ -8,6 +8,7 @@ import com.techtraining.cosechasapp.DBManager;
 import com.techtraining.cosechasapp.Helper;
 import com.techtraining.cosechasapp.NuevaCosechaActivity;
 import com.techtraining.cosechasapp.db.AppDatabase;
+import com.techtraining.cosechasapp.db.Aserrador;
 import com.techtraining.cosechasapp.db.Camion;
 import com.techtraining.cosechasapp.db.Controlador;
 import com.techtraining.cosechasapp.db.Cosecha;
@@ -26,7 +27,7 @@ public class CargarDatosNuevaCosecha extends AsyncTask<Void, Void, Void> {
     private List<Camion> camiones;
     private List<Controlador> controladores;
     private List<Destino> destinos;
-    private List<Procedencia> procedencias;
+    private List<Aserrador> aserradores;
     private List<Material> materiales;
     private List<OrigenMadera> origenesMadera;
     private List<TipoMadera> tiposMadera;
@@ -42,12 +43,15 @@ public class CargarDatosNuevaCosecha extends AsyncTask<Void, Void, Void> {
         activity.spnCamion.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, camiones));
         activity.spnControlador.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, controladores));
         activity.spnDestino.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, destinos));
-        activity.spnOrigen.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, procedencias));
+        activity.spnAserrador.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, aserradores));
         activity.spnMaterial.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, materiales));
         activity.spnTipoMadera.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, tiposMadera));
         activity.spnFormatoEntrega.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, formatosEntrega));
         activity.spnOrigenMadera.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_item, origenesMadera));
         if (currentCosecha != null) {
+            activity.etValorFlete.setText(String.valueOf(currentCosecha.valorFlete));
+            activity.rbSueltos.setChecked(currentCosecha.tipoLlenado.equals("S"));
+            activity.rbBultos.setChecked(currentCosecha.tipoLlenado.equals("B"));
             activity.etCodigoPo.setText(currentCosecha.codigoPo);
             activity.etGuiaRemision.setText(currentCosecha.guiaRemision);
             activity.etGuiaForestal.setText(currentCosecha.guiaForestal);
@@ -58,9 +62,9 @@ public class CargarDatosNuevaCosecha extends AsyncTask<Void, Void, Void> {
                     break;
                 }
             }
-            for (int i = 0; i < procedencias.size(); i++) {
-                if (procedencias.get(i).id == currentCosecha.origenId) {
-                    activity.spnOrigen.setSelection(i);
+            for (int i = 0; i < aserradores.size(); i++) {
+                if (aserradores.get(i).id == currentCosecha.aserradorId) {
+                    activity.spnAserrador.setSelection(i);
                     break;
                 }
             }
@@ -101,6 +105,7 @@ public class CargarDatosNuevaCosecha extends AsyncTask<Void, Void, Void> {
                 }
             }
         }
+        activity.calcularValorFlete();
     }
 
     @Override
@@ -109,7 +114,7 @@ public class CargarDatosNuevaCosecha extends AsyncTask<Void, Void, Void> {
         camiones = appDatabase.camionDao().getAllActive();
         controladores = appDatabase.controladorDao().getAllActive();
         destinos = appDatabase.destinoDao().getAllActive();
-        procedencias = appDatabase.procedenciaDao().getAllActive();
+        aserradores = appDatabase.aserradorDao().getAllActive();
         materiales = appDatabase.materialDao().getAllActive();
         origenesMadera = appDatabase.origenMaderaDao().getAllActive();
         tiposMadera = appDatabase.tipoMaderaDao().getAllActive();

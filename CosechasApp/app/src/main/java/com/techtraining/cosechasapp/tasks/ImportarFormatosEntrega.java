@@ -44,12 +44,16 @@ public class ImportarFormatosEntrega extends AsyncTask<Void, Void, Void> {
                     formatoEntrega.descripcion = jsonObject.getString("descripcion");
                     formatoEntrega.empresaId = jsonObject.getInt("empresa_id");
                     formatoEntrega.estado = jsonObject.getString("estado");
+                    formatoEntrega.factorHuecoBultos = jsonObject.getDouble("factor_hueco_bultos");
+                    formatoEntrega.factorHuecoSueltos = jsonObject.getDouble("factor_hueco_sueltos");
                     formatoEntregaDao.insertOne(formatoEntrega);
                 }
                 else {
                     formatoEntrega.descripcion = jsonObject.getString("descripcion");
                     formatoEntrega.empresaId = jsonObject.getInt("empresa_id");
                     formatoEntrega.estado = jsonObject.getString("estado");
+                    formatoEntrega.factorHuecoBultos = jsonObject.getDouble("factor_hueco_bultos");
+                    formatoEntrega.factorHuecoSueltos = jsonObject.getDouble("factor_hueco_sueltos");
                     formatoEntregaDao.update(formatoEntrega);
                 }
             }

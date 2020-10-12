@@ -98,7 +98,7 @@
 
     <string name="fila">Fila</string>
 
-    <string name="plantilla">Cantidad de bultos</string>
+    <string name="plantilla">Bultos</string>
     <string name="bultos">Bultos</string>
     <string name="espesor">Espesor</string>
     <string name="largo">Largo</string>
@@ -116,7 +116,21 @@
     <string name="mensaje_confirmacion">Seleccione el tipo de ingreso</string>
     <string name="respuesta_bultos">Bultos</string>
     <string name="respuesta_sueltos">Sueltos</string>
+    <string name="aserrador_requerido">El aserrador es requerido.</string>
     <string name="nuevo">Nuevo</string>
+
+    <string name="importando_tarifas">Importando tarifas...</string>
+    <string name="tarifas_importadas">Tarifas importadas...</string>
+
+    <string name="si">Sí</string>
+    <string name="no">No</string>
+    <string name="desea_finalizar_fila">¿Desea finalizar esta fila?</string>
+    <string name="desc_finalizar_fila">La fila no podrá ser editada ni se podrá añadir o modificar fotos.</string>
+    <string name="fila_finalizada">La fila ha sido finalizada.</string>
+
+    <string name="valor_flete_requerido">El valor del flete es requerido.</string>
+
+    <string name="tv_aserrador">Aserrador</string>
 
     <string name="ancho">Ancho</string>
 </resources>
