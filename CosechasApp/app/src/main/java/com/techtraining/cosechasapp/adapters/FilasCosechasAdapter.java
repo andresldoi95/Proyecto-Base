@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.techtraining.cosechasapp.GaleriaFila;
 import com.techtraining.cosechasapp.Helper;
 import com.techtraining.cosechasapp.ItemCosechaActivity;
 import com.techtraining.cosechasapp.LlenadoCamion;
@@ -79,6 +80,13 @@ public class FilasCosechasAdapter extends ArrayAdapter<FilaCosecha> {
                 }
             });
             viewHolder.btnFotos = convertView.findViewById(R.id.btnFotos);
+            viewHolder.btnFotos.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(mContext, GaleriaFila.class);
+                    mContext.startActivity(intent);
+                }
+            });
             viewHolder.btnFinalizar = convertView.findViewById(R.id.btnFinalizar);
             if (dataModel.estado.equals("F")) {
                 viewHolder.btnEditar.hide();

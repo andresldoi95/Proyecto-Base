@@ -13,21 +13,30 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ItemSueltosActivity" android:parentActivityName=".LlenadoSueltosActivity"></activity>
+        <activity  android:parentActivityName=".LlenadoCamion" android:configChanges="orientation|screenSize" android:name=".GaleriaFila"></activity>
+        <activity
+            android:name=".ItemSueltosActivity"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".LlenadoSueltosActivity" />
         <activity
             android:name=".LlenadoSueltosActivity"
+            android:configChanges="orientation|screenSize"
             android:parentActivityName=".LlenadoCamion" />
         <activity
             android:name=".ItemCosechaActivity"
+            android:configChanges="orientation|screenSize"
             android:parentActivityName=".LlenadoCamion" />
         <activity
             android:name=".FilaCosechaCamionActivity"
+            android:configChanges="orientation|screenSize"
             android:parentActivityName=".LlenadoCamion" />
         <activity
             android:name=".LlenadoCamion"
+            android:configChanges="orientation|screenSize"
             android:parentActivityName=".NuevaCosechaActivity" />
         <activity
             android:name=".CosechasTerminadasActivity"
+            android:configChanges="orientation|screenSize"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".NuevaCosechaActivity"
