@@ -137,4 +137,8 @@
     <string name="nueva">Nueva</string>
 
     <string name="galeria">Galería de fila</string>
+
+    <string name="tomar_foto">Tomar foto</string>
+    <string name="desde_galeria">Desde galería</string>
+    <string name="cargar_foto">Cargar foto</string>
 </resources>
