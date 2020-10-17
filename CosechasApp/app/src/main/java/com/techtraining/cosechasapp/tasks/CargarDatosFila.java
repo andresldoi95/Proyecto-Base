@@ -47,6 +47,9 @@ public class CargarDatosFila extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Void aVoid) {
         if (cosecha != null && tipoBulto != null) {
             String informacion = "";
+            if (filaCosecha.tipo.equals("E")) {
+                informacion = "\n(" + context.getString(R.string.excedente) + ")";
+            }
             informacion += "\n" + context.getString(R.string.plantilla) + ": " + filaCosecha.bultos;
             informacion += "\n" + context.getString(R.string.ancho) + ": " + tipoBulto.ancho;
             if (espesor != null)
@@ -55,7 +58,13 @@ public class CargarDatosFila extends AsyncTask<Void, Void, Void> {
                 informacion += "\n" +  context.getString(R.string.largo) + ": " + largo.valor;
             tvInformacion.setText(informacion);
         }
-        else
-            tvInformacion.setText("");
+        else{
+            if (filaCosecha.tipo.equals("E")) {
+                tvInformacion.setText("\n(" + context.getString(R.string.excedente) + ")");;
+            }
+            else
+                tvInformacion.setText("");
+        }
+
     }
 }

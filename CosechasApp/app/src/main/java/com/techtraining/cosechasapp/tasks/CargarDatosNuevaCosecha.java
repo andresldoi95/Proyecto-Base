@@ -19,6 +19,8 @@ import com.techtraining.cosechasapp.db.OrigenMadera;
 import com.techtraining.cosechasapp.db.Procedencia;
 import com.techtraining.cosechasapp.db.TipoMadera;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 public class CargarDatosNuevaCosecha extends AsyncTask<Void, Void, Void> {
@@ -56,6 +58,8 @@ public class CargarDatosNuevaCosecha extends AsyncTask<Void, Void, Void> {
             activity.etGuiaRemision.setText(currentCosecha.guiaRemision);
             activity.etGuiaForestal.setText(currentCosecha.guiaForestal);
             activity.etFechaTumba.setText(currentCosecha.fechaTumba);
+            activity.etFechaDespacho.setText(currentCosecha.fechaDespacho);
+            activity.etDiasT2k.setText(currentCosecha.diasT2k);
             for (int i = 0; i < camiones.size(); i++) {
                 if (camiones.get(i).id == currentCosecha.camionId) {
                     activity.spnCamion.setSelection(i);
@@ -104,6 +108,11 @@ public class CargarDatosNuevaCosecha extends AsyncTask<Void, Void, Void> {
                     break;
                 }
             }
+        }
+        else {
+            Calendar cal = Calendar.getInstance();
+            SimpleDateFormat sdf = new SimpleDateFormat(Helper.DEFAULT_DATE_FORMAT);
+            activity.etFechaDespacho.setText(sdf.format(cal.getTime()));
         }
         activity.calcularValorFlete();
     }

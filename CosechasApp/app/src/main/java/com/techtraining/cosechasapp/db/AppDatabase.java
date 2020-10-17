@@ -9,7 +9,7 @@ import com.techtraining.cosechasapp.Helper;
 Espesor.class, Largo.class, Material.class, CodigoAserrador.class, Cosecha.class,
 Parametro.class, FilaCosecha.class, ItemFilaCosecha.class, MaterialProcedencia.class,
 TipoMadera.class, FormatoEntrega.class, OrigenMadera.class, TipoBulto.class, FilaSuelto.class,
-Tarifa.class}, version = Helper.DB_VERSION, exportSchema = false)
+Tarifa.class, ImagenFila.class}, version = Helper.DB_VERSION, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
     public abstract EmpresaDao empresaDao();
@@ -33,4 +33,5 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract TipoBultoDao tipoBultoDao();
     public abstract FilaSueltoDao filaSueltoDao();
     public abstract TarifaDao tarifaDao();
+    public abstract ImagenFilaDao imagenFilaDao();
 }

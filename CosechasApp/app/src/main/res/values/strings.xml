@@ -141,4 +141,21 @@
     <string name="tomar_foto">Tomar foto</string>
     <string name="desde_galeria">Desde galería</string>
     <string name="cargar_foto">Cargar foto</string>
+
+    <string name="imagen_almacenada">Imagen almacenada</string>
+    <string name="permisos_denegados">Permisos denegados</string>
+    <string name="permisos_aprobados">Permisos aprobados</string>
+
+    <string name="excedente">Excedente</string>
+    <string name="foto_almacenada">Foto almacenada</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="imagenes_eliminadas">Imágenes eliminadas</string>
+    <string name="no_imagenes_eliminar">No hay imágenes para eliminar</string>
+
+    <string name="desea_eliminar_imagenes">¿Desea eliminar las imágenes seleccionadas?</string>
+
+    <string name="finalizar">Finalizar</string>
+    <string name="despacho_finalizado">Despacho finalizado</string>
+
+    <string name="desea_finalizar_despacho">¿Desea finalizar el despacho?</string>
 </resources>

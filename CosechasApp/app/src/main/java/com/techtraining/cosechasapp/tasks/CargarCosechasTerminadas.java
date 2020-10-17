@@ -20,7 +20,7 @@ public class CargarCosechasTerminadas extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         AppDatabase appDatabase = DBManager.getInstance(context);
-        cosechas = appDatabase.cosechaDao().getPendientes();
+        cosechas = appDatabase.cosechaDao().getFinalizadas();
         return null;
     }
 

@@ -55,8 +55,18 @@ public class GuardarCabeceraCosecha extends AsyncTask<Void, Void, Void> {
                 filaCosecha.bultos = 0;
                 filaCosecha.bft = 0;
                 filaCosecha.estado = "P";
+                filaCosecha.tipo = "N";
                 filaCosechaDao.insertOne(filaCosecha);
             }
+            FilaCosecha filaCosecha = new FilaCosecha();
+            filaCosecha.id = UUID.randomUUID().toString();
+            filaCosecha.indice = camion.filas;
+            filaCosecha.cosechaId = cosecha.id;
+            filaCosecha.bultos = 0;
+            filaCosecha.bft = 0;
+            filaCosecha.estado = "P";
+            filaCosecha.tipo = "E";
+            filaCosechaDao.insertOne(filaCosecha);
         }
         return null;
     }

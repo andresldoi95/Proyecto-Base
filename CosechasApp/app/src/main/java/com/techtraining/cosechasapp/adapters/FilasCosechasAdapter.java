@@ -65,7 +65,7 @@ public class FilasCosechasAdapter extends ArrayAdapter<FilaCosecha> {
                     final SharedPreferences.Editor editor = activity.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE).edit();
                     editor.putString(Helper.CURRENT_FILA_NAME, dataModel.id);
                     editor.commit();
-                    if (cosecha.tipoLlenado.equals("B")) {
+                    if (cosecha.tipoLlenado.equals("B") && dataModel.tipo.equals("N")) {
                         Intent intent = new Intent(activity, ItemCosechaActivity.class);
                         editor.putString(Helper.CURRENT_LLENADO_NAME, "B");
                         editor.commit();
@@ -83,6 +83,9 @@ public class FilasCosechasAdapter extends ArrayAdapter<FilaCosecha> {
             viewHolder.btnFotos.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    final SharedPreferences.Editor editor = activity.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE).edit();
+                    editor.putString(Helper.CURRENT_FILA_NAME, dataModel.id);
+                    editor.commit();
                     Intent intent = new Intent(mContext, GaleriaFila.class);
                     mContext.startActivity(intent);
                 }

@@ -1,12 +1,14 @@
 package com.techtraining.cosechasapp;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatButton;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,7 +34,12 @@ import com.techtraining.cosechasapp.tasks.CalcularFlete;
 import com.techtraining.cosechasapp.tasks.CargarDatosNuevaCosecha;
 import com.techtraining.cosechasapp.tasks.GuardarCabeceraCosecha;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 public class NuevaCosechaActivity extends AppCompatActivity {
     public EditText etDiasT2k;
@@ -109,6 +116,16 @@ public class NuevaCosechaActivity extends AppCompatActivity {
         }
         return true;
     }
+    private void calcularDiast2k (String fecha) {
+        SimpleDateFormat sdf = new SimpleDateFormat(Helper.DEFAULT_DATE_FORMAT);
+        Date currentTime = Calendar.getInstance().getTime();
+        try {
+            etDiasT2k.setText(String.valueOf(Math.abs(TimeUnit.DAYS.convert(sdf.parse(fecha).getTime() - currentTime.getTime(), TimeUnit.MILLISECONDS))));
+        }
+        catch (ParseException ex) {
+            Log.e(NuevaCosechaActivity.class.getName(), ex.getMessage());
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -145,7 +162,22 @@ public class NuevaCosechaActivity extends AppCompatActivity {
                 customDatePicker.show(NuevaCosechaActivity.this.getSupportFragmentManager(), "datePicker");
             }
         });
-        new CargarDatosNuevaCosecha(this).execute();
+        etFechaTumba.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                calcularDiast2k(s.toString());
+            }
+        });
         spnOrigenMadera.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -169,6 +201,13 @@ public class NuevaCosechaActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    protected void onResume() {
+        new CargarDatosNuevaCosecha(this).execute();
+        super.onResume();
+    }
+
     public void calcularValorFlete() {
         OrigenMadera origenMadera = (OrigenMadera) spnOrigenMadera.getSelectedItem();
         Destino destino = (Destino) spnDestino.getSelectedItem();
@@ -200,6 +239,8 @@ public class NuevaCosechaActivity extends AppCompatActivity {
         cosecha.materialId = selectedMaterial.id;
         cosecha.aserradorId = selectedAserrador.id;
         cosecha.fechaTumba = etFechaTumba.getText().toString();
+        cosecha.fechaDespacho = etFechaDespacho.getText().toString();
+        cosecha.diasT2k = etDiasT2k.getText().toString();
         cosecha.guiaForestal = etGuiaForestal.getText().toString();
         cosecha.guiaRemision = etGuiaRemision.getText().toString();
         cosecha.tipoMaderaId = selectedTipoMadera.id;

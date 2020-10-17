@@ -27,4 +27,7 @@ public class FilaCosecha {
 
     @ColumnInfo(name = "estado")
     public String estado;
+
+    @ColumnInfo(name = "tipo")
+    public String tipo;
 }
