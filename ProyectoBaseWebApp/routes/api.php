@@ -194,6 +194,8 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('acciones-por-usuario', 'AccionApiController@accionesPorUsuario');
     Route::get('parametros/all', 'ParametroApiController@all');
     Route::resource('parametros', 'ParametroApiController', ['only' => ['index', 'store']]);
+    Route::post('despachos', 'DespachoApiController@store');
+    Route::post('fotos', 'DespachoApiController@subirFotos');
 });
 
 Route::post('/reset', 'UsuarioApiController@reset');
