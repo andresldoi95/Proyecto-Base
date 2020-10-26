@@ -100,6 +100,16 @@ Route::group(['middleware' => 'auth:api'], function () {
             'create', 'edit', 'show'
         ]
     ]);
+    Route::group(['prefix' => 'origenes-hacienda'], function () {
+        Route::delete('/', 'OrigenHaciendaApiController@destroy');
+        Route::get('/all', 'OrigenHaciendaApiController@all');
+        Route::get('/listado', 'OrigenHaciendaApiController@listado');
+    });
+    Route::resource('origenes-hacienda', 'OrigenHaciendaApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
     Route::group(['prefix' => 'tarifas'], function () {
         Route::delete('/', 'TarifaApiController@destroy');
     });

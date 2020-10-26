@@ -313,7 +313,7 @@ class AccionSeeder extends Seeder
         //     'descripcion' => 'Consultar formatos de entrega',
         //     'modulo_id' => 'formatos_entrega'
         // ]);
-        Accion::create([
+        /*Accion::create([
             'id' => 'crear_tarifas',
             'descripcion' => 'Crear tarifas',
             'modulo_id' => 'origenes_madera'
@@ -331,6 +331,26 @@ class AccionSeeder extends Seeder
         Accion::create([
             'id' => 'consultar_tarifas',
             'descripcion' => 'Consultar tarifas',
+            'modulo_id' => 'origenes_madera'
+        ]);*/
+        Accion::create([
+            'id' => 'crear_origenes_hacienda',
+            'descripcion' => 'Crear origenes de madera',
+            'modulo_id' => 'origenes_madera'
+        ]);
+        Accion::create([
+            'id' => 'editar_origenes_hacienda',
+            'descripcion' => 'Editar origenes de madera',
+            'modulo_id' => 'origenes_madera'
+        ]);
+        Accion::create([
+            'id' => 'eliminar_origenes_hacienda',
+            'descripcion' => 'Eliminar/Re-activar origenes de madera',
+            'modulo_id' => 'origenes_madera'
+        ]);
+        Accion::create([
+            'id' => 'consultar_origenes_hacienda',
+            'descripcion' => 'Consultar origenes de madera',
             'modulo_id' => 'origenes_madera'
         ]);
     }

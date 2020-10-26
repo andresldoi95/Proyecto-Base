@@ -9,7 +9,7 @@ export default {
     },
     message: {
         destino: 'Destino',
-        origen_madera: 'Origen de madera',
+        origen_madera: 'Hacienda',
         hectareas: "Hectáreas",
         anio_cultivo: "Año de cultivo",
         volumen_inventario: "Volumen de inventario",
@@ -72,6 +72,7 @@ export default {
         codigo_vendor: 'Código vendor'
     },
     title: {
+        origenes_hacienda: 'Origenes de madera',
         tarifas: 'Tarifas',
         parametros: "Parámetros",
         "codigos-aserradores": "Códigos de aserradores",
@@ -98,7 +99,7 @@ export default {
         correos: "Correos",
         tipos_madera: "Tipos de madera",
         formatos_entrega: "Formatos de entrega",
-        origenes_madera: "Orígenes de madera",
+        origenes_madera: "Haciendas",
         tipos_bulto: "Tipos de bulto"
     },
     etiqueta: {

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 
 import com.techtraining.cosechasapp.R;
 import com.techtraining.cosechasapp.db.Cosecha;
@@ -29,7 +30,7 @@ public class CosechasTerminadasAdapter extends ArrayAdapter<Cosecha>  {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Cosecha dataModel = getItem(position);
+        final Cosecha dataModel = getItem(position);
         ViewHolder viewHolder;
         if (convertView == null) {
 
@@ -37,6 +38,12 @@ public class CosechasTerminadasAdapter extends ArrayAdapter<Cosecha>  {
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.item_cosecha_terminada, parent, false);
             viewHolder.chkSeleccionar = (CheckBox) convertView.findViewById(R.id.chkSeleccionar);
+            viewHolder.chkSeleccionar.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    dataModel.seleccionado = isChecked;
+                }
+            });
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();

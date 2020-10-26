@@ -3588,20 +3588,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3613,14 +3599,12 @@ __webpack_require__.r(__webpack_exports__);
         valor: "",
         descripcion: "",
         id: "",
-        _method: undefined,
-        color: ""
+        _method: undefined
       },
       acciones: [],
       errores: {
         valor: undefined,
-        descripcion: undefined,
-        color: undefined
+        descripcion: undefined
       }
     };
   },
@@ -3633,7 +3617,6 @@ __webpack_require__.r(__webpack_exports__);
       this.form._method = undefined;
       this.form.valor = "";
       this.form.descripcion = "";
-      this.form.color = "";
     },
     adding: function adding() {
       this.limpiar();
@@ -3670,12 +3653,10 @@ __webpack_require__.r(__webpack_exports__);
       this.form.id = espesor.id;
       this.form.valor = espesor.valor;
       this.form.descripcion = espesor.descripcion;
-      this.form.color = espesor.color;
     },
     limpiarErrores: function limpiarErrores() {
       this.errores.descripcion = undefined;
       this.errores.valor = undefined;
-      this.errores.color = undefined;
     },
     submitFormulario: function submitFormulario() {
       var _this2 = this;
@@ -3702,7 +3683,6 @@ __webpack_require__.r(__webpack_exports__);
         if (status === 422) {
           _this2.errores.valor = response.data.errors.valor;
           _this2.errores.descripcion = response.data.errors.descripcion;
-          _this2.errores.color = response.data.errors.color;
         } else {
           _this2.$buefy.toast.open({
             message: _this2.$t("message.generic_error"),
@@ -3804,20 +3784,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3829,14 +3795,12 @@ __webpack_require__.r(__webpack_exports__);
         descripcion: "",
         id: "",
         _method: undefined,
-        factor_hueco_sueltos: 0,
-        factor_hueco_bultos: 0
+        factor_hueco: 0
       },
       acciones: [],
       errores: {
         descripcion: undefined,
-        factor_hueco_sueltos: undefined,
-        factor_hueco_bultos: undefined
+        factor_hueco: undefined
       }
     };
   },
@@ -3847,8 +3811,7 @@ __webpack_require__.r(__webpack_exports__);
     limpiar: function limpiar() {
       this.form.id = "";
       this.form._method = undefined;
-      this.form.factor_hueco_sueltos = undefined;
-      this.form.factor_hueco_bultos = undefined;
+      this.form.factor_hueco = undefined;
       this.form.descripcion = "";
     },
     adding: function adding() {
@@ -3885,13 +3848,11 @@ __webpack_require__.r(__webpack_exports__);
     editar: function editar(formatoEntrega) {
       this.form.id = formatoEntrega.id;
       this.form.descripcion = formatoEntrega.descripcion;
-      this.form.factor_hueco_sueltos = formatoEntrega.factor_hueco_sueltos;
-      this.form.factor_hueco_bultos = formatoEntrega.factor_hueco_bultos;
+      this.form.factor_hueco = formatoEntrega.factor_hueco;
     },
     limpiarErrores: function limpiarErrores() {
       this.errores.descripcion = undefined;
-      this.errores.factor_hueco_sueltos = undefined;
-      this.errores.factor_hueco_bultos = undefined;
+      this.errores.factor_hueco = undefined;
     },
     submitFormulario: function submitFormulario() {
       var _this2 = this;
@@ -4304,6 +4265,180 @@ __webpack_require__.r(__webpack_exports__);
 
         if (status === 422) {
           _this2.errores.codigo = response.data.errors.codigo;
+          _this2.errores.descripcion = response.data.errors.descripcion;
+        } else {
+          _this2.$buefy.toast.open({
+            message: _this2.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        }
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/origenes-hacienda/OrigenesHacienda.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/origenes-hacienda/OrigenesHacienda.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layouts/MasterForm */ "./resources/js/components/layouts/MasterForm.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    MasterForm: _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      form: {
+        descripcion: "",
+        id: "",
+        _method: undefined
+      },
+      acciones: [],
+      errores: {
+        descripcion: undefined
+      }
+    };
+  },
+  methods: {
+    canceled: function canceled() {
+      this.limpiar();
+    },
+    limpiar: function limpiar() {
+      this.form.id = "";
+      this.form._method = undefined;
+      this.form.descripcion = "";
+    },
+    adding: function adding() {
+      this.limpiar();
+    },
+    realizarAccion: function realizarAccion(type, origenes_hacienda) {
+      var _this = this;
+
+      if (type === "E") {
+        var origenes_haciendaId = [];
+
+        for (var i = 0; i < origenes_hacienda.length; i++) {
+          origenes_haciendaId.push(origenes_hacienda[i].id);
+        }
+
+        this.$http.post("http://127.0.0.1:8000/api" + "/origenes-hacienda", {
+          origenesHacienda: origenes_haciendaId,
+          _method: "DELETE"
+        }).then(function () {
+          _this.$buefy.toast.open({
+            message: _this.$t("message.guardado_generico"),
+            type: "is-success"
+          });
+
+          _this.$refs.masterForm.submit();
+        })["catch"](function () {
+          _this.$buefy.toast.open({
+            message: _this.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        });
+      }
+    },
+    editar: function editar(origenHacienda) {
+      this.form.id = origenHacienda.id;
+      this.form.descripcion = origenHacienda.descripcion;
+    },
+    limpiarErrores: function limpiarErrores() {
+      this.errores.descripcion = undefined;
+    },
+    submitFormulario: function submitFormulario() {
+      var _this2 = this;
+
+      this.limpiarErrores();
+      var path = "http://127.0.0.1:8000/api" + "/origenes-hacienda";
+
+      if (this.form.id !== "") {
+        path += "/" + this.form.id;
+        this.form._method = "PUT";
+      } else this.form._method = undefined;
+
+      this.$http.post(path, this.form).then(function () {
+        _this2.$buefy.toast.open({
+          message: _this2.$t("message.guardado_generico"),
+          type: "is-success"
+        });
+
+        _this2.$refs.masterForm.submit();
+      })["catch"](function (_ref) {
+        var response = _ref.response;
+        var status = response.status;
+
+        if (status === 422) {
           _this2.errores.descripcion = response.data.errors.descripcion;
         } else {
           _this2.$buefy.toast.open({
@@ -6532,6 +6667,19 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -27798,11 +27946,6 @@ var render = function() {
                     sortable: true
                   },
                   {
-                    label: _vm.$t("message.color"),
-                    field: "color",
-                    sortable: true
-                  },
-                  {
                     label: _vm.$t("message.status"),
                     field: "estado",
                     sortable: true
@@ -27906,38 +28049,6 @@ var render = function() {
                     )
                   ],
                   1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "column" },
-                  [
-                    _c(
-                      "b-field",
-                      {
-                        attrs: {
-                          message: _vm.errores.color
-                            ? _vm.errores.color[0]
-                            : "",
-                          type: _vm.errores.color ? "is-danger" : "",
-                          label: _vm.$t("message.color")
-                        }
-                      },
-                      [
-                        _c("b-input", {
-                          model: {
-                            value: _vm.form.color,
-                            callback: function($$v) {
-                              _vm.$set(_vm.form, "color", $$v)
-                            },
-                            expression: "form.color"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
                 )
               ])
             ]
@@ -28011,13 +28122,8 @@ var render = function() {
                     sortable: true
                   },
                   {
-                    label: _vm.$t("message.factor_hueco_bultos"),
-                    field: "factor_hueco_bultos",
-                    sortable: true
-                  },
-                  {
-                    label: _vm.$t("message.factor_hueco_sueltos"),
-                    field: "factor_hueco_sueltos",
+                    label: _vm.$t("message.factor_hueco"),
+                    field: "factor_hueco",
                     sortable: true
                   },
                   {
@@ -28102,57 +28208,21 @@ var render = function() {
                       "b-field",
                       {
                         attrs: {
-                          message: _vm.errores.factor_hueco_bultos
-                            ? _vm.errores.factor_hueco_bultos[0]
+                          message: _vm.errores.factor_hueco
+                            ? _vm.errores.factor_hueco[0]
                             : "",
-                          type: _vm.errores.factor_hueco_bultos
-                            ? "is-danger"
-                            : "",
-                          label: _vm.$t("message.factor_hueco_bultos")
+                          type: _vm.errores.factor_hueco ? "is-danger" : "",
+                          label: _vm.$t("message.factor_hueco")
                         }
                       },
                       [
                         _c("b-input", {
                           model: {
-                            value: _vm.form.factor_hueco_bultos,
+                            value: _vm.form.factor_hueco,
                             callback: function($$v) {
-                              _vm.$set(_vm.form, "factor_hueco_bultos", $$v)
+                              _vm.$set(_vm.form, "factor_hueco", $$v)
                             },
-                            expression: "form.factor_hueco_bultos"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "column" },
-                  [
-                    _c(
-                      "b-field",
-                      {
-                        attrs: {
-                          message: _vm.errores.factor_hueco_sueltos
-                            ? _vm.errores.factor_hueco_sueltos[0]
-                            : "",
-                          type: _vm.errores.factor_hueco_sueltos
-                            ? "is-danger"
-                            : "",
-                          label: _vm.$t("message.factor_hueco_sueltos")
-                        }
-                      },
-                      [
-                        _c("b-input", {
-                          model: {
-                            value: _vm.form.factor_hueco_sueltos,
-                            callback: function($$v) {
-                              _vm.$set(_vm.form, "factor_hueco_sueltos", $$v)
-                            },
-                            expression: "form.factor_hueco_sueltos"
+                            expression: "form.factor_hueco"
                           }
                         })
                       ],
@@ -28479,6 +28549,150 @@ var render = function() {
                               _vm.$set(_vm.form, "codigo", $$v)
                             },
                             expression: "form.codigo"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.descripcion
+                            ? _vm.errores.descripcion[0]
+                            : "",
+                          type: _vm.errores.descripcion ? "is-danger" : "",
+                          label: _vm.$t("message.descripcion")
+                        }
+                      },
+                      [
+                        _c("b-input", {
+                          model: {
+                            value: _vm.form.descripcion,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "descripcion", $$v)
+                            },
+                            expression: "form.descripcion"
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                )
+              ])
+            ]
+          )
+        ],
+        1
+      )
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/origenes-hacienda/OrigenesHacienda.vue?vue&type=template&id=90eabf86&":
+/*!*******************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/admin/origenes-hacienda/OrigenesHacienda.vue?vue&type=template&id=90eabf86& ***!
+  \*******************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("section", { staticClass: "hero" }, [
+    _c("div", { staticClass: "hero-body" }, [
+      _c(
+        "div",
+        { staticClass: "container" },
+        [
+          _c("h1", { staticClass: "title" }, [
+            _vm._v(_vm._s(_vm.$t("title.origenes_hacienda")))
+          ]),
+          _vm._v(" "),
+          _c(
+            "masterForm",
+            {
+              ref: "masterForm",
+              attrs: {
+                typeOptions: [
+                  {
+                    value: "E",
+                    text: _vm.$t("message.delete"),
+                    visible: _vm.$store.getters.permiteAccion(
+                      "eliminar_origenes_hacienda"
+                    )
+                  }
+                ],
+                createButton: _vm.$store.getters.permiteAccion(
+                  "crear_origenes_hacienda"
+                ),
+                resource: "/api/origenes-hacienda",
+                isPaginated: false,
+                columns: [
+                  {
+                    label: _vm.$t("message.id"),
+                    field: "id",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.descripcion"),
+                    field: "descripcion",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("message.status"),
+                    field: "estado",
+                    sortable: true
+                  }
+                ]
+              },
+              on: {
+                adding: _vm.adding,
+                canceled: _vm.canceled,
+                realizarAccion: _vm.realizarAccion,
+                editar: _vm.editar,
+                submitFormulario: _vm.submitFormulario
+              }
+            },
+            [
+              _c("div", { staticClass: "columns" }, [
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      { attrs: { label: _vm.$t("message.id") } },
+                      [
+                        _c("b-input", {
+                          attrs: { readonly: "" },
+                          model: {
+                            value: _vm.form.id,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "id", $$v)
+                            },
+                            expression: "form.id"
                           }
                         })
                       ],
@@ -31184,6 +31398,37 @@ var render = function() {
                             label: _vm.$t("title.origenes_madera"),
                             tag: "router-link",
                             to: "/admin/origenes-madera"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "" &&
+                                (_vm.$store.getters.permiteAccion(
+                                  "crear_origenes_hacienda"
+                                ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "editar_origenes_hacienda"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "consultar_origenes_hacienda"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "eliminar_origenes_hacienda"
+                                  )),
+                              expression:
+                                "\n                $store.state.nombre_empresa_actual !== '' &&\n                ($store.getters.permiteAccion('crear_origenes_hacienda') ||\n                  $store.getters.permiteAccion('editar_origenes_hacienda') ||\n                  $store.getters.permiteAccion('consultar_origenes_hacienda') ||\n                  $store.getters.permiteAccion('eliminar_origenes_hacienda'))\n              "
+                            }
+                          ],
+                          attrs: {
+                            icon: "source-merge",
+                            label: _vm.$t("title.origenes_hacienda"),
+                            tag: "router-link",
+                            to: "/admin/origenes-hacienda"
                           }
                         }),
                         _vm._v(" "),
@@ -54418,6 +54663,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/admin/origenes-hacienda/OrigenesHacienda.vue":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/admin/origenes-hacienda/OrigenesHacienda.vue ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _OrigenesHacienda_vue_vue_type_template_id_90eabf86___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OrigenesHacienda.vue?vue&type=template&id=90eabf86& */ "./resources/js/components/admin/origenes-hacienda/OrigenesHacienda.vue?vue&type=template&id=90eabf86&");
+/* harmony import */ var _OrigenesHacienda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OrigenesHacienda.vue?vue&type=script&lang=js& */ "./resources/js/components/admin/origenes-hacienda/OrigenesHacienda.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _OrigenesHacienda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _OrigenesHacienda_vue_vue_type_template_id_90eabf86___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _OrigenesHacienda_vue_vue_type_template_id_90eabf86___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/admin/origenes-hacienda/OrigenesHacienda.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/origenes-hacienda/OrigenesHacienda.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************!*\
+  !*** ./resources/js/components/admin/origenes-hacienda/OrigenesHacienda.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OrigenesHacienda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib??ref--4-0!../../../../../node_modules/vue-loader/lib??vue-loader-options!./OrigenesHacienda.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/origenes-hacienda/OrigenesHacienda.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OrigenesHacienda_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/admin/origenes-hacienda/OrigenesHacienda.vue?vue&type=template&id=90eabf86&":
+/*!*************************************************************************************************************!*\
+  !*** ./resources/js/components/admin/origenes-hacienda/OrigenesHacienda.vue?vue&type=template&id=90eabf86& ***!
+  \*************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrigenesHacienda_vue_vue_type_template_id_90eabf86___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../../node_modules/vue-loader/lib??vue-loader-options!./OrigenesHacienda.vue?vue&type=template&id=90eabf86& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/admin/origenes-hacienda/OrigenesHacienda.vue?vue&type=template&id=90eabf86&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrigenesHacienda_vue_vue_type_template_id_90eabf86___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OrigenesHacienda_vue_vue_type_template_id_90eabf86___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/admin/origenes-madera/OrigenesMadera.vue":
 /*!**************************************************************************!*\
   !*** ./resources/js/components/admin/origenes-madera/OrigenesMadera.vue ***!
@@ -55560,7 +55874,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   message: {
     destino: 'Destine',
-    origen_madera: 'Wood Source',
+    origen_madera: 'Hacienda',
     hectareas: "Miles",
     anio_cultivo: "Year",
     volumen_inventario: "Inventory volumen",
@@ -55619,6 +55933,7 @@ __webpack_require__.r(__webpack_exports__);
     codigo_vendor: 'Vendor code'
   },
   title: {
+    origenes_hacienda: 'Wood source',
     tarifas: 'Values',
     parametros: "Parameters",
     "codigos-aserradores": "Aserradores codes",
@@ -55645,7 +55960,7 @@ __webpack_require__.r(__webpack_exports__);
     camiones: "Trucks",
     tipos_madera: "Wood types",
     formatos_entrega: "Delivery formats",
-    origenes_madera: "Wood source",
+    origenes_madera: "Haciendas",
     tipos_bulto: "Package types"
   },
   etiqueta: {
@@ -55689,7 +56004,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   message: {
     destino: 'Destino',
-    origen_madera: 'Origen de madera',
+    origen_madera: 'Hacienda',
     hectareas: "Hectáreas",
     anio_cultivo: "Año de cultivo",
     volumen_inventario: "Volumen de inventario",
@@ -55750,6 +56065,7 @@ __webpack_require__.r(__webpack_exports__);
     codigo_vendor: 'Código vendor'
   },
   title: {
+    origenes_hacienda: 'Origenes de madera',
     tarifas: 'Tarifas',
     parametros: "Parámetros",
     "codigos-aserradores": "Códigos de aserradores",
@@ -55776,7 +56092,7 @@ __webpack_require__.r(__webpack_exports__);
     correos: "Correos",
     tipos_madera: "Tipos de madera",
     formatos_entrega: "Formatos de entrega",
-    origenes_madera: "Orígenes de madera",
+    origenes_madera: "Haciendas",
     tipos_bulto: "Tipos de bulto"
   },
   etiqueta: {
@@ -55956,6 +56272,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_admin_formatos_entrega_FormatosEntrega__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ../components/admin/formatos-entrega/FormatosEntrega */ "./resources/js/components/admin/formatos-entrega/FormatosEntrega.vue");
 /* harmony import */ var _components_admin_origenes_madera_OrigenesMadera__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ../components/admin/origenes-madera/OrigenesMadera */ "./resources/js/components/admin/origenes-madera/OrigenesMadera.vue");
 /* harmony import */ var _components_admin_tarifas_Tarifas__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ../components/admin/tarifas/Tarifas */ "./resources/js/components/admin/tarifas/Tarifas.vue");
+/* harmony import */ var _components_admin_origenes_hacienda_OrigenesHacienda__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../components/admin/origenes-hacienda/OrigenesHacienda */ "./resources/js/components/admin/origenes-hacienda/OrigenesHacienda.vue");
+
 
 
 
@@ -56156,6 +56474,13 @@ __webpack_require__.r(__webpack_exports__);
         requiresAuth: true
       },
       name: "OrigenesMadera"
+    }, {
+      component: _components_admin_origenes_hacienda_OrigenesHacienda__WEBPACK_IMPORTED_MODULE_26__["default"],
+      path: "origenes-hacienda",
+      meta: {
+        requiresAuth: true
+      },
+      name: "OrigenesHacienda"
     }]
   }]
 });

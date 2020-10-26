@@ -48,9 +48,9 @@
     <string name="importando_tipos_madera">Importando tipos de madera...</string>
     <string name="formatos_entrega_importados">Formatos de entrega importados...</string>
     <string name="importando_formatos_entrega">Importando formatos de entrega...</string>
-    <string name="importando_origenes_madera">Importando orígenes de madera...</string>
-    <string name="origenes_madera_importados">Orígenes de madera importados...</string>
-    <string name="importando_tipos_bulto">Importando orígenes de madera...</string>
+    <string name="importando_origenes_madera">Importando haciendas...</string>
+    <string name="origenes_madera_importados">Haciendas importadas...</string>
+    <string name="importando_tipos_bulto">Importando haciendas...</string>
     <string name="tipos_bulto_importados">Tipos de bulto importados...</string>
 
     <string name="tv_camion">Camión</string>
@@ -60,7 +60,7 @@
     <string name="tv_material">Material</string>
     <string name="tv_codigo_po">Código PO</string>
     <string name="hint_po">Será manual cuando no exista</string>
-    <string name="tv_origen_madera">Origen de madera</string>
+    <string name="tv_origen_madera">Hacienda</string>
     <string name="tv_tipo_madera">Tipo de madera</string>
     <string name="tv_fecha_tumba">Fecha de tumba</string>
     <string name="hint_fecha_tumba">Indique una fecha...</string>
@@ -82,7 +82,7 @@
     <string name="fecha_tumba_requerida">La fecha de tumba es requerida</string>
     <string name="tipo_madera_requerido">El tipo de madera es requerido.</string>
     <string name="formato_entrega_requerido">El formato de entrega es requerido.</string>
-    <string name="origen_madera_requerido">El origen de madera es requerido</string>
+    <string name="origen_madera_requerido">La hacienda es requerida</string>
     <string name="tipo_bulto">Tipo de bulto</string>
     <string name="tipo_bulto_requerido">El tipo de bulto es requerido</string>
 
@@ -158,4 +158,6 @@
     <string name="despacho_finalizado">Despacho finalizado</string>
 
     <string name="desea_finalizar_despacho">¿Desea finalizar el despacho?</string>
+
+    <string name="debe_seleccionar_despachos">Debe seleccionar al menos un despacho</string>
 </resources>

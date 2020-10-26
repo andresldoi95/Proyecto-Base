@@ -9,7 +9,7 @@ export default {
     },
     message: {
         destino: 'Destine',
-        origen_madera: 'Wood Source',
+        origen_madera: 'Hacienda',
         hectareas: "Miles",
         anio_cultivo: "Year",
         volumen_inventario: "Inventory volumen",
@@ -68,6 +68,7 @@ export default {
         codigo_vendor: 'Vendor code'
     },
     title: {
+        origenes_hacienda: 'Wood source',
         tarifas: 'Values',
         parametros: "Parameters",
         "codigos-aserradores": "Aserradores codes",
@@ -94,7 +95,7 @@ export default {
         camiones: "Trucks",
         tipos_madera: "Wood types",
         formatos_entrega: "Delivery formats",
-        origenes_madera: "Wood source",
+        origenes_madera: "Haciendas",
         tipos_bulto: "Package types"
     },
     etiqueta: {

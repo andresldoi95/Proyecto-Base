@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Espesor extends Model
+class OrigenHacienda extends Model
 {
+    protected $table = 'origenes_hacienda';
     protected $fillable = [
-        'empresa_id', 'descripcion', 'valor', 'estado', 'creador_id', 'modificador_id'
+        'empresa_id', 'descripcion', 'estado', 'creador_id', 'modificador_id'
     ];
     public function scopeActive($query)
     {
@@ -25,5 +26,4 @@ class Espesor extends Model
     {
         return $query->where('empresa_id', $empresaId);
     }
-    protected $table = 'espesores';
 }

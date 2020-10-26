@@ -2,46 +2,41 @@
   <section class="hero">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title">{{ $t('title.espesores') }}</h1>
+        <h1 class="title">{{ $t("title.origenes_hacienda") }}</h1>
         <masterForm
           :typeOptions="[
-                {
-                    value: 'E',
-                    text: $t('message.delete'),
-                    visible: $store.getters.permiteAccion('eliminar_espesores')
-                }
-            ]"
-          :createButton="$store.getters.permiteAccion('crear_espesores')"
+            {
+              value: 'E',
+              text: $t('message.delete'),
+              visible: $store.getters.permiteAccion('eliminar_origenes_hacienda'),
+            },
+          ]"
+          :createButton="$store.getters.permiteAccion('crear_origenes_hacienda')"
           @adding="adding"
           @canceled="canceled"
           @realizarAccion="realizarAccion"
           @editar="editar"
           ref="masterForm"
           @submitFormulario="submitFormulario"
-          resource="/api/espesores"
+          resource="/api/origenes-hacienda"
           :isPaginated="false"
           :columns="[
-                {
-                    label : $t('message.id'),
-                    field : 'id',
-                    sortable : true
-                },
-                {
-                    label : $t('message.descripcion'),
-                    field : 'descripcion',
-                    sortable : true
-                },
-                {
-                    label : $t('message.valor'),
-                    field : 'valor',
-                    sortable : true
-                },
-                {
-                    label : $t('message.status'),
-                    field : 'estado',
-                    sortable : true
-                }
-            ]"
+            {
+              label: $t('message.id'),
+              field: 'id',
+              sortable: true,
+            },
+            {
+              label: $t('message.descripcion'),
+              field: 'descripcion',
+              sortable: true,
+            },
+            {
+              label: $t('message.status'),
+              field: 'estado',
+              sortable: true,
+            },
+          ]"
         >
           <div class="columns">
             <div class="column">
@@ -51,20 +46,11 @@
             </div>
             <div class="column">
               <b-field
-                :message="errores.descripcion?errores.descripcion[0]:''"
-                :type="errores.descripcion?'is-danger':''"
+                :message="errores.descripcion ? errores.descripcion[0] : ''"
+                :type="errores.descripcion ? 'is-danger' : ''"
                 :label="$t('message.descripcion')"
               >
                 <b-input v-model="form.descripcion"></b-input>
-              </b-field>
-            </div>
-            <div class="column">
-              <b-field
-                :message="errores.valor?errores.valor[0]:''"
-                :type="errores.valor?'is-danger':''"
-                :label="$t('message.valor')"
-              >
-                <b-input v-model="form.valor"></b-input>
               </b-field>
             </div>
           </div>
@@ -81,14 +67,12 @@ export default {
   data: function () {
     return {
       form: {
-        valor: "",
         descripcion: "",
         id: "",
         _method: undefined
       },
       acciones: [],
       errores: {
-        valor: undefined,
         descripcion: undefined
       },
     };
@@ -100,20 +84,19 @@ export default {
     limpiar: function () {
       this.form.id = "";
       this.form._method = undefined;
-      this.form.valor = "";
       this.form.descripcion = "";
     },
     adding: function () {
       this.limpiar();
     },
-    realizarAccion: function (type, espesores) {
+    realizarAccion: function (type, origenes_hacienda) {
       if (type === "E") {
-        let espesoresId = [];
-        for (let i = 0; i < espesores.length; i++)
-          espesoresId.push(espesores[i].id);
+        let origenes_haciendaId = [];
+        for (let i = 0; i < origenes_hacienda.length; i++)
+          origenes_haciendaId.push(origenes_hacienda[i].id);
         this.$http
-          .post(process.env.MIX_APP_URL_API + "/espesores", {
-            espesores: espesoresId,
+          .post(process.env.MIX_APP_URL_API + "/origenes-hacienda", {
+            origenesHacienda: origenes_haciendaId,
             _method: "DELETE",
           })
           .then(() => {
@@ -131,18 +114,16 @@ export default {
           });
       }
     },
-    editar: function (espesor) {
-      this.form.id = espesor.id;
-      this.form.valor = espesor.valor;
-      this.form.descripcion = espesor.descripcion;
+    editar: function (origenHacienda) {
+      this.form.id = origenHacienda.id;
+      this.form.descripcion = origenHacienda.descripcion;
     },
     limpiarErrores: function () {
       this.errores.descripcion = undefined;
-      this.errores.valor = undefined;
     },
     submitFormulario: function () {
       this.limpiarErrores();
-      let path = process.env.MIX_APP_URL_API + "/espesores";
+      let path = process.env.MIX_APP_URL_API + "/origenes-hacienda";
       if (this.form.id !== "") {
         path += "/" + this.form.id;
         this.form._method = "PUT";
@@ -159,7 +140,6 @@ export default {
         .catch(({ response }) => {
           let status = response.status;
           if (status === 422) {
-            this.errores.valor = response.data.errors.valor;
             this.errores.descripcion = response.data.errors.descripcion;
           } else {
             this.$buefy.toast.open({

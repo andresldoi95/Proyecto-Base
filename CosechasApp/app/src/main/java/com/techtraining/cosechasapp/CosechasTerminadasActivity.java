@@ -7,8 +7,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.techtraining.cosechasapp.adapters.CosechasTerminadasAdapter;
+import com.techtraining.cosechasapp.db.Cosecha;
 import com.techtraining.cosechasapp.tasks.CargarCosechasTerminadas;
+
+import java.util.ArrayList;
 
 public class CosechasTerminadasActivity extends AppCompatActivity {
     public ListView lvCosechas;
@@ -27,7 +32,20 @@ public class CosechasTerminadasActivity extends AppCompatActivity {
         return true;
     }
     private void exportar() {
+        CosechasTerminadasAdapter cosechasTerminadasAdapter = (CosechasTerminadasAdapter) lvCosechas.getAdapter();
+        ArrayList<Cosecha> cosechas = new ArrayList<>();
+        for (int i = 0; i < cosechasTerminadasAdapter.getCount(); i++) {
+            Cosecha cosecha = (Cosecha) cosechasTerminadasAdapter.getItem(i);
+            if (cosecha.seleccionado) {
+                cosechas.add(cosecha);
+            }
+        }
+        if (cosechas.size() > 0) {
 
+        }
+        else {
+            Toast.makeText(this, R.string.debe_seleccionar_despachos, Toast.LENGTH_SHORT).show();
+        }
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
