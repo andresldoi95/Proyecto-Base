@@ -4,11 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FormatoEntrega extends Model
+class Tarifa extends Model
 {
     protected $fillable = [
-        'empresa_id', 'descripcion', 'estado', 'creador_id', 'modificador_id', 'factor_hueco_bultos', 'factor_hueco_sueltos'
+        'empresa_id', 'origen_madera_id', 'destino_id', 'valor', 'creador_id',
+        'modificador_id'
     ];
+    public function origenMadera() {
+        return $this->belongsTo('App\OrigenMadera');
+    }
+    public function destino() {
+        return $this->belongsTo('App\Destino');
+    }
     public function scopeActive($query)
     {
         return $query->where('estado', 'A');
@@ -25,5 +32,4 @@ class FormatoEntrega extends Model
     {
         return $query->where('empresa_id', $empresaId);
     }
-    protected $table = 'formatos_entrega';
 }

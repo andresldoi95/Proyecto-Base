@@ -8,11 +8,11 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.techtraining.cosechasapp.R;
-import com.techtraining.cosechasapp.db.FilaCosecha;
+import com.techtraining.cosechasapp.db.FilaSuelto;
 
 import java.util.List;
 
-public class FilasCosechasAdapter extends ArrayAdapter<FilaCosecha> {
+public class FilaSueltoAdapter extends ArrayAdapter<FilaSuelto> {
     Context mContext;
 
     private static class ViewHolder {
@@ -20,7 +20,7 @@ public class FilasCosechasAdapter extends ArrayAdapter<FilaCosecha> {
         TextView tvIndice;
     }
 
-    public FilasCosechasAdapter(List<FilaCosecha> data, Context context) {
+    public FilaSueltoAdapter(List<FilaSuelto> data, Context context) {
         super(context, R.layout.item_fila_camion, data);
         this.mContext=context;
 
@@ -28,18 +28,18 @@ public class FilasCosechasAdapter extends ArrayAdapter<FilaCosecha> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        FilaCosecha dataModel = getItem(position);
-        FilasCosechasAdapter.ViewHolder viewHolder;
+        FilaSuelto dataModel = getItem(position);
+        FilaSueltoAdapter.ViewHolder viewHolder;
         if (convertView == null) {
 
-            viewHolder = new FilasCosechasAdapter.ViewHolder();
+            viewHolder = new FilaSueltoAdapter.ViewHolder();
             LayoutInflater inflater = LayoutInflater.from(getContext());
             convertView = inflater.inflate(R.layout.item_fila_camion, parent, false);
             viewHolder.tvBft = convertView.findViewById(R.id.tvBft);
             viewHolder.tvIndice = convertView.findViewById(R.id.tvIndice);
             convertView.setTag(viewHolder);
         } else {
-            viewHolder = (FilasCosechasAdapter.ViewHolder) convertView.getTag();
+            viewHolder = (FilaSueltoAdapter.ViewHolder) convertView.getTag();
         }
         viewHolder.tvBft.setText(String.valueOf(dataModel.bft));
         viewHolder.tvIndice.setText(String.valueOf(dataModel.indice + 1));

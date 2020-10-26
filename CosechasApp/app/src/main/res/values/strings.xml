@@ -14,9 +14,11 @@
     <string name="close">Cerrar</string>
     <string name="logged_out">Has cerrado sesión exitósamente</string>
     <string name="update_db">Importar información</string>
-    <string name="nueva_cosecha">Nueva cosecha</string>
-    <string name="cosechas_terminadas">Cosechas terminadas</string>
+    <string name="nueva_cosecha">Nuevo despacho</string>
+    <string name="cosechas_terminadas">Despachos en espera</string>
     <string name="opcion_no_disponible">Opción no disponible</string>
+    <string name="fecha_despacho">Fecha de despacho</string>
+    <string name="dias_t2k">Días T2K</string>
 
     <string name="importando_datos">Importando datos...</string>
     <string name="importando_empresas">Importando empresas...</string>
@@ -58,6 +60,15 @@
     <string name="tv_material">Material</string>
     <string name="tv_codigo_po">Código PO</string>
     <string name="hint_po">Será manual cuando no exista</string>
+    <string name="tv_origen_madera">Origen de madera</string>
+    <string name="tv_tipo_madera">Tipo de madera</string>
+    <string name="tv_fecha_tumba">Fecha de tumba</string>
+    <string name="hint_fecha_tumba">Indique una fecha...</string>
+    <string name="tv_guia_remision">Guía de remisión</string>
+    <string name="hint_guia_remision">Escriba...</string>
+    <string name="tv_guia_forestal">Guía forestal</string>
+    <string name="hint_guia_forestal">Escriba...</string>
+    <string name="tv_formato_entrega">Formato de entrega</string>
 
     <string name="guardar">Guardar</string>
     <string name="cancelar">Cancelar</string>
@@ -68,8 +79,15 @@
     <string name="procedencia_requerida">La procedencia es requerida.</string>
     <string name="material_requerido">El material es requerido.</string>
     <string name="codigo_po_requerido">El código PO es requerido.</string>
+    <string name="fecha_tumba_requerida">La fecha de tumba es requerida</string>
+    <string name="tipo_madera_requerido">El tipo de madera es requerido.</string>
+    <string name="formato_entrega_requerido">El formato de entrega es requerido.</string>
+    <string name="origen_madera_requerido">El origen de madera es requerido</string>
+    <string name="tipo_bulto">Tipo de bulto</string>
+    <string name="tipo_bulto_requerido">El tipo de bulto es requerido</string>
 
-    <string name="cosecha_almacenada">Los datos de la cosecha han sido almacenados.</string>
+    <string name="cosecha_almacenada">Los datos del despacho han sido almacenados.</string>
+    <string name="valor_flete">Valor del flete</string>
 
     <string name="exportar">Exportar</string>
     <string name="anular">Anular</string>
@@ -80,17 +98,25 @@
 
     <string name="fila">Fila</string>
 
-    <string name="plantilla">Plantilla</string>
+    <string name="plantilla">Cantidad de bultos</string>
     <string name="bultos">Bultos</string>
     <string name="espesor">Espesor</string>
     <string name="largo">Largo</string>
     <string name="datos_bloque">Datos de bloque</string>
 
-    <string name="plantilla_requerida">La plantilla es requerida.</string>
+    <string name="plantilla_requerida">La cantidad de bultos es requerida.</string>
     <string name="bultos_requeridos">Los bultos son requeridos.</string>
     <string name="espesor_requerido">El espesor es requerido.</string>
     <string name="largo_requerido">El largo es requerido.</string>
 
     <string name="bloque_guardado">Los datos del bloque han sido almacenados exitósamente.</string>
     <string name="parametros_requeridos">No se ha realizado las parametrizaciones respectivas.</string>
+
+    <string name="titulo_confirmacion">Pregunta</string>
+    <string name="mensaje_confirmacion">Seleccione el tipo de ingreso</string>
+    <string name="respuesta_bultos">Bultos</string>
+    <string name="respuesta_sueltos">Sueltos</string>
+    <string name="nuevo">Nuevo</string>
+
+    <string name="ancho">Ancho</string>
 </resources>

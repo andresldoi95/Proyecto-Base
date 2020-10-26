@@ -8,7 +8,7 @@ class Aserrador extends Model
 {
     protected $table = 'aserradores';
     protected $fillable = [
-        'empresa_id', 'nombre', 'identificacion', 'procedencia_id', 'estado', 'creador_id', 'modificador_id'
+        'empresa_id', 'nombre', 'identificacion', 'estado', 'creador_id', 'modificador_id'
     ];
     public function procedencia()
     {

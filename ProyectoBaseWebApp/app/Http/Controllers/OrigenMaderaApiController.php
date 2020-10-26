@@ -12,6 +12,11 @@ class OrigenMaderaApiController extends Controller
     {
         return OrigenMadera::all();
     }
+    public function listado(Request $request)
+    {
+        $user = $request->user();
+        return OrigenMadera::active()->orderBy('descripcion')->where('empresa_id', $user->empresa_id)->get();
+    }
     public function index(Request $request)
     {
         $user = $request->user();

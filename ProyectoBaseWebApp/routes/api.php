@@ -43,9 +43,9 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('/listado', 'RolApiController@listado');
     });
 
-    Route::group(['prefix' => 'procedencias'], function () {
-        Route::get('/listado', 'ProcedenciaApiController@listado');
-        Route::get('/all', 'ProcedenciaApiController@all');
+    Route::group(['prefix' => 'tarifas'], function () {
+        Route::get('/listado', 'TarifaApiController@listado');
+        Route::get('/all', 'TarifaApiController@all');
     });
 
     Route::resource('roles', 'RolApiController', [
@@ -93,16 +93,17 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'origenes-madera'], function () {
         Route::delete('/', 'OrigenMaderaApiController@destroy');
         Route::get('/all', 'OrigenMaderaApiController@all');
+        Route::get('/listado', 'OrigenMaderaApiController@listado');
     });
     Route::resource('origenes-madera', 'OrigenMaderaApiController', [
         'except' => [
             'create', 'edit', 'show'
         ]
     ]);
-    Route::group(['prefix' => 'procedencias'], function () {
-        Route::delete('/', 'ProcedenciaApiController@destroy');
+    Route::group(['prefix' => 'tarifas'], function () {
+        Route::delete('/', 'TarifaApiController@destroy');
     });
-    Route::resource('procedencias', 'ProcedenciaApiController', [
+    Route::resource('tarifas', 'TarifaApiController', [
         'except' => [
             'create', 'edit', 'show'
         ]
@@ -110,6 +111,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'destinos'], function () {
         Route::delete('/', 'DestinoApiController@destroy');
         Route::get('/all', 'DestinoApiController@all');
+        Route::get('/listado', 'DestinoApiController@listado');
     });
     Route::resource('destinos', 'DestinoApiController', [
         'except' => [

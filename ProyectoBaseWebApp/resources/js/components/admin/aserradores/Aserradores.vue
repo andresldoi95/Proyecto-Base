@@ -27,11 +27,6 @@
                     sortable : true
                 },
                 {
-                    label : $t('etiqueta.procedencia'),
-                    field : 'procedencia.descripcion',
-                    sortable : true
-                },
-                {
                     label : $t('message.nombre'),
                     field : 'nombre',
                     sortable : true
@@ -65,25 +60,6 @@
             </div>
             <div class="column">
               <b-field
-                :message="errores.procedencia_id?errores.procedencia_id[0]:''"
-                :type="errores.procedencia_id?'is-danger':''"
-                :label="$t('etiqueta.procedencia')"
-              >
-                <b-select
-                  v-model="form.procedencia_id"
-                  expanded
-                  :placeholder="$t('title.seleccione')"
-                >
-                  <option
-                    v-for="option in procedencias"
-                    :value="option.id"
-                    :key="option.id"
-                  >{{ option.descripcion }}</option>
-                </b-select>
-              </b-field>
-            </div>
-            <div class="column">
-              <b-field
                 :message="errores.identificacion?errores.identificacion[0]:''"
                 :type="errores.identificacion?'is-danger':''"
                 :label="$t('message.identificacion')"
@@ -108,16 +84,13 @@ export default {
         nombre: "",
         id: "",
         _method: undefined,
-        identificacion: "",
-        procedencia_id: "",
+        identificacion: ""
       },
       acciones: [],
       errores: {
         nombre: undefined,
-        identificacion: undefined,
-        procedencia_id: undefined,
-      },
-      procedencias: [],
+        identificacion: undefined
+      }
     };
   },
   methods: {
@@ -129,7 +102,6 @@ export default {
       this.form._method = undefined;
       this.form.nombre = "";
       this.form.identificacion = "";
-      this.form.procedencia_id = "";
     },
     adding: function () {
       this.limpiar();
@@ -163,12 +135,10 @@ export default {
       this.form.id = aserrador.id;
       this.form.nombre = aserrador.nombre;
       this.form.identificacion = aserrador.identificacion;
-      this.form.procedencia_id = aserrador.procedencia_id;
     },
     limpiarErrores: function () {
       this.errores.nombre = undefined;
       this.errores.identificacion = undefined;
-      this.errores.procedencia_id = undefined;
     },
     submitFormulario: function () {
       this.limpiarErrores();
@@ -191,7 +161,6 @@ export default {
           if (status === 422) {
             this.errores.identificacion = response.data.errors.identificacion;
             this.errores.nombre = response.data.errors.nombre;
-            this.errores.procedencia_id = response.data.errors.procedencia_id;
           } else {
             this.$buefy.toast.open({
               message: this.$t("message.generic_error"),
@@ -199,17 +168,7 @@ export default {
             });
           }
         });
-    },
-    cargarProcedencias: function () {
-      this.$http
-        .get(process.env.MIX_APP_URL_API + "/procedencias/listado")
-        .then(({ data }) => {
-          this.procedencias = data;
-        });
-    },
-  },
-  mounted: function () {
-    this.cargarProcedencias();
-  },
+    }
+  }
 };
 </script>

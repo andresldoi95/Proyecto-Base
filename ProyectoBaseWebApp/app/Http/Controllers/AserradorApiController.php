@@ -25,7 +25,7 @@ class AserradorApiController extends Controller
         $user = $request->user();
         $status = $request->input('status');
         $search = $request->input('search');
-        return Aserrador::with('procedencia')->where('empresa_id', $user->empresa_id)
+        return Aserrador::where('empresa_id', $user->empresa_id)
             ->orderBy('nombre')
             ->where(function ($query) use ($status) {
                 if ($status !== 'T')
@@ -45,15 +45,13 @@ class AserradorApiController extends Controller
             'nombre' => 'required|max:255',
             'identificacion' => [
                 'required', 'max:255', Rule::unique('aserradores')->where('empresa_id', $user->empresa_id)
-            ],
-            'procedencia_id' => 'required|exists:procedencias,id'
+            ]
         ]);
         Aserrador::create([
             'nombre' => $request->input('nombre'),
             'creador_id' => $user->id,
             'empresa_id' => $user->empresa_id,
-            'identificacion' => $request->input('identificacion'),
-            'procedencia_id' => $request->input('procedencia_id')
+            'identificacion' => $request->input('identificacion')
         ]);
     }
     public function update(Request $request, $id)
@@ -63,14 +61,12 @@ class AserradorApiController extends Controller
             'nombre' => 'required|max:255',
             'identificacion' => [
                 'required', 'max:255', Rule::unique('aserradores')->where('empresa_id', $user->empresa_id)->ignore($id)
-            ],
-            'procedencia_id' => 'required|exists:procedencias,id'
+            ]
         ]);
         $aserrador = Aserrador::findOrFail($id);
         $aserrador->nombre = $request->input('nombre');
         $aserrador->identificacion = $request->input('identificacion');
         $aserrador->modificador_id = $user->id;
-        $aserrador->procedencia_id = $request->input('procedencia_id');
         $aserrador->save();
     }
     public function destroy(Request $request)

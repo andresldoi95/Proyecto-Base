@@ -8,6 +8,8 @@ export default {
         recuperar: "Recover account"
     },
     message: {
+        destino: 'Destine',
+        origen_madera: 'Wood Source',
         hectareas: "Miles",
         anio_cultivo: "Year",
         volumen_inventario: "Inventory volumen",
@@ -66,6 +68,7 @@ export default {
         codigo_vendor: 'Vendor code'
     },
     title: {
+        tarifas: 'Values',
         parametros: "Parameters",
         "codigos-aserradores": "Aserradores codes",
         aserradores: "Aserradores",
