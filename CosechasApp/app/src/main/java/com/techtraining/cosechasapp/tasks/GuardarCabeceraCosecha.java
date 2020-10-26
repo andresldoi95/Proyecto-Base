@@ -31,15 +31,18 @@ public class GuardarCabeceraCosecha extends AsyncTask<Void, Void, Void> {
         AppDatabase appDatabase = DBManager.getInstance(context);
         CosechaDao cosechaDao = appDatabase.cosechaDao();
         Cosecha cosechaExistente = cosechaDao.loadById(cosecha.id);
+        FilaCosechaDao filaCosechaDao = appDatabase.filaCosechaDao();
         if (cosechaExistente == null){
             cosechaDao.insertOne(cosecha);
             SharedPreferences.Editor editor = context.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE).edit();
             editor.putString(Helper.CURRENT_COSECHA_ID_NAME, cosecha.id);
             editor.commit();
         }
-        else
+        else {
             cosechaDao.update(cosecha);
-        FilaCosechaDao filaCosechaDao = appDatabase.filaCosechaDao();
+            if (cosechaExistente.camionId != cosecha.camionId || !cosechaExistente.tipoLlenado.equals(cosecha.tipoLlenado))
+                filaCosechaDao.deleteByCosecha(cosecha.id);
+        }
         List<FilaCosecha> filasCosecha = filaCosechaDao.loadByCosecha(cosecha.id);
         CamionDao camionDao = appDatabase.camionDao();
         Camion camion = camionDao.loadById(cosecha.camionId);
@@ -51,8 +54,19 @@ public class GuardarCabeceraCosecha extends AsyncTask<Void, Void, Void> {
                 filaCosecha.cosechaId = cosecha.id;
                 filaCosecha.bultos = 0;
                 filaCosecha.bft = 0;
+                filaCosecha.estado = "P";
+                filaCosecha.tipo = "N";
                 filaCosechaDao.insertOne(filaCosecha);
             }
+            FilaCosecha filaCosecha = new FilaCosecha();
+            filaCosecha.id = UUID.randomUUID().toString();
+            filaCosecha.indice = camion.filas;
+            filaCosecha.cosechaId = cosecha.id;
+            filaCosecha.bultos = 0;
+            filaCosecha.bft = 0;
+            filaCosecha.estado = "P";
+            filaCosecha.tipo = "E";
+            filaCosechaDao.insertOne(filaCosecha);
         }
         return null;
     }

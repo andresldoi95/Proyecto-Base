@@ -12,6 +12,9 @@ public interface AserradorDao {
     @Query("SELECT * FROM aserrador")
     List<Aserrador> getAll();
 
+    @Query("SELECT * FROM aserrador WHERE estado = 'A'")
+    List<Aserrador> getAllActive();
+
     @Query("SELECT * FROM aserrador WHERE id IN (:aserradoresIds)")
     List<Aserrador> loadAllByIds(int[] aserradoresIds);
 

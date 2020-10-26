@@ -98,7 +98,7 @@
 
     <string name="fila">Fila</string>
 
-    <string name="plantilla">Cantidad de bultos</string>
+    <string name="plantilla">Bultos</string>
     <string name="bultos">Bultos</string>
     <string name="espesor">Espesor</string>
     <string name="largo">Largo</string>
@@ -116,7 +116,46 @@
     <string name="mensaje_confirmacion">Seleccione el tipo de ingreso</string>
     <string name="respuesta_bultos">Bultos</string>
     <string name="respuesta_sueltos">Sueltos</string>
+    <string name="aserrador_requerido">El aserrador es requerido.</string>
     <string name="nuevo">Nuevo</string>
 
+    <string name="importando_tarifas">Importando tarifas...</string>
+    <string name="tarifas_importadas">Tarifas importadas...</string>
+
+    <string name="si">Sí</string>
+    <string name="no">No</string>
+    <string name="desea_finalizar_fila">¿Desea finalizar esta fila?</string>
+    <string name="desc_finalizar_fila">La fila no podrá ser editada ni se podrá añadir o modificar fotos.</string>
+    <string name="fila_finalizada">La fila ha sido finalizada.</string>
+
+    <string name="valor_flete_requerido">El valor del flete es requerido.</string>
+
+    <string name="tv_aserrador">Aserrador</string>
+
     <string name="ancho">Ancho</string>
+
+    <string name="nueva">Nueva</string>
+
+    <string name="galeria">Galería de fila</string>
+
+    <string name="tomar_foto">Tomar foto</string>
+    <string name="desde_galeria">Desde galería</string>
+    <string name="cargar_foto">Cargar foto</string>
+
+    <string name="imagen_almacenada">Imagen almacenada</string>
+    <string name="permisos_denegados">Permisos denegados</string>
+    <string name="permisos_aprobados">Permisos aprobados</string>
+
+    <string name="excedente">Excedente</string>
+    <string name="foto_almacenada">Foto almacenada</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="imagenes_eliminadas">Imágenes eliminadas</string>
+    <string name="no_imagenes_eliminar">No hay imágenes para eliminar</string>
+
+    <string name="desea_eliminar_imagenes">¿Desea eliminar las imágenes seleccionadas?</string>
+
+    <string name="finalizar">Finalizar</string>
+    <string name="despacho_finalizado">Despacho finalizado</string>
+
+    <string name="desea_finalizar_despacho">¿Desea finalizar el despacho?</string>
 </resources>

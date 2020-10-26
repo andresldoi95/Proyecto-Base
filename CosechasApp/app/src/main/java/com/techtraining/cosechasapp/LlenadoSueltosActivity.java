@@ -35,16 +35,19 @@ public class LlenadoSueltosActivity extends AppCompatActivity {
         inflater.inflate(R.menu.sueltos_menu, menu);
         return true;
     }
+    public void mostrarFormularioSueltos() {
+        SharedPreferences.Editor editor = getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE).edit();
+        editor.putString(Helper.CURRENT_ITEM_SUELTO_NAME, null);
+        editor.commit();
+        Intent intent = new Intent(LlenadoSueltosActivity.this, ItemSueltosActivity.class);
+        intent.putExtra(Helper.INDICE_NAME, lvSueltos.getCount());
+        startActivity(intent);
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.nav_nuevo:
-                SharedPreferences.Editor editor = getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE).edit();
-                editor.putString(Helper.CURRENT_ITEM_SUELTO_NAME, null);
-                editor.commit();
-                Intent intent = new Intent(LlenadoSueltosActivity.this, ItemSueltosActivity.class);
-                intent.putExtra(Helper.INDICE_NAME, lvSueltos.getCount());
-                startActivity(intent);
+                mostrarFormularioSueltos();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

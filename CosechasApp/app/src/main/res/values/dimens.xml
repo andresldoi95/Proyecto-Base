@@ -14,4 +14,5 @@
     <dimen name="menu_margin_top">20dp</dimen>
     <dimen name="menu_button_padding">10dp</dimen>
     <dimen name="item_fila_camion_margin">2dp</dimen>
+    <dimen name="margin_chk_galeria">1dp</dimen>
 </resources>

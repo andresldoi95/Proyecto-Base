@@ -1,5 +1,4 @@
 package com.techtraining.cosechasapp;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,7 +12,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -150,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                     catch (JSONException ex) {
-                        Toast.makeText(MainActivity.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.e(MainActivity.class.getName(), ex.getMessage());
                     }
                 }
             }, new Response.ErrorListener() {
@@ -180,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
         if(drawerLayout.isDrawerOpen(GravityCompat.START))
             drawerLayout.closeDrawer(GravityCompat.START);
         else
-            super.onBackPressed();
+            finish();
     }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

@@ -24,4 +24,10 @@ public class FilaCosecha {
 
     @ColumnInfo(name = "bultos")
     public double bultos;
+
+    @ColumnInfo(name = "estado")
+    public String estado;
+
+    @ColumnInfo(name = "tipo")
+    public String tipo;
 }
