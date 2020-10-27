@@ -87,7 +87,7 @@
                     $store.getters.permiteAccion('consultar_origenes_madera') ||
                     $store.getters.permiteAccion('eliminar_origenes_madera'))
                 "
-                icon="source-merge"
+                icon="home"
                 :label="$t('title.origenes_madera')"
                 tag="router-link"
                 to="/admin/origenes-madera"

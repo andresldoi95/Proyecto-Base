@@ -4171,6 +4171,54 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4182,16 +4230,39 @@ __webpack_require__.r(__webpack_exports__);
         codigo: "",
         descripcion: "",
         id: "",
-        _method: undefined
+        _method: undefined,
+        tipo_madera_id: '',
+        formato_entrega_id: ''
       },
-      acciones: [],
+      tiposMadera: [],
+      formatosEntrega: [],
       errores: {
         codigo: undefined,
-        descripcion: undefined
+        descripcion: undefined,
+        tipo_madera_id: undefined,
+        formato_entrega_id: undefined
       }
     };
   },
   methods: {
+    cargarTiposMadera: function cargarTiposMadera() {
+      var _this = this;
+
+      var path = "http://127.0.0.1:8000/api" + "/tipos-madera/listado";
+      this.$http.get(path).then(function (_ref) {
+        var data = _ref.data;
+        _this.tiposMadera = data;
+      });
+    },
+    cargarFormatosEntrega: function cargarFormatosEntrega() {
+      var _this2 = this;
+
+      var path = "http://127.0.0.1:8000/api" + "/formatos-entrega/listado";
+      this.$http.get(path).then(function (_ref2) {
+        var data = _ref2.data;
+        _this2.formatosEntrega = data;
+      });
+    },
     canceled: function canceled() {
       this.limpiar();
     },
@@ -4200,12 +4271,14 @@ __webpack_require__.r(__webpack_exports__);
       this.form._method = undefined;
       this.form.codigo = "";
       this.form.descripcion = "";
+      this.form.formato_entrega_id = '';
+      this.form.tipo_madera_id = '';
     },
     adding: function adding() {
       this.limpiar();
     },
     realizarAccion: function realizarAccion(type, materiales) {
-      var _this = this;
+      var _this3 = this;
 
       if (type === "E") {
         var materialesId = [];
@@ -4218,15 +4291,15 @@ __webpack_require__.r(__webpack_exports__);
           materiales: materialesId,
           _method: "DELETE"
         }).then(function () {
-          _this.$buefy.toast.open({
-            message: _this.$t("message.guardado_generico"),
+          _this3.$buefy.toast.open({
+            message: _this3.$t("message.guardado_generico"),
             type: "is-success"
           });
 
-          _this.$refs.masterForm.submit();
+          _this3.$refs.masterForm.submit();
         })["catch"](function () {
-          _this.$buefy.toast.open({
-            message: _this.$t("message.generic_error"),
+          _this3.$buefy.toast.open({
+            message: _this3.$t("message.generic_error"),
             type: "is-danger"
           });
         });
@@ -4235,14 +4308,18 @@ __webpack_require__.r(__webpack_exports__);
     editar: function editar(material) {
       this.form.id = material.id;
       this.form.codigo = material.codigo;
+      this.form.formato_entrega_id = material.formato_entrega_id;
+      this.form.tipo_madera_id = material.tipo_madera_id;
       this.form.descripcion = material.descripcion;
     },
     limpiarErrores: function limpiarErrores() {
       this.errores.descripcion = undefined;
       this.errores.codigo = undefined;
+      this.errores.tipo_madera_id = undefined;
+      this.errores.formato_entrega_id = undefined;
     },
     submitFormulario: function submitFormulario() {
-      var _this2 = this;
+      var _this4 = this;
 
       this.limpiarErrores();
       var path = "http://127.0.0.1:8000/api" + "/materiales";
@@ -4253,27 +4330,33 @@ __webpack_require__.r(__webpack_exports__);
       } else this.form._method = undefined;
 
       this.$http.post(path, this.form).then(function () {
-        _this2.$buefy.toast.open({
-          message: _this2.$t("message.guardado_generico"),
+        _this4.$buefy.toast.open({
+          message: _this4.$t("message.guardado_generico"),
           type: "is-success"
         });
 
-        _this2.$refs.masterForm.submit();
-      })["catch"](function (_ref) {
-        var response = _ref.response;
+        _this4.$refs.masterForm.submit();
+      })["catch"](function (_ref3) {
+        var response = _ref3.response;
         var status = response.status;
 
         if (status === 422) {
-          _this2.errores.codigo = response.data.errors.codigo;
-          _this2.errores.descripcion = response.data.errors.descripcion;
+          _this4.errores.codigo = response.data.errors.codigo;
+          _this4.errores.descripcion = response.data.errors.descripcion;
+          _this4.errores.formato_entrega_id = response.data.errors.formato_entrega_id;
+          _this4.errores.tipo_madera_id = response.data.tipo_madera_id;
         } else {
-          _this2.$buefy.toast.open({
-            message: _this2.$t("message.generic_error"),
+          _this4.$buefy.toast.open({
+            message: _this4.$t("message.generic_error"),
             type: "is-danger"
           });
         }
       });
     }
+  },
+  mounted: function mounted() {
+    this.cargarTiposMadera();
+    this.cargarFormatosEntrega();
   }
 });
 
@@ -4351,6 +4434,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4361,9 +4450,10 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         descripcion: "",
         id: "",
-        _method: undefined
+        _method: undefined,
+        haciendas: []
       },
-      acciones: [],
+      haciendas: [],
       errores: {
         descripcion: undefined
       }
@@ -4376,13 +4466,23 @@ __webpack_require__.r(__webpack_exports__);
     limpiar: function limpiar() {
       this.form.id = "";
       this.form._method = undefined;
+      this.form.haciendas.splice(0, this.form.haciendas.length);
       this.form.descripcion = "";
+    },
+    cargarHaciendas: function cargarHaciendas() {
+      var _this = this;
+
+      var path = "http://127.0.0.1:8000/api" + "/origenes-madera/listado";
+      this.$http.get(path).then(function (_ref) {
+        var data = _ref.data;
+        _this.haciendas = data;
+      });
     },
     adding: function adding() {
       this.limpiar();
     },
     realizarAccion: function realizarAccion(type, origenes_hacienda) {
-      var _this = this;
+      var _this2 = this;
 
       if (type === "E") {
         var origenes_haciendaId = [];
@@ -4395,15 +4495,15 @@ __webpack_require__.r(__webpack_exports__);
           origenesHacienda: origenes_haciendaId,
           _method: "DELETE"
         }).then(function () {
-          _this.$buefy.toast.open({
-            message: _this.$t("message.guardado_generico"),
+          _this2.$buefy.toast.open({
+            message: _this2.$t("message.guardado_generico"),
             type: "is-success"
           });
 
-          _this.$refs.masterForm.submit();
+          _this2.$refs.masterForm.submit();
         })["catch"](function () {
-          _this.$buefy.toast.open({
-            message: _this.$t("message.generic_error"),
+          _this2.$buefy.toast.open({
+            message: _this2.$t("message.generic_error"),
             type: "is-danger"
           });
         });
@@ -4412,12 +4512,17 @@ __webpack_require__.r(__webpack_exports__);
     editar: function editar(origenHacienda) {
       this.form.id = origenHacienda.id;
       this.form.descripcion = origenHacienda.descripcion;
+      this.form.haciendas.splice(0, this.form.haciendas.length);
+
+      for (var i = 0; i < origenHacienda.haciendas.length; i++) {
+        this.form.haciendas.push(origenHacienda.haciendas[i].id);
+      }
     },
     limpiarErrores: function limpiarErrores() {
       this.errores.descripcion = undefined;
     },
     submitFormulario: function submitFormulario() {
-      var _this2 = this;
+      var _this3 = this;
 
       this.limpiarErrores();
       var path = "http://127.0.0.1:8000/api" + "/origenes-hacienda";
@@ -4428,26 +4533,29 @@ __webpack_require__.r(__webpack_exports__);
       } else this.form._method = undefined;
 
       this.$http.post(path, this.form).then(function () {
-        _this2.$buefy.toast.open({
-          message: _this2.$t("message.guardado_generico"),
+        _this3.$buefy.toast.open({
+          message: _this3.$t("message.guardado_generico"),
           type: "is-success"
         });
 
-        _this2.$refs.masterForm.submit();
-      })["catch"](function (_ref) {
-        var response = _ref.response;
+        _this3.$refs.masterForm.submit();
+      })["catch"](function (_ref2) {
+        var response = _ref2.response;
         var status = response.status;
 
         if (status === 422) {
-          _this2.errores.descripcion = response.data.errors.descripcion;
+          _this3.errores.descripcion = response.data.errors.descripcion;
         } else {
-          _this2.$buefy.toast.open({
-            message: _this2.$t("message.generic_error"),
+          _this3.$buefy.toast.open({
+            message: _this3.$t("message.generic_error"),
             type: "is-danger"
           });
         }
       });
     }
+  },
+  mounted: function mounted() {
+    this.cargarHaciendas();
   }
 });
 
@@ -28485,6 +28593,16 @@ var render = function() {
                     sortable: true
                   },
                   {
+                    label: _vm.$t("etiqueta.tipo_madera"),
+                    field: "tipo_madera.descripcion",
+                    sortable: true
+                  },
+                  {
+                    label: _vm.$t("etiqueta.formato_entrega"),
+                    field: "formato_entrega.descripcion",
+                    sortable: true
+                  },
+                  {
                     label: _vm.$t("message.status"),
                     field: "estado",
                     sortable: true
@@ -28583,6 +28701,108 @@ var render = function() {
                             expression: "form.descripcion"
                           }
                         })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.tipo_madera_id
+                            ? _vm.errores.tipo_madera_id[0]
+                            : "",
+                          type: _vm.errores.tipo_madera_id ? "is-danger" : "",
+                          label: _vm.$t("etiqueta.tipo_madera")
+                        }
+                      },
+                      [
+                        _c(
+                          "b-select",
+                          {
+                            attrs: {
+                              expanded: "",
+                              placeholder: _vm.$t("title.seleccione")
+                            },
+                            model: {
+                              value: _vm.form.tipo_madera_id,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "tipo_madera_id", $$v)
+                              },
+                              expression: "form.tipo_madera_id"
+                            }
+                          },
+                          _vm._l(_vm.tiposMadera, function(option) {
+                            return _c(
+                              "option",
+                              {
+                                key: option.id,
+                                domProps: { value: option.id }
+                              },
+                              [_vm._v(_vm._s(option.descripcion))]
+                            )
+                          }),
+                          0
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.formato_entrega_id
+                            ? _vm.errores.formato_entrega_id[0]
+                            : "",
+                          type: _vm.errores.formato_entrega_id
+                            ? "is-danger"
+                            : "",
+                          label: _vm.$t("etiqueta.formato_entrega")
+                        }
+                      },
+                      [
+                        _c(
+                          "b-select",
+                          {
+                            attrs: {
+                              expanded: "",
+                              placeholder: _vm.$t("title.seleccione")
+                            },
+                            model: {
+                              value: _vm.form.formato_entrega_id,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "formato_entrega_id", $$v)
+                              },
+                              expression: "form.formato_entrega_id"
+                            }
+                          },
+                          _vm._l(_vm.formatosEntrega, function(option) {
+                            return _c(
+                              "option",
+                              {
+                                key: option.id,
+                                domProps: { value: option.id }
+                              },
+                              [_vm._v(_vm._s(option.descripcion))]
+                            )
+                          }),
+                          0
+                        )
                       ],
                       1
                     )
@@ -28732,6 +28952,43 @@ var render = function() {
                     )
                   ],
                   1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "label",
+                      { staticClass: "label", attrs: { for: "roles" } },
+                      [_vm._v(_vm._s(_vm.$t("etiqueta.haciendas")))]
+                    ),
+                    _vm._v(" "),
+                    _vm._l(_vm.haciendas, function(hacienda) {
+                      return _c(
+                        "div",
+                        { key: hacienda.id, staticClass: "field" },
+                        [
+                          _c(
+                            "b-checkbox",
+                            {
+                              attrs: { "native-value": hacienda.id },
+                              model: {
+                                value: _vm.form.haciendas,
+                                callback: function($$v) {
+                                  _vm.$set(_vm.form, "haciendas", $$v)
+                                },
+                                expression: "form.haciendas"
+                              }
+                            },
+                            [_vm._v(_vm._s(hacienda.descripcion))]
+                          )
+                        ],
+                        1
+                      )
+                    })
+                  ],
+                  2
                 )
               ])
             ]
@@ -31394,7 +31651,7 @@ var render = function() {
                             }
                           ],
                           attrs: {
-                            icon: "source-merge",
+                            icon: "home",
                             label: _vm.$t("title.origenes_madera"),
                             tag: "router-link",
                             to: "/admin/origenes-madera"
@@ -55964,6 +56221,7 @@ __webpack_require__.r(__webpack_exports__);
     tipos_bulto: "Package types"
   },
   etiqueta: {
+    haciendas: 'Haciendas',
     materiales: 'Materials',
     procedencia: "Provenance",
     username: "Username",
@@ -55971,7 +56229,9 @@ __webpack_require__.r(__webpack_exports__);
     modulos: "Modules",
     acciones: "Actions",
     roles: "Roles",
-    aserrador: "Aserrador"
+    aserrador: "Aserrador",
+    tipo_madera: 'Wood type',
+    formato_entrega: 'Delivery format'
   },
   button: {
     login: "Login",
@@ -56096,6 +56356,7 @@ __webpack_require__.r(__webpack_exports__);
     tipos_bulto: "Tipos de bulto"
   },
   etiqueta: {
+    haciendas: 'Haciendas',
     materiales: 'Materiales',
     procedencia: "Procedencia",
     username: "Nombre de usuario",
@@ -56103,7 +56364,9 @@ __webpack_require__.r(__webpack_exports__);
     acciones: "Acciones",
     roles: "Roles",
     modulos: "Módulos",
-    aserrador: "Aserrador"
+    aserrador: "Aserrador",
+    tipo_madera: 'Tipo de madera',
+    formato_entrega: 'Formato de entrega'
   },
   button: {
     login: "Iniciar sesión",

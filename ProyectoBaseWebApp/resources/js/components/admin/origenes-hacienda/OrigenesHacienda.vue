@@ -53,6 +53,12 @@
                 <b-input v-model="form.descripcion"></b-input>
               </b-field>
             </div>
+            <div class="column">
+                <label class="label" for="roles">{{ $t('etiqueta.haciendas') }}</label>
+                <div v-for="hacienda in haciendas" :key="hacienda.id" class="field">
+                    <b-checkbox v-model="form.haciendas" :native-value="hacienda.id">{{ hacienda.descripcion }}</b-checkbox>
+                </div>
+            </div>
           </div>
         </masterForm>
       </div>
@@ -69,9 +75,10 @@ export default {
       form: {
         descripcion: "",
         id: "",
-        _method: undefined
+        _method: undefined,
+        haciendas: []
       },
-      acciones: [],
+      haciendas: [],
       errores: {
         descripcion: undefined
       },
@@ -84,7 +91,14 @@ export default {
     limpiar: function () {
       this.form.id = "";
       this.form._method = undefined;
+      this.form.haciendas.splice(0, this.form.haciendas.length);
       this.form.descripcion = "";
+    },
+    cargarHaciendas: function () {
+        let path = process.env.MIX_APP_URL_API + "/origenes-madera/listado";
+        this.$http.get(path).then(({data}) => {
+            this.haciendas = data;
+        });
     },
     adding: function () {
       this.limpiar();
@@ -117,6 +131,9 @@ export default {
     editar: function (origenHacienda) {
       this.form.id = origenHacienda.id;
       this.form.descripcion = origenHacienda.descripcion;
+      this.form.haciendas.splice(0, this.form.haciendas.length);
+      for (let i = 0; i < origenHacienda.haciendas.length; i++)
+        this.form.haciendas.push(origenHacienda.haciendas[i].id);
     },
     limpiarErrores: function () {
       this.errores.descripcion = undefined;
@@ -150,5 +167,8 @@ export default {
         });
     },
   },
+  mounted: function () {
+      this.cargarHaciendas();
+  }
 };
 </script>

@@ -37,6 +37,16 @@
                     sortable : true
                 },
                 {
+                    label : $t('etiqueta.tipo_madera'),
+                    field : 'tipo_madera.descripcion',
+                    sortable : true
+                },
+                {
+                    label : $t('etiqueta.formato_entrega'),
+                    field : 'formato_entrega.descripcion',
+                    sortable : true
+                },
+                {
                     label : $t('message.status'),
                     field : 'estado',
                     sortable : true
@@ -67,6 +77,44 @@
                 <b-input v-model="form.descripcion"></b-input>
               </b-field>
             </div>
+            <div class="column">
+              <b-field
+                :message="errores.tipo_madera_id?errores.tipo_madera_id[0]:''"
+                :type="errores.tipo_madera_id?'is-danger':''"
+                :label="$t('etiqueta.tipo_madera')"
+              >
+                <b-select
+                  v-model="form.tipo_madera_id"
+                  expanded
+                  :placeholder="$t('title.seleccione')"
+                >
+                  <option
+                    v-for="option in tiposMadera"
+                    :value="option.id"
+                    :key="option.id"
+                  >{{ option.descripcion }}</option>
+                </b-select>
+              </b-field>
+            </div>
+            <div class="column">
+              <b-field
+                :message="errores.formato_entrega_id?errores.formato_entrega_id[0]:''"
+                :type="errores.formato_entrega_id?'is-danger':''"
+                :label="$t('etiqueta.formato_entrega')"
+              >
+                <b-select
+                  v-model="form.formato_entrega_id"
+                  expanded
+                  :placeholder="$t('title.seleccione')"
+                >
+                  <option
+                    v-for="option in formatosEntrega"
+                    :value="option.id"
+                    :key="option.id"
+                  >{{ option.descripcion }}</option>
+                </b-select>
+              </b-field>
+            </div>
           </div>
         </masterForm>
       </div>
@@ -85,15 +133,32 @@ export default {
         descripcion: "",
         id: "",
         _method: undefined,
+        tipo_madera_id: '',
+        formato_entrega_id: ''
       },
-      acciones: [],
+      tiposMadera: [],
+      formatosEntrega: [],
       errores: {
         codigo: undefined,
         descripcion: undefined,
+        tipo_madera_id: undefined,
+        formato_entrega_id: undefined
       },
     };
   },
   methods: {
+      cargarTiposMadera: function () {
+          let path = process.env.MIX_APP_URL_API + "/tipos-madera/listado";
+          this.$http.get(path).then(({data}) => {
+              this.tiposMadera = data;
+          });
+      },
+      cargarFormatosEntrega: function () {
+          let path = process.env.MIX_APP_URL_API + "/formatos-entrega/listado";
+          this.$http.get(path).then(({data}) => {
+              this.formatosEntrega = data;
+          });
+      },
     canceled: function () {
       this.limpiar();
     },
@@ -102,6 +167,8 @@ export default {
       this.form._method = undefined;
       this.form.codigo = "";
       this.form.descripcion = "";
+      this.form.formato_entrega_id = '';
+      this.form.tipo_madera_id = '';
     },
     adding: function () {
       this.limpiar();
@@ -134,11 +201,15 @@ export default {
     editar: function (material) {
       this.form.id = material.id;
       this.form.codigo = material.codigo;
+      this.form.formato_entrega_id = material.formato_entrega_id;
+      this.form.tipo_madera_id = material.tipo_madera_id;
       this.form.descripcion = material.descripcion;
     },
     limpiarErrores: function () {
       this.errores.descripcion = undefined;
       this.errores.codigo = undefined;
+      this.errores.tipo_madera_id = undefined;
+      this.errores.formato_entrega_id = undefined;
     },
     submitFormulario: function () {
       this.limpiarErrores();
@@ -161,6 +232,8 @@ export default {
           if (status === 422) {
             this.errores.codigo = response.data.errors.codigo;
             this.errores.descripcion = response.data.errors.descripcion;
+            this.errores.formato_entrega_id = response.data.errors.formato_entrega_id;
+            this.errores.tipo_madera_id = response.data.tipo_madera_id;
           } else {
             this.$buefy.toast.open({
               message: this.$t("message.generic_error"),
@@ -170,5 +243,9 @@ export default {
         });
     },
   },
+  mounted : function () {
+      this.cargarTiposMadera();
+      this.cargarFormatosEntrega();
+  }
 };
 </script>

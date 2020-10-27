@@ -12,6 +12,10 @@ class TipoMaderaApiController extends Controller
     {
         return TipoMadera::all();
     }
+    public function listado(Request $request) {
+        $user = $request->user();
+        return TipoMadera::active()->orderBy('descripcion')->where('empresa_id', $user->empresa_id)->get();
+    }
     public function index(Request $request)
     {
         $user = $request->user();
