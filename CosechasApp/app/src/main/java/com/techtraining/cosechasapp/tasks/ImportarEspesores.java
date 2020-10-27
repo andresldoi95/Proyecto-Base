@@ -44,7 +44,6 @@ public class ImportarEspesores extends AsyncTask<Void, Void, Void> {
                     espesor.id = id;
                     espesor.descripcion = jsonObject.getString("descripcion");
                     espesor.valor = jsonObject.getDouble("valor");
-                    espesor.color = jsonObject.getString("color");
                     espesor.empresaId = jsonObject.getInt("empresa_id");
                     espesor.estado = jsonObject.getString("estado");
                     espesorDao.insertOne(espesor);
@@ -52,7 +51,6 @@ public class ImportarEspesores extends AsyncTask<Void, Void, Void> {
                 else {
                     espesor.descripcion = jsonObject.getString("descripcion");
                     espesor.valor = jsonObject.getDouble("valor");
-                    espesor.color = jsonObject.getString("color");
                     espesor.empresaId = jsonObject.getInt("empresa_id");
                     espesor.estado = jsonObject.getString("estado");
                     espesorDao.update(espesor);

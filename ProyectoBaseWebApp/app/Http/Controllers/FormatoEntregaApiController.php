@@ -34,30 +34,26 @@ class FormatoEntregaApiController extends Controller
     {
         $request->validate([
             'descripcion' => 'required|max:255',
-            'factor_hueco_bultos' => 'required|numeric',
-            'factor_hueco_sueltos' => 'required|numeric'
+            'factor_hueco' => 'required|numeric'
         ]);
         $user = $request->user();
         FormatoEntrega::create([
             'descripcion' => $request->input('descripcion'),
             'creador_id' => $user->id,
             'empresa_id' => $user->empresa_id,
-            'factor_hueco_bultos' => $request->input('factor_hueco_bultos'),
-            'factor_hueco_sueltos' => $request->input('factor_hueco_sueltos')
+            'factor_hueco' => $request->input('factor_hueco')
         ]);
     }
     public function update(Request $request, $id)
     {
         $request->validate([
             'descripcion' => 'required|max:255',
-            'factor_hueco_bultos' => 'required|numeric',
-            'factor_hueco_sueltos' => 'required|numeric'
+            'factor_hueco' => 'required|numeric'
         ]);
         $formatoEntrega = FormatoEntrega::findOrFail($id);
         $formatoEntrega->descripcion = $request->input('descripcion');
         $formatoEntrega->modificador_id = $request->user()->id;
-        $formatoEntrega->factor_hueco_bultos = $request->input('factor_hueco_bultos');
-        $formatoEntrega->factor_hueco_sueltos = $request->input('factor_hueco_sueltos');
+        $formatoEntrega->factor_hueco = $request->input('factor_hueco');
         $formatoEntrega->save();
     }
     public function destroy(Request $request)

@@ -14,9 +14,6 @@ public class Espesor {
     @ColumnInfo(name = "valor")
     public double valor;
 
-    @ColumnInfo(name = "color")
-    public String color;
-
     @ColumnInfo(name = "empresa_id")
     public int empresaId;
 

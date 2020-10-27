@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class FormatoEntrega extends Model
 {
     protected $fillable = [
-        'empresa_id', 'descripcion', 'estado', 'creador_id', 'modificador_id', 'factor_hueco_bultos', 'factor_hueco_sueltos'
+        'empresa_id', 'descripcion', 'estado', 'creador_id', 'modificador_id', 'factor_hueco'
     ];
     public function scopeActive($query)
     {

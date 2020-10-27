@@ -95,6 +95,19 @@
               <b-menu-item
                 v-show="
                   $store.state.nombre_empresa_actual !== '' &&
+                  ($store.getters.permiteAccion('crear_origenes_hacienda') ||
+                    $store.getters.permiteAccion('editar_origenes_hacienda') ||
+                    $store.getters.permiteAccion('consultar_origenes_hacienda') ||
+                    $store.getters.permiteAccion('eliminar_origenes_hacienda'))
+                "
+                icon="source-merge"
+                :label="$t('title.origenes_hacienda')"
+                tag="router-link"
+                to="/admin/origenes-hacienda"
+              ></b-menu-item>
+              <b-menu-item
+                v-show="
+                  $store.state.nombre_empresa_actual !== '' &&
                   ($store.getters.permiteAccion('crear_tipos_bulto') ||
                     $store.getters.permiteAccion('editar_tipos_bulto') ||
                     $store.getters.permiteAccion('consultar_tipos_bulto') ||

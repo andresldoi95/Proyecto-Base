@@ -24,6 +24,7 @@ import TiposBulto from "../components/admin/tipos-bulto/TiposBulto";
 import FormatosEntrega from "../components/admin/formatos-entrega/FormatosEntrega";
 import OrigenesMadera from "../components/admin/origenes-madera/OrigenesMadera";
 import Tarifas from "../components/admin/tarifas/Tarifas";
+import OrigenesHacienda from "../components/admin/origenes-hacienda/OrigenesHacienda";
 
 export default {
     mode: "history",
@@ -223,6 +224,14 @@ export default {
                         requiresAuth: true
                     },
                     name: "OrigenesMadera"
+                },
+                {
+                    component: OrigenesHacienda,
+                    path: "origenes-hacienda",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "OrigenesHacienda"
                 }
             ]
         }

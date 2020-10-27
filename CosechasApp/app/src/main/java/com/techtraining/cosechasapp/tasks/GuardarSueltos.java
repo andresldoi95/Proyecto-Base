@@ -57,7 +57,7 @@ public class GuardarSueltos extends AsyncTask<Void, Void, Void> {
                             valorLargo = largo.valor;
                         if (espesor != null)
                             valorEspesor = espesor.valor;
-                        double bft = (((camion.ancho * valorLargo * valorEspesor) / 12) * formatoEntrega.factorHuecoSueltos) * filaSuelto.bultos;
+                        double bft = (((camion.ancho * valorLargo * valorEspesor) / 12) * formatoEntrega.factorHueco) * filaSuelto.bultos;
                         DecimalFormat df = new DecimalFormat("#.##");
                         filaSuelto.bft = Double.parseDouble(df.format(bft));
                         if (filaSueltoId == null) {

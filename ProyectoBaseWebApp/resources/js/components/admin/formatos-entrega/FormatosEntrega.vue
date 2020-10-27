@@ -34,13 +34,8 @@
               sortable: true,
             },
             {
-              label: $t('message.factor_hueco_bultos'),
-              field: 'factor_hueco_bultos',
-              sortable: true,
-            },
-            {
-              label: $t('message.factor_hueco_sueltos'),
-              field: 'factor_hueco_sueltos',
+              label: $t('message.factor_hueco'),
+              field: 'factor_hueco',
               sortable: true,
             },
             {
@@ -67,20 +62,11 @@
             </div>
             <div class="column">
               <b-field
-                :message="errores.factor_hueco_bultos ? errores.factor_hueco_bultos[0] : ''"
-                :type="errores.factor_hueco_bultos ? 'is-danger' : ''"
-                :label="$t('message.factor_hueco_bultos')"
+                :message="errores.factor_hueco ? errores.factor_hueco[0] : ''"
+                :type="errores.factor_hueco ? 'is-danger' : ''"
+                :label="$t('message.factor_hueco')"
               >
-                <b-input v-model="form.factor_hueco_bultos"></b-input>
-              </b-field>
-            </div>
-            <div class="column">
-              <b-field
-                :message="errores.factor_hueco_sueltos ? errores.factor_hueco_sueltos[0] : ''"
-                :type="errores.factor_hueco_sueltos ? 'is-danger' : ''"
-                :label="$t('message.factor_hueco_sueltos')"
-              >
-                <b-input v-model="form.factor_hueco_sueltos"></b-input>
+                <b-input v-model="form.factor_hueco"></b-input>
               </b-field>
             </div>
           </div>
@@ -100,14 +86,12 @@ export default {
         descripcion: "",
         id: "",
         _method: undefined,
-        factor_hueco_sueltos: 0,
-        factor_hueco_bultos: 0
+        factor_hueco: 0
       },
       acciones: [],
       errores: {
         descripcion: undefined,
-        factor_hueco_sueltos: undefined,
-        factor_hueco_bultos: undefined
+        factor_hueco: undefined
       },
     };
   },
@@ -118,8 +102,7 @@ export default {
     limpiar: function () {
       this.form.id = "";
       this.form._method = undefined;
-      this.form.factor_hueco_sueltos = undefined;
-      this.form.factor_hueco_bultos = undefined;
+      this.form.factor_hueco = undefined;
       this.form.descripcion = "";
     },
     adding: function () {
@@ -153,13 +136,11 @@ export default {
     editar: function (formatoEntrega) {
       this.form.id = formatoEntrega.id;
       this.form.descripcion = formatoEntrega.descripcion;
-      this.form.factor_hueco_sueltos = formatoEntrega.factor_hueco_sueltos;
-      this.form.factor_hueco_bultos = formatoEntrega.factor_hueco_bultos;
+      this.form.factor_hueco = formatoEntrega.factor_hueco;
     },
     limpiarErrores: function () {
       this.errores.descripcion = undefined;
-      this.errores.factor_hueco_sueltos = undefined;
-      this.errores.factor_hueco_bultos = undefined;
+      this.errores.factor_hueco = undefined;
     },
     submitFormulario: function () {
       this.limpiarErrores();

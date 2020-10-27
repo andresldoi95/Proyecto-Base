@@ -19,11 +19,8 @@ public class FormatoEntrega {
     @ColumnInfo(name = "estado")
     public String estado;
 
-    @ColumnInfo(name = "factor_hueco_sueltos")
-    public double factorHuecoSueltos;
-
-    @ColumnInfo(name = "factor_hueco_bultos")
-    public double factorHuecoBultos;
+    @ColumnInfo(name = "factor_hueco")
+    public double factorHueco;
 
     @Override
     public String toString() {

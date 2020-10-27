@@ -48,7 +48,7 @@ public class GuardarItemFilaCosecha extends AsyncTask<Void, Void, Void> {
                 Largo largo = appDatabase.largoDao().loadById(tipoBulto.largoId);
                 Espesor espesor = appDatabase.espesorDao().loadById(tipoBulto.espesorId);
                 DecimalFormat df = new DecimalFormat("#.##");
-                double bft = (tipoBulto.ancho * largo.valor) * formatoEntrega.factorHuecoBultos * filaCosechaExistente.bultos * espesor.valor;
+                double bft = (tipoBulto.ancho * largo.valor) * formatoEntrega.factorHueco * filaCosechaExistente.bultos * espesor.valor;
                 filaCosechaExistente.bft = Double.parseDouble(df.format(bft));
                 filaCosechaDao.update(filaCosechaExistente);
             }
