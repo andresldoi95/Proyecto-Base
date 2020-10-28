@@ -41,6 +41,7 @@ public class ImportarOrigenesMadera extends AsyncTask<Void, Void, Void> {
                 if (origenMadera == null) {
                     origenMadera = new OrigenMadera();
                     origenMadera.id = id;
+                    origenMadera.empresaId = jsonObject.getInt("empresa_id");
                     origenMadera.descripcion = jsonObject.getString("descripcion");
                     origenMadera.anioCultivo = jsonObject.getInt("anio_cultivo");
                     origenMadera.hectareas = jsonObject.getDouble("hectareas");
@@ -49,6 +50,7 @@ public class ImportarOrigenesMadera extends AsyncTask<Void, Void, Void> {
                     origenMaderaDao.insertOne(origenMadera);
                 }
                 else {
+                    origenMadera.empresaId = jsonObject.getInt("empresa_id");
                     origenMadera.descripcion = jsonObject.getString("descripcion");
                     origenMadera.anioCultivo = jsonObject.getInt("anio_cultivo");
                     origenMadera.hectareas = jsonObject.getDouble("hectareas");

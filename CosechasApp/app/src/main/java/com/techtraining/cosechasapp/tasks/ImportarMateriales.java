@@ -46,6 +46,8 @@ public class ImportarMateriales extends AsyncTask<Void, Void, Void> {
                     material.codigo = jsonObject.getString("codigo");
                     material.empresaId = jsonObject.getInt("empresa_id");
                     material.estado = jsonObject.getString("estado");
+                    material.origenMaderaId = jsonObject.getInt("origen_madera_id");
+                    material.tipoMaderaId = jsonObject.getInt("tipo_madera_id");
                     materialDao.insertOne(material);
                 }
                 else {
@@ -53,6 +55,8 @@ public class ImportarMateriales extends AsyncTask<Void, Void, Void> {
                     material.codigo = jsonObject.getString("codigo");
                     material.empresaId = jsonObject.getInt("empresa_id");
                     material.estado = jsonObject.getString("estado");
+                    material.origenMaderaId = jsonObject.getInt("origen_madera_id");
+                    material.tipoMaderaId = jsonObject.getInt("tipo_madera_id");
                     materialDao.update(material);
                 }
             }
