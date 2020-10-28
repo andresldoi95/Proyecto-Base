@@ -4232,15 +4232,15 @@ __webpack_require__.r(__webpack_exports__);
         id: "",
         _method: undefined,
         tipo_madera_id: '',
-        formato_entrega_id: ''
+        origen_madera_id: ''
       },
       tiposMadera: [],
-      formatosEntrega: [],
+      origenesMadera: [],
       errores: {
         codigo: undefined,
         descripcion: undefined,
         tipo_madera_id: undefined,
-        formato_entrega_id: undefined
+        origen_madera_id: undefined
       }
     };
   },
@@ -4254,13 +4254,13 @@ __webpack_require__.r(__webpack_exports__);
         _this.tiposMadera = data;
       });
     },
-    cargarFormatosEntrega: function cargarFormatosEntrega() {
+    cargarOrigenesMadera: function cargarOrigenesMadera() {
       var _this2 = this;
 
-      var path = "http://127.0.0.1:8000/api" + "/formatos-entrega/listado";
+      var path = "http://127.0.0.1:8000/api" + "/origenes-hacienda/listado";
       this.$http.get(path).then(function (_ref2) {
         var data = _ref2.data;
-        _this2.formatosEntrega = data;
+        _this2.origenesMadera = data;
       });
     },
     canceled: function canceled() {
@@ -4271,7 +4271,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form._method = undefined;
       this.form.codigo = "";
       this.form.descripcion = "";
-      this.form.formato_entrega_id = '';
+      this.form.origen_madera_id = '';
       this.form.tipo_madera_id = '';
     },
     adding: function adding() {
@@ -4308,7 +4308,7 @@ __webpack_require__.r(__webpack_exports__);
     editar: function editar(material) {
       this.form.id = material.id;
       this.form.codigo = material.codigo;
-      this.form.formato_entrega_id = material.formato_entrega_id;
+      this.form.origen_madera_id = material.origen_madera_id;
       this.form.tipo_madera_id = material.tipo_madera_id;
       this.form.descripcion = material.descripcion;
     },
@@ -4316,7 +4316,7 @@ __webpack_require__.r(__webpack_exports__);
       this.errores.descripcion = undefined;
       this.errores.codigo = undefined;
       this.errores.tipo_madera_id = undefined;
-      this.errores.formato_entrega_id = undefined;
+      this.errores.origen_madera_id = undefined;
     },
     submitFormulario: function submitFormulario() {
       var _this4 = this;
@@ -4343,7 +4343,7 @@ __webpack_require__.r(__webpack_exports__);
         if (status === 422) {
           _this4.errores.codigo = response.data.errors.codigo;
           _this4.errores.descripcion = response.data.errors.descripcion;
-          _this4.errores.formato_entrega_id = response.data.errors.formato_entrega_id;
+          _this4.errores.origen_madera_id = response.data.errors.origen_madera_id;
           _this4.errores.tipo_madera_id = response.data.tipo_madera_id;
         } else {
           _this4.$buefy.toast.open({
@@ -4356,7 +4356,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.cargarTiposMadera();
-    this.cargarFormatosEntrega();
+    this.cargarOrigenesMadera();
   }
 });
 
@@ -28598,8 +28598,8 @@ var render = function() {
                     sortable: true
                   },
                   {
-                    label: _vm.$t("etiqueta.formato_entrega"),
-                    field: "formato_entrega.descripcion",
+                    label: _vm.$t("etiqueta.origen_hacienda"),
+                    field: "origen_madera.descripcion",
                     sortable: true
                   },
                   {
@@ -28766,13 +28766,11 @@ var render = function() {
                       "b-field",
                       {
                         attrs: {
-                          message: _vm.errores.formato_entrega_id
-                            ? _vm.errores.formato_entrega_id[0]
+                          message: _vm.errores.origen_madera_id
+                            ? _vm.errores.origen_madera_id[0]
                             : "",
-                          type: _vm.errores.formato_entrega_id
-                            ? "is-danger"
-                            : "",
-                          label: _vm.$t("etiqueta.formato_entrega")
+                          type: _vm.errores.origen_madera_id ? "is-danger" : "",
+                          label: _vm.$t("etiqueta.origen_hacienda")
                         }
                       },
                       [
@@ -28784,14 +28782,14 @@ var render = function() {
                               placeholder: _vm.$t("title.seleccione")
                             },
                             model: {
-                              value: _vm.form.formato_entrega_id,
+                              value: _vm.form.origen_madera_id,
                               callback: function($$v) {
-                                _vm.$set(_vm.form, "formato_entrega_id", $$v)
+                                _vm.$set(_vm.form, "origen_madera_id", $$v)
                               },
-                              expression: "form.formato_entrega_id"
+                              expression: "form.origen_madera_id"
                             }
                           },
-                          _vm._l(_vm.formatosEntrega, function(option) {
+                          _vm._l(_vm.origenesMadera, function(option) {
                             return _c(
                               "option",
                               {
@@ -56231,7 +56229,8 @@ __webpack_require__.r(__webpack_exports__);
     roles: "Roles",
     aserrador: "Aserrador",
     tipo_madera: 'Wood type',
-    formato_entrega: 'Delivery format'
+    formato_entrega: 'Delivery format',
+    origen_hacienda: 'Wood source'
   },
   button: {
     login: "Login",
@@ -56366,7 +56365,8 @@ __webpack_require__.r(__webpack_exports__);
     modulos: "Módulos",
     aserrador: "Aserrador",
     tipo_madera: 'Tipo de madera',
-    formato_entrega: 'Formato de entrega'
+    formato_entrega: 'Formato de entrega',
+    origen_hacienda: 'Origen de madera'
   },
   button: {
     login: "Iniciar sesión",

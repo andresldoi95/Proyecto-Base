@@ -23,7 +23,7 @@ class MaterialApiController extends Controller
         $user = $request->user();
         $status = $request->input('status');
         $search = $request->input('search');
-        return Material::with('tipoMadera', 'formatoEntrega')->where('empresa_id', $user->empresa_id)
+        return Material::with('tipoMadera', 'origenMadera')->where('empresa_id', $user->empresa_id)
             ->orderBy('descripcion')
             ->where(function ($query) use ($status) {
                 if ($status !== 'T')
@@ -46,7 +46,7 @@ class MaterialApiController extends Controller
             ],
             'email' => 'nullable|max:1000',
             'tipo_madera_id' => 'required|exists:tipos_madera,id',
-            'formato_entrega_id' => 'required|exists:formatos_entrega,id'
+            'origen_madera_id' => 'required|exists:origenes_hacienda,id'
         ]);
         Material::create([
             'descripcion' => $request->input('descripcion'),
@@ -54,7 +54,7 @@ class MaterialApiController extends Controller
             'empresa_id' => $user->empresa_id,
             'codigo' => $request->input('codigo'),
             'tipo_madera_id' => $request->input('tipo_madera_id'),
-            'formato_entrega_id' => $request->input('formato_entrega_id')
+            'origen_madera_id' => $request->input('origen_madera_id')
         ]);
     }
     public function update(Request $request, $id)
@@ -67,14 +67,14 @@ class MaterialApiController extends Controller
             ],
             'email' => 'nullable|max:1000',
             'tipo_madera_id' => 'required|exists:tipos_madera,id',
-            'formato_entrega_id' => 'required|exists:formatos_entrega,id'
+            'origen_madera_id' => 'required|exists:formatos_entrega,id'
         ]);
         $material = Material::findOrFail($id);
         $material->descripcion = $request->input('descripcion');
         $material->codigo = $request->input('codigo');
         $material->modificador_id = $user->id;
         $material->tipo_madera_id = $request->input('tipo_madera_id');
-        $material->formato_entrega_id = $request->input('formato_entrega_id');
+        $material->origen_madera_id = $request->input('origen_madera_id');
         $material->save();
     }
     public function destroy(Request $request)

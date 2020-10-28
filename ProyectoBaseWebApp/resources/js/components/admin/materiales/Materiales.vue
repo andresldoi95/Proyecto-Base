@@ -42,8 +42,8 @@
                     sortable : true
                 },
                 {
-                    label : $t('etiqueta.formato_entrega'),
-                    field : 'formato_entrega.descripcion',
+                    label : $t('etiqueta.origen_hacienda'),
+                    field : 'origen_madera.descripcion',
                     sortable : true
                 },
                 {
@@ -98,17 +98,17 @@
             </div>
             <div class="column">
               <b-field
-                :message="errores.formato_entrega_id?errores.formato_entrega_id[0]:''"
-                :type="errores.formato_entrega_id?'is-danger':''"
-                :label="$t('etiqueta.formato_entrega')"
+                :message="errores.origen_madera_id?errores.origen_madera_id[0]:''"
+                :type="errores.origen_madera_id?'is-danger':''"
+                :label="$t('etiqueta.origen_hacienda')"
               >
                 <b-select
-                  v-model="form.formato_entrega_id"
+                  v-model="form.origen_madera_id"
                   expanded
                   :placeholder="$t('title.seleccione')"
                 >
                   <option
-                    v-for="option in formatosEntrega"
+                    v-for="option in origenesMadera"
                     :value="option.id"
                     :key="option.id"
                   >{{ option.descripcion }}</option>
@@ -134,15 +134,15 @@ export default {
         id: "",
         _method: undefined,
         tipo_madera_id: '',
-        formato_entrega_id: ''
+        origen_madera_id: ''
       },
       tiposMadera: [],
-      formatosEntrega: [],
+      origenesMadera: [],
       errores: {
         codigo: undefined,
         descripcion: undefined,
         tipo_madera_id: undefined,
-        formato_entrega_id: undefined
+        origen_madera_id: undefined
       },
     };
   },
@@ -153,10 +153,10 @@ export default {
               this.tiposMadera = data;
           });
       },
-      cargarFormatosEntrega: function () {
-          let path = process.env.MIX_APP_URL_API + "/formatos-entrega/listado";
+      cargarOrigenesMadera: function () {
+          let path = process.env.MIX_APP_URL_API + "/origenes-hacienda/listado";
           this.$http.get(path).then(({data}) => {
-              this.formatosEntrega = data;
+              this.origenesMadera = data;
           });
       },
     canceled: function () {
@@ -167,7 +167,7 @@ export default {
       this.form._method = undefined;
       this.form.codigo = "";
       this.form.descripcion = "";
-      this.form.formato_entrega_id = '';
+      this.form.origen_madera_id = '';
       this.form.tipo_madera_id = '';
     },
     adding: function () {
@@ -201,7 +201,7 @@ export default {
     editar: function (material) {
       this.form.id = material.id;
       this.form.codigo = material.codigo;
-      this.form.formato_entrega_id = material.formato_entrega_id;
+      this.form.origen_madera_id = material.origen_madera_id;
       this.form.tipo_madera_id = material.tipo_madera_id;
       this.form.descripcion = material.descripcion;
     },
@@ -209,7 +209,7 @@ export default {
       this.errores.descripcion = undefined;
       this.errores.codigo = undefined;
       this.errores.tipo_madera_id = undefined;
-      this.errores.formato_entrega_id = undefined;
+      this.errores.origen_madera_id = undefined;
     },
     submitFormulario: function () {
       this.limpiarErrores();
@@ -232,7 +232,7 @@ export default {
           if (status === 422) {
             this.errores.codigo = response.data.errors.codigo;
             this.errores.descripcion = response.data.errors.descripcion;
-            this.errores.formato_entrega_id = response.data.errors.formato_entrega_id;
+            this.errores.origen_madera_id = response.data.errors.origen_madera_id;
             this.errores.tipo_madera_id = response.data.tipo_madera_id;
           } else {
             this.$buefy.toast.open({
@@ -245,7 +245,7 @@ export default {
   },
   mounted : function () {
       this.cargarTiposMadera();
-      this.cargarFormatosEntrega();
+      this.cargarOrigenesMadera();
   }
 };
 </script>

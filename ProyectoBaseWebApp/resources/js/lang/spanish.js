@@ -113,7 +113,8 @@ export default {
         modulos: "Módulos",
         aserrador: "Aserrador",
         tipo_madera: 'Tipo de madera',
-        formato_entrega: 'Formato de entrega'
+        formato_entrega: 'Formato de entrega',
+        origen_hacienda: 'Origen de madera'
     },
     button: {
         login: "Iniciar sesión",
