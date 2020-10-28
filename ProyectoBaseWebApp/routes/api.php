@@ -66,6 +66,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'tipos-madera'], function () {
         Route::delete('/', 'TipoMaderaApiController@destroy');
         Route::get('/all', 'TipoMaderaApiController@all');
+        Route::get('/listado', 'TipoMaderaApiController@listado');
     });
     Route::resource('tipos-madera', 'TipoMaderaApiController', [
         'except' => [
@@ -84,6 +85,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'formatos-entrega'], function () {
         Route::delete('/', 'FormatoEntregaApiController@destroy');
         Route::get('/all', 'FormatoEntregaApiController@all');
+        Route::get('/listado', 'FormatoEntregaApiController@listado');
     });
     Route::resource('formatos-entrega', 'FormatoEntregaApiController', [
         'except' => [

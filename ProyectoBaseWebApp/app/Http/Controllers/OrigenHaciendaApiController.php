@@ -10,7 +10,7 @@ class OrigenHaciendaApiController extends Controller
 {
     public function all()
     {
-        return OrigenHacienda::all();
+        return OrigenHacienda::with('haciendas')->all();
     }
     public function listado(Request $request)
     {
@@ -22,7 +22,7 @@ class OrigenHaciendaApiController extends Controller
         $user = $request->user();
         $status = $request->input('status');
         $search = $request->input('search');
-        return OrigenHacienda::where('empresa_id', $user->empresa_id)
+        return OrigenHacienda::with('haciendas')->where('empresa_id', $user->empresa_id)
             ->orderBy('descripcion')
             ->where(function ($query) use ($status) {
                 if ($status !== 'T')
@@ -38,23 +38,32 @@ class OrigenHaciendaApiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'descripcion' => 'required|max:255'
+            'descripcion' => 'required|max:255',
+            'haciendas' => 'nullable|array'
         ]);
         $user = $request->user();
-        OrigenHacienda::create([
+        $origenHacienda = OrigenHacienda::create([
             'descripcion' => $request->input('descripcion'),
             'creador_id' => $user->id,
             'empresa_id' => $user->empresa_id
         ]);
+        $haciendas = $request->input('haciendas');
+        if (isset($haciendas))
+            $origenHacienda->haciendas()->sync($haciendas);
     }
     public function update(Request $request, $id)
     {
         $request->validate([
-            'descripcion' => 'required|max:255'
+            'descripcion' => 'required|max:255',
+            'haciendas' => 'nullable|array'
         ]);
         $origenMadera = OrigenHacienda::findOrFail($id);
         $origenMadera->descripcion = $request->input('descripcion');
         $origenMadera->save();
+        $haciendas = $request->input('haciendas');
+        $origenMadera->haciendas()->detach();
+        if (isset($haciendas))
+            $origenMadera->haciendas()->sync($haciendas);
     }
     public function destroy(Request $request)
     {

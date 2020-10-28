@@ -99,6 +99,7 @@ export default {
         tipos_bulto: "Package types"
     },
     etiqueta: {
+        haciendas: 'Haciendas',
         materiales: 'Materials',
         procedencia: "Provenance",
         username: "Username",
@@ -106,7 +107,9 @@ export default {
         modulos: "Modules",
         acciones: "Actions",
         roles: "Roles",
-        aserrador: "Aserrador"
+        aserrador: "Aserrador",
+        tipo_madera: 'Wood type',
+        formato_entrega: 'Delivery format'
     },
     button: {
         login: "Login",

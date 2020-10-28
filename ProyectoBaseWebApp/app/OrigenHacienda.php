@@ -10,6 +10,9 @@ class OrigenHacienda extends Model
     protected $fillable = [
         'empresa_id', 'descripcion', 'estado', 'creador_id', 'modificador_id'
     ];
+    public function haciendas() {
+        return $this->belongsToMany('App\OrigenMadera', 'haciendas_madera', 'origen_madera_id' , 'hacienda_id');
+    }
     public function scopeActive($query)
     {
         return $query->where('estado', 'A');

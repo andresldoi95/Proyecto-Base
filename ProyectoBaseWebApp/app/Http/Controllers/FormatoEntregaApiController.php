@@ -12,6 +12,10 @@ class FormatoEntregaApiController extends Controller
     {
         return FormatoEntrega::all();
     }
+    public function listado(Request $request) {
+        $user = $request->user();
+        return FormatoEntrega::active()->orderBy('descripcion')->where('empresa_id', $user->empresa_id)->get();
+    }
     public function index(Request $request)
     {
         $user = $request->user();

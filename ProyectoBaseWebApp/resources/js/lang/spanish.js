@@ -103,6 +103,7 @@ export default {
         tipos_bulto: "Tipos de bulto"
     },
     etiqueta: {
+        haciendas: 'Haciendas',
         materiales: 'Materiales',
         procedencia: "Procedencia",
         username: "Nombre de usuario",
@@ -110,7 +111,9 @@ export default {
         acciones: "Acciones",
         roles: "Roles",
         modulos: "Módulos",
-        aserrador: "Aserrador"
+        aserrador: "Aserrador",
+        tipo_madera: 'Tipo de madera',
+        formato_entrega: 'Formato de entrega'
     },
     button: {
         login: "Iniciar sesión",
