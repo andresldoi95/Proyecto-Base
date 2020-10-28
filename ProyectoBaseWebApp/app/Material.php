@@ -9,13 +9,13 @@ class Material extends Model
     protected $table = 'materiales';
     protected $fillable = [
         'empresa_id', 'descripcion', 'codigo', 'estado', 'creador_id', 'modificador_id', 'tipo_madera_id',
-        'formato_entrega_id'
+        'origen_madera_id'
     ];
     public function tipoMadera() {
         return $this->belongsTo('App\TipoMadera', 'tipo_madera_id');
     }
-    public function formatoEntrega() {
-        return $this->belongsTo('App\FormatoEntrega', 'formato_entrega_id');
+    public function origenMadera() {
+        return $this->belongsTo('App\OrigenHacienda', 'origen_madera_id');
     }
     public function scopeActive($query)
     {

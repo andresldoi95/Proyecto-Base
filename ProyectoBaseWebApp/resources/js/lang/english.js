@@ -109,7 +109,8 @@ export default {
         roles: "Roles",
         aserrador: "Aserrador",
         tipo_madera: 'Wood type',
-        formato_entrega: 'Delivery format'
+        formato_entrega: 'Delivery format',
+        origen_hacienda: 'Wood source'
     },
     button: {
         login: "Login",

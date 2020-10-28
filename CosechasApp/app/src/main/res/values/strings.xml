@@ -53,6 +53,9 @@
     <string name="importando_tipos_bulto">Importando haciendas...</string>
     <string name="tipos_bulto_importados">Tipos de bulto importados...</string>
 
+    <string name="origenes_hacienda_importados">Orígenes de madera importados...</string>
+    <string name="importando_origenes_hacienda">Importando orígenes de madera</string>
+
     <string name="tv_camion">Camión</string>
     <string name="tv_controlador">Controlador</string>
     <string name="tv_destino">Destino</string>
