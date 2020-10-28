@@ -10,7 +10,7 @@ class OrigenHaciendaApiController extends Controller
 {
     public function all()
     {
-        return OrigenHacienda::with('haciendas')->all();
+        return OrigenHacienda::with('haciendas')->get();
     }
     public function listado(Request $request)
     {
