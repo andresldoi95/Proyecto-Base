@@ -50,7 +50,7 @@ public class ItemSueltosActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (formularioValido()) {
                     FilaSuelto filaSuelto = new FilaSuelto();
-                    filaSuelto.bultos = Double.parseDouble(etPlantilla.getText().toString());
+                    filaSuelto.bultos = Integer.parseInt(etPlantilla.getText().toString());
                     Largo largo = (Largo) spnLargo.getSelectedItem();
                     Espesor espesor = (Espesor) spnEspesor.getSelectedItem();
                     filaSuelto.indice = indice;

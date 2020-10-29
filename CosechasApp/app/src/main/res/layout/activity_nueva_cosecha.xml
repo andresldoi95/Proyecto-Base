@@ -14,12 +14,28 @@
         android:paddingTop="@dimen/single_form_updown_margin"
         tools:context=".NuevaCosechaActivity">
         <TextView
-            android:id="@+id/tvCamion"
+            android:id="@+id/tvOrigenHacienda"
             android:layout_width="match_parent"
-            android:text="@string/tv_camion"
+            android:text="@string/tv_origen_hacienda"
             android:layout_marginLeft="@dimen/side_form_margin"
             android:layout_marginRight="@dimen/side_form_margin"
             app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content"></TextView>
+        <Spinner
+            android:layout_width="match_parent"
+            android:id="@+id/spnOrigenHacienda"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvOrigenHacienda"
+            android:layout_height="wrap_content"></Spinner>
+        <TextView
+            android:layout_marginTop="@dimen/space_form_margin"
+            android:id="@+id/tvCamion"
+            android:layout_width="match_parent"
+            android:text="@string/tv_controlador"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/spnOrigenHacienda"
             android:layout_height="wrap_content"></TextView>
         <Spinner
             android:layout_width="match_parent"
@@ -78,28 +94,12 @@
             android:layout_height="wrap_content"></Spinner>
         <TextView
             android:layout_marginTop="@dimen/space_form_margin"
-            android:id="@+id/tvMaterial"
-            android:layout_width="match_parent"
-            android:text="@string/tv_material"
-            android:layout_marginLeft="@dimen/side_form_margin"
-            android:layout_marginRight="@dimen/side_form_margin"
-            app:layout_constraintTop_toBottomOf="@id/spnAserrador"
-            android:layout_height="wrap_content"></TextView>
-        <Spinner
-            android:layout_width="match_parent"
-            android:id="@+id/spnMaterial"
-            android:layout_marginLeft="@dimen/side_form_margin"
-            android:layout_marginRight="@dimen/side_form_margin"
-            app:layout_constraintTop_toBottomOf="@id/tvMaterial"
-            android:layout_height="wrap_content"></Spinner>
-        <TextView
-            android:layout_marginTop="@dimen/space_form_margin"
             android:id="@+id/tvCodigoPo"
             android:layout_width="match_parent"
             android:text="@string/tv_codigo_po"
             android:layout_marginLeft="@dimen/side_form_margin"
             android:layout_marginRight="@dimen/side_form_margin"
-            app:layout_constraintTop_toBottomOf="@id/spnMaterial"
+            app:layout_constraintTop_toBottomOf="@id/spnAserrador"
             android:layout_height="wrap_content"></TextView>
         <EditText
             android:id="@+id/etCodigoPo"
@@ -214,12 +214,30 @@
             android:layout_height="wrap_content"></Spinner>
         <TextView
             android:layout_marginTop="@dimen/space_form_margin"
+            android:id="@+id/tvMaterial"
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:text="@string/tv_material"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/spnFormatoEntrega"
+            android:layout_height="wrap_content"></TextView>
+        <EditText
+            android:enabled="false"
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            android:id="@+id/etMaterial"
+            app:layout_constraintTop_toBottomOf="@id/tvMaterial"
+            android:layout_height="wrap_content"></EditText>
+        <TextView
+            android:layout_marginTop="@dimen/space_form_margin"
             android:id="@+id/tvFechaDespacho"
             android:layout_width="match_parent"
             android:text="@string/fecha_despacho"
             android:layout_marginLeft="@dimen/side_form_margin"
             android:layout_marginRight="@dimen/side_form_margin"
-            app:layout_constraintTop_toBottomOf="@id/spnFormatoEntrega"
+            app:layout_constraintTop_toBottomOf="@id/etMaterial"
             android:layout_height="wrap_content"></TextView>
         <EditText
             android:inputType="date"
@@ -272,27 +290,5 @@
             android:layout_marginRight="@dimen/side_form_margin"
             app:layout_constraintTop_toBottomOf="@id/tvValorFlete"
             android:layout_height="wrap_content"></EditText>
-        <RadioGroup
-            android:layout_marginTop="@dimen/space_form_margin"
-            android:id="@+id/rgTipoLlenado"
-            android:layout_marginLeft="@dimen/side_form_margin"
-            android:layout_marginRight="@dimen/side_form_margin"
-            android:layout_width="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/etValorFlete"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
-            <RadioButton
-                android:checked="true"
-                android:id="@+id/rbBultos"
-                android:text="@string/bultos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></RadioButton>
-            <RadioButton
-                android:checked="false"
-                android:id="@+id/rbSueltos"
-                android:text="@string/respuesta_sueltos"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"></RadioButton>
-        </RadioGroup>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

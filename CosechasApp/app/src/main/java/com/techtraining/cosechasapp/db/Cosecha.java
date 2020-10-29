@@ -32,6 +32,9 @@ public class Cosecha {
     @ColumnInfo(name = "origen_madera_id")
     public int origenMaderaId;
 
+    @ColumnInfo(name = "origen_hacienda_id")
+    public int origenHaciendaId;
+
     @ColumnInfo(name = "formato_entrega_id")
     public int formatoEntregaId;
 

@@ -18,4 +18,7 @@ public interface HaciendaMaderaDao {
 
     @Insert
     void insertOne(HaciendaMadera haciendaMadera);
+
+    @Query("DELETE FROM haciendamadera WHERE origen_madera_id = :origenMaderaId")
+    void deleteByOrigenMadera(int origenMaderaId);
 }

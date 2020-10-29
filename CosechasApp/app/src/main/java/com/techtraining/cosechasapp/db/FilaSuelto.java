@@ -26,5 +26,5 @@ public class FilaSuelto {
     public double bft;
 
     @ColumnInfo(name = "bultos")
-    public double bultos;
+    public int bultos;
 }

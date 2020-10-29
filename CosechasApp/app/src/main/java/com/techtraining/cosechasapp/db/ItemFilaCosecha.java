@@ -18,7 +18,7 @@ public class ItemFilaCosecha {
     public double bft;
 
     @ColumnInfo(name = "bultos")
-    public double bultos;
+    public int bultos;
 
     @ColumnInfo(name = "fila")
     public int fila;

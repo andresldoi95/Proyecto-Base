@@ -9,6 +9,7 @@ import com.techtraining.cosechasapp.DBManager;
 import com.techtraining.cosechasapp.R;
 import com.techtraining.cosechasapp.db.AppDatabase;
 import com.techtraining.cosechasapp.db.HaciendaMadera;
+import com.techtraining.cosechasapp.db.HaciendaMaderaDao;
 import com.techtraining.cosechasapp.db.OrigenHacienda;
 import com.techtraining.cosechasapp.db.OrigenHaciendaDao;
 
@@ -54,13 +55,15 @@ public class ImportarOrigenesHacienda extends AsyncTask<Void, Void, Void> {
                     origenHacienda.estado = jsonObject.getString("estado");
                     origenHaciendaDao.update(origenHacienda);
                 }
+                HaciendaMaderaDao haciendaMaderaDao = appDatabase.haciendaMaderaDao();
+                haciendaMaderaDao.deleteByOrigenMadera(origenHacienda.id);
                 JSONArray haciendasMadera = jsonObject.getJSONArray("haciendas");
                 for (int j = 0; j < haciendasMadera.length(); j++) {
                     HaciendaMadera haciendaMadera = new HaciendaMadera();
-                    JSONObject obj = haciendasMadera.getJSONObject(i);
+                    JSONObject obj = haciendasMadera.getJSONObject(j);
                     haciendaMadera.haciendaId = obj.getInt("id");
                     haciendaMadera.origenMaderaId = origenHacienda.id;
-                    appDatabase.haciendaMaderaDao().insertOne(haciendaMadera);
+                    haciendaMaderaDao.insertOne(haciendaMadera);
                 }
             }
             catch (JSONException ex) {
