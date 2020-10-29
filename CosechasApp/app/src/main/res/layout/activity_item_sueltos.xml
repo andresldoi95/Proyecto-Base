@@ -21,7 +21,7 @@
         app:layout_constraintTop_toBottomOf="@id/tvPlantilla"
         android:layout_width="match_parent"
         android:id="@+id/etPlantilla"
-        android:inputType="numberDecimal"
+        android:inputType="number"
         android:layout_height="wrap_content"></EditText>
     <TextView
         android:layout_marginTop="@dimen/space_form_margin"

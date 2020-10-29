@@ -25,7 +25,7 @@ public class ItemCosechaActivity extends AppCompatActivity {
     private boolean formularioValido() {
         boolean valido = true;
         if (etPlantilla.getText().length() == 0) {
-            etPlantilla.setError(getString(R.string.plantilla_requerida));
+            etPlantilla.setError(getString(R.string.bultos_requeridos));
             valido = false;
         }
         if (spnTipoBulto.getSelectedItem() == null) {
@@ -47,7 +47,7 @@ public class ItemCosechaActivity extends AppCompatActivity {
                 if(formularioValido()) {
                     FilaCosecha filaCosecha = new FilaCosecha();
                     filaCosecha.id = getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE).getString(Helper.CURRENT_FILA_NAME, null);
-                    filaCosecha.bultos = Double.parseDouble(etPlantilla.getText().toString());
+                    filaCosecha.bultos = Integer.parseInt(etPlantilla.getText().toString());
                     filaCosecha.tipoBultoId = ((TipoBulto) spnTipoBulto.getSelectedItem()).id;
                     new GuardarItemFilaCosecha(ItemCosechaActivity.this, filaCosecha).execute();
                 }

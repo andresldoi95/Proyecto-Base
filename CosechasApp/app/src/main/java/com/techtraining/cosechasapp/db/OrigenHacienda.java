@@ -17,4 +17,9 @@ public class OrigenHacienda {
 
     @ColumnInfo(name = "estado")
     public String estado;
+
+    @Override
+    public String toString() {
+        return descripcion;
+    }
 }

@@ -21,6 +21,9 @@ public interface MaterialDao {
     @Query("SELECT * FROM material WHERE id = (:materialId)")
     Material loadById(int materialId);
 
+    @Query("SELECT * FROM material WHERE tipo_madera_id = (:tipoMaderaId) AND origen_madera_id = (:origenMaderaId)")
+    Material loadByIdTipos(int tipoMaderaId, int origenMaderaId);
+
     @Update
     void update(Material material);
 

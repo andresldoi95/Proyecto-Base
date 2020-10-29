@@ -50,7 +50,7 @@ public class CargarDatosFila extends AsyncTask<Void, Void, Void> {
             if (filaCosecha.tipo.equals("E")) {
                 informacion = "\n(" + context.getString(R.string.excedente) + ")";
             }
-            informacion += "\n" + context.getString(R.string.plantilla) + ": " + filaCosecha.bultos;
+            informacion += "\n" + context.getString(R.string.bultos) + ": " + filaCosecha.bultos;
             informacion += "\n" + context.getString(R.string.ancho) + ": " + tipoBulto.ancho;
             if (espesor != null)
                 informacion += "\n" +  context.getString(R.string.espesor) + ": " + espesor.valor;

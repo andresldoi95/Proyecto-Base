@@ -55,6 +55,9 @@
 
     <string name="origenes_hacienda_importados">Orígenes de madera importados...</string>
     <string name="importando_origenes_hacienda">Importando orígenes de madera</string>
+    <string name="tv_origen_hacienda">Origen de madera</string>
+
+    <string name="origen_hacienda_requerida">El origen de madera es requerido</string>
 
     <string name="tv_camion">Camión</string>
     <string name="tv_controlador">Controlador</string>
@@ -101,14 +104,14 @@
 
     <string name="fila">Fila</string>
 
-    <string name="plantilla">Bultos</string>
-    <string name="bultos">Bultos</string>
+    <string name="plantilla">Número de plantillas</string>
+    <string name="bultos">Cant. Bultos</string>
     <string name="espesor">Espesor</string>
     <string name="largo">Largo</string>
     <string name="datos_bloque">Datos de bloque</string>
 
-    <string name="plantilla_requerida">La cantidad de bultos es requerida.</string>
-    <string name="bultos_requeridos">Los bultos son requeridos.</string>
+    <string name="plantilla_requerida">El número de plantillas es requerido.</string>
+    <string name="bultos_requeridos">La cantidad de bultos es requerida.</string>
     <string name="espesor_requerido">El espesor es requerido.</string>
     <string name="largo_requerido">El largo es requerido.</string>
 
@@ -149,6 +152,9 @@
     <string name="permisos_denegados">Permisos denegados</string>
     <string name="permisos_aprobados">Permisos aprobados</string>
 
+    <string name="numero_trozas_requerido">El numero de trozas es requerido</string>
+    <string name="volumen_trozas_requerido">El volumen de trozas es requerido</string>
+
     <string name="excedente">Excedente</string>
     <string name="foto_almacenada">Foto almacenada</string>
     <string name="eliminar">Eliminar</string>
@@ -163,4 +169,13 @@
     <string name="desea_finalizar_despacho">¿Desea finalizar el despacho?</string>
 
     <string name="debe_seleccionar_despachos">Debe seleccionar al menos un despacho</string>
+
+    <string name="numero_trozas">Número de trozas</string>
+
+    <string name="troza_guardada">La troza ha sido almacenada.</string>
+
+    <string name="volumen_estimado">Volumen estimado</string>
+    <string name="observaciones">Observaciones</string>
+
+    <string name="quitar_foto">Quitar foto</string>
 </resources>

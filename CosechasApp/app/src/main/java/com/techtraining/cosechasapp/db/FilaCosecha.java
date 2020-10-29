@@ -23,7 +23,7 @@ public class FilaCosecha {
     public double bft;
 
     @ColumnInfo(name = "bultos")
-    public double bultos;
+    public int bultos;
 
     @ColumnInfo(name = "estado")
     public String estado;
