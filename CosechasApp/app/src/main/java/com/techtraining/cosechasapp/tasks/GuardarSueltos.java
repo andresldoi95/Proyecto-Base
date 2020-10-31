@@ -87,10 +87,13 @@ public class GuardarSueltos extends AsyncTask<Void, Void, Void> {
                         }
                         List<FilaSuelto> sueltos = filaSueltoDao.loadByFila(filaSuelto.filaId);
                         double bftTotal = 0;
+                        int bultosTotales = 0;
                         for (int i = 0; i < sueltos.size(); i++) {
                             bftTotal += sueltos.get(i).bft;
+                            bultosTotales += sueltos.get(i).bultos;
                         }
                         filaCosecha.bft = Double.parseDouble(df.format(bftTotal));
+                        filaCosecha.bultos = bultosTotales;
                         filaCosechaDao.update(filaCosecha);
                     }
                 }
