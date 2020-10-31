@@ -7,6 +7,12 @@
     <title>Despacho {{ $despacho->numero_documento }}</title>
 </head>
 <body>
-
+    <table>
+        <tr>
+            <td>
+                <img src="/img/logo.png" alt="Logo" width="64px">
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
