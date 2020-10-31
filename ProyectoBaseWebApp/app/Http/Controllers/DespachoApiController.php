@@ -50,7 +50,7 @@ class DespachoApiController extends Controller
         return DB::transaction(function () use($request) {
             $despacho = Despacho::find($request->input('id'));
             if (!isset($despacho)) {
-                $ultimoDespacho = Despacho::orderByRaw('CAST(numero_documento AS INT)')->select(['numero_documento'])->first();
+                $ultimoDespacho = Despacho::orderByRaw('CAST(numero_documento AS INT) DESC')->select(['numero_documento'])->first();
                 $numeroDocumento = isset($ultimoDespacho)?intval($ultimoDespacho->numero_documento) + 1:1;
                 $despacho = Despacho::create([
                     'id' => $request->input('id'),
