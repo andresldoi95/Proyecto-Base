@@ -10,7 +10,6 @@ import SetPassword from "../components/auth/SetPassword";
 import RecuperarCuenta from "../components/auth/RecuperarCuenta";
 import Largos from "../components/admin/largos/Largos";
 import Espesores from "../components/admin/espesores/Espesores";
-import Procedencias from "../components/admin/procedencias/Procedencias";
 import Destinos from "../components/admin/destinos/Destinos";
 import Materiales from "../components/admin/materiales/Materiales";
 import Correos from "../components/admin/correos/Correos";
@@ -18,13 +17,13 @@ import Controladores from "../components/admin/controladores/Controladores";
 import Aserradores from "../components/admin/aserradores/Aserradores";
 import Camiones from "../components/admin/camiones/Camiones";
 import CodigosAserradores from "../components/admin/aserradores/CodigosAserradores";
-import Parametros from "../components/admin/parametros/Parametros";
 import TiposMadera from "../components/admin/tipos-madera/TiposMadera";
 import TiposBulto from "../components/admin/tipos-bulto/TiposBulto";
 import FormatosEntrega from "../components/admin/formatos-entrega/FormatosEntrega";
 import OrigenesMadera from "../components/admin/origenes-madera/OrigenesMadera";
 import Tarifas from "../components/admin/tarifas/Tarifas";
 import OrigenesHacienda from "../components/admin/origenes-hacienda/OrigenesHacienda";
+import Despachos from "../components/admin/despachos/Despachos";
 
 export default {
     mode: "history",
@@ -121,14 +120,6 @@ export default {
                     },
                     name: "Espesores"
                 },
-                // {
-                //     component: Procedencias,
-                //     path: "procedencias",
-                //     meta: {
-                //         requiresAuth: true
-                //     },
-                //     name: "Procedencias"
-                // },
                 {
                     component: Destinos,
                     path: "destinos",
@@ -232,6 +223,14 @@ export default {
                         requiresAuth: true
                     },
                     name: "OrigenesHacienda"
+                },
+                {
+                    component: Despachos,
+                    path: "despachos",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "Despachos"
                 }
             ]
         }

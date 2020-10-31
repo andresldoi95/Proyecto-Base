@@ -8,6 +8,14 @@ export default {
         recuperar: "Recuperar cuenta"
     },
     message: {
+        desde: 'Desde',
+        hasta: 'Hasta',
+        usuario: 'Usuario',
+        formato_entrega: 'Formato de entrega',
+        fecha_tumba: 'Fecha de tumba',
+        fecha_despacho: 'Despacho date',
+        camion: 'Camión',
+        numero_documento: 'Documento',
         destino: 'Destino',
         origen_madera: 'Hacienda',
         hectareas: "Hectáreas",
@@ -72,6 +80,7 @@ export default {
         codigo_vendor: 'Código vendor'
     },
     title: {
+        despachos: 'Despachos',
         origenes_hacienda: 'Origenes de madera',
         tarifas: 'Tarifas',
         parametros: "Parámetros",

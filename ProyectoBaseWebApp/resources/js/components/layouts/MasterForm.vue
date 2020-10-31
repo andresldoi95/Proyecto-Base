@@ -5,7 +5,7 @@
         <div v-show="createButton" class="control">
           <b-button @click="add" icon-left="plus">{{ $t("message.add") }}</b-button>
         </div>
-        <b-select v-model="type">
+        <b-select v-show="typeOptions.length > 0" v-model="type">
           <option disabled value>{{ $t("message.group_action") }}</option>
           <option
             v-show="type.visible"
@@ -14,20 +14,24 @@
             :value="type.value"
           >{{ type.text }}</option>
         </b-select>
-        <div class="control">
+        <div v-show="typeOptions.length > 0" class="control">
           <b-button
             @click="realizarAccion"
             icon-left="check"
             type="is-warning"
           >{{ $t("message.do_group_action") }}</b-button>
         </div>
-        <b-select @input="submit" v-model="form.status">
+        <b-select v-show="statusOptions.length > 0" @input="submit" v-model="form.status">
           <option
             v-for="option in statusOptions"
             :key="option.value"
             :value="option.value"
           >{{ option.text }}</option>
         </b-select>
+        <b-datepicker :placeholder="$t('message.desde')" v-model="form.desde">
+        </b-datepicker>
+        <b-datepicker :placeholder="$t('message.hasta')" v-model="form.hasta">
+        </b-datepicker>
         <b-input type="text" v-model="form.search" :placeholder="$t('message.search')"></b-input>
         <div class="control">
           <b-button native-type="submit" type="is-primary" icon-left="magnify"></b-button>
@@ -92,6 +96,11 @@
 <script>
 export default {
   props: {
+    enableDates: {
+        required: false,
+        default: false,
+        type: Boolean
+    },
     editable: {
       type: Boolean,
       required: false,
@@ -195,6 +204,8 @@ export default {
         current_page: 1,
         sort_by: this.sortByDefault,
         sort_order: this.sortOrderDefault,
+        desde: new Date(),
+        hasta: new Date()
       },
       registros: [],
       sortIcon: "arrow-up",

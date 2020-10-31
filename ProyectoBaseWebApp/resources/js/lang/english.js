@@ -8,6 +8,14 @@ export default {
         recuperar: "Recover account"
     },
     message: {
+        desde: 'From',
+        hasta: 'To',
+        usuario: 'Usuario',
+        formato_entrega: 'Delivery format',
+        fecha_tumba: 'Fecha de tumba',
+        fecha_despacho: 'Despacho date',
+        camion: 'Truck',
+        numero_documento: 'Document',
         destino: 'Destine',
         origen_madera: 'Hacienda',
         hectareas: "Miles",
@@ -68,6 +76,7 @@ export default {
         codigo_vendor: 'Vendor code'
     },
     title: {
+        despachos: 'Despachos',
         origenes_hacienda: 'Wood source',
         tarifas: 'Values',
         parametros: "Parameters",

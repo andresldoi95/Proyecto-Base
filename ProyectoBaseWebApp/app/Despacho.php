@@ -12,6 +12,33 @@ class Despacho extends Model
         'dias_t2k', 'guia_remision', 'guia_forestal', 'guia_forestal', 'tipo_llenado',
         'valor_flete', 'estado', 'usuario_id', 'origen_hacienda_id', 'numero_documento'
     ];
+    public function camion() {
+        return $this->belongsTo('App\Camion');
+    }
+    public function destino() {
+        return $this->belongsTo('App\Destino');
+    }
+    public function aserrador() {
+        return $this->belongsTo('App\Aserrador');
+    }
+    public function material() {
+        return $this->belongsTo('App\Material');
+    }
+    public function tipoMadera() {
+        return $this->belongsTo('App\TipoMadera');
+    }
+    public function origenMadera() {
+        return $this->belongsTo('App\OrigenMadera');
+    }
+    public function origenHacienda() {
+        return $this->belongsTo('App\OrigenHacienda');
+    }
+    public function usuario() {
+        return $this->belongsTo('App\User');
+    }
+    public function formatoEntrega() {
+        return $this->belongsTo('App\FormatoEntrega');
+    }
     public $incrementing = false;
     protected $dates = [
         'fecha_tumba', 'fecha_despacho'
