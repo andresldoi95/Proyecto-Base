@@ -37,14 +37,6 @@ class DespachoApiController extends Controller
             'filas.*.estado' => 'required|max:1',
             'filas.*.tipo' => 'required|max:1',
             'filas.*.id' => 'required|max:36|distinct',
-            'filas.*.sueltos' => 'required|array',
-            'filas.*.sueltos.*.largoId' => 'nullable',
-            'filas.*.sueltos.*.espesorId' => 'nullable',
-            'filas.*.sueltos.*.indice' => 'required|integer',
-            'filas.*.sueltos.*.bft' => 'required|numeric',
-            'filas.*.sueltos.*.bultos' => 'required|numeric',
-            'filas.*.sueltos.*.id' => 'required',
-            'filas.*.sueltos.*.tipoBultoId' => 'nullable',
             'origenHaciendaId' => 'required|exists:origenes_hacienda,id'
         ]);
         return DB::transaction(function () use($request) {
@@ -77,7 +69,7 @@ class DespachoApiController extends Controller
                 ]);
                 $filas = $request->input('filas');
                 foreach ($filas as $fila) {
-                    $fila = $despacho->filas()->create([
+                    $f = $despacho->filas()->create([
                         'id' => $fila['id'],
                         'despacho_id' => $despacho->id,
                         'indice' => $fila['indice'],
@@ -88,7 +80,7 @@ class DespachoApiController extends Controller
                     ]);
                     $sueltos = $fila['sueltos'];
                     foreach ($sueltos as $suelto) {
-                        $fila->sueltos()->create([
+                        $f->sueltos()->create([
                             'largo_id' => intval($suelto['largoId']) > 0?$suelto['largoId']:null,
                             'espesor_id' => intval($suelto['espesorId']) > 0?$suelto['espesorId']:null,
                             'indice' => $suelto['indice'],
