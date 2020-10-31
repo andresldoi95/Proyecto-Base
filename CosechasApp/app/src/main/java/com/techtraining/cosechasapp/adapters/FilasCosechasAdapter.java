@@ -65,18 +65,18 @@ public class FilasCosechasAdapter extends ArrayAdapter<FilaCosecha> {
                     final SharedPreferences.Editor editor = activity.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE).edit();
                     editor.putString(Helper.CURRENT_FILA_NAME, dataModel.id);
                     editor.commit();
-                    if (cosecha.tipoLlenado.equals("B") && dataModel.tipo.equals("N")) {
+                    /*if (cosecha.tipoLlenado.equals("B") && dataModel.tipo.equals("N")) {
                         Intent intent = new Intent(activity, ItemCosechaActivity.class);
                         editor.putString(Helper.CURRENT_LLENADO_NAME, "B");
                         editor.commit();
                         activity.startActivity(intent);
-                    }
-                    else {
+                    }*/
+                    //else {
                         Intent intent = new Intent(activity, LlenadoSueltosActivity.class);
-                        editor.putString(Helper.CURRENT_LLENADO_NAME, "S");
+                        editor.putString(Helper.CURRENT_LLENADO_NAME, cosecha.tipoLlenado);
                         editor.commit();
                         activity.startActivity(intent);
-                    }
+                    //}
                 }
             });
             viewHolder.btnFotos = convertView.findViewById(R.id.btnFotos);

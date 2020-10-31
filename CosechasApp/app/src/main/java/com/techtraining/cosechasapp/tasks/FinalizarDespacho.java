@@ -38,11 +38,10 @@ public class FinalizarDespacho extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         Toast.makeText(context, R.string.despacho_finalizado, Toast.LENGTH_SHORT).show();
-        LlenadoCamion activity = (LlenadoCamion) context;
         SharedPreferences.Editor editor = context.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE).edit();
         editor.remove(Helper.CURRENT_COSECHA_ID_NAME);
         editor.commit();
-        Intent intent = new Intent(activity, MainActivity.class);
+        Intent intent = new Intent(context, MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         context.startActivity(intent);
     }

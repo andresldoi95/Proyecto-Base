@@ -60,5 +60,6 @@ public class GuardarTroza extends AsyncTask<Void, Void, Void> {
     protected void onPostExecute(Void aVoid) {
         Toast.makeText(context, R.string.troza_guardada, Toast.LENGTH_SHORT).show();
         ((TrozaActivity) context).finish();
+        new FinalizarDespacho(context).execute();
     }
 }

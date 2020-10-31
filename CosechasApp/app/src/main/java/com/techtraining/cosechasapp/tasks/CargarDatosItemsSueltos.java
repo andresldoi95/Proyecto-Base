@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.widget.TextView;
 
 import com.techtraining.cosechasapp.DBManager;
+import com.techtraining.cosechasapp.Helper;
 import com.techtraining.cosechasapp.R;
 import com.techtraining.cosechasapp.db.AppDatabase;
 import com.techtraining.cosechasapp.db.Espesor;
@@ -34,7 +35,8 @@ public class CargarDatosItemsSueltos extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         String informacion = "";
-        informacion += "\n" + context.getString(R.string.plantilla) + ": " + filaSuelto.bultos;
+        String tipoLlenado = context.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE).getString(Helper.CURRENT_LLENADO_NAME, null);
+        informacion += "\n" + ("S".equals(tipoLlenado)?context.getString(R.string.plantilla):context.getString(R.string.bultos)) + ": " + filaSuelto.bultos;
         if (espesor != null)
             informacion += "\n" +  context.getString(R.string.espesor) + ": " + espesor.valor;
         if (espesor != null)

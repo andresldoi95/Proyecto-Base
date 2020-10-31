@@ -13,6 +13,9 @@ public class FilaSuelto {
     @ColumnInfo(name = "fila_id")
     public String filaId;
 
+    @ColumnInfo(name = "tipo_bulto_id")
+    public int tipoBultoId;
+
     @ColumnInfo(name = "largo_id")
     public int largoId;
 

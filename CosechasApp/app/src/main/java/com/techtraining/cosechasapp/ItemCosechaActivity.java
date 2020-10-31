@@ -12,11 +12,13 @@ import android.widget.Toast;
 
 import com.techtraining.cosechasapp.db.Espesor;
 import com.techtraining.cosechasapp.db.FilaCosecha;
+import com.techtraining.cosechasapp.db.FilaSuelto;
 import com.techtraining.cosechasapp.db.ItemFilaCosecha;
 import com.techtraining.cosechasapp.db.Largo;
 import com.techtraining.cosechasapp.db.TipoBulto;
 import com.techtraining.cosechasapp.tasks.CargarDatosItemCosecha;
 import com.techtraining.cosechasapp.tasks.GuardarItemFilaCosecha;
+import com.techtraining.cosechasapp.tasks.GuardarSueltos;
 
 public class ItemCosechaActivity extends AppCompatActivity {
     public EditText etPlantilla;
@@ -45,11 +47,11 @@ public class ItemCosechaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(formularioValido()) {
-                    FilaCosecha filaCosecha = new FilaCosecha();
-                    filaCosecha.id = getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE).getString(Helper.CURRENT_FILA_NAME, null);
+                    FilaSuelto filaCosecha = new FilaSuelto();
+                    filaCosecha.filaId = getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE).getString(Helper.CURRENT_FILA_NAME, null);
                     filaCosecha.bultos = Integer.parseInt(etPlantilla.getText().toString());
                     filaCosecha.tipoBultoId = ((TipoBulto) spnTipoBulto.getSelectedItem()).id;
-                    new GuardarItemFilaCosecha(ItemCosechaActivity.this, filaCosecha).execute();
+                    new GuardarSueltos(ItemCosechaActivity.this, filaCosecha).execute();
                 }
             }
         });

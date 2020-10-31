@@ -6,6 +6,8 @@ import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
+import java.util.List;
+
 @Entity
 public class Cosecha {
     @PrimaryKey @NonNull
@@ -67,4 +69,7 @@ public class Cosecha {
 
     @Ignore
     public boolean seleccionado;
+
+    @Ignore
+    public List<FilaCosecha> filas;
 }
