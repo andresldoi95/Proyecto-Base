@@ -101,6 +101,11 @@ export default {
         default: false,
         type: Boolean
     },
+    noMostrarEdicion: {
+        required: false,
+        default: false,
+        type: Boolean
+    },
     editable: {
       type: Boolean,
       required: false,
@@ -244,7 +249,8 @@ export default {
       } else this.$emit("realizarAccion", this.type, this.checkedRows);
     },
     editar: function (row) {
-      this.tipo_formulario = "E";
+        if (!this.noMostrarEdicion)
+            this.tipo_formulario = "E";
       this.$emit("editar", row);
     },
     submit: function () {
