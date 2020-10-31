@@ -3147,6 +3147,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3160,7 +3161,11 @@ __webpack_require__.r(__webpack_exports__);
       }
     };
   },
-  methods: {}
+  methods: {
+    editar: function editar(despacho) {
+      window.open('/despacho/' + despacho.id, '_blank');
+    }
+  }
 });
 
 /***/ }),
@@ -7040,6 +7045,11 @@ __webpack_require__.r(__webpack_exports__);
       "default": false,
       type: Boolean
     },
+    noMostrarEdicion: {
+      required: false,
+      "default": false,
+      type: Boolean
+    },
     editable: {
       type: Boolean,
       required: false,
@@ -7174,7 +7184,7 @@ __webpack_require__.r(__webpack_exports__);
       } else this.$emit("realizarAccion", this.type, this.checkedRows);
     },
     editar: function editar(row) {
-      this.tipo_formulario = "E";
+      if (!this.noMostrarEdicion) this.tipo_formulario = "E";
       this.$emit("editar", row);
     },
     submit: function submit() {
@@ -27393,7 +27403,8 @@ var render = function() {
                   sortable: true
                 }
               ]
-            }
+            },
+            on: { editar: _vm.editar }
           })
         ],
         1
@@ -55723,7 +55734,7 @@ __webpack_require__.r(__webpack_exports__);
     usuario: 'Usuario',
     formato_entrega: 'Formato de entrega',
     fecha_tumba: 'Fecha de tumba',
-    fecha_despacho: 'Despacho date',
+    fecha_despacho: 'Fecha de despacho',
     camion: 'Camión',
     numero_documento: 'Documento',
     destino: 'Destino',

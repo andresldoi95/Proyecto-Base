@@ -13,7 +13,7 @@ export default {
         usuario: 'Usuario',
         formato_entrega: 'Formato de entrega',
         fecha_tumba: 'Fecha de tumba',
-        fecha_despacho: 'Despacho date',
+        fecha_despacho: 'Fecha de despacho',
         camion: 'Camión',
         numero_documento: 'Documento',
         destino: 'Destino',

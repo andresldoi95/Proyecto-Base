@@ -4,6 +4,7 @@
       <div class="container">
         <h1 class="title">{{ $t('title.despachos') }}</h1>
         <masterForm
+            @editar="editar"
             :checkable="false"
             :statusOptions="[]"
           :typeOptions="[]"
@@ -71,7 +72,9 @@ export default {
     };
   },
   methods: {
-
+      editar: function (despacho) {
+          window.open('/despacho/' + despacho.id, '_blank');
+      }
   },
 };
 </script>
