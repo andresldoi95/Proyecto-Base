@@ -27357,7 +27357,7 @@ var render = function() {
           _c("masterForm", {
             ref: "masterForm",
             attrs: {
-              noMostrarEdicion: true,
+              noMostrarEdicion: "",
               checkable: false,
               statusOptions: [],
               typeOptions: [],
