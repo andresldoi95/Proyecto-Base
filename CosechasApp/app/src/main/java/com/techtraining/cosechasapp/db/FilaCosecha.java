@@ -3,7 +3,10 @@ package com.techtraining.cosechasapp.db;
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
+
+import java.util.List;
 
 @Entity
 public class FilaCosecha {
@@ -30,4 +33,7 @@ public class FilaCosecha {
 
     @ColumnInfo(name = "tipo")
     public String tipo;
+
+    @Ignore
+    public List<FilaSuelto> sueltos;
 }

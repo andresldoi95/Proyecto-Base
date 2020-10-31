@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.techtraining.cosechasapp.DBManager;
 import com.techtraining.cosechasapp.Helper;
 import com.techtraining.cosechasapp.ItemSueltosActivity;
@@ -20,6 +22,7 @@ import com.techtraining.cosechasapp.db.FilaSueltoDao;
 import com.techtraining.cosechasapp.db.FormatoEntrega;
 import com.techtraining.cosechasapp.db.Largo;
 import com.techtraining.cosechasapp.db.ParametroDao;
+import com.techtraining.cosechasapp.db.TipoBulto;
 
 import java.text.DecimalFormat;
 import java.util.List;
@@ -51,13 +54,26 @@ public class GuardarSueltos extends AsyncTask<Void, Void, Void> {
                         String filaSueltoId = preferences.getString(Helper.CURRENT_ITEM_SUELTO_NAME, null);
                         Largo largo = appDatabase.largoDao().loadById(filaSuelto.largoId);
                         Espesor espesor = appDatabase.espesorDao().loadById(filaSuelto.espesorId);
-                        double valorLargo = 0;
-                        double valorEspesor = 0;
-                        if (largo != null)
-                            valorLargo = largo.valor;
-                        if (espesor != null)
-                            valorEspesor = espesor.valor;
-                        double bft = (((camion.ancho * valorLargo * valorEspesor) / 12) * formatoEntrega.factorHueco) * filaSuelto.bultos;
+                        double bft = 0;
+                        if (largo != null && espesor != null) {
+                            double valorLargo = 0;
+                            double valorEspesor = 0;
+                            if (largo != null)
+                                valorLargo = largo.valor;
+                            if (espesor != null)
+                                valorEspesor = espesor.valor;
+                            bft = (((camion.ancho * valorLargo * valorEspesor) / 12) * formatoEntrega.factorHueco) * filaSuelto.bultos;
+                        }
+                        else {
+                            TipoBulto tipoBulto = appDatabase.tipoBultoDao().loadById(filaSuelto.tipoBultoId);
+                            if (tipoBulto != null) {
+                                largo = appDatabase.largoDao().loadById(tipoBulto.largoId);
+                                espesor = appDatabase.espesorDao().loadById(tipoBulto.espesorId);
+                                if (largo != null && espesor != null) {
+                                    bft = (tipoBulto.ancho * largo.valor) * formatoEntrega.factorHueco * filaSuelto.bultos * espesor.valor;
+                                }
+                            }
+                        }
                         DecimalFormat df = new DecimalFormat("#.##");
                         filaSuelto.bft = Double.parseDouble(df.format(bft));
                         if (filaSueltoId == null) {
@@ -86,6 +102,6 @@ public class GuardarSueltos extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         Toast.makeText(context, R.string.bloque_guardado, Toast.LENGTH_SHORT).show();
-        ((ItemSueltosActivity) context).finish();
+        ((AppCompatActivity) context).finish();
     }
 }

@@ -13,25 +13,24 @@ class DespachoApiController extends Controller
     public function store(Request $request) {
         $request->validate([
             'id' => 'required|max:36|unique:despachos',
-            'camion_id' => 'required|exists:camiones,id',
-            'controlador_id' => 'required|exists:controladores,id',
-            'destino_id' => 'required|exists:destinos,id',
-            'aserrador_id' => 'required|exists:aserradores,id',
-            'material_id' => 'required|exists:materiales',
-            'tipo_madera_id' => 'required|exists:tipos_madera,id',
-            'origen_madera_id' => 'required|exists:origenes_madera,id',
-            'formato_entrega_id' => 'required|exists:formatos_entrega,id',
-            'codigo_po' => 'required|max:20',
-            'fecha_tumba' => 'required|date',
-            'fecha_despacho' => 'required|date',
-            'dias_t2k' => 'required|integer',
-            'guia_remision' => 'nullable|max:30',
-            'guia_forestal' => 'nullable|max:30',
-            'tipo_llenado' => 'required|max:1',
-            'valor_flete' => 'required|numeric',
+            'camionId' => 'required|exists:camiones,id',
+            'controladorId' => 'required|exists:controladores,id',
+            'destinoId' => 'required|exists:destinos,id',
+            'aserradorId' => 'required|exists:aserradores,id',
+            'materialId' => 'required|exists:materiales',
+            'tipo_maderaId' => 'required|exists:tipos_madera,id',
+            'origenMaderaId' => 'required|exists:origenes_madera,id',
+            'formatoEntregaId' => 'required|exists:formatos_entrega,id',
+            'codigoPo' => 'required|max:20',
+            'fechaTumba' => 'required|date',
+            'fechaDespacho' => 'required|date',
+            'diasT2k' => 'required|integer',
+            'guiaRemision' => 'nullable|max:30',
+            'guiaForestal' => 'nullable|max:30',
+            'tipoLlenado' => 'required|max:1',
+            'valorFlete' => 'required|numeric',
             'estado' => 'required|max:1',
             'filas' => 'required|array',
-            'filas.*.tipo_bulto_id' => 'nullable|exists:tipos_bulto,id',
             'filas.*.indice' => 'required|integer',
             'filas.*.bft' => 'required|numeric',
             'filas.*.bultos' => 'required|numeric',
@@ -39,40 +38,46 @@ class DespachoApiController extends Controller
             'filas.*.tipo' => 'required|max:1',
             'filas.*.id' => 'required|max:36|distinct',
             'filas.*.sueltos' => 'nullable|array',
-            'filas.*.sueltos.*.largo_id' => 'required|exists:largos,id',
-            'filas.*.sueltos.*.espesor_id' => 'required|exists:espesores,id',
+            'filas.*.sueltos.*.largoId' => 'nullable|exists:largos,id',
+            'filas.*.sueltos.*.espesorId' => 'nullable|exists:espesores,id',
             'filas.*.sueltos.*.indice' => 'required|integer',
             'filas.*.sueltos.*.bft' => 'required|numeric',
-            'filas.*.sueltos.*.bultos' => 'required|numeric'
+            'filas.*.sueltos.*.bultos' => 'required|numeric',
+            'filas.*.sueltos.*.id' => 'required',
+            'filas.*.sueltos.*.tipoBultoId' => 'nullable|exists:tipos_bulto,id',
+            'origenHaciendaId' => 'required|exists:origenes_hacienda,id'
         ]);
         return DB::transaction(function () use($request) {
+            $ultimoDespacho = Despacho::orderByRaw('CAST(numero_documento AS INT)')->select(['numero_documento'])->first();
+            $numeroDocumento = isset($ultimoDespacho)?intval($ultimoDespacho->numero_documento) + 1:1;
             $despacho = Despacho::create([
                 'id' => $request->input('despacho'),
-                'camion_id' => $request->input('camion_id'),
-                'controlador_id' => $request->input('controlador_id'),
-                'destino_id' => $request->input('destino_id'),
-                'aserrador_id' => $request->input('aserrador_id'),
-                'material_id' => $request->input('material_id'),
-                'tipo_madera_id' => $request->input('tipo_madera_id'),
-                'origen_madera_id' => $request->input('origen_madera_id'),
-                'formato_entrega_id' => $request->input('formato_entrega_id'),
-                'codigo_po' => $request->input('codigo_po'),
-                'fecha_tumba' => new Carbon($request->input('fecha_tumba')),
-                'fecha_despacho' => new Carbon($request->input('fecha_despacho')),
-                'dias_t2k' => $request->input('dias_t2k'),
-                'guia_remision' => $request->input('guia_remision'),
-                'guia_forestal' => $request->input('guia_forestal'),
-                'tipo_llenado' => $request->input('tipo_llenado'),
-                'valor_flete' => $request->input('valor_flete'),
+                'camion_id' => $request->input('camionId'),
+                'controlador_id' => $request->input('controladorId'),
+                'destino_id' => $request->input('destinoId'),
+                'aserrador_id' => $request->input('aserradorId'),
+                'material_id' => $request->input('materialId'),
+                'tipo_madera_id' => $request->input('tipo_maderaId'),
+                'origen_madera_id' => $request->input('origenMaderaId'),
+                'formato_entrega_id' => $request->input('formatoEntregaId'),
+                'codigo_po' => $request->input('codigoPo'),
+                'fecha_tumba' => new Carbon($request->input('fechaTumba')),
+                'fecha_despacho' => new Carbon($request->input('fechaDespacho')),
+                'dias_t2k' => $request->input('diasT2k'),
+                'guia_remision' => $request->input('guiaRemision'),
+                'guia_forestal' => $request->input('guiaForestal'),
+                'tipo_llenado' => $request->input('tipoLlenado'),
+                'valor_flete' => $request->input('valorFlete'),
                 'estado' => $request->input('estado'),
-                'usuario_id' => $request->user()->id
+                'usuario_id' => $request->user()->id,
+                'origen_hacienda_id' => $request->input('origenHaciendaId'),
+                'numero_documento' => str_pad($numeroDocumento, 8, '0', STR_PAD_LEFT)
             ]);
             $filas = $request->input('filas');
             foreach ($filas as $fila) {
                 $fila = $despacho->filas()->create([
                     'id' => $fila['id'],
                     'despacho_id' => $despacho->id,
-                    'tipo_bulto_id' => $fila['tipo_bulto_id'],
                     'indice' => $fila['indice'],
                     'bft' => $fila['bft'],
                     'bultos' => $fila['bultos'],
@@ -83,16 +88,21 @@ class DespachoApiController extends Controller
                 if (isset($sueltos)) {
                     foreach ($sueltos as $suelto) {
                         $fila->sueltos()->create([
-                            'fila_id' => $suelto['fila_id'],
-                            'largo_id' => $suelto['largo_id'],
-                            'espesor_id' => $suelto['espesor_id'],
+                            'fila_id' => $suelto['filaId'],
+                            'largo_id' => $suelto['largoId'],
+                            'espesor_id' => $suelto['espesorId'],
                             'indice' => $suelto['indice'],
                             'bft' => $suelto['bft'],
-                            'bultos' => $suelto['bultos']
+                            'bultos' => $suelto['bultos'],
+                            'tipo_bulto_id' => $suelto['tipoBultoId'],
+                            'id' => $suelto['id']
                         ]);
                     }
                 }
             }
+            return [
+                'numero_documento' => $despacho->numero_documento
+            ];
         });
     }
     public function subirFotos(Request $request) {

@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 
 import com.techtraining.cosechasapp.DBManager;
 import com.techtraining.cosechasapp.Helper;
+import com.techtraining.cosechasapp.ItemCosechaActivity;
 import com.techtraining.cosechasapp.ItemSueltosActivity;
 import com.techtraining.cosechasapp.LlenadoSueltosActivity;
 import com.techtraining.cosechasapp.R;
@@ -47,7 +48,12 @@ public class CargarSueltos extends AsyncTask<Void, Void, Void> {
             activity.lvSueltos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Intent intent = new Intent(activity, ItemSueltosActivity.class);
+                    String currentLlenado = activity.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE).getString(Helper.CURRENT_LLENADO_NAME, null);
+                    Intent intent;
+                    if ("S".equals(currentLlenado))
+                        intent = new Intent(activity, ItemSueltosActivity.class);
+                    else
+                        intent = new Intent(activity, ItemCosechaActivity.class);
                     SharedPreferences.Editor editor = activity.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE).edit();
                     FilaSuelto filaSuelto = (FilaSuelto) activity.lvSueltos.getItemAtPosition(position);
                     editor.putString(Helper.CURRENT_ITEM_SUELTO_NAME, filaSuelto.id);

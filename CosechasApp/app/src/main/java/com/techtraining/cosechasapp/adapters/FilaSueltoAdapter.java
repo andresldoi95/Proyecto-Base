@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.techtraining.cosechasapp.Helper;
+import com.techtraining.cosechasapp.ItemCosechaActivity;
 import com.techtraining.cosechasapp.ItemSueltosActivity;
 import com.techtraining.cosechasapp.LlenadoSueltosActivity;
 import com.techtraining.cosechasapp.R;
@@ -18,6 +19,8 @@ import com.techtraining.cosechasapp.db.FilaSuelto;
 import com.techtraining.cosechasapp.tasks.CargarDatosItemsSueltos;
 
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class FilaSueltoAdapter extends ArrayAdapter<FilaSuelto> {
     Context mContext;
@@ -60,7 +63,12 @@ public class FilaSueltoAdapter extends ArrayAdapter<FilaSuelto> {
                     SharedPreferences.Editor editor = mContext.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE).edit();
                     editor.putString(Helper.CURRENT_ITEM_SUELTO_NAME, dataModel.id);
                     editor.commit();
-                    Intent intent = new Intent(mContext, ItemSueltosActivity.class);
+                    String currentLlenado = mContext.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE).getString(Helper.CURRENT_LLENADO_NAME, null);
+                    Intent intent;
+                    if ("S".equals(currentLlenado))
+                        intent = new Intent(mContext, ItemSueltosActivity.class);
+                    else
+                        intent = new Intent(mContext, ItemCosechaActivity.class);
                     intent.putExtra(Helper.INDICE_NAME, dataModel.indice);
                     mContext.startActivity(intent);
                 }

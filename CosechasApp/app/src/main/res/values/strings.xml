@@ -178,4 +178,8 @@
     <string name="observaciones">Observaciones</string>
 
     <string name="quitar_foto">Quitar foto</string>
+
+    <string name="despachos_exportados">Los despachos seleccionados fueron puestos en cola de exportados.</string>
+
+    <string name="desea_exportar_despachos">¿Desea exportar los despachos seleccionados?</string>
 </resources>

@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -154,7 +155,7 @@ public class GaleriaFila extends AppCompatActivity {
         startActivityForResult(takePicture, TAKE_PHOTO_REQUEST);
     }
     private void selectImage() {
-        final CharSequence[] options = { getString(R.string.tomar_foto),getString(R.string.cancelar) };
+        final CharSequence[] options = { getString(R.string.tomar_foto), getString(R.string.desde_galeria), getString(R.string.cancelar) };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getString(R.string.cargar_foto));
@@ -169,6 +170,13 @@ public class GaleriaFila extends AppCompatActivity {
                         tomarFoto();
                 } else if (options[item].equals(getString(R.string.cancelar))) {
                     dialog.dismiss();
+                }
+                else if (options[item].equals(getString(R.string.desde_galeria))) {
+                    /*Intent pickPhoto = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    startActivityForResult(pickPhoto , 1);*/
+                    Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                    photoPickerIntent.setType("image/*");
+                    startActivityForResult(photoPickerIntent, 1);
                 }
             }
         });
@@ -222,13 +230,34 @@ public class GaleriaFila extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if(resultCode != RESULT_CANCELED) {
             switch (requestCode) {
+                case 1:
+                    if (resultCode == RESULT_OK && data != null) {
+                        Uri selectedImage =  data.getData();
+                        try {
+                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                            File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+                            FileOutputStream fOut = null;
+                            try {
+                                File file = File.createTempFile(getString(R.string.app_name) + System.currentTimeMillis(), ".png", dir);
+                                fOut = new FileOutputStream(file);
+                                bitmap.compress(Bitmap.CompressFormat.PNG, Helper.IMAGE_QUALITY, fOut);
+                                fOut.flush();
+                                fOut.close();
+                                new GuardarFoto(this, file.getPath()).execute();
+                            } catch (FileNotFoundException e) {
+                                Log.e(GaleriaFila.class.getName(), e.getMessage());
+                            } catch (IOException e) {
+                                Log.e(GaleriaFila.class.getName(), e.getMessage());
+                            }
+                        } catch (IOException e) {
+                            Log.i(GaleriaFila.class.getName(),  e.getMessage());
+                        }
+                    }
+                    break;
                 case 3:
                     if (resultCode == RESULT_OK && data != null) {
                         Bitmap selectedImage = (Bitmap) data.getExtras().get("data");
-                        String file_path = Environment.getExternalStorageDirectory().getAbsolutePath() +
-                                "/" + getString(R.string.app_name);
                         File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-
                         FileOutputStream fOut = null;
                         try {
                             File file = File.createTempFile(getString(R.string.app_name) + System.currentTimeMillis(), ".png", dir);

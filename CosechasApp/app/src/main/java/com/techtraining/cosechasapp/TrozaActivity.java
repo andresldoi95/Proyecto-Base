@@ -1,16 +1,20 @@
 package com.techtraining.cosechasapp;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +24,7 @@ import android.widget.Toast;
 
 import com.techtraining.cosechasapp.db.Troza;
 import com.techtraining.cosechasapp.tasks.CargarDatosTroza;
+import com.techtraining.cosechasapp.tasks.ExportarDespachos;
 import com.techtraining.cosechasapp.tasks.GuardarFoto;
 import com.techtraining.cosechasapp.tasks.GuardarTroza;
 
@@ -66,12 +71,24 @@ public class TrozaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(formularioValido()) {
-                    Troza troza = new Troza();
-                    troza.numeroTrozas = Double.parseDouble(etNumeroTrozas.getText().toString());
-                    troza.volumenEstimado = Double.parseDouble(etVolumenEstimado.getText().toString());
-                    troza.observaciones = etObservaciones.getText().toString();
-                    troza.foto = currentFoto;
-                    new GuardarTroza(TrozaActivity.this, troza).execute();
+                    DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which){
+                                case DialogInterface.BUTTON_POSITIVE:
+                                    Troza troza = new Troza();
+                                    troza.numeroTrozas = Double.parseDouble(etNumeroTrozas.getText().toString());
+                                    troza.volumenEstimado = Double.parseDouble(etVolumenEstimado.getText().toString());
+                                    troza.observaciones = etObservaciones.getText().toString();
+                                    troza.foto = currentFoto;
+                                    new GuardarTroza(TrozaActivity.this, troza).execute();
+                                    break;
+                            }
+                        }
+                    };
+                    AlertDialog.Builder builder = new AlertDialog.Builder(TrozaActivity.this);
+                    builder.setMessage(getString(R.string.desea_finalizar_despacho)).setPositiveButton(getString(R.string.si), dialogClickListener)
+                            .setNegativeButton(getString(R.string.no), dialogClickListener).show();
                 }
             }
         });
@@ -85,6 +102,25 @@ public class TrozaActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (isWriteStoragePermissionGranted()) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(TrozaActivity.this);
+                    builder.setTitle(R.string.cargar_foto);
+                    builder.setItems(new CharSequence[]
+                                    {getString(R.string.tomar_foto), getString(R.string.desde_galeria)},
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    switch (which) {
+                                        case 0:
+                                            tomarFoto();
+                                            break;
+                                        case 1:
+                                            Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                                            photoPickerIntent.setType("image/*");
+                                            startActivityForResult(photoPickerIntent, 1);
+                                            break;
+                                    }
+                                }
+                            });
+                    builder.create().show();
                     tomarFoto();
                 }
             }
@@ -179,6 +215,31 @@ public class TrozaActivity extends AppCompatActivity {
                             Log.e(TrozaActivity.class.getName(), e.getMessage());
                         } catch (IOException e) {
                             Log.e(TrozaActivity.class.getName(), e.getMessage());
+                        }
+                    }
+                    break;
+                case 1:
+                    if (resultCode == RESULT_OK && data != null) {
+                        Uri selectedImage =  data.getData();
+                        try {
+                            Bitmap bitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), selectedImage);
+                            File dir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+                            FileOutputStream fOut = null;
+                            try {
+                                File file = File.createTempFile(getString(R.string.app_name) + System.currentTimeMillis(), ".png", dir);
+                                fOut = new FileOutputStream(file);
+                                bitmap.compress(Bitmap.CompressFormat.PNG, Helper.IMAGE_QUALITY, fOut);
+                                fOut.flush();
+                                fOut.close();
+                                currentFoto = file.getPath();
+                                ivFoto.setImageBitmap(BitmapFactory.decodeFile(file.getPath()));
+                            } catch (FileNotFoundException e) {
+                                Log.e(TrozaActivity.class.getName(), e.getMessage());
+                            } catch (IOException e) {
+                                Log.e(TrozaActivity.class.getName(), e.getMessage());
+                            }
+                        } catch (IOException e) {
+                            Log.i(TrozaActivity.class.getName(),  e.getMessage());
                         }
                     }
                     break;
