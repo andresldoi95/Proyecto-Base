@@ -62,8 +62,7 @@ public class ExportarDespachos extends AsyncTask<Void, Void, Void> {
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, request, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        cosecha.estado = "E";
-                        cosechaDao.update(cosecha);
+                        new ActualizarCosechaExportada(context, cosecha).execute();
                     }
                 }, new Response.ErrorListener() {
                     @Override
