@@ -17,7 +17,7 @@ class DespachoApiController extends Controller
             'controladorId' => 'required|exists:controladores,id',
             'destinoId' => 'required|exists:destinos,id',
             'aserradorId' => 'required|exists:aserradores,id',
-            'materialId' => 'required|exists:materiales',
+            'materialId' => 'required|exists:materiales,id',
             'tipo_maderaId' => 'required|exists:tipos_madera,id',
             'origenMaderaId' => 'required|exists:origenes_madera,id',
             'formatoEntregaId' => 'required|exists:formatos_entrega,id',
