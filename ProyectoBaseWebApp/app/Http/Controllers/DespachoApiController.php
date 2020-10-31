@@ -6,10 +6,37 @@ use App\Despacho;
 use App\FilaDespacho;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 
 class DespachoApiController extends Controller
 {
+    public function index(Request $request) {
+        $request->validate([
+            'desde' => 'required|date',
+            'hasta' => 'required|date',
+            'search' => 'nullable'
+        ]);
+        $desde = new Carbon($request->input('desde'));
+        $hasta = new Carbon($request->input('hasta'));
+        $user = $request->user();
+        $despachos = Despacho::with('camion', 'destino', 'origenMadera', 'formatoEntrega', 'usuario')->whereHas('camion', function ($query) use($user) {
+            return $query->where('empresa_id', $user->empresa_id);
+        })->whereBetween('fecha_despacho', [
+            $desde, $hasta
+        ])->orderBy('fecha_despacho', 'desc');
+        $search = $request->input('search');
+        if (isset($search)) {
+            $despachos->where(function ($query) use ($search) {
+                return $query->where('numero_documento', 'like', "%$search");
+            });
+        }
+        $currentPage = $request->input('current_page');
+        Paginator::currentPageResolver(function () use ($currentPage) {
+            return $currentPage;
+        });
+        return $despachos->paginate($request->input('per_page'));
+    }
     public function store(Request $request) {
         $request->validate([
             'id' => 'required|max:36',

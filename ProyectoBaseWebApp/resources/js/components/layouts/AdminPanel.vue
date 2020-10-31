@@ -52,6 +52,12 @@
                 to="/admin/usuarios"
               ></b-menu-item>
               <b-menu-item
+                icon="bank-transfer"
+                :label="$t('title.despachos')"
+                tag="router-link"
+                to="/admin/despachos"
+              ></b-menu-item>
+              <b-menu-item
                 v-show="
                   $store.state.nombre_empresa_actual !== '' &&
                   ($store.getters.permiteAccion('crear_tipos_madera') ||
