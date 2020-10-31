@@ -12,7 +12,7 @@ class DespachoApiController extends Controller
 {
     public function store(Request $request) {
         $request->validate([
-            'id' => 'required|max:36|unique:despachos',
+            'id' => 'required|max:36',
             'camionId' => 'required|exists:camiones,id',
             'controladorId' => 'required|exists:controladores,id',
             'destinoId' => 'required|exists:destinos,id',
@@ -48,55 +48,58 @@ class DespachoApiController extends Controller
             'origenHaciendaId' => 'required|exists:origenes_hacienda,id'
         ]);
         return DB::transaction(function () use($request) {
-            $ultimoDespacho = Despacho::orderByRaw('CAST(numero_documento AS INT)')->select(['numero_documento'])->first();
-            $numeroDocumento = isset($ultimoDespacho)?intval($ultimoDespacho->numero_documento) + 1:1;
-            $despacho = Despacho::create([
-                'id' => $request->input('id'),
-                'camion_id' => $request->input('camionId'),
-                'controlador_id' => $request->input('controladorId'),
-                'destino_id' => $request->input('destinoId'),
-                'aserrador_id' => $request->input('aserradorId'),
-                'material_id' => $request->input('materialId'),
-                'tipo_madera_id' => $request->input('tipoMaderaId'),
-                'origen_madera_id' => $request->input('origenMaderaId'),
-                'formato_entrega_id' => $request->input('formatoEntregaId'),
-                'codigo_po' => $request->input('codigoPo'),
-                'fecha_tumba' => new Carbon($request->input('fechaTumba')),
-                'fecha_despacho' => new Carbon($request->input('fechaDespacho')),
-                'dias_t2k' => $request->input('diasT2k'),
-                'guia_remision' => $request->input('guiaRemision'),
-                'guia_forestal' => $request->input('guiaForestal'),
-                'tipo_llenado' => $request->input('tipoLlenado'),
-                'valor_flete' => $request->input('valorFlete'),
-                'estado' => $request->input('estado'),
-                'usuario_id' => $request->user()->id,
-                'origen_hacienda_id' => $request->input('origenHaciendaId'),
-                'numero_documento' => str_pad($numeroDocumento, 8, '0', STR_PAD_LEFT)
-            ]);
-            $filas = $request->input('filas');
-            foreach ($filas as $fila) {
-                $fila = $despacho->filas()->create([
-                    'id' => $fila['id'],
-                    'despacho_id' => $despacho->id,
-                    'indice' => $fila['indice'],
-                    'bft' => $fila['bft'],
-                    'bultos' => $fila['bultos'],
-                    'estado' => $fila['estado'],
-                    'tipo' => $fila['tipo']
+            $despacho = Despacho::find($request->input('id'));
+            if (!isset($despacho)) {
+                $ultimoDespacho = Despacho::orderByRaw('CAST(numero_documento AS INT)')->select(['numero_documento'])->first();
+                $numeroDocumento = isset($ultimoDespacho)?intval($ultimoDespacho->numero_documento) + 1:1;
+                $despacho = Despacho::create([
+                    'id' => $request->input('id'),
+                    'camion_id' => $request->input('camionId'),
+                    'controlador_id' => $request->input('controladorId'),
+                    'destino_id' => $request->input('destinoId'),
+                    'aserrador_id' => $request->input('aserradorId'),
+                    'material_id' => $request->input('materialId'),
+                    'tipo_madera_id' => $request->input('tipoMaderaId'),
+                    'origen_madera_id' => $request->input('origenMaderaId'),
+                    'formato_entrega_id' => $request->input('formatoEntregaId'),
+                    'codigo_po' => $request->input('codigoPo'),
+                    'fecha_tumba' => new Carbon($request->input('fechaTumba')),
+                    'fecha_despacho' => new Carbon($request->input('fechaDespacho')),
+                    'dias_t2k' => $request->input('diasT2k'),
+                    'guia_remision' => $request->input('guiaRemision'),
+                    'guia_forestal' => $request->input('guiaForestal'),
+                    'tipo_llenado' => $request->input('tipoLlenado'),
+                    'valor_flete' => $request->input('valorFlete'),
+                    'estado' => $request->input('estado'),
+                    'usuario_id' => $request->user()->id,
+                    'origen_hacienda_id' => $request->input('origenHaciendaId'),
+                    'numero_documento' => str_pad($numeroDocumento, 8, '0', STR_PAD_LEFT)
                 ]);
-                $sueltos = $fila['sueltos'];
-                if (isset($sueltos)) {
-                    foreach ($sueltos as $suelto) {
-                        $fila->sueltos()->create([
-                            'fila_id' => $suelto['filaId'],
-                            'largo_id' => $suelto['largoId'],
-                            'espesor_id' => $suelto['espesorId'],
-                            'indice' => $suelto['indice'],
-                            'bft' => $suelto['bft'],
-                            'bultos' => $suelto['bultos'],
-                            'tipo_bulto_id' => $suelto['tipoBultoId'],
-                            'id' => $suelto['id']
-                        ]);
+                $filas = $request->input('filas');
+                foreach ($filas as $fila) {
+                    $fila = $despacho->filas()->create([
+                        'id' => $fila['id'],
+                        'despacho_id' => $despacho->id,
+                        'indice' => $fila['indice'],
+                        'bft' => $fila['bft'],
+                        'bultos' => $fila['bultos'],
+                        'estado' => $fila['estado'],
+                        'tipo' => $fila['tipo']
+                    ]);
+                    $sueltos = $fila['sueltos'];
+                    if (isset($sueltos)) {
+                        foreach ($sueltos as $suelto) {
+                            $fila->sueltos()->create([
+                                'fila_id' => $suelto['filaId'],
+                                'largo_id' => $suelto['largoId'],
+                                'espesor_id' => $suelto['espesorId'],
+                                'indice' => $suelto['indice'],
+                                'bft' => $suelto['bft'],
+                                'bultos' => $suelto['bultos'],
+                                'tipo_bulto_id' => $suelto['tipoBultoId'],
+                                'id' => $suelto['id']
+                            ]);
+                        }
                     }
                 }
             }
