@@ -38,13 +38,13 @@ class DespachoApiController extends Controller
             'filas.*.tipo' => 'required|max:1',
             'filas.*.id' => 'required|max:36|distinct',
             'filas.*.sueltos' => 'nullable|array',
-            'filas.*.sueltos.*.largoId' => 'nullable|exists:largos,id',
-            'filas.*.sueltos.*.espesorId' => 'nullable|exists:espesores,id',
+            'filas.*.sueltos.*.largoId' => 'nullable',
+            'filas.*.sueltos.*.espesorId' => 'nullable',
             'filas.*.sueltos.*.indice' => 'required|integer',
             'filas.*.sueltos.*.bft' => 'required|numeric',
             'filas.*.sueltos.*.bultos' => 'required|numeric',
             'filas.*.sueltos.*.id' => 'required',
-            'filas.*.sueltos.*.tipoBultoId' => 'nullable|exists:tipos_bulto,id',
+            'filas.*.sueltos.*.tipoBultoId' => 'nullable',
             'origenHaciendaId' => 'required|exists:origenes_hacienda,id'
         ]);
         return DB::transaction(function () use($request) {
@@ -91,12 +91,12 @@ class DespachoApiController extends Controller
                         foreach ($sueltos as $suelto) {
                             $fila->sueltos()->create([
                                 'fila_id' => $suelto['filaId'],
-                                'largo_id' => $suelto['largoId'],
-                                'espesor_id' => $suelto['espesorId'],
+                                'largo_id' => intval($suelto['largoId']) > 0?$suelto['largoId']:null,
+                                'espesor_id' => intval($suelto['espesorId']) > 0?$suelto['espesorId']:null,
                                 'indice' => $suelto['indice'],
                                 'bft' => $suelto['bft'],
                                 'bultos' => $suelto['bultos'],
-                                'tipo_bulto_id' => $suelto['tipoBultoId'],
+                                'tipo_bulto_id' => intval($suelto['tipoBultoId']) > 0?$suelto['tipoBultoId']:null,
                                 'id' => $suelto['id']
                             ]);
                         }
