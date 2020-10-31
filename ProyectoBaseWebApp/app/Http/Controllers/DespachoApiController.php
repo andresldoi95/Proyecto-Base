@@ -37,7 +37,7 @@ class DespachoApiController extends Controller
             'filas.*.estado' => 'required|max:1',
             'filas.*.tipo' => 'required|max:1',
             'filas.*.id' => 'required|max:36|distinct',
-            'filas.*.sueltos' => 'nullable|array',
+            'filas.*.sueltos' => 'required|array',
             'filas.*.sueltos.*.largoId' => 'nullable',
             'filas.*.sueltos.*.espesorId' => 'nullable',
             'filas.*.sueltos.*.indice' => 'required|integer',
@@ -87,19 +87,16 @@ class DespachoApiController extends Controller
                         'tipo' => $fila['tipo']
                     ]);
                     $sueltos = $fila['sueltos'];
-                    if (isset($sueltos)) {
-                        foreach ($sueltos as $suelto) {
-                            $fila->sueltos()->create([
-                                'fila_id' => $suelto['filaId'],
-                                'largo_id' => intval($suelto['largoId']) > 0?$suelto['largoId']:null,
-                                'espesor_id' => intval($suelto['espesorId']) > 0?$suelto['espesorId']:null,
-                                'indice' => $suelto['indice'],
-                                'bft' => $suelto['bft'],
-                                'bultos' => $suelto['bultos'],
-                                'tipo_bulto_id' => intval($suelto['tipoBultoId']) > 0?$suelto['tipoBultoId']:null,
-                                'id' => $suelto['id']
-                            ]);
-                        }
+                    foreach ($sueltos as $suelto) {
+                        $fila->sueltos()->create([
+                            'largo_id' => intval($suelto['largoId']) > 0?$suelto['largoId']:null,
+                            'espesor_id' => intval($suelto['espesorId']) > 0?$suelto['espesorId']:null,
+                            'indice' => $suelto['indice'],
+                            'bft' => $suelto['bft'],
+                            'bultos' => $suelto['bultos'],
+                            'tipo_bulto_id' => intval($suelto['tipoBultoId']) > 0?$suelto['tipoBultoId']:null,
+                            'id' => $suelto['id']
+                        ]);
                     }
                 }
             }
