@@ -4,7 +4,7 @@
       <div class="container">
         <h1 class="title">{{ $t('title.despachos') }}</h1>
         <masterForm
-            :noMostrarEdicion="true"
+            noMostrarEdicion
             @editar="editar"
             :checkable="false"
             :statusOptions="[]"
