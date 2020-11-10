@@ -32,7 +32,7 @@
             android:layout_marginTop="@dimen/space_form_margin"
             android:id="@+id/tvCamion"
             android:layout_width="match_parent"
-            android:text="@string/tv_controlador"
+            android:text="@string/tv_camion"
             android:layout_marginLeft="@dimen/side_form_margin"
             android:layout_marginRight="@dimen/side_form_margin"
             app:layout_constraintTop_toBottomOf="@id/spnOrigenHacienda"

@@ -29,8 +29,15 @@ public class CargarDatosSueltos extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         appDatabase = DBManager.getInstance(context);
-        filaSuelto = appDatabase.filaSueltoDao().loadById(context.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE).getString(Helper.CURRENT_ITEM_SUELTO_NAME, null));
         filaCosecha = appDatabase.filaCosechaDao().loadById(context.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE).getString(Helper.CURRENT_FILA_NAME, null));
+        /*if (filaCosecha != null && filaCosecha.tipo.equals("E")) {
+            List<FilaSuelto> filasSueltos = appDatabase.filaSueltoDao().loadByFila(filaCosecha.id);
+            if (filasSueltos.size() > 0) {
+                filaSuelto = filasSueltos.get(0);
+            }
+        }
+        else*/
+        filaSuelto = appDatabase.filaSueltoDao().loadById(context.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE).getString(Helper.CURRENT_ITEM_SUELTO_NAME, null));
         largos = appDatabase.largoDao().getAllActive();
         espesores = appDatabase.espesorDao().getAllActive();
         return null;
