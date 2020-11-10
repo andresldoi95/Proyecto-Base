@@ -123,8 +123,8 @@ class DespachoApiController extends Controller
                 if (isset($troza)) {
                     Troza::create([
                         'despacho_id' => $despacho->id,
-                        'numero_trozas' => $troza['numero_trozas'],
-                        'volumen_estimado' => $troza['volumen_estimado'],
+                        'numero_trozas' => $troza['numeroTrozas'],
+                        'volumen_estimado' => $troza['volumenEstimado'],
                         'observaciones' => $troza['observaciones'],
                         'id' => $troza['id']
                     ]);
