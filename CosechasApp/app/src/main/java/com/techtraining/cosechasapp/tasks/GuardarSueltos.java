@@ -51,7 +51,15 @@ public class GuardarSueltos extends AsyncTask<Void, Void, Void> {
                     Camion camion = appDatabase.camionDao().loadById(cosecha.camionId);
                     if (camion != null) {
                         SharedPreferences preferences = context.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE);
+                        /*if (filaCosecha.tipo.equals("E")) {
+                            List<FilaSuelto> filaSueltoExistentes = filaSueltoDao.loadByFila(filaCosecha.id);
+                            if (filaSueltoExistentes.size() > 0) {
+                                filaSueltoId = filaSueltoExistentes.get(0).id;
+                            }
+                        }
+                        else {*/
                         String filaSueltoId = preferences.getString(Helper.CURRENT_ITEM_SUELTO_NAME, null);
+                        //}
                         Largo largo = appDatabase.largoDao().loadById(filaSuelto.largoId);
                         Espesor espesor = appDatabase.espesorDao().loadById(filaSuelto.espesorId);
                         double bft = 0;

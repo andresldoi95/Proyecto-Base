@@ -11,6 +11,7 @@ import com.techtraining.cosechasapp.db.AppDatabase;
 import com.techtraining.cosechasapp.db.Espesor;
 import com.techtraining.cosechasapp.db.FilaSuelto;
 import com.techtraining.cosechasapp.db.Largo;
+import com.techtraining.cosechasapp.db.TipoBulto;
 
 public class CargarDatosItemsSueltos extends AsyncTask<Void, Void, Void> {
     private Context context;
@@ -19,6 +20,7 @@ public class CargarDatosItemsSueltos extends AsyncTask<Void, Void, Void> {
     private TextView tvInformacion;
     private Espesor espesor;
     private Largo largo;
+    private TipoBulto tipoBulto;
     public CargarDatosItemsSueltos(Context context, FilaSuelto filaSuelto, TextView tvInformacion) {
         this.context = context;
         this.filaSuelto = filaSuelto;
@@ -29,6 +31,7 @@ public class CargarDatosItemsSueltos extends AsyncTask<Void, Void, Void> {
         appDatabase = DBManager.getInstance(context);
         espesor = appDatabase.espesorDao().loadById(filaSuelto.espesorId);
         largo = appDatabase.largoDao().loadById(filaSuelto.largoId);
+        tipoBulto = appDatabase.tipoBultoDao().loadById(filaSuelto.tipoBultoId);
         return null;
     }
 
@@ -41,6 +44,8 @@ public class CargarDatosItemsSueltos extends AsyncTask<Void, Void, Void> {
             informacion += "\n" +  context.getString(R.string.espesor) + ": " + espesor.valor;
         if (espesor != null)
             informacion += "\n" +  context.getString(R.string.largo) + ": " + largo.valor;
+        if (tipoBulto != null)
+            informacion += "\n" + context.getString(R.string.tipo_bulto) + ": " + tipoBulto.toString();
         tvInformacion.setText(informacion);
     }
 }

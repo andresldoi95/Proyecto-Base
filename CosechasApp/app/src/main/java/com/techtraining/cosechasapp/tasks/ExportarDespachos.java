@@ -54,6 +54,7 @@ public class ExportarDespachos extends AsyncTask<Void, Void, Void> {
                 FilaCosecha fila = cosecha.filas.get(i);
                 fila.sueltos = appDatabase.filaSueltoDao().loadByFila(fila.id);
             }
+            cosecha.troza = appDatabase.trozaDao().loadByCosecha(cosecha.id);
             String url = Helper.URL_API + "/despachos";
             Gson gson = new Gson();
             String json = gson.toJson(cosecha);

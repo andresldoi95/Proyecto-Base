@@ -24,6 +24,7 @@ public class ItemCosechaActivity extends AppCompatActivity {
     public EditText etPlantilla;
     public Spinner spnTipoBulto;
     private AppCompatButton btnGuardar;
+    private int indice;
     private boolean formularioValido() {
         boolean valido = true;
         if (etPlantilla.getText().length() == 0) {
@@ -43,11 +44,13 @@ public class ItemCosechaActivity extends AppCompatActivity {
         etPlantilla = findViewById(R.id.etPlantilla);
         spnTipoBulto = findViewById(R.id.spnTipoBulto);
         btnGuardar = findViewById(R.id.btnGuardar);
+        indice = getIntent().getIntExtra(Helper.INDICE_NAME, 0);
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(formularioValido()) {
                     FilaSuelto filaCosecha = new FilaSuelto();
+                    filaCosecha.indice = indice;
                     filaCosecha.filaId = getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE).getString(Helper.CURRENT_FILA_NAME, null);
                     filaCosecha.bultos = Integer.parseInt(etPlantilla.getText().toString());
                     filaCosecha.tipoBultoId = ((TipoBulto) spnTipoBulto.getSelectedItem()).id;

@@ -72,4 +72,7 @@ public class Cosecha {
 
     @Ignore
     public List<FilaCosecha> filas;
+
+    @Ignore
+    public Troza troza;
 }

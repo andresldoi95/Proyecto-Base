@@ -5,7 +5,7 @@
     android:paddingRight="@dimen/padding_side_item"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
         android:layout_margin="@dimen/item_fila_camion_margin"

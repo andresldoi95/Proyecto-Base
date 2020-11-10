@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Despacho;
 use App\FilaDespacho;
+use App\Troza;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
@@ -117,6 +118,16 @@ class DespachoApiController extends Controller
                             'id' => $suelto['id']
                         ]);
                     }
+                }
+                $troza = $request->input('troza');
+                if (isset($troza)) {
+                    Troza::create([
+                        'despacho_id' => $despacho->id,
+                        'numero_trozas' => $troza['numero_trozas'],
+                        'volumen_estimado' => $troza['volumen_estimado'],
+                        'observaciones' => $troza['observaciones'],
+                        'id' => $troza['id']
+                    ]);
                 }
             }
             return [

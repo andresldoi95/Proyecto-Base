@@ -16,6 +16,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.techtraining.cosechasapp.GaleriaFila;
 import com.techtraining.cosechasapp.Helper;
 import com.techtraining.cosechasapp.ItemCosechaActivity;
+import com.techtraining.cosechasapp.ItemSueltosActivity;
 import com.techtraining.cosechasapp.LlenadoCamion;
 import com.techtraining.cosechasapp.LlenadoSueltosActivity;
 import com.techtraining.cosechasapp.R;
@@ -64,7 +65,7 @@ public class FilasCosechasAdapter extends ArrayAdapter<FilaCosecha> {
                 public void onClick(View v) {
                     final SharedPreferences.Editor editor = activity.getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE).edit();
                     editor.putString(Helper.CURRENT_FILA_NAME, dataModel.id);
-                    editor.commit();
+                    //editor.commit();
                     /*if (cosecha.tipoLlenado.equals("B") && dataModel.tipo.equals("N")) {
                         Intent intent = new Intent(activity, ItemCosechaActivity.class);
                         editor.putString(Helper.CURRENT_LLENADO_NAME, "B");
@@ -72,10 +73,17 @@ public class FilasCosechasAdapter extends ArrayAdapter<FilaCosecha> {
                         activity.startActivity(intent);
                     }*/
                     //else {
+                    /*if (dataModel.tipo.equals("E")) {
+                        Intent intent = new Intent(activity, ItemSueltosActivity.class);
+                        intent.putExtra(Helper.INDICE_NAME, dataModel.indice);
+                        activity.startActivity(intent);
+                    }*/
+                    //else {
                         Intent intent = new Intent(activity, LlenadoSueltosActivity.class);
-                        editor.putString(Helper.CURRENT_LLENADO_NAME, cosecha.tipoLlenado);
+                        editor.putString(Helper.CURRENT_LLENADO_NAME, (dataModel.tipo.equals("E")?"S":cosecha.tipoLlenado));
                         editor.commit();
                         activity.startActivity(intent);
+                    //}
                     //}
                 }
             });
