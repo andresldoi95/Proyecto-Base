@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class FotoFila extends Model
+class TrozaFotos extends Model
 {
     protected $fillable = [
-        'path', 'fila_id'
+        'foto', 'troza_id', 'id'
     ];
-    protected $table = 'fotos_fila';
+    protected $table = 'troza_fotos';
     public $timestamps = false;
     public $incrementing = false;
     protected $primaryKey = null;

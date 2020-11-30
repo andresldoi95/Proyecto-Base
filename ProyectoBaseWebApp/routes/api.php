@@ -210,6 +210,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         'only' => ['store', 'index']
     ]);
     Route::post('fotos', 'DespachoApiController@subirFotos');
+    Route::post('trozaFotos', 'DespachoApiController@subirTrozaFotos');
 });
 
 Route::post('/reset', 'UsuarioApiController@reset');
