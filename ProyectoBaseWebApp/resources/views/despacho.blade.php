@@ -130,13 +130,115 @@
     </table>
     <h4 class="upper centered">Madera aserrada/espesor pulgadas</h4>
     <table id="filas" class="bordered">
+        <tbody>
+            <tr>
+                <td class="centered">
+                    <b>LARGO PIES (metros)</b>
+                </td>
+                @foreach($espesores as $espesor)
+                    <td class="centered">
+                    {{ $espesor->descripcion }} m
+                    </td>
+                @endforeach
+                <td class="centered">
+                   <b>RESUMEN</b>
+                </td>
+            </tr>
+            @foreach($largos as $largo)
+            <?php 
+                $resumen_bultos=0;
+                $resumen_bft=0;
+            ?>
+            
+            <tr>
+                <td class="centered">
+                    <b># de Plantilla ( {{ $largo->descripcion }}m) </b>
+                </td>
+                @foreach($espesores as $espesor)
+                    <td class="centered">
+                    <?php 
+                            $suma_fila_despacho_bulto=0;
+                            $suma_fila_despacho_bft=0;
+                        ?>
+                    @foreach($filas_despacho as $fila_despacho)
+                        
+                        @if($filas_sueltos->where('fila_id',$fila_despacho->id)->where('espesor_id',$espesor->id)->where('largo_id',$largo->id)->count() > 0)
+                          <?php $suma_fila_despacho_bulto= $suma_fila_despacho_bulto + $filas_sueltos->where('fila_id',$fila_despacho->id)->where('espesor_id',$espesor->id)->where('largo_id',$largo->id)->sum('bultos');?>
+                        @else
+                            @if($tipos_bulto->where('espesor_id',$espesor->id)->where('largo_id',$largo->id)->count() > 0)
+                                @foreach($tipos_bulto->where('espesor_id',$espesor->id)->where('largo_id',$largo->id) as $tipo_bulto)  
+                                    @if($filas_sueltos->where('fila_id',$fila_despacho->id)->where('tipo_bulto_id',$tipo_bulto->id)->count() > 0)
+                                        <?php $suma_fila_despacho_bulto= $suma_fila_despacho_bulto + $filas_sueltos->where('fila_id',$fila_despacho->id)->where('tipo_bulto_id',$tipo_bulto->id)->sum('bultos');?>
+                                    @endif  
+                                @endforeach
+                                
+                            @endif
+                          
+                        @endif
 
+                        
+                    @endforeach
+                    <?php $resumen_bultos= $resumen_bultos + $suma_fila_despacho_bulto;?>
+
+                    @if($suma_fila_despacho_bulto>0)
+                     {{ $suma_fila_despacho_bulto }}
+                    @endif
+
+                    
+
+                    </td>
+                @endforeach
+                <td class="centered">
+                   <b>{{ $resumen_bultos }}</b>
+                </td>
+            </tr>
+            <tr>
+                <td class="centered">
+                    <b>Valor en bft</b>
+                </td>
+                @foreach($espesores as $espesor)
+                    <td class="centered">
+                    <?php 
+                            $suma_fila_despacho_bft=0;
+                        ?>
+                    @foreach($filas_despacho as $fila_despacho)
+                        
+                        @if($filas_sueltos->where('fila_id',$fila_despacho->id)->where('espesor_id',$espesor->id)->where('largo_id',$largo->id)->count() > 0)
+                          <?php $suma_fila_despacho_bft= $suma_fila_despacho_bft + $filas_sueltos->where('fila_id',$fila_despacho->id)->where('espesor_id',$espesor->id)->where('largo_id',$largo->id)->sum('bft');?>
+                        @else
+                            @if($tipos_bulto->where('espesor_id',$espesor->id)->where('largo_id',$largo->id)->count() > 0)
+                                @foreach($tipos_bulto->where('espesor_id',$espesor->id)->where('largo_id',$largo->id) as $tipo_bulto)  
+                                    @if($filas_sueltos->where('fila_id',$fila_despacho->id)->where('tipo_bulto_id',$tipo_bulto->id)->count() > 0)
+                                        <?php $suma_fila_despacho_bft= $suma_fila_despacho_bft + $filas_sueltos->where('fila_id',$fila_despacho->id)->where('tipo_bulto_id',$tipo_bulto->id)->sum('bft');?>
+                                    @endif  
+                                @endforeach
+                                
+                            @endif
+                          
+                        @endif
+
+                        
+                    @endforeach
+                    <?php $resumen_bft= $resumen_bft + $suma_fila_despacho_bft;?>
+
+                    @if($suma_fila_despacho_bft>0)
+                     {{ $suma_fila_despacho_bft }}
+                    @endif
+
+                    </td>
+                @endforeach
+                <td class="centered">
+                   <b>{{ $resumen_bft }}</b>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
         <tfoot>
             <tr>
-                <td class="upper">
+                <td class="upper" colspan="4">
                     Total plantillas enviados: {{ number_format($despacho->filas()->sum('bultos')) }}
                 </td>
-                <td class="upper">
+                <td class="upper" colspan="4">
                     Total BFT enviados: {{ number_format($despacho->filas()->sum('bft'), 2) }}
                 </td>
             </tr>

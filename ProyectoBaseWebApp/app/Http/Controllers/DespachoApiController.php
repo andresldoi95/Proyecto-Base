@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Despacho;
 use App\FilaDespacho;
+use App\FotoFila;
 use App\Troza;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class DespachoApiController extends Controller
 {
@@ -138,15 +140,35 @@ class DespachoApiController extends Controller
     public function subirFotos(Request $request) {
         $request->validate([
             'fila_id' => 'required|exists:filas_despacho,id',
-            'fotos' => 'required|array'
         ]);
         return DB::transaction(function () use($request) {
             $fila = FilaDespacho::findOrFail($request->input('fila_id'));
             $fotos = $request->file('fotos');
             foreach ($fotos as $foto) {
+                $path = Storage::disk('local')->put('imgs', $foto);
                 $fila->fotos()->create([
-                    'path' => $foto->store('fotos')
+                    'path' => $path
                 ]);
+            }
+        });
+    }
+    public function subirTrozaFotos(Request $request) {
+        $request->validate([
+            'troza_id' => 'required',
+        ]);
+        return DB::transaction(function () use($request) {
+            try{
+                $troza = Troza::findOrFail($request->input('troza_id'));
+                $fotos = $request->file('fotos');
+                foreach ($fotos as $foto) {
+                    $path = Storage::disk('local')->put('imgs', $foto);
+                    $troza->fotos()->create([
+                        'foto' => $path,
+                        'id' => $request->input('id')
+                    ]);
+                }
+            }catch(\Exception $e){
+                echo $e;
             }
         });
     }
