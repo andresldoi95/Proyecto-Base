@@ -36,4 +36,6 @@ public class FilaCosecha {
 
     @Ignore
     public List<FilaSuelto> sueltos;
+    @Ignore
+    public List<ImagenFila> fotos;
 }

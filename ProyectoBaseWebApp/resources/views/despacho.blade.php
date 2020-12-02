@@ -200,7 +200,7 @@
                     <td class="centered">
                     <?php 
                             $suma_fila_despacho_bft=0;
-                        ?>
+                    ?>
                     @foreach($filas_despacho as $fila_despacho)
                         
                         @if($filas_sueltos->where('fila_id',$fila_despacho->id)->where('espesor_id',$espesor->id)->where('largo_id',$largo->id)->count() > 0)
@@ -232,13 +232,38 @@
                 </td>
             </tr>
             @endforeach
+            @if($trozas->count()>0)
+            <tr>
+                <td class="centered" colspan="{{ ($espesores->count() + 2) }}" style="padding: 25px;">
+                    @foreach($trozas as $troza)
+                        <img src="{{$troza->foto}}" alt="" style="width: 250px; height: 250px;padding: 25px;">
+                    @endforeach
+                </td>
+            </tr>
+                
+
+            @endif
+            @if($filas_despacho->count()>0 && $trozas->count()==0)
+            <tr>
+                <td class="centered" colspan="{{ ($espesores->count() + 2) }}" style="padding: 25px;">
+                    @foreach($filas_despacho as $fila_despacho)
+                        @foreach($fotos_fila->where('fila_id', $fila_despacho->id) as $foto_fila)
+                            <img src="{{$foto_fila->path}}" alt="" style="width: 150px; height: 150px;padding: 25px;">
+                        @endforeach
+
+                    @endforeach
+                </td>
+            </tr>
+                
+
+            @endif
         </tbody>
         <tfoot>
             <tr>
-                <td class="upper" colspan="4">
+                <td class="upper" colspan="{{ (($espesores->count() + 2) / 2) }}">
                     Total plantillas enviados: {{ number_format($despacho->filas()->sum('bultos')) }}
                 </td>
-                <td class="upper" colspan="4">
+                <td class="upper" colspan="{{ (($espesores->count() + 2) / 2) }}">
                     Total BFT enviados: {{ number_format($despacho->filas()->sum('bft'), 2) }}
                 </td>
             </tr>

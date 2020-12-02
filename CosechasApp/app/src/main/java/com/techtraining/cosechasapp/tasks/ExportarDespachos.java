@@ -3,7 +3,12 @@ package com.techtraining.cosechasapp.tasks;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -30,8 +35,14 @@ import com.techtraining.cosechasapp.db.FilaCosecha;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.json.JSONTokener;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 public class ExportarDespachos extends AsyncTask<Void, Void, Void> {
@@ -53,13 +64,119 @@ public class ExportarDespachos extends AsyncTask<Void, Void, Void> {
             for (int i = 0; i < cosecha.filas.size(); i++) {
                 FilaCosecha fila = cosecha.filas.get(i);
                 fila.sueltos = appDatabase.filaSueltoDao().loadByFila(fila.id);
+                fila.fotos = appDatabase.imagenFilaDao().loadByFila(fila.id);
             }
             cosecha.troza = appDatabase.trozaDao().loadByCosecha(cosecha.id);
             String url = Helper.URL_API + "/despachos";
             Gson gson = new Gson();
             String json = gson.toJson(cosecha);
+
+
             try {
                 JSONObject request = new JSONObject(json);
+                JSONObject request_new = new JSONObject();
+                Log.e( "request: ", request.toString());
+
+                //FOTOS TROZAS
+                try {
+                    JSONObject jsonObjectTroza = request.getJSONObject("troza");
+                    if(!jsonObjectTroza.getString("foto").equals("NULL") && !jsonObjectTroza.getString("foto").equals("")){
+                        Bitmap bitmap = null;
+                        BitmapFactory.Options options = null;
+                        options = new BitmapFactory.Options();
+                        bitmap = BitmapFactory.decodeFile(jsonObjectTroza.getString("foto"), options);
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                        byte[] byte_arr = stream.toByteArray();
+                        String encodedImage = Base64.encodeToString(byte_arr, 0);
+                        jsonObjectTroza.put("foto",encodedImage);
+                        request.put("troza",jsonObjectTroza);
+                    }
+                } catch (Exception e) {
+                    Log.e( "Exception FOTO TROZA", e.toString());
+                }
+                //FOTOS FILAS
+                try {
+
+                    JSONArray jsonArrayFila = request.getJSONArray("filas");
+
+                    JSONObject jsonObjectFila_new = new JSONObject();
+
+
+
+                    for(int i=0; i<jsonArrayFila.length(); i++){
+                        JSONObject jsonObjectFila = jsonArrayFila.getJSONObject(i);
+
+
+                        JSONArray jsonArrayFilaFotos = jsonObjectFila.getJSONArray("fotos");
+                        JSONObject jsonObjectFilaFotos_new = new JSONObject();
+
+
+
+                        for(int i2=0; i2<jsonArrayFilaFotos.length(); i2++){
+                            JSONObject jsonObjectFilaFotos = jsonArrayFilaFotos.getJSONObject(i2);
+
+                            if(!jsonObjectFilaFotos.getString("path").equals("NULL") && !jsonObjectFilaFotos.getString("path").equals("")){
+                                Bitmap bitmap = null;
+                                BitmapFactory.Options options = null;
+                                options = new BitmapFactory.Options();
+                                bitmap = BitmapFactory.decodeFile(jsonObjectFilaFotos.getString("path"), options);
+                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                                bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                                byte[] byte_arr = stream.toByteArray();
+                                String encodedImage = Base64.encodeToString(byte_arr, 0);
+
+                                //Se actualiza el path
+                                jsonObjectFilaFotos.put("path",encodedImage);
+
+                                //Se actualiza Fila Fotos
+
+                            }
+
+
+                            jsonObjectFilaFotos_new.put(String.valueOf(i2),jsonObjectFilaFotos);
+
+
+                        }
+
+                        jsonObjectFila.put("fotos",jsonObjectFilaFotos_new);
+
+
+
+                        jsonObjectFila_new.put(String.valueOf(i),jsonObjectFila);
+
+                    }
+
+                    Log.e( "jsonObjectFila_new:", jsonObjectFila_new.toString());
+
+
+                    request.put("filas",jsonObjectFila_new);
+
+
+
+
+
+
+
+
+                } catch (Exception e) {
+                    Log.e( "Exception FOTO FILA", e.toString());
+                }
+
+
+
+                Log.e( "request NEW: ", request.toString());
+
+                //return null;
+
+
+
+
+
+
+
+
+
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, request, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -88,6 +205,8 @@ public class ExportarDespachos extends AsyncTask<Void, Void, Void> {
                         DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
                 ));
                 networkManager.addToRequestQueue(jsonObjectRequest);
+
+
             }
             catch (JSONException ex) {
                 Log.e(ExportarDespachos.class.getName(), ex.getMessage());

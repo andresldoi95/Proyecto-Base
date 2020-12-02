@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Troza extends Model
 {
     protected $fillable = [
-        'id', 'despacho_id', 'numero_trozas', 'volumen_estimado', 'observaciones'
+        'id', 'despacho_id', 'numero_trozas', 'volumen_estimado', 'observaciones', 'foto'
     ];
     public $incrementing = false;
     public function despacho()  {
