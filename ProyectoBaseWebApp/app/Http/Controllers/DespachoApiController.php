@@ -120,16 +120,59 @@ class DespachoApiController extends Controller
                             'id' => $suelto['id']
                         ]);
                     }
+                     //GPUIG GUARDAR PATH FOTOS FILAS
+                    $fotos_filas = $fila['fotos'];
+                    foreach ($fotos_filas as $fotos_fila) {
+                        // The final filename.
+                        $fileName = $fotos_fila['id'].".jpg";
+                        // Upload path
+                        $uploadPath = public_path().'/imagenes/filas/' . $fileName;
+
+                        if(isset($fotos_fila['path'])){
+                            // Decode your image/file
+                            $decodedImagen = base64_decode($fotos_fila['path']);
+                            // Upload the decoded file/image
+                            if(!file_put_contents($uploadPath , $decodedImagen)){
+                                $uploadPath = NULL;   
+                            }
+                        }else{
+                            $uploadPath = NULL;
+                        }
+
+                        $fotos_fila_create = FotoFila::create([
+                            'fila_id' => $fotos_fila['filaId'],
+                            'path' => $uploadPath
+                            
+                        ]);  
+                        
+                    }
                 }
+                //GPUIG GUARDAR PATH FOTOS TROZAS
                 $troza = $request->input('troza');
                 if (isset($troza)) {
-                    Troza::create([
+                    // The final filename.
+                    $fileName = $troza['id'].".jpg";
+                    // Upload path
+                    $uploadPath = public_path().'/imagenes/trozas/' . $fileName;
+
+                    if(isset($troza['foto'])){
+                        // Decode your image/file
+                        $decodedImagen = base64_decode($troza['foto']);
+                        // Upload the decoded file/image
+                        if(!file_put_contents($uploadPath , $decodedImagen)){
+                            $uploadPath = NULL;   
+                        }
+                    }else{
+                        $uploadPath = NULL;
+                    }
+                    $troza_creada = Troza::create([
                         'despacho_id' => $despacho->id,
                         'numero_trozas' => $troza['numeroTrozas'],
                         'volumen_estimado' => $troza['volumenEstimado'],
+                        'foto' => $uploadPath,
                         'observaciones' => $troza['observaciones'],
                         'id' => $troza['id']
-                    ]);
+                    ]);   
                 }
             }
             return [

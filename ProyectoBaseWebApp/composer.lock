@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3007faaf70a2a73239aa1c0f84f24720",
+    "content-hash": "cfbc01ac01806e088070b3c9a661d056",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -114,6 +114,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -129,6 +130,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-09-07T11:50:18+00:00"
         },
         {
@@ -177,6 +180,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -192,6 +196,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-08-18T23:57:15+00:00"
         },
         {
@@ -551,6 +557,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -566,14 +573,19 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-10-13T00:52:37+00:00"
         },
         {
             "name": "egulias/email-validator",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "2.1.22",
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "version": "2.1.24",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "source": {
@@ -591,6 +603,7 @@
 =======
                 "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/ca90a3291eee1538cd48ff25163240695bd95448",
                 "reference": "ca90a3291eee1538cd48ff25163240695bd95448",
+<<<<<<< HEAD
 =======
             "version": "2.1.22",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -610,6 +623,8 @@
                 "reference": "68e418ec08fbfc6f58f6fd2eea70ca8efc8cc7d5",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -656,6 +671,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-09-26T15:48:38+00:00"
 =======
             "time": "2020-11-14T15:56:27+00:00"
@@ -666,6 +682,9 @@
             "time": "2020-09-26T15:48:38+00:00"
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "time": "2020-11-14T15:56:27+00:00"
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
         },
         {
             "name": "fideloper/proxy",
@@ -1029,6 +1048,7 @@
             "time": "2020-09-30T07:37:11+00:00"
         },
         {
+<<<<<<< HEAD
             "name": "laminas/laminas-diactoros",
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -1036,13 +1056,18 @@
 =======
             "version": "2.5.0",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "name": "intervention/image",
+            "version": "2.5.1",
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "source": {
                 "type": "git",
-                "url": "https://github.com/laminas/laminas-diactoros.git",
-                "reference": "4ff7400c1c12e404144992ef43c8b733fd9ad516"
+                "url": "https://github.com/Intervention/image.git",
+                "reference": "abbf18d5ab8367f96b3205ca3c89fb2fa598c69e"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
 <<<<<<< HEAD
                 "url": "https://api.github.com/repos/laminas/laminas-diactoros/zipball/36ef09b73e884135d2059cc498c938e90821bb57",
                 "reference": "36ef09b73e884135d2059cc498c938e90821bb57",
@@ -1054,13 +1079,79 @@
 =======
             "version": "2.4.1",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+                "url": "https://api.github.com/repos/Intervention/image/zipball/abbf18d5ab8367f96b3205ca3c89fb2fa598c69e",
+                "reference": "abbf18d5ab8367f96b3205ca3c89fb2fa598c69e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-fileinfo": "*",
+                "guzzlehttp/psr7": "~1.1",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "~0.9.2",
+                "phpunit/phpunit": "^4.8 || ^5.7"
+            },
+            "suggest": {
+                "ext-gd": "to use GD library based image processing.",
+                "ext-imagick": "to use Imagick based image processing.",
+                "intervention/imagecache": "Caching extension for the Intervention Image library"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.4-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Intervention\\Image\\ImageServiceProvider"
+                    ],
+                    "aliases": {
+                        "Image": "Intervention\\Image\\Facades\\Image"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Intervention\\Image\\": "src/Intervention/Image"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Oliver Vogel",
+                    "email": "oliver@olivervogel.com",
+                    "homepage": "http://olivervogel.com/"
+                }
+            ],
+            "description": "Image handling and manipulation library with support for Laravel integration",
+            "homepage": "http://image.intervention.io/",
+            "keywords": [
+                "gd",
+                "image",
+                "imagick",
+                "laravel",
+                "thumbnail",
+                "watermark"
+            ],
+            "time": "2019-11-02T09:15:47+00:00"
+        },
+        {
+            "name": "laminas/laminas-diactoros",
+            "version": "2.5.0",
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-diactoros.git",
-                "reference": "36ef09b73e884135d2059cc498c938e90821bb57"
+                "reference": "4ff7400c1c12e404144992ef43c8b733fd9ad516"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
 <<<<<<< HEAD
                 "url": "https://api.github.com/repos/laminas/laminas-diactoros/zipball/4ff7400c1c12e404144992ef43c8b733fd9ad516",
                 "reference": "4ff7400c1c12e404144992ef43c8b733fd9ad516",
@@ -1070,6 +1161,10 @@
                 "reference": "36ef09b73e884135d2059cc498c938e90821bb57",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+                "url": "https://api.github.com/repos/laminas/laminas-diactoros/zipball/4ff7400c1c12e404144992ef43c8b733fd9ad516",
+                "reference": "4ff7400c1c12e404144992ef43c8b733fd9ad516",
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -1144,6 +1239,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             "time": "2020-11-18T18:39:28+00:00"
 =======
@@ -1162,6 +1258,9 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "time": "2020-11-18T18:39:28+00:00"
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
         },
         {
             "name": "laminas/laminas-zendframework-bridge",
@@ -1211,6 +1310,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -1226,10 +1326,13 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-09-14T14:23:00+00:00"
         },
         {
             "name": "laravel/framework",
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
             "version": "v7.28.4",
@@ -1254,13 +1357,17 @@
 =======
             "version": "v7.28.4",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "version": "v7.30.0",
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "de187e9200948bab6975167e480950abcd5efdac"
+                "reference": "629c36a0fe87b66d8dccd3c82927950d0f59d3f9"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
 <<<<<<< HEAD
                 "url": "https://api.github.com/repos/laravel/framework/zipball/93f6d565a07045baa0e4b941ae1f733cd5984d65",
                 "reference": "93f6d565a07045baa0e4b941ae1f733cd5984d65",
@@ -1270,6 +1377,10 @@
                 "reference": "de187e9200948bab6975167e480950abcd5efdac",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+                "url": "https://api.github.com/repos/laravel/framework/zipball/629c36a0fe87b66d8dccd3c82927950d0f59d3f9",
+                "reference": "629c36a0fe87b66d8dccd3c82927950d0f59d3f9",
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -1341,7 +1452,7 @@
                 "illuminate/view": "self.version"
             },
             "require-dev": {
-                "aws/aws-sdk-php": "^3.0",
+                "aws/aws-sdk-php": "^3.155",
                 "doctrine/dbal": "^2.6",
                 "filp/whoops": "^2.8",
                 "guzzlehttp/guzzle": "^6.3.1|^7.0.1",
@@ -1355,7 +1466,7 @@
                 "symfony/cache": "^5.0"
             },
             "suggest": {
-                "aws/aws-sdk-php": "Required to use the SQS queue driver, DynamoDb failed job storage and SES mail driver (^3.0).",
+                "aws/aws-sdk-php": "Required to use the SQS queue driver, DynamoDb failed job storage and SES mail driver (^3.155).",
                 "doctrine/dbal": "Required to rename columns and drop SQLite columns (^2.6).",
                 "ext-ftp": "Required to use the Flysystem FTP driver.",
                 "ext-gd": "Required to use Illuminate\\Http\\Testing\\FileFactory::image().",
@@ -1376,6 +1487,7 @@
                 "pda/pheanstalk": "Required to use the beanstalk queue driver (^4.0).",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "phpunit/phpunit": "Required to use assertions and run tests (^8.4|^9.0).",
 =======
                 "phpunit/phpunit": "Required to use assertions and run tests (^8.4|^9.3.3).",
@@ -1386,6 +1498,9 @@
                 "phpunit/phpunit": "Required to use assertions and run tests (^8.4|^9.0).",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+                "phpunit/phpunit": "Required to use assertions and run tests (^8.4|^9.3.3).",
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "predis/predis": "Required to use the predis connector (^1.1.2).",
                 "psr/http-message": "Required to allow Storage::put to accept a StreamInterface (^1.0).",
                 "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (^4.0).",
@@ -1427,6 +1542,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-10-06T14:22:09+00:00"
 =======
             "time": "2020-11-03T14:12:58+00:00"
@@ -1437,6 +1553,9 @@
             "time": "2020-10-06T14:22:09+00:00"
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "time": "2020-12-01T15:01:25+00:00"
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
         },
         {
             "name": "laravel/passport",
@@ -1630,6 +1749,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -1649,6 +1769,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-08-20T13:22:28+00:00"
         },
         {
@@ -1720,6 +1842,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -1755,6 +1878,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-10-31T13:49:32+00:00"
         },
         {
@@ -1811,8 +1936,11 @@
             "name": "league/flysystem",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "1.0.46",
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "version": "1.1.3",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "source": {
@@ -1835,6 +1963,7 @@
                 "ext-fileinfo": "*",
                 "league/mime-type-detection": "^1.3",
                 "php": "^7.2.5 || ^8.0"
+<<<<<<< HEAD
 =======
             "version": "1.0.46",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -1859,11 +1988,14 @@
                 "php": ">=5.5.9"
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             },
             "conflict": {
                 "league/flysystem-sftp": "<1.0.6"
             },
             "require-dev": {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
                 "ext-fileinfo": "*",
@@ -1882,6 +2014,10 @@
                 "phpunit/phpunit": "^5.7.10"
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+                "phpspec/prophecy": "^1.11.1",
+                "phpunit/phpunit": "^8.5.8"
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             },
             "suggest": {
                 "ext-fileinfo": "Required for MimeType",
@@ -1942,10 +2078,13 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2018-08-22T07:45:22+00:00"
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-08-23T07:39:11+00:00"
         },
         {
@@ -1989,12 +2128,15 @@
             "description": "Mime-type detection for Flysystem",
             "time": "2020-10-18T11:50:25+00:00"
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 7315b633ae2fa01002f3741f6331ea2f99e192d6
 =======
 =======
             "time": "2018-08-22T07:45:22+00:00"
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
         },
         {
             "name": "league/oauth2-server",
@@ -2073,6 +2215,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -2088,6 +2231,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-07-01T11:33:50+00:00"
         },
         {
@@ -2171,6 +2316,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -2190,14 +2336,19 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-07-23T08:41:23+00:00"
         },
         {
             "name": "nesbot/carbon",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "2.41.5",
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "version": "2.42.0",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "source": {
@@ -2215,6 +2366,7 @@
 =======
                 "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/d0463779663437392fe42ff339ebc0213bd55498",
                 "reference": "d0463779663437392fe42ff339ebc0213bd55498",
+<<<<<<< HEAD
 =======
             "version": "2.41.5",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -2234,6 +2386,8 @@
                 "reference": "c4a9caf97cfc53adfc219043bcecf42bc663acee",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -2250,6 +2404,7 @@
                 "phpstan/extension-installer": "^1.0",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
                 "phpstan/phpstan": "^0.12.35",
 =======
                 "phpstan/phpstan": "^0.12.54",
@@ -2260,6 +2415,9 @@
                 "phpstan/phpstan": "^0.12.35",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+                "phpstan/phpstan": "^0.12.54",
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "phpunit/phpunit": "^7.5 || ^8.0",
                 "squizlabs/php_codesniffer": "^3.4"
             },
@@ -2312,6 +2470,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             "time": "2020-11-28T14:25:28+00:00"
 =======
@@ -2334,6 +2493,9 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "time": "2020-11-28T14:25:28+00:00"
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
         },
         {
             "name": "nikic/php-parser",
@@ -2391,8 +2553,11 @@
             "name": "nyholm/psr7",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "1.3.1",
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "version": "1.3.2",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "source": {
@@ -2410,6 +2575,7 @@
 =======
                 "url": "https://api.github.com/repos/Nyholm/psr7/zipball/a272953743c454ac4af9626634daaf5ab3ce1173",
                 "reference": "a272953743c454ac4af9626634daaf5ab3ce1173",
+<<<<<<< HEAD
 =======
             "version": "1.3.1",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -2429,6 +2595,8 @@
                 "reference": "21b71a31eab5c0c2caf967b9c0fd97020254ed75",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -2480,7 +2648,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-11-14T17:35:34+00:00"
         },
         {
@@ -2495,6 +2666,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/opis/closure/zipball/943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5",
                 "reference": "943b5d70cc5ae7483f6aff6ff43d7e34592ca0f5",
+<<<<<<< HEAD
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "funding": [
@@ -2541,6 +2713,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -2590,6 +2764,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-10-11T21:42:15+00:00"
 =======
             "time": "2020-11-07T02:01:34+00:00"
@@ -2600,6 +2775,9 @@
             "time": "2020-10-11T21:42:15+00:00"
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "time": "2020-11-07T02:01:34+00:00"
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
         },
         {
             "name": "paragonie/random_compat",
@@ -2902,6 +3080,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -2921,6 +3100,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-07-20T17:29:33+00:00"
         },
         {
@@ -3014,6 +3195,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -3037,6 +3219,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-09-08T04:24:43+00:00"
         },
         {
@@ -3506,6 +3690,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -3521,6 +3706,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-09-10T20:58:17+00:00"
         },
         {
@@ -3604,6 +3791,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -3619,6 +3807,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-08-18T17:17:46+00:00"
         },
         {
@@ -3782,8 +3972,11 @@
             "name": "symfony/console",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v5.1.8",
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "version": "v5.2.0",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "source": {
@@ -3801,6 +3994,7 @@
 =======
                 "url": "https://api.github.com/repos/symfony/console/zipball/3e0564fb08d44a98bd5f1960204c958e57bd586b",
                 "reference": "3e0564fb08d44a98bd5f1960204c958e57bd586b",
+<<<<<<< HEAD
 =======
             "version": "v5.1.8",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -3820,6 +4014,8 @@
                 "reference": "e0b2c29c0fa6a69089209bbe8fcff4df2a313d0e",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -3888,8 +4084,11 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-10-24T12:01:57+00:00"
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-11-28T11:24:18+00:00"
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
         },
@@ -3911,6 +4110,7 @@
 =======
                 "url": "https://api.github.com/repos/symfony/css-selector/zipball/b8d8eb06b0942e84a69e7acebc3e9c1e6e6e7256",
                 "reference": "b8d8eb06b0942e84a69e7acebc3e9c1e6e6e7256",
+<<<<<<< HEAD
 =======
             "time": "2020-10-24T12:01:57+00:00"
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -3934,6 +4134,8 @@
                 "reference": "6cbebda22ffc0d4bb8fea0c1311c2ca54c4c8fa0",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -3970,6 +4172,7 @@
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             "time": "2020-10-28T21:31:18+00:00"
 =======
@@ -3996,6 +4199,9 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "time": "2020-10-28T21:31:18+00:00"
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
         },
         {
             "name": "symfony/deprecation-contracts",
@@ -4047,6 +4253,7 @@
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -4070,14 +4277,19 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-09-07T11:33:47+00:00"
         },
         {
             "name": "symfony/error-handler",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v5.1.8",
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "version": "v5.2.0",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "source": {
@@ -4095,6 +4307,7 @@
 =======
                 "url": "https://api.github.com/repos/symfony/error-handler/zipball/289008c5be039e39908d33ae0a8ac99be1210bba",
                 "reference": "289008c5be039e39908d33ae0a8ac99be1210bba",
+<<<<<<< HEAD
 =======
             "version": "v5.1.8",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -4114,6 +4327,8 @@
                 "reference": "a154f2b12fd1ec708559ba73ed58bd1304e55718",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -4154,7 +4369,10 @@
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-10-28T21:46:03+00:00"
         },
         {
@@ -4169,6 +4387,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/aa13a09811e6d2ad43f8fb336bebdb7691d85d3c",
                 "reference": "aa13a09811e6d2ad43f8fb336bebdb7691d85d3c",
+<<<<<<< HEAD
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "funding": [
@@ -4219,6 +4438,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -4275,6 +4496,7 @@
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             "time": "2020-11-01T16:14:45+00:00"
 =======
@@ -4301,6 +4523,9 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "time": "2020-11-01T16:14:45+00:00"
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
         },
         {
             "name": "symfony/event-dispatcher-contracts",
@@ -4364,6 +4589,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -4387,14 +4613,19 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-09-07T11:33:47+00:00"
         },
         {
             "name": "symfony/finder",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v5.1.8",
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "version": "v5.2.0",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "source": {
@@ -4412,6 +4643,7 @@
 =======
                 "url": "https://api.github.com/repos/symfony/finder/zipball/fd8305521692f27eae3263895d1ef1571c71a78d",
                 "reference": "fd8305521692f27eae3263895d1ef1571c71a78d",
+<<<<<<< HEAD
 =======
             "version": "v5.1.8",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -4431,6 +4663,8 @@
                 "reference": "e70eb5a69c2ff61ea135a13d2266e8914a67b3a0",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -4463,7 +4697,10 @@
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-11-18T09:42:36+00:00"
         },
         {
@@ -4478,6 +4715,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/http-client-contracts/zipball/41db680a15018f9c1d4b23516059633ce280ca33",
                 "reference": "41db680a15018f9c1d4b23516059633ce280ca33",
+<<<<<<< HEAD
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "funding": [
@@ -4508,6 +4746,8 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/http-client-contracts/zipball/41db680a15018f9c1d4b23516059633ce280ca33",
                 "reference": "41db680a15018f9c1d4b23516059633ce280ca33",
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -4556,6 +4796,7 @@
                 "interoperability",
                 "standards"
             ],
+<<<<<<< HEAD
             "funding": [
                 {
                     "url": "https://symfony.com/sponsor",
@@ -4668,6 +4909,8 @@
                 "interoperability",
                 "standards"
             ],
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-10-14T17:08:19+00:00"
         },
         {
@@ -4724,8 +4967,11 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-10-24T12:01:57+00:00"
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "description": "Symfony HttpFoundation Component",
             "homepage": "https://symfony.com",
             "time": "2020-11-27T06:13:25+00:00"
@@ -4751,6 +4997,7 @@
 =======
                 "url": "https://api.github.com/repos/symfony/http-kernel/zipball/38907e5ccb2d9d371191a946734afc83c7a03160",
                 "reference": "38907e5ccb2d9d371191a946734afc83c7a03160",
+<<<<<<< HEAD
 =======
             "time": "2020-10-24T12:01:57+00:00"
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -4774,6 +5021,8 @@
                 "reference": "a13b3c4d994a4fd051f4c6800c5e33c9508091dd",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -4857,7 +5106,10 @@
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-11-30T05:54:18+00:00"
         },
         {
@@ -4872,6 +5124,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/mime/zipball/05f667e8fa029568964fd3bec6bc17765b853cc5",
                 "reference": "05f667e8fa029568964fd3bec6bc17765b853cc5",
+<<<<<<< HEAD
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "funding": [
@@ -4922,6 +5175,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -4973,6 +5228,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             "time": "2020-10-30T14:55:39+00:00"
 =======
@@ -4999,6 +5255,9 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "time": "2020-10-30T14:55:39+00:00"
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -5062,6 +5321,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -5085,6 +5345,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-10-23T14:02:19+00:00"
         },
         {
@@ -5150,6 +5412,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -5173,6 +5436,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-10-23T14:02:19+00:00"
         },
         {
@@ -5239,6 +5504,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -5262,6 +5528,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-10-23T14:02:19+00:00"
         },
         {
@@ -5334,6 +5602,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -5357,6 +5626,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-10-23T14:02:19+00:00"
         },
         {
@@ -5426,6 +5697,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -5449,6 +5721,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-10-23T14:02:19+00:00"
         },
         {
@@ -5514,6 +5788,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -5537,6 +5812,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-10-23T14:02:19+00:00"
         },
         {
@@ -5598,6 +5875,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -5621,6 +5899,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-10-23T14:02:19+00:00"
         },
         {
@@ -5685,6 +5965,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -5708,6 +5989,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-10-23T14:02:19+00:00"
         },
         {
@@ -5776,6 +6059,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -5799,14 +6083,19 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-10-23T14:02:19+00:00"
         },
         {
             "name": "symfony/process",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v5.1.8",
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "version": "v5.2.0",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "source": {
@@ -5824,6 +6113,7 @@
 =======
                 "url": "https://api.github.com/repos/symfony/process/zipball/240e74140d4d956265048f3025c0aecbbc302d54",
                 "reference": "240e74140d4d956265048f3025c0aecbbc302d54",
+<<<<<<< HEAD
 =======
             "version": "v5.1.8",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -5843,6 +6133,8 @@
                 "reference": "f00872c3f6804150d6a0f73b4151daab96248101",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -5876,6 +6168,7 @@
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             "time": "2020-11-02T15:47:15+00:00"
 =======
@@ -5902,6 +6195,9 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "time": "2020-11-02T15:47:15+00:00"
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
         },
         {
             "name": "symfony/psr-http-message-bridge",
@@ -5967,6 +6263,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -5990,14 +6287,19 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-09-29T08:17:46+00:00"
         },
         {
             "name": "symfony/routing",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v5.1.8",
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "version": "v5.2.0",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "source": {
@@ -6015,6 +6317,7 @@
 =======
                 "url": "https://api.github.com/repos/symfony/routing/zipball/130ac5175ad2fd417978baebd8062e2e6b2bc28b",
                 "reference": "130ac5175ad2fd417978baebd8062e2e6b2bc28b",
+<<<<<<< HEAD
 =======
             "version": "v5.1.8",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -6034,6 +6337,8 @@
                 "reference": "d6ceee2a37b61b41079005207bf37746d1bfe71f",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -6095,6 +6400,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             "time": "2020-11-27T00:39:34+00:00"
 =======
@@ -6121,6 +6427,9 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "time": "2020-11-27T00:39:34+00:00"
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
         },
         {
             "name": "symfony/service-contracts",
@@ -6184,6 +6493,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -6207,14 +6517,19 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-09-07T11:33:47+00:00"
         },
         {
             "name": "symfony/string",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v5.1.8",
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "version": "v5.2.0",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "source": {
@@ -6232,6 +6547,7 @@
 =======
                 "url": "https://api.github.com/repos/symfony/string/zipball/40e975edadd4e32cd16f3753b3bad65d9ac48242",
                 "reference": "40e975edadd4e32cd16f3753b3bad65d9ac48242",
+<<<<<<< HEAD
 =======
             "version": "v5.1.8",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -6251,6 +6567,8 @@
                 "reference": "a97573e960303db71be0dd8fda9be3bca5e0feea",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -6305,7 +6623,10 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-10-24T12:08:07+00:00"
         },
         {
@@ -6320,6 +6641,7 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/symfony/translation/zipball/52f486a707510884450df461b5a6429dd7a67379",
                 "reference": "52f486a707510884450df461b5a6429dd7a67379",
+<<<<<<< HEAD
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "funding": [
@@ -6370,6 +6692,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -6434,6 +6758,7 @@
             "homepage": "https://symfony.com",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             "time": "2020-11-28T11:24:18+00:00"
 =======
@@ -6460,6 +6785,9 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "time": "2020-11-28T11:24:18+00:00"
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
         },
         {
             "name": "symfony/translation-contracts",
@@ -6522,6 +6850,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -6545,14 +6874,19 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-09-28T13:05:58+00:00"
         },
         {
             "name": "symfony/var-dumper",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "v5.1.8",
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "version": "v5.2.0",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "source": {
@@ -6570,6 +6904,7 @@
 =======
                 "url": "https://api.github.com/repos/symfony/var-dumper/zipball/173a79c462b1c81e1fa26129f71e41333d846b26",
                 "reference": "173a79c462b1c81e1fa26129f71e41333d846b26",
+<<<<<<< HEAD
 =======
             "version": "v5.1.8",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -6589,6 +6924,8 @@
                 "reference": "4e13f3fcefb1fcaaa5efb5403581406f4e840b9a",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -6648,6 +6985,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             "time": "2020-11-27T00:39:34+00:00"
 =======
@@ -6674,6 +7012,9 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "time": "2020-11-27T00:39:34+00:00"
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
         },
         {
             "name": "tijsverkoyen/css-to-inline-styles",
@@ -6788,6 +7129,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -6807,14 +7149,19 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-07-14T19:22:52+00:00"
         },
         {
             "name": "voku/portable-ascii",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "1.5.3",
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "version": "1.5.6",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "source": {
@@ -6832,6 +7179,7 @@
 =======
                 "url": "https://api.github.com/repos/voku/portable-ascii/zipball/80953678b19901e5165c56752d087fc11526017c",
                 "reference": "80953678b19901e5165c56752d087fc11526017c",
+<<<<<<< HEAD
 =======
             "version": "1.5.3",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -6851,6 +7199,8 @@
                 "reference": "25bcbf01678930251fd572891447d9e318a6e2b8",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -6887,6 +7237,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             "time": "2020-11-12T00:07:28+00:00"
 =======
@@ -6921,6 +7272,9 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "time": "2020-11-12T00:07:28+00:00"
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
         }
     ],
     "packages-dev": [
@@ -7030,6 +7384,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -7045,14 +7400,19 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-10-21T16:02:39+00:00"
         },
         {
             "name": "facade/ignition",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "2.5.0",
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "version": "2.5.2",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "source": {
@@ -7070,6 +7430,7 @@
 =======
                 "url": "https://api.github.com/repos/facade/ignition/zipball/08668034beb185fa2ac6f09b1034eaa440952ace",
                 "reference": "08668034beb185fa2ac6f09b1034eaa440952ace",
+<<<<<<< HEAD
 =======
             "version": "2.5.0",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -7089,6 +7450,8 @@
                 "reference": "81698c5e32837c74abf9bb764ff0c1b3e001afb3",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -7148,6 +7511,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-10-27T13:02:22+00:00"
 =======
             "time": "2020-11-17T09:18:51+00:00"
@@ -7158,6 +7522,9 @@
             "time": "2020-10-27T13:02:22+00:00"
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "time": "2020-11-17T09:18:51+00:00"
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
         },
         {
             "name": "facade/ignition-contracts",
@@ -7212,8 +7579,11 @@
             "name": "filp/whoops",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "2.9.0",
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "version": "2.9.1",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "source": {
@@ -7231,6 +7601,7 @@
 =======
                 "url": "https://api.github.com/repos/filp/whoops/zipball/307fb34a5ab697461ec4c9db865b20ff2fd40771",
                 "reference": "307fb34a5ab697461ec4c9db865b20ff2fd40771",
+<<<<<<< HEAD
 =======
             "version": "2.9.0",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -7250,6 +7621,8 @@
                 "reference": "2ec31f3adc54c71a59c5e3c2143d7a0e2f8899f8",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -7299,6 +7672,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "time": "2020-10-20T12:00:00+00:00"
 =======
             "time": "2020-11-01T12:00:00+00:00"
@@ -7309,6 +7683,9 @@
             "time": "2020-10-20T12:00:00+00:00"
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "time": "2020-11-01T12:00:00+00:00"
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
         },
         {
             "name": "fzaninotto/faker",
@@ -7480,8 +7857,11 @@
             "name": "myclabs/deep-copy",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "1.10.1",
 =======
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "version": "1.10.2",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
             "source": {
@@ -7499,6 +7879,7 @@
 =======
                 "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/776f831124e9c62e1a2c601ecc52e776d8bb7220",
                 "reference": "776f831124e9c62e1a2c601ecc52e776d8bb7220",
+<<<<<<< HEAD
 =======
             "version": "1.10.1",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -7518,6 +7899,8 @@
                 "reference": "969b211f9a51aa1f6c01d1d2aef56d3bd91598e5",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -7554,6 +7937,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             "time": "2020-11-13T09:40:50+00:00"
 =======
@@ -7572,6 +7956,9 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "time": "2020-11-13T09:40:50+00:00"
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
         },
         {
             "name": "nunomaduro/collision",
@@ -7643,6 +8030,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -7666,6 +8054,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-10-29T15:12:23+00:00"
         },
         {
@@ -8237,17 +8627,22 @@
             "name": "phpunit/phpunit",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             "version": "8.5.8",
 =======
             "version": "8.5.12",
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "version": "8.5.13",
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "f40cf5be80a7d177494592ad1b2db3f64ea1dee3"
+                "reference": "8e86be391a58104ef86037ba8a846524528d784e"
             },
             "dist": {
                 "type": "zip",
+<<<<<<< HEAD
 <<<<<<< HEAD
                 "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/34c18baa6a44f1d1fbf0338907139e9dce95b997",
                 "reference": "34c18baa6a44f1d1fbf0338907139e9dce95b997",
@@ -8275,6 +8670,10 @@
                 "reference": "34c18baa6a44f1d1fbf0338907139e9dce95b997",
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/8e86be391a58104ef86037ba8a846524528d784e",
+                "reference": "8e86be391a58104ef86037ba8a846524528d784e",
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
                 "shasum": ""
             },
             "require": {
@@ -8346,6 +8745,7 @@
             ],
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
             "time": "2020-11-30T12:23:30+00:00"
 =======
@@ -8368,6 +8768,9 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+            "time": "2020-12-01T04:53:52+00:00"
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",
@@ -9024,6 +9427,7 @@
             "description": "A small library for converting tokenized PHP source code into XML and potentially other formats",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
@@ -9039,6 +9443,8 @@
 =======
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
             "time": "2020-07-12T23:59:07+00:00"
         },
         {
@@ -9101,6 +9507,7 @@
     },
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "platform-dev": [],
     "plugin-api-version": "1.1.0"
 =======
@@ -9113,4 +9520,7 @@
     "plugin-api-version": "1.1.0"
 >>>>>>> 38e434637696f073aca2e32f85040cd340abe3f9
 >>>>>>> 31399f7f092cd8faeea2bab0c6db9dbef0eb9a26
+=======
+    "platform-dev": []
+>>>>>>> 936df3450f37ff29dc203da86de1c0acbbf53b74
 }
