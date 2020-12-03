@@ -240,8 +240,6 @@
                     @endforeach
                 </td>
             </tr>
-                
-
             @endif
             @if($filas_despacho->count()>0 && $trozas->count()==0)
             <tr>

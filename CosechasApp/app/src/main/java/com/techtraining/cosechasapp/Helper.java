@@ -1,10 +1,10 @@
 package com.techtraining.cosechasapp;
 
 public class Helper {
-    //public static final String URL_API = "http://38.123.149.8/api";
-    //public static final String URL_OAUTH2 = "http://38.123.149.8/oauth/token";
-    public static final String URL_API = "http://192.168.1.167:8000/api";
-    public static final String URL_OAUTH2 = "http://192.168.1.167:8000/oauth/token";
+    public static final String URL_API = "http://38.123.149.8/api";
+    public static final String URL_OAUTH2 = "http://38.123.149.8/oauth/token";
+    //public static final String URL_API = "http://192.168.1.167:8000/api";
+    //public static final String URL_OAUTH2 = "http://192.168.1.167:8000/oauth/token";
     public static final String CLIENT_ID = "2";
     public static final String GRANT_TYPE = "password";
     public static final String CLIENT_SECRET = "XbEO8Ol48yp67UQrw0L4sbQSrmNKxFGaRwzplHKL";
