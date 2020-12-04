@@ -26,7 +26,7 @@ class DespachoController extends Controller
 {
     public function show($id) {
         $empresa_id = User::findOrFail(Despacho::findOrFail($id)->usuario_id)->empresa_id; 
-        return PDF::setOptions(['isRemoteEnabled' => true])->loadView('despacho', [
+        return PDF::loadView('despacho', [
             'despacho' => Despacho::findOrFail($id),
             'espesores' => Espesor::active()->orderBy('descripcion')->where('empresa_id', $empresa_id)->get(),
             'largos' =>Largo::active()->orderBy('descripcion')->where('empresa_id', $empresa_id)->get(),

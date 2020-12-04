@@ -246,9 +246,8 @@
                 <td class="centered" colspan="{{ ($espesores->count() + 2) }}" style="padding: 25px;">
                     @foreach($filas_despacho as $fila_despacho)
                         @foreach($fotos_fila->where('fila_id', $fila_despacho->id) as $foto_fila)
-                            <img src="{{$foto_fila->path}}" alt="" style="width: 150px; height: 150px;padding: 25px;">
+                            <img src="{{ storage_path('app/') . $foto_fila->path }}" alt="" style="width: 150px; height: 150px;padding: 25px;">
                         @endforeach
-
                     @endforeach
                 </td>
             </tr>
