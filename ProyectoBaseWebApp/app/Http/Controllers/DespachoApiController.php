@@ -6,6 +6,7 @@ use App\Despacho;
 use App\FilaDespacho;
 use App\FotoFila;
 use App\Troza;
+use App\TrozaFotos;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
@@ -121,7 +122,7 @@ class DespachoApiController extends Controller
                         ]);
                     }
                      //GPUIG GUARDAR PATH FOTOS FILAS
-                    $fotos_filas = $fila['fotos'];
+                    /*$fotos_filas = $fila['fotos'];
                     foreach ($fotos_filas as $fotos_fila) {
                         // The final filename.
                         $fileName = $fotos_fila['id'].".jpg";
@@ -145,26 +146,12 @@ class DespachoApiController extends Controller
                             
                         ]);  
                         
-                    }
+                    }*/
                 }
                 //GPUIG GUARDAR PATH FOTOS TROZAS
                 $troza = $request->input('troza');
                 if (isset($troza)) {
-                    // The final filename.
-                    $fileName = $troza['id'].".jpg";
-                    // Upload path
-                    $uploadPath = public_path().'/imagenes/trozas/' . $fileName;
-
-                    if(isset($troza['foto'])){
-                        // Decode your image/file
-                        $decodedImagen = base64_decode($troza['foto']);
-                        // Upload the decoded file/image
-                        if(!file_put_contents($uploadPath , $decodedImagen)){
-                            $uploadPath = NULL;   
-                        }
-                    }else{
-                        $uploadPath = NULL;
-                    }
+                    $uploadPath = NULL;
                     $troza_creada = Troza::create([
                         'despacho_id' => $despacho->id,
                         'numero_trozas' => $troza['numeroTrozas'],
@@ -172,8 +159,35 @@ class DespachoApiController extends Controller
                         'foto' => $uploadPath,
                         'observaciones' => $troza['observaciones'],
                         'id' => $troza['id']
-                    ]);   
+                    ]);  
                 }
+                //GPUIG GUARDAR PATH FOTOS TROZAS
+                /*$troza_fotos = $request->input('troza_fotos');
+                foreach ($troza_fotos as $troza_foto) {
+                    // The final filename.
+                    $fileName = $troza_foto['id'].".jpg";
+                    // Upload path
+                    $uploadPath = public_path().'/imagenes/trozas/' . $fileName;
+
+                    if(isset($troza_foto['foto'])){
+                        // Decode your image/file
+                        $decodedImagen = base64_decode($troza_foto['foto']);
+                        // Upload the decoded file/image
+                        if(!file_put_contents($uploadPath , $decodedImagen)){
+                            $uploadPath = NULL;   
+                        }
+                    }else{
+                        $uploadPath = NULL;
+                    }
+
+                    $trozas_foto_create = TrozaFotos::create([
+                        'troza_id' => $troza_foto['trozaId'],
+                        'id' => $troza_foto['id'],
+                        'foto' => $uploadPath
+                        
+                    ]);  
+                    
+                }*/
             }
             return [
                 'numero_documento' => $despacho->numero_documento
@@ -188,9 +202,10 @@ class DespachoApiController extends Controller
             $fila = FilaDespacho::findOrFail($request->input('fila_id'));
             $fotos = $request->file('fotos');
             foreach ($fotos as $foto) {
-                $path = Storage::disk('local')->put('imgs', $foto);
+                $path = Storage::disk('local')->put('public/imgs', $foto);
+                $fullpath = Storage::disk('local')->path($path);
                 $fila->fotos()->create([
-                    'path' => $path
+                    'path' => $fullpath
                 ]);
             }
         });
@@ -204,9 +219,10 @@ class DespachoApiController extends Controller
                 $troza = Troza::findOrFail($request->input('troza_id'));
                 $fotos = $request->file('fotos');
                 foreach ($fotos as $foto) {
-                    $path = Storage::disk('local')->put('imgs', $foto);
+                    $path = Storage::disk('local')->put('public/imgs', $foto);
+                    $fullpath = Storage::disk('local')->path($path);
                     $troza->fotos()->create([
-                        'foto' => $path,
+                        'foto' => $fullpath,
                         'id' => $request->input('id')
                     ]);
                 }

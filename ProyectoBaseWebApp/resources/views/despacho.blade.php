@@ -235,21 +235,26 @@
             @if($trozas->count()>0)
             <tr>
                 <td class="centered" colspan="{{ ($espesores->count() + 2) }}" style="padding: 25px;">
-                    @foreach($trozas as $troza)
-                        <img src="{{$troza->foto}}" alt="" style="width: 250px; height: 250px;padding: 25px;">
-                    @endforeach
+                <?php $contador=0;?>
+                        @foreach($trozas as $troza)
+                            @foreach($troza_fotos->where('troza_id', $troza->id) as $troza_foto)
+                                    <img src="{{$troza_foto->foto}}" alt="" style="width: 175px; height: 175px;padding: 25px;">
+                                    <?php $contador++;if($contador%2==0 && $contador>1){echo"<br>";}?>
+                            @endforeach
+                        @endforeach                    
                 </td>
             </tr>
             @endif
             @if($filas_despacho->count()>0 && $trozas->count()==0)
             <tr>
                 <td class="centered" colspan="{{ ($espesores->count() + 2) }}" style="padding: 25px;">
-                    @foreach($filas_despacho as $fila_despacho)
-                        @foreach($fotos_fila->where('fila_id', $fila_despacho->id) as $foto_fila)
-                            <img src="{{$foto_fila->path}}" alt="" style="width: 150px; height: 150px;padding: 25px;">
-                        @endforeach
-
-                    @endforeach
+                        <?php $contador=0;?>
+                        @foreach($filas_despacho as $fila_despacho)
+                            @foreach($fotos_fila->where('fila_id', $fila_despacho->id) as $foto_fila)
+                                <img src="{{$foto_fila->path }}" alt="" style="width: 175px; height: 175px;padding: 25px;">
+                                <?php $contador++;if($contador%2==0 && $contador>1){echo"<br>";}?>
+                            @endforeach
+                        @endforeach                    
                 </td>
             </tr>
                 
