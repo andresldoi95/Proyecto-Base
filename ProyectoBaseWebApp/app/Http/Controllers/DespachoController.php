@@ -11,6 +11,8 @@ use App\TipoBulto;
 use App\User;
 use App\Troza;
 use App\FotoFila;
+use App\TrozaFotos;
+
 
 
 
@@ -32,6 +34,7 @@ class DespachoController extends Controller
             'largos' =>Largo::active()->orderBy('descripcion')->where('empresa_id', $empresa_id)->get(),
             'filas_despacho' =>FilaDespacho::orderBy('indice')->where('despacho_id', $id)->get(),
             'trozas' =>Troza::where('despacho_id', $id)->get(),
+            'troza_fotos' =>TrozaFotos::orderBy('troza_id')->get(),
             'filas_sueltos' =>FilaSuelto::orderBy('indice')->get(),
             'tipos_bulto' =>TipoBulto::where('empresa_id', $empresa_id)->get(),
             'fotos_fila' =>FotoFila::orderBy('fila_id')->get(),
@@ -51,6 +54,7 @@ class DespachoController extends Controller
             'largos' =>Largo::active()->orderBy('descripcion')->where('empresa_id', $empresa_id)->get(),
             'filas_despacho' =>FilaDespacho::orderBy('indice')->where('despacho_id', $id)->get(),
             'trozas' =>Troza::where('despacho_id', $id)->get(),
+            'troza_fotos' =>TrozaFotos::orderBy('troza_id')->get(),
             'filas_sueltos' =>FilaSuelto::orderBy('indice')->get(),
             'tipos_bulto' =>TipoBulto::where('empresa_id', $empresa_id)->get(),
             'fotos_fila' =>FotoFila::orderBy('fila_id')->get(),
