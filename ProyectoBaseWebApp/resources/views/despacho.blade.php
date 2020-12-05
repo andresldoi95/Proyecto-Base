@@ -130,6 +130,7 @@
     </table>
     <h4 class="upper centered">Madera aserrada/espesor pulgadas</h4>
     <table id="filas" class="bordered">
+    @if($despacho->tipo_llenado =='B' || $despacho->tipo_llenado =='S')
         <tbody>
             <tr>
                 <td class="centered">
@@ -232,26 +233,13 @@
                 </td>
             </tr>
             @endforeach
-            @if($trozas->count()>0)
-            <tr>
-                <td class="centered" colspan="{{ ($espesores->count() + 2) }}" style="padding: 25px;">
-                <?php $contador=0;?>
-                        @foreach($trozas as $troza)
-                            @foreach($troza_fotos->where('troza_id', $troza->id) as $troza_foto)
-                                    <img src="{{$troza_foto->foto}}" alt="" style="width: 175px; height: 175px;padding: 25px;">
-                                    <?php $contador++;if($contador%2==0 && $contador>1){echo"<br>";}?>
-                            @endforeach
-                        @endforeach                    
-                </td>
-            </tr>
-            @endif
             @if($filas_despacho->count()>0 && $trozas->count()==0)
             <tr>
                 <td class="centered" colspan="{{ ($espesores->count() + 2) }}" style="padding: 25px;">
                         <?php $contador=0;?>
                         @foreach($filas_despacho as $fila_despacho)
                             @foreach($fotos_fila->where('fila_id', $fila_despacho->id) as $foto_fila)
-                                <img src="{{$foto_fila->path }}" alt="" style="width: 175px; height: 175px;padding: 25px;">
+                                <img src="{{$foto_fila->path }}" alt="" style="width: auto;height: 175px;padding: 25px;">
                                 <?php $contador++;if($contador%2==0 && $contador>1){echo"<br>";}?>
                             @endforeach
                         @endforeach                    
@@ -261,6 +249,24 @@
 
             @endif
         </tbody>
+        @else
+        <tbody>
+            @if($trozas->count()>0)
+            <tr>
+                <td class="centered" colspan="{{ ($espesores->count() + 2) }}" style="padding: 25px;">
+                <?php $contador=0;?>
+                        @foreach($trozas as $troza)
+                            @foreach($troza_fotos->where('troza_id', $troza->id) as $troza_foto)
+                                    <img src="{{$troza_foto->foto}}" alt="" style="width: auto; height: 175px;padding: 25px;">
+                                    <?php $contador++;if($contador%2==0 && $contador>1){echo"<br>";}?>
+                            @endforeach
+                        @endforeach                    
+                </td>
+            </tr>
+            @endif
+        </tbody>
+
+        @endif
         <tfoot>
             <tr>
                 <td class="upper" colspan="{{ (($espesores->count() + 2) / 2) }}">
