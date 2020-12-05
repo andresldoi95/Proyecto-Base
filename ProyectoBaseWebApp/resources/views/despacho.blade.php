@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Despacho {{ $despacho->numero_documento }}</title>
@@ -239,8 +240,10 @@
                         <?php $contador=0;?>
                         @foreach($filas_despacho as $fila_despacho)
                             @foreach($fotos_fila->where('fila_id', $fila_despacho->id) as $foto_fila)
-                                <img src="{{$foto_fila->path }}" alt="" style="width: auto;height: 175px;padding: 25px;">
-                                <?php $contador++;if($contador%2==0 && $contador>1){echo"<br>";}?>
+                                <img src="{{$foto_fila->path }}" alt="" style="width: auto;height: 275px;padding: 25px;">
+                                <?php $numFila=$fila_despacho->indice+1;?>
+                                <label>Fila #{{ $numFila }}</label>
+                                <br>
                             @endforeach
                         @endforeach                    
                 </td>
@@ -258,7 +261,7 @@
                         @foreach($trozas as $troza)
                             @foreach($troza_fotos->where('troza_id', $troza->id) as $troza_foto)
                                     <img src="{{$troza_foto->foto}}" alt="" style="width: auto; height: 175px;padding: 25px;">
-                                    <?php $contador++;if($contador%2==0 && $contador>1){echo"<br>";}?>
+                                    
                             @endforeach
                         @endforeach                    
                 </td>
@@ -281,7 +284,14 @@
     <table class="bordered" id="footer">
         <tr>
             <td colspan="3">
-                <span class="upper">Observaciones:</span>
+                <span class="upper">Observaciones: 
+                    @if($trozas->count()>0)
+                        @foreach($trozas as $troza)
+                            {{$troza->observaciones}}
+                        @endforeach      
+                    @endif
+                    <br> Aserrador: {{ $despacho->aserrador->nombre}}<br>CI: {{ $despacho->aserrador->identificacion}}
+                </span>
             </td>
         </tr>
         <tr>
