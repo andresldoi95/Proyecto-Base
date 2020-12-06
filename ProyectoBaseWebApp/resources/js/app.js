@@ -7,9 +7,12 @@ import VueAxios from "vue-axios";
 import VueRouter from "vue-router";
 import VueI18n from "vue-i18n";
 import VueSession from "vue-session";
+import VueLodash from 'vue-lodash'
+import lodash from 'lodash'
 //Importando componentes globales
 import App from "./components/App";
 //Instalando plugins
+Vue.use(VueLodash, { name: 'mgArray' , lodash: lodash })
 Vue.use(Buefy);
 Vue.use(Vuex);
 Vue.use(VueAxios, axios);
