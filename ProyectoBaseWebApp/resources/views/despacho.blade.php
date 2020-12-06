@@ -275,6 +275,9 @@
     <br>
     <div style="page-break-after:always;"></div>
     <center>
+    <h2>Fotos</h2>
+    <br>
+    <br>
     @if($filas_despacho->count()>0 && $trozas->count()==0)
         <?php $contador=0;?>
         @foreach($filas_despacho as $fila_despacho)
