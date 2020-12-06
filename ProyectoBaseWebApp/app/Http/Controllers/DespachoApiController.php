@@ -28,7 +28,7 @@ class DespachoApiController extends Controller
             return $query->where('empresa_id', $user->empresa_id);
         })->whereBetween('fecha_despacho', [
             $desde, $hasta
-        ])->orderBy('fecha_despacho', 'desc');
+        ])->orderBy('numero_documento', 'desc')->orderBy('fecha_despacho', 'desc');
         $search = $request->input('search');
         if (isset($search)) {
             $despachos->where(function ($query) use ($search) {

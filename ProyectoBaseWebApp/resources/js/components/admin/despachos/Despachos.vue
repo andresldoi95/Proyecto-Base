@@ -60,7 +60,12 @@
                     sortable: false,
                     button: true,
                     event: 'editarDespacho',
+<<<<<<< HEAD
                     'icon-left': 'pencil'
+=======
+                    'icon-left': 'pencil',
+                    type: 'is-info'
+>>>>>>> a21c5e5c7c2b9d80928a25fdc9e2a0add294b1eb
                 }
             ]"
         ></masterForm>
