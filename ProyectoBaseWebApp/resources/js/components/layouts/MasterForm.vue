@@ -78,7 +78,6 @@
       :selected.sync="selected"
       v-show="tipo_formulario === 'C'"
       :checkable="checkable"
-      :columns="columns"
       :data="registros"
       :paginated="isPaginated"
       :backend-pagination="isPaginated"
@@ -89,7 +88,16 @@
       :aria-previous-label="$t('message.prev_page')"
       :aria-page-label="$t('message.page')"
       :aria-current-label="$t('message.current_page')"
-    ></b-table>
+    >
+        <template slot-scope="props">
+            <b-table-column v-for="column in columns" :key="column.field" :field="column.field" :label="column.label" :numeric="column.numeric">
+                <b-button @click="$emit(column.event, props.row)" :type="column.type" :icon-left="column['icon-left']" v-if="column.button"></b-button>
+                <span v-else>
+                    {{ props.row[column.field] }}
+                </span>
+            </b-table-column>
+        </template>
+    </b-table>
   </section>
 </template>
 
