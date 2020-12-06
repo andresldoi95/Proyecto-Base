@@ -3149,6 +3149,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3163,6 +3172,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    editarDespacho: function editarDespacho(despacho) {
+      alert('Editar el despacho: ' + despacho.id);
+    },
     editar: function editar(despacho) {
       window.open('/despacho/' + despacho.id, '_blank');
     }
@@ -6944,6 +6956,14 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -27403,10 +27423,18 @@ var render = function() {
                   label: _vm.$t("message.usuario"),
                   field: "usuario.name",
                   sortable: true
+                },
+                {
+                  label: "",
+                  field: "",
+                  sortable: false,
+                  button: true,
+                  event: "editarDespacho",
+                  "icon-left": "pencil"
                 }
               ]
             },
-            on: { editar: _vm.editar }
+            on: { editar: _vm.editar, editarDespacho: _vm.editarDespacho }
           })
         ],
         1
@@ -32130,7 +32158,6 @@ var render = function() {
           focusable: "",
           selected: _vm.selected,
           checkable: _vm.checkable,
-          columns: _vm.columns,
           data: _vm.registros,
           paginated: _vm.isPaginated,
           "backend-pagination": _vm.isPaginated,
@@ -32161,7 +32188,49 @@ var render = function() {
           "update:current-page": function($event) {
             return _vm.$set(_vm.form, "current_page", $event)
           }
-        }
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "default",
+            fn: function(props) {
+              return _vm._l(_vm.columns, function(column) {
+                return _c(
+                  "b-table-column",
+                  {
+                    key: column.field,
+                    attrs: {
+                      field: column.field,
+                      label: column.label,
+                      numeric: column.numeric
+                    }
+                  },
+                  [
+                    column.button
+                      ? _c("b-button", {
+                          attrs: {
+                            type: column.type,
+                            "icon-left": column.icon - _vm.left
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.$emit(column.event, props.row)
+                            }
+                          }
+                        })
+                      : _c("span", [
+                          _vm._v(
+                            "\n                  " +
+                              _vm._s(props.row[column.field]) +
+                              "\n              "
+                          )
+                        ])
+                  ],
+                  1
+                )
+              })
+            }
+          }
+        ])
       })
     ],
     1
