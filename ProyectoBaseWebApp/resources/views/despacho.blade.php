@@ -146,38 +146,38 @@
                 </td>
             </tr>
             @foreach($largos as $largo)
-            <?php 
+            <?php
                 $resumen_bultos=0;
                 $resumen_bft=0;
             ?>
-            
+
             <tr>
                 <td class="centered">
                     <b># de Plantilla ( {{ $largo->descripcion }}m) </b>
                 </td>
                 @foreach($espesores as $espesor)
                     <td class="centered">
-                    <?php 
+                    <?php
                             $suma_fila_despacho_bulto=0;
                             $suma_fila_despacho_bft=0;
                         ?>
                     @foreach($filas_despacho as $fila_despacho)
-                        
+
                         @if($filas_sueltos->where('fila_id',$fila_despacho->id)->where('espesor_id',$espesor->id)->where('largo_id',$largo->id)->count() > 0)
                           <?php $suma_fila_despacho_bulto= $suma_fila_despacho_bulto + $filas_sueltos->where('fila_id',$fila_despacho->id)->where('espesor_id',$espesor->id)->where('largo_id',$largo->id)->sum('bultos');?>
                         @else
                             @if($tipos_bulto->where('espesor_id',$espesor->id)->where('largo_id',$largo->id)->count() > 0)
-                                @foreach($tipos_bulto->where('espesor_id',$espesor->id)->where('largo_id',$largo->id) as $tipo_bulto)  
+                                @foreach($tipos_bulto->where('espesor_id',$espesor->id)->where('largo_id',$largo->id) as $tipo_bulto)
                                     @if($filas_sueltos->where('fila_id',$fila_despacho->id)->where('tipo_bulto_id',$tipo_bulto->id)->count() > 0)
                                         <?php $suma_fila_despacho_bulto= $suma_fila_despacho_bulto + $filas_sueltos->where('fila_id',$fila_despacho->id)->where('tipo_bulto_id',$tipo_bulto->id)->sum('bultos');?>
-                                    @endif  
+                                    @endif
                                 @endforeach
-                                
+
                             @endif
-                          
+
                         @endif
 
-                        
+
                     @endforeach
                     <?php $resumen_bultos= $resumen_bultos + $suma_fila_despacho_bulto;?>
 
@@ -185,7 +185,7 @@
                      {{ $suma_fila_despacho_bulto }}
                     @endif
 
-                    
+
 
                     </td>
                 @endforeach
@@ -199,26 +199,26 @@
                 </td>
                 @foreach($espesores as $espesor)
                     <td class="centered">
-                    <?php 
+                    <?php
                             $suma_fila_despacho_bft=0;
                     ?>
                     @foreach($filas_despacho as $fila_despacho)
-                        
+
                         @if($filas_sueltos->where('fila_id',$fila_despacho->id)->where('espesor_id',$espesor->id)->where('largo_id',$largo->id)->count() > 0)
                           <?php $suma_fila_despacho_bft= $suma_fila_despacho_bft + $filas_sueltos->where('fila_id',$fila_despacho->id)->where('espesor_id',$espesor->id)->where('largo_id',$largo->id)->sum('bft');?>
                         @else
                             @if($tipos_bulto->where('espesor_id',$espesor->id)->where('largo_id',$largo->id)->count() > 0)
-                                @foreach($tipos_bulto->where('espesor_id',$espesor->id)->where('largo_id',$largo->id) as $tipo_bulto)  
+                                @foreach($tipos_bulto->where('espesor_id',$espesor->id)->where('largo_id',$largo->id) as $tipo_bulto)
                                     @if($filas_sueltos->where('fila_id',$fila_despacho->id)->where('tipo_bulto_id',$tipo_bulto->id)->count() > 0)
                                         <?php $suma_fila_despacho_bft= $suma_fila_despacho_bft + $filas_sueltos->where('fila_id',$fila_despacho->id)->where('tipo_bulto_id',$tipo_bulto->id)->sum('bft');?>
-                                    @endif  
+                                    @endif
                                 @endforeach
-                                
+
                             @endif
-                          
+
                         @endif
 
-                        
+
                     @endforeach
                     <?php $resumen_bft= $resumen_bft + $suma_fila_despacho_bft;?>
 

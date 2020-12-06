@@ -7,6 +7,7 @@
             noMostrarEdicion
             @editar="editar"
             :checkable="false"
+            @editarDespacho="editarDespacho"
             :statusOptions="[]"
           :typeOptions="[]"
           :createButton="false"
@@ -52,6 +53,14 @@
                     label : $t('message.usuario'),
                     field : 'usuario.name',
                     sortable : true
+                },
+                {
+                    label: '',
+                    field: '',
+                    sortable: false,
+                    button: true,
+                    event: 'editarDespacho',
+                    'icon-left': 'pencil'
                 }
             ]"
         ></masterForm>
@@ -73,6 +82,9 @@ export default {
     };
   },
   methods: {
+      editarDespacho: function (despacho) {
+          alert('Editar el despacho: ' + despacho.id);
+      },
       editar: function (despacho) {
           window.open('/despacho/' + despacho.id, '_blank');
       }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:icon="@android:drawable/ic_menu_upload"
+        android:title="@string/exportar"
+        android:id="@+id/nav_exportar" />
+    <item
+        android:icon="@drawable/ic_baseline_select_all_24"
+        android:title="@string/select_all"
+        android:id="@+id/nav_selec_all" />
+</menu>

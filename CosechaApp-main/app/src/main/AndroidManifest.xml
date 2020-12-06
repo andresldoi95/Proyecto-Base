@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.techtraining.cosechasapp">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".HistorialCosechaActivity"
+            android:label="@string/title_activity_historial_cosecha"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".TrozaActivity"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".NuevaCosechaActivity" />
+        <activity
+            android:name=".ImagePreviewActivity"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".GaleriaFilaActivity" />
+        <activity
+            android:name=".GaleriaFilaActivity"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".LlenadoCamionActivity" />
+        <activity
+            android:name=".ItemSueltosActivity"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".LlenadoSueltosActivity" />
+        <activity
+            android:name=".LlenadoSueltosActivity"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".LlenadoCamionActivity" />
+        <activity
+            android:name=".ItemCosechaActivity"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".LlenadoCamionActivity" />
+        <activity
+            android:name=".FilaCosechaCamionActivity"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".LlenadoCamionActivity" />
+        <activity
+            android:name=".LlenadoCamionActivity"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".NuevaCosechaActivity" />
+        <activity
+            android:name=".CosechasTerminadasActivity"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".NuevaCosechaActivity"
+            android:configChanges="orientation|screenSize"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:configChanges="orientation|screenSize" />
+        <activity
+            android:name=".MainActivity"
+            android:configChanges="orientation|screenSize">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name=".notifications.AlarmReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.techtraining.cosechasapp.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+
+</manifest>

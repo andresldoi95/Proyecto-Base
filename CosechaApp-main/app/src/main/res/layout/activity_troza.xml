@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TrozaActivity">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_marginTop="@dimen/single_form_updown_margin"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="wrap_content"
+            android:text="@string/numero_trozas"
+            android:id="@+id/tvNumeroTrozas"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvNumeroTrozas"
+            android:layout_width="match_parent"
+            android:id="@+id/etNumeroTrozas"
+            android:inputType="numberDecimal"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="@dimen/space_form_margin"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/etNumeroTrozas"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="wrap_content"
+            android:text="@string/volumen_estimado"
+            android:id="@+id/tvVolumenEstimado"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvVolumenEstimado"
+            android:id="@+id/etVolumenEstimado"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_marginTop="@dimen/space_form_margin"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/etVolumenEstimado"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_width="wrap_content"
+            android:text="@string/observaciones"
+            android:id="@+id/tvObservaciones"
+            android:layout_height="wrap_content" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:inputType="textMultiLine"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvObservaciones"
+            android:id="@+id/etObservaciones"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_marginTop="@dimen/space_form_margin"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            android:layout_width="match_parent"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorWhite"
+            android:id="@+id/btnGuardarTroza"
+            android:text="@string/guardar"
+            app:layout_constraintTop_toBottomOf="@id/etObservaciones"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:layout_marginTop="@dimen/space_form_margin"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            android:layout_width="match_parent"
+            android:background="@color/colorGrey"
+            android:id="@+id/btnFoto"
+            android:text="@string/cargar_foto"
+            android:textColor="@color/colorWhite"
+            app:layout_constraintTop_toBottomOf="@id/btnGuardarTroza"
+            android:layout_height="wrap_content" />
+
+        <ListView
+            android:id="@+id/listTrozaFotos"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="@dimen/space_form_margin"
+            android:layout_marginEnd="25dp"
+            android:layout_marginRight="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btnFoto" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

@@ -1,0 +1,215 @@
+<resources>
+    <string name="app_name">CosechasApp</string>
+    <string name="login_iniciar_sesion">Iniciar sesión</string>
+    <string name="login_username">Nombre de usuario o E-mail</string>
+    <string name="login_password">Contraseña</string>
+    <string name="username_required">El nombre de usuario o e-mail es requerido</string>
+    <string name="password_required">La contraseña es requerida</string>
+    <string name="invalid_credentials">Credenciales inválidas</string>
+    <string name="acceso_exitoso">Acceso exitoso</string>
+    <string name="error_generico">Hubo un error, intente nuevamente.</string>
+    <string name="welcome">Bienvenido(a),</string>
+    <string name="logout">Cerrar sesión</string>
+    <string name="open">Abrir</string>
+    <string name="close">Cerrar</string>
+    <string name="logged_out">Has cerrado sesión exitósamente</string>
+    <string name="update_db">Importar información</string>
+    <string name="nueva_cosecha">Nuevo despacho</string>
+    <string name="cosechas_terminadas">Despachos en espera</string>
+    <string name="opcion_no_disponible">Opción no disponible</string>
+    <string name="fecha_despacho">Fecha de despacho</string>
+    <string name="fecha_despacho_text">Fecha de despacho: %1$s</string>
+    <string name="dias_t2k">Días T2K</string>
+
+    <string name="importando_datos">Importando datos...</string>
+    <string name="importando_empresas">Importando empresas...</string>
+    <string name="empresas_importadas">Empresas importadas...</string>
+    <string name="importando_camiones">Importando camiones...</string>
+    <string name="camiones_importados">Camiones importados...</string>
+    <string name="importando_controladores">Importando controladores...</string>
+    <string name="controladores_importados">Controladores importados...</string>
+    <string name="importando_procedencias">Importando procedencias...</string>
+    <string name="procedencias_importadas">Procedencias importadas...</string>
+    <string name="importando_aserradores">Importando aserradores...</string>
+    <string name="aserradores_importados">Aserradores importados...</string>
+    <string name="importando_destinos">Importando destinos...</string>
+    <string name="destinos_importados">Destinos importados...</string>
+    <string name="importando_espesores">Importando espesores...</string>
+    <string name="espesores_importados">Espesores importados...</string>
+    <string name="importando_largos">Importando largos...</string>
+    <string name="largos_importados">Largos importados...</string>
+    <string name="importando_materiales">Importando materiales...</string>
+    <string name="materiales_importados">Materiales importados...</string>
+    <string name="importando_codigos_aserradores">Importando códigos de aserradores...</string>
+    <string name="codigos_aserradores_importados">Códigos de aserradores importados...</string>
+    <string name="importacion_finalizada">La importación ha finalizado...</string>
+    <string name="importando_parametros">Importando parametrizaciones...</string>
+    <string name="parametros_importados">Parametrizaciones importadas...</string>
+    <string name="tipos_madera_importadas">Tipos de madera importados...</string>
+    <string name="importando_tipos_madera">Importando tipos de madera...</string>
+    <string name="formatos_entrega_importados">Formatos de entrega importados...</string>
+    <string name="importando_formatos_entrega">Importando formatos de entrega...</string>
+    <string name="importando_origenes_madera">Importando haciendas...</string>
+    <string name="origenes_madera_importados">Haciendas importadas...</string>
+    <string name="importando_tipos_bulto">Importando haciendas...</string>
+    <string name="tipos_bulto_importados">Tipos de bulto importados...</string>
+
+    <string name="origenes_hacienda_importados">Orígenes de madera importados...</string>
+    <string name="importando_origenes_hacienda">Importando orígenes de madera</string>
+    <string name="tv_origen_hacienda">Origen de madera</string>
+
+    <string name="origen_hacienda_requerida">El origen de madera es requerido</string>
+
+    <string name="tv_camion">Camión</string>
+    <string name="tv_controlador">Controlador</string>
+    <string name="tv_destino">Destino</string>
+    <string name="tv_origen">Procedencia</string>
+    <string name="tv_material">Material</string>
+    <string name="tv_codigo_po">Código PO</string>
+    <string name="hint_po">Será manual cuando no exista</string>
+    <string name="tv_origen_madera">Hacienda</string>
+    <string name="tv_tipo_madera">Tipo de madera</string>
+    <string name="tv_fecha_tumba">Fecha de tumba</string>
+    <string name="hint_fecha_tumba">Indique una fecha...</string>
+    <string name="tv_guia_remision">Guía de remisión</string>
+    <string name="hint_guia_remision">Escriba...</string>
+    <string name="tv_guia_forestal">Guía forestal</string>
+    <string name="hint_guia_forestal">Escriba...</string>
+    <string name="tv_formato_entrega">Formato de entrega</string>
+
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+
+    <string name="camion_requerido">El camión es requerido.</string>
+    <string name="controlador_requerido">El controlador es requerido.</string>
+    <string name="destino_requerido">El destino es requerido.</string>
+    <string name="procedencia_requerida">La procedencia es requerida.</string>
+    <string name="material_requerido">El material es requerido.</string>
+    <string name="codigo_po_requerido">El código PO es requerido.</string>
+    <string name="fecha_tumba_requerida">La fecha de tumba es requerida</string>
+    <string name="tipo_madera_requerido">El tipo de madera es requerido.</string>
+    <string name="formato_entrega_requerido">El formato de entrega es requerido.</string>
+    <string name="origen_madera_requerido">La hacienda es requerida</string>
+    <string name="tipo_bulto">Tipo de bulto</string>
+    <string name="tipo_bulto_requerido">El tipo de bulto es requerido</string>
+
+    <string name="cosecha_almacenada">Los datos del despacho han sido almacenados.</string>
+    <string name="valor_flete">Valor del flete</string>
+
+    <string name="exportar">Exportar</string>
+    <string name="anular">Anular</string>
+
+    <string name="continuar">Continuar</string>
+
+    <string name="llenado_camion">Llenado de camión</string>
+
+    <string name="fila">Fila</string>
+
+    <string name="plantilla">Número de plantillas</string>
+    <string name="bultos">Cant. Bultos</string>
+    <string name="espesor">Espesor</string>
+    <string name="largo">Largo</string>
+    <string name="datos_bloque">Datos de bloque</string>
+
+    <string name="plantilla_requerida">El número de plantillas es requerido.</string>
+    <string name="bultos_requeridos">La cantidad de bultos es requerida.</string>
+    <string name="espesor_requerido">El espesor es requerido.</string>
+    <string name="largo_requerido">El largo es requerido.</string>
+
+    <string name="bloque_guardado">Los datos del bloque han sido almacenados exitósamente.</string>
+    <string name="parametros_requeridos">No se ha realizado las parametrizaciones respectivas.</string>
+
+    <string name="titulo_confirmacion">Pregunta</string>
+    <string name="mensaje_confirmacion">Seleccione el tipo de ingreso</string>
+    <string name="respuesta_bultos">Bultos</string>
+    <string name="respuesta_sueltos">Sueltos</string>
+    <string name="aserrador_requerido">El aserrador es requerido.</string>
+    <string name="nuevo">Nuevo</string>
+
+    <string name="importando_tarifas">Importando tarifas...</string>
+    <string name="tarifas_importadas">Tarifas importadas...</string>
+
+    <string name="si">Sí</string>
+    <string name="no">No</string>
+    <string name="desea_finalizar_fila">¿Desea finalizar esta fila?</string>
+    <string name="desc_finalizar_fila">La fila no podrá ser editada ni se podrá añadir o modificar fotos.</string>
+    <string name="fila_finalizada">La fila ha sido finalizada.</string>
+
+    <string name="valor_flete_requerido">El valor del flete es requerido.</string>
+
+    <string name="tv_aserrador">Aserrador</string>
+
+    <string name="ancho">Ancho</string>
+
+    <string name="nueva">Nueva</string>
+
+    <string name="galeria">Galería de fila</string>
+
+    <string name="tomar_foto">Tomar foto</string>
+    <string name="desde_galeria">Desde galería</string>
+    <string name="cargar_foto">Cargar foto</string>
+
+    <string name="imagen_almacenada">Imagen almacenada</string>
+    <string name="permisos_denegados">Permisos denegados</string>
+    <string name="permisos_aprobados">Permisos aprobados</string>
+
+    <string name="numero_trozas_requerido">El numero de trozas es requerido</string>
+    <string name="volumen_trozas_requerido">El volumen de trozas es requerido</string>
+
+    <string name="excedente">Excedente</string>
+    <string name="foto_almacenada">Foto almacenada</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="imagenes_eliminadas">Imágenes eliminadas</string>
+    <string name="no_imagenes_eliminar">No hay imágenes para eliminar</string>
+
+    <string name="desea_eliminar_imagenes">¿Desea eliminar las imágenes seleccionadas?</string>
+
+    <string name="finalizar">Finalizar</string>
+    <string name="despacho_finalizado">Despacho finalizado</string>
+
+    <string name="desea_finalizar_despacho">¿Desea finalizar el despacho?</string>
+
+    <string name="debe_seleccionar_despachos">Debe seleccionar al menos un despacho</string>
+
+    <string name="numero_trozas">Número de trozas</string>
+
+    <string name="troza_guardada">La troza ha sido almacenada.</string>
+
+    <string name="volumen_estimado">Volumen estimado</string>
+    <string name="observaciones">Observaciones</string>
+
+    <string name="quitar_foto">Quitar foto</string>
+
+    <string name="despachos_exportados">Los despachos seleccionados fueron puestos en cola de exportados.</string>
+
+    <string name="desea_exportar_despachos">¿Desea exportar los despachos seleccionados?</string>
+
+    <string name="ingrese_origen_madera">Ingrese Origen de madera</string>
+    <string name="ingrese_origen_camion">Ingrese Camión</string>
+    <string name="ingrese_controlador">Ingrese Contolador</string>
+    <string name="ingrese_desitno">Ingrese Destino</string>
+    <string name="ingrese_asserador">Ingrese Aserrador</string>
+    <string name="ingrese_tipo_madera">Ingrese Tipo de Madera</string>
+    <string name="ingrese_formato_entrega">Ingrese Formato de Entrega</string>
+    <string name="ingrese_origen_hacienda">Ingrese Hacienda</string>
+    <string name="confirm_delete_title">Eliminar</string>
+    <string name="confirm_delete_body">¿Esta seguro que desea eliminar este ingreso?</string>
+    <string name="bloque_eliminado">El bloque ha sido eliminado exitosamente.</string>
+    <string name="max_photos_message">Puede ingresar un maximo de %1$d fotos</string>
+    <string name="select_all">Seleccionar Todos</string>
+    <string name="notification_channel_description">Cosecha Notificaciones</string>
+    <string name="notification_title">Despachos en Espera</string>
+    <string name="notification_text">Favor de subir sus despachos en espera</string>
+    <string name="cosechas_historial">HISTORIAL DESPACHO</string>
+    <string name="title_activity_historial_cosecha">Historial</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="ver">Ver</string>
+    <string name="codigo_po_text">Código PO: %1$s</string>
+</resources>
