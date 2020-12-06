@@ -130,7 +130,7 @@
     </table>
     <h4 class="upper centered">Madera aserrada/espesor pulgadas</h4>
     <table id="filas" class="bordered">
-
+        {{-- Aqui --}}
         <tfoot>
             <tr>
                 <td class="upper">
