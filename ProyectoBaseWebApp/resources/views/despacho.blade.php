@@ -236,6 +236,21 @@
         </tbody>
         @else
         <tbody>
+            <tr>
+                <td  class="centered" colspan="{{ (($espesores->count() + 2)) }}">
+                @if($trozas->count()>0)
+                    <?php $contador=0;?>
+                        @foreach($trozas as $troza)
+                            @foreach($troza_fotos->where('troza_id', $troza->id) as $troza_foto)
+                                    <?php if($contador==0){echo"<h2>Fotos</h2><br><br>";}?>
+
+                                    <img src="{{$troza_foto->foto}}" alt="" style="width: auto; height: 175px;padding: 25px;">
+                                    <?php $contador++;if($contador%2==0 && $contador>1){echo"<br>";}?>
+                            @endforeach
+                        @endforeach                    
+                @endif
+                </td>
+            </tr>
         </tbody>
 
         @endif
@@ -273,29 +288,20 @@
     </table>
     <br>
     <br>
-    <div style="page-break-after:always;"></div>
-    <center>
-    <h2>Fotos</h2>
-    <br>
-    <br>
-    @if($filas_despacho->count()>0 && $trozas->count()==0)
-        <?php $contador=0;?>
-        @foreach($filas_despacho as $fila_despacho)
-            @foreach($fotos_fila->where('fila_id', $fila_despacho->id) as $foto_fila)
-                <img src="{{$foto_fila->path }}" alt="" style="width: auto;height: 175px;padding: 25px;">
-                <?php $contador++;if($contador%2==0 && $contador>1){echo"<br>";}?>
-            @endforeach
-        @endforeach                    
-    @endif
-    @if($trozas->count()>0)
-        <?php $contador=0;?>
-            @foreach($trozas as $troza)
-                @foreach($troza_fotos->where('troza_id', $troza->id) as $troza_foto)
-                        <img src="{{$troza_foto->foto}}" alt="" style="width: auto; height: 175px;padding: 25px;">
-                        <?php $contador++;if($contador%2==0 && $contador>1){echo"<br>";}?>
+    
+        @if($filas_despacho->count()>0 && $trozas->count()==0)
+        <div style="page-break-after:always;"></div>
+            <center>
+            <?php $contador=0;?>
+            @foreach($filas_despacho as $fila_despacho)
+                @foreach($fotos_fila->where('fila_id', $fila_despacho->id) as $foto_fila)
+                    <?php if($contador==0){echo"<h2>Fotos</h2><br><br>";}?>
+                    <img src="{{$foto_fila->path }}" alt="" style="width: auto;height: 175px;padding: 25px;">
+                    <?php $contador++;if($contador%2==0 && $contador>1){echo"<br>";}?>
                 @endforeach
-            @endforeach                    
-    @endif
-    </center>
+            @endforeach
+            </center>                    
+        @endif
+    
 </body>
 </html>
