@@ -12,6 +12,9 @@ use App\User;
 use App\Troza;
 use App\FotoFila;
 use App\TrozaFotos;
+use App\Aserrador;
+use App\Material;
+
 
 
 
@@ -28,8 +31,9 @@ class DespachoController extends Controller
 {
     public function show($id) {
         $empresa_id = User::findOrFail(Despacho::findOrFail($id)->usuario_id)->empresa_id; 
+        $despacho = Despacho::findOrFail($id);
         return PDF::loadView('despacho', [
-            'despacho' => Despacho::findOrFail($id),
+            'despacho' => $despacho,
             'espesores' => Espesor::active()->orderBy('descripcion')->where('empresa_id', $empresa_id)->get(),
             'largos' =>Largo::active()->orderBy('descripcion')->where('empresa_id', $empresa_id)->get(),
             'filas_despacho' =>FilaDespacho::orderBy('indice')->where('despacho_id', $id)->get(),
@@ -38,6 +42,8 @@ class DespachoController extends Controller
             'filas_sueltos' =>FilaSuelto::orderBy('indice')->get(),
             'tipos_bulto' =>TipoBulto::where('empresa_id', $empresa_id)->get(),
             'fotos_fila' =>FotoFila::orderBy('fila_id')->get(),
+            'aserrador' =>Aserrador::findOrFail($despacho->aserrador_id),
+            'material' =>Material::findOrFail($despacho->material_id),
 
 
 
@@ -46,10 +52,11 @@ class DespachoController extends Controller
 
     public function showView($id) {
         $empresa_id = User::findOrFail(Despacho::findOrFail($id)->usuario_id)->empresa_id; 
+        $despacho = Despacho::findOrFail($id);
 
         //return view('despacho');
         return view('despacho', [
-            'despacho' => Despacho::findOrFail($id),
+            'despacho' => $despacho,
             'espesores' => Espesor::active()->orderBy('descripcion')->where('empresa_id', $empresa_id)->get(),
             'largos' =>Largo::active()->orderBy('descripcion')->where('empresa_id', $empresa_id)->get(),
             'filas_despacho' =>FilaDespacho::orderBy('indice')->where('despacho_id', $id)->get(),
@@ -58,7 +65,8 @@ class DespachoController extends Controller
             'filas_sueltos' =>FilaSuelto::orderBy('indice')->get(),
             'tipos_bulto' =>TipoBulto::where('empresa_id', $empresa_id)->get(),
             'fotos_fila' =>FotoFila::orderBy('fila_id')->get(),
-
+            'aserrador' =>Aserrador::findOrFail($despacho->aserrador_id),
+            'material' =>Material::findOrFail($despacho->material_id),
 
 
         ]);

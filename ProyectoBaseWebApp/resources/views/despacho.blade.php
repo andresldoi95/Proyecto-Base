@@ -114,17 +114,15 @@
         <tbody>
             <tr>
                 <td>
-                    Ancho de camión: {{ $despacho->camion->ancho }}
+                <strong class="upper">Ancho de camión:</strong> {{ $despacho->camion->ancho }}
                 </td>
                 <td>
-                    <strong class="upper">Madera rolliza</strong>
+                    <strong class="upper">Material:</strong> {{ $material->descripcion }}
                 </td>
                 <td>
-                    Cantidad de tucos: {{ number_format($despacho->filas()->sum('bultos')) }}
+                    <strong class="upper">Código PO:</strong> {{ $despacho->codigo_po }}
                 </td>
-                <td>
-                    Volumen en MT3:
-                </td>
+                
             </tr>
         </tbody>
     </table>
@@ -257,10 +255,10 @@
         <tfoot>
             <tr>
                 <td class="upper" colspan="{{ (($espesores->count() + 2) / 2) }}">
-                    Total plantillas enviados: {{ number_format($despacho->filas()->sum('bultos')) }}
+                <strong>Total plantillas enviados:</strong> {{ number_format($despacho->filas()->sum('bultos')) }}
                 </td>
                 <td class="upper" colspan="{{ (($espesores->count() + 2) / 2) }}">
-                    Total BFT enviados: {{ number_format($despacho->filas()->sum('bft'), 2) }}
+                <strong>Total BFT enviados:</strong> {{ number_format($despacho->filas()->sum('bft'), 2) }}
                 </td>
             </tr>
         </tfoot>
@@ -268,7 +266,14 @@
     <table class="bordered" id="footer">
         <tr>
             <td colspan="3">
-                <span class="upper">Observaciones:</span>
+                @if($trozas->count()>0)
+                    <span class="upper"><strong>Observaciones:</strong> {{$trozas->first()->observaciones }}</span>
+                    <br>
+                @endif
+                <span class="upper"><strong>Aserrador: </strong>{{$aserrador->nombre }}</span>
+                <br>
+                <span class="upper"><strong>Cédula: </strong>{{$aserrador->identificacion }}</span>
+                <br> 
             </td>
         </tr>
         <tr>
@@ -292,14 +297,23 @@
         @if($filas_despacho->count()>0 && $trozas->count()==0)
         <div style="page-break-after:always;"></div>
             <center>
+            <table>
             <?php $contador=0;?>
             @foreach($filas_despacho as $fila_despacho)
-                @foreach($fotos_fila->where('fila_id', $fila_despacho->id) as $foto_fila)
-                    <?php if($contador==0){echo"<h2>Fotos</h2><br><br>";}?>
-                    <img src="{{$foto_fila->path }}" alt="" style="width: auto;height: 175px;padding: 25px;">
-                    <?php $contador++;if($contador%2==0 && $contador>1){echo"<br>";}?>
+                @foreach($fotos_fila->where('fila_id', $fila_despacho->id) as $foto_fila) 
+                    <?php if($contador==0){echo"<tr><td class='centered' colspan='2'><h2>Fotos</h2></td></tr>";}?>
+                    
+                    <?php if(($contador%2==0 )|| ($contador==0)){echo"<tr>";}?>
+
+                    <td class='centered'>
+                        <span>Fila {{ $fila_despacho->indice + 1 }}</span>
+                        <br>
+                        <img src="{{$foto_fila->path }}" alt="" style="width: auto;height: 175px;padding: 25px;">
+                    </td>
+                    <?php $contador++;if($contador%2==0 && $contador>1){echo"</tr>";}?>
                 @endforeach
             @endforeach
+            </table>
             </center>                    
         @endif
     
