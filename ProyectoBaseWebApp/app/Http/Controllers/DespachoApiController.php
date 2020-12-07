@@ -7,6 +7,7 @@ use App\FilaDespacho;
 use App\FotoFila;
 use App\Troza;
 use App\TrozaFotos;
+use App\Tarifa;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
@@ -51,6 +52,12 @@ class DespachoApiController extends Controller
             'origen_madera_id' => 'required|exists:origenes_madera,id',
             'formato_entrega_id' => 'required|exists:formatos_entrega,id'
         ]);
+
+        try {
+            $tarifa_new = Tarifa::where('destino_id', $request->input('destino_id') )->where('origen_madera_id', $request->input('origen_madera_id') )->get()->first();
+        } catch (\Throwable $th) {
+            //throw $th;
+        }
         
         $despacho = Despacho::findOrFail($id);
         $despacho->fecha_despacho = $request->input('fecha_despacho');
@@ -59,6 +66,8 @@ class DespachoApiController extends Controller
         $despacho->destino_id = $request->input('destino_id');
         $despacho->formato_entrega_id = $request->input('formato_entrega_id');
         $despacho->origen_madera_id = $request->input('origen_madera_id');
+        $despacho->valor_flete = $tarifa_new->valor;
+
         $despacho->save();
     }
     public function store(Request $request) {

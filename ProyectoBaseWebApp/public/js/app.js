@@ -3268,6 +3268,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3306,40 +3313,51 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    cargarCamiones: function cargarCamiones() {
+    consultarValorFlete: function consultarValorFlete() {
       var _this = this;
 
-      var path = "http://127.0.0.1:8000/api" + "/camiones/listado";
-      this.$http.get(path).then(function (_ref) {
+      var path = "http://127.0.0.1:8000/api" + "/getTarifaFlete";
+      this.$http.post(path, this.form).then(function (_ref) {
         var data = _ref.data;
-        _this.camiones = data;
+        _this.form.valor_flete = data;
+      })["catch"](function (_ref2) {
+        var response = _ref2.response;
+      });
+    },
+    cargarCamiones: function cargarCamiones() {
+      var _this2 = this;
+
+      var path = "http://127.0.0.1:8000/api" + "/camiones/listado";
+      this.$http.get(path).then(function (_ref3) {
+        var data = _ref3.data;
+        _this2.camiones = data;
       });
     },
     cargarDestino: function cargarDestino() {
-      var _this2 = this;
+      var _this3 = this;
 
       var path = "http://127.0.0.1:8000/api" + "/destinos/listado";
-      this.$http.get(path).then(function (_ref2) {
-        var data = _ref2.data;
-        _this2.destinos = data;
+      this.$http.get(path).then(function (_ref4) {
+        var data = _ref4.data;
+        _this3.destinos = data;
       });
     },
     cargarFormatoDeEntregas: function cargarFormatoDeEntregas() {
-      var _this3 = this;
+      var _this4 = this;
 
       var path = "http://127.0.0.1:8000/api" + "/formatos-entrega/listado";
-      this.$http.get(path).then(function (_ref3) {
-        var data = _ref3.data;
-        _this3.formatos_entregas = data;
+      this.$http.get(path).then(function (_ref5) {
+        var data = _ref5.data;
+        _this4.formatos_entregas = data;
       });
     },
     cargarOrigenesMadera: function cargarOrigenesMadera() {
-      var _this4 = this;
+      var _this5 = this;
 
       var path = "http://127.0.0.1:8000/api" + "/origenes-madera/listado";
-      this.$http.get(path).then(function (_ref4) {
-        var data = _ref4.data;
-        _this4.origenes_madera = data;
+      this.$http.get(path).then(function (_ref6) {
+        var data = _ref6.data;
+        _this5.origenes_madera = data;
       });
     },
     canceled: function canceled() {
@@ -3368,6 +3386,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.origen_madera_id = despacho.origen_madera_id;
       this.form.fecha_despacho = despacho.fecha_despacho;
       this.form.fecha_tumba = despacho.fecha_tumba;
+      this.form.valor_flete = despacho.valor_flete;
     },
     limpiarErrores: function limpiarErrores() {
       this.errores.fecha_despacho = undefined;
@@ -3378,7 +3397,7 @@ __webpack_require__.r(__webpack_exports__);
       this.errores.origen_madera_id = undefined;
     },
     submitFormulario: function submitFormulario() {
-      var _this5 = this;
+      var _this6 = this;
 
       this.limpiarErrores();
       var path = "http://127.0.0.1:8000/api" + "/despachosUpdate";
@@ -3389,26 +3408,26 @@ __webpack_require__.r(__webpack_exports__);
       } else this.form._method = undefined;
 
       this.$http.post(path, this.form).then(function () {
-        _this5.$buefy.toast.open({
-          message: _this5.$t("message.guardado_generico"),
+        _this6.$buefy.toast.open({
+          message: _this6.$t("message.guardado_generico"),
           type: "is-success"
         });
 
-        _this5.$refs.masterForm.submit();
-      })["catch"](function (_ref5) {
-        var response = _ref5.response;
+        _this6.$refs.masterForm.submit();
+      })["catch"](function (_ref7) {
+        var response = _ref7.response;
         var status = response.status;
 
         if (status === 422) {
-          _this5.errores.fecha_despacho = response.data.errors.fecha_despacho;
-          _this5.errores.fecha_tumba = response.data.errors.fecha_tumba;
-          _this5.errores.camion_id = response.data.errors.camion_id;
-          _this5.errores.destino_id = response.data.errors.destino_id;
-          _this5.errores.formato_entrega_id = response.data.errors.formato_entrega_id;
-          _this5.errores.origen_madera_id = response.data.errors.origen_madera_id;
+          _this6.errores.fecha_despacho = response.data.errors.fecha_despacho;
+          _this6.errores.fecha_tumba = response.data.errors.fecha_tumba;
+          _this6.errores.camion_id = response.data.errors.camion_id;
+          _this6.errores.destino_id = response.data.errors.destino_id;
+          _this6.errores.formato_entrega_id = response.data.errors.formato_entrega_id;
+          _this6.errores.origen_madera_id = response.data.errors.origen_madera_id;
         } else {
-          _this5.$buefy.toast.open({
-            message: _this5.$t("message.generic_error"),
+          _this6.$buefy.toast.open({
+            message: _this6.$t("message.generic_error"),
             type: "is-danger"
           });
         }
@@ -45039,6 +45058,11 @@ var render = function() {
                               expanded: "",
                               placeholder: _vm.$t("title.seleccione")
                             },
+                            nativeOn: {
+                              change: function($event) {
+                                return _vm.consultarValorFlete($event)
+                              }
+                            },
                             model: {
                               value: _vm.form.destino_id,
                               callback: function($$v) {
@@ -45141,6 +45165,11 @@ var render = function() {
                               expanded: "",
                               placeholder: _vm.$t("title.seleccione")
                             },
+                            nativeOn: {
+                              change: function($event) {
+                                return _vm.consultarValorFlete($event)
+                              }
+                            },
                             model: {
                               value: _vm.form.origen_madera_id,
                               callback: function($$v) {
@@ -45161,6 +45190,31 @@ var render = function() {
                           }),
                           0
                         )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      { attrs: { label: _vm.$t("message.valor") } },
+                      [
+                        _c("b-input", {
+                          attrs: { readonly: "" },
+                          model: {
+                            value: _vm.form.valor_flete,
+                            callback: function($$v) {
+                              _vm.$set(_vm.form, "valor_flete", $$v)
+                            },
+                            expression: "form.valor_flete"
+                          }
+                        })
                       ],
                       1
                     )

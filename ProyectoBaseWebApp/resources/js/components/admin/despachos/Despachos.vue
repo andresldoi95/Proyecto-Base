@@ -124,6 +124,7 @@
                   v-model="form.destino_id"
                   expanded
                   :placeholder="$t('title.seleccione')"
+                  @change.native="consultarValorFlete"
                 >
                   <option
                     v-for="option in destinos"
@@ -162,6 +163,7 @@
                   v-model="form.origen_madera_id"
                   expanded
                   :placeholder="$t('title.seleccione')"
+                  @change.native="consultarValorFlete"
                 >
                   <option
                     v-for="option in origenes_madera"
@@ -169,6 +171,11 @@
                     :key="option.id"
                   >{{ option.descripcion }}</option>
                 </b-select>
+              </b-field>
+            </div>
+            <div class="column">
+              <b-field :label="$t('message.valor')">
+                <b-input readonly v-model="form.valor_flete"></b-input>
               </b-field>
             </div>
               
@@ -218,6 +225,18 @@ export default {
     };
   },
   methods: {
+      consultarValorFlete: function () {
+          let path = process.env.MIX_APP_URL_API + "/getTarifaFlete";
+          this.$http
+            .post(path, this.form)
+            .then(({data}) => {
+              this.form.valor_flete = data;
+            })
+            .catch(({ response }) => {
+              
+            });
+          
+      },
       cargarCamiones: function () {
           let path = process.env.MIX_APP_URL_API + "/camiones/listado";
           this.$http.get(path).then(({data}) => {
@@ -269,6 +288,8 @@ export default {
           this.form.origen_madera_id = despacho.origen_madera_id;
           this.form.fecha_despacho = despacho.fecha_despacho;
           this.form.fecha_tumba = despacho.fecha_tumba;
+          this.form.valor_flete = despacho.valor_flete;
+
       },
       limpiarErrores: function () {
       this.errores.fecha_despacho = undefined;

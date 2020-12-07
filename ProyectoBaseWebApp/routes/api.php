@@ -217,6 +217,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         ]
     ]);
     Route::post('fotos', 'DespachoApiController@subirFotos');
+    Route::post('getTarifaFlete', 'TarifaApiController@getTarifaFlete');
     Route::post('trozaFotos', 'DespachoApiController@subirTrozaFotos');
 });
 
