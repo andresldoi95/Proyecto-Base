@@ -41,6 +41,26 @@ class DespachoApiController extends Controller
         });
         return $despachos->paginate($request->input('per_page'));
     }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'fecha_tumba' => 'required|date',
+            'fecha_despacho' => 'required|date',
+            'camion_id' => 'required|exists:camiones,id',
+            'destino_id' => 'required|exists:destinos,id',
+            'origen_madera_id' => 'required|exists:origenes_madera,id',
+            'formato_entrega_id' => 'required|exists:formatos_entrega,id'
+        ]);
+        
+        $despacho = Despacho::findOrFail($id);
+        $despacho->fecha_despacho = $request->input('fecha_despacho');
+        $despacho->fecha_tumba = $request->input('fecha_tumba');
+        $despacho->camion_id = $request->input('camion_id');
+        $despacho->destino_id = $request->input('destino_id');
+        $despacho->formato_entrega_id = $request->input('formato_entrega_id');
+        $despacho->origen_madera_id = $request->input('origen_madera_id');
+        $despacho->save();
+    }
     public function store(Request $request) {
         $request->validate([
             'id' => 'required|max:36',

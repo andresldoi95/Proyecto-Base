@@ -4,14 +4,15 @@
       <div class="container">
         <h1 class="title">{{ $t('title.despachos') }}</h1>
         <masterForm
-            noMostrarEdicion
             @editar="editar"
             :checkable="false"
-            @editarDespacho="editarDespacho"
+            @abrirPDF="abrirPDF"
+            @canceled="canceled"
             :statusOptions="[]"
           :typeOptions="[]"
           :createButton="false"
           ref="masterForm"
+          @submitFormulario="submitFormulario"
           resource="/api/despachos"
           :columns="[
                 {
@@ -59,12 +60,120 @@
                     field: '',
                     sortable: false,
                     button: true,
-                    event: 'editarDespacho',
-                    'icon-left': 'pencil',
-                    type: 'is-info'
+                    event: 'abrirPDF',
+                    'icon-left': 'file-pdf',
+                    type: 'is-danger'
                 }
             ]"
-        ></masterForm>
+        >
+        <div class="columns">
+            <div class="column" style="display:none;">
+              <b-field :label="$t('message.id')">
+                <b-input readonly v-model="form.id"></b-input>
+              </b-field>
+            </div>
+            <div class="column">
+              <b-field :label="$t('message.numero_documento')">
+                <b-input readonly v-model="form.numero_documento"></b-input>
+              </b-field>
+            </div>
+            <div class="column">
+              <b-field
+                :message="errores.camion_id?errores.camion_id[0]:''"
+                :type="errores.camion_id?'is-danger':''"
+                :label="$t('message.camion')"
+              >
+                <b-select
+                  v-model="form.camion_id"
+                  expanded
+                  :placeholder="$t('title.seleccione')"
+                >
+                  <option
+                    v-for="option in camiones"
+                    :value="option.id"
+                    :key="option.id"
+                  >{{ option.placa }}</option>
+                </b-select>
+              </b-field>
+            </div>
+            <div class="column">
+              <b-field
+                :message="errores.fecha_despacho ? errores.fecha_despacho[0] : ''"
+                :type="errores.fecha_despacho ? 'is-danger' : ''"
+                :label="$t('message.fecha_despacho')"
+              >
+                <b-input v-model="form.fecha_despacho"></b-input>
+              </b-field>
+            </div>
+            <div class="column">
+              <b-field
+                :message="errores.fecha_tumba ? errores.fecha_tumba[0] : ''"
+                :type="errores.fecha_tumba ? 'is-danger' : ''"
+                :label="$t('message.fecha_tumba')"
+              >
+                <b-input v-model="form.fecha_tumba"></b-input>
+              </b-field>
+            </div>
+            <div class="column">
+              <b-field
+                :message="errores.destino_id?errores.destino_id[0]:''"
+                :type="errores.destino_id?'is-danger':''"
+                :label="$t('message.destino')"
+              >
+                <b-select
+                  v-model="form.destino_id"
+                  expanded
+                  :placeholder="$t('title.seleccione')"
+                >
+                  <option
+                    v-for="option in destinos"
+                    :value="option.id"
+                    :key="option.id"
+                  >{{ option.descripcion }}</option>
+                </b-select>
+              </b-field>
+            </div>
+            <div class="column">
+              <b-field
+                :message="errores.formato_entrega_id?errores.formato_entrega_id[0]:''"
+                :type="errores.formato_entrega_id?'is-danger':''"
+                :label="$t('message.formato_entrega')"
+              >
+                <b-select
+                  v-model="form.formato_entrega_id"
+                  expanded
+                  :placeholder="$t('title.seleccione')"
+                >
+                  <option
+                    v-for="option in formatos_entregas"
+                    :value="option.id"
+                    :key="option.id"
+                  >{{ option.descripcion }}</option>
+                </b-select>
+              </b-field>
+            </div>
+            <div class="column">
+              <b-field
+                :message="errores.origen_madera_id?errores.origen_madera_id[0]:''"
+                :type="errores.origen_madera_id?'is-danger':''"
+                :label="$t('message.origen_madera')"
+              >
+                <b-select
+                  v-model="form.origen_madera_id"
+                  expanded
+                  :placeholder="$t('title.seleccione')"
+                >
+                  <option
+                    v-for="option in origenes_madera"
+                    :value="option.id"
+                    :key="option.id"
+                  >{{ option.descripcion }}</option>
+                </b-select>
+              </b-field>
+            </div>
+              
+          </div>
+        </masterForm>
       </div>
     </div>
   </section>
@@ -76,19 +185,143 @@ export default {
   components: { MasterForm },
   data: function () {
     return {
-      form: {
+      /*form: {
           desde: '',
           hasta: ''
-      }
+      },*/
+      form: {
+        fecha_despacho: "",
+        fecha_tumba: "",
+        id: "",
+        camion_id: "",
+        destino_id: "",
+        formato_entrega_id: "",
+        origen_madera_id: "",
+        numero_documento: "",
+        _method: undefined,
+      },
+      acciones: [],
+      camiones: [],
+      destinos: [],
+      formatos_entregas: [],
+      origenes_madera: [],
+      errores: {
+        fecha_despacho: undefined,
+        fecha_tumba: undefined,
+        camion_id: undefined,
+        destino_id: undefined,
+        formato_entrega_id: undefined,
+        origen_madera_id: undefined,
+
+
+      },
     };
   },
   methods: {
-      editarDespacho: function (despacho) {
-          alert('Editar el despacho: ' + despacho.id);
+      cargarCamiones: function () {
+          let path = process.env.MIX_APP_URL_API + "/camiones/listado";
+          this.$http.get(path).then(({data}) => {
+              this.camiones = data;
+          });
+      },
+      cargarDestino: function () {
+          let path = process.env.MIX_APP_URL_API + "/destinos/listado";
+          this.$http.get(path).then(({data}) => {
+              this.destinos = data;
+          });
+      },
+      cargarFormatoDeEntregas: function () {
+          let path = process.env.MIX_APP_URL_API + "/formatos-entrega/listado";
+          this.$http.get(path).then(({data}) => {
+              this.formatos_entregas = data;
+          });
+      },
+      cargarOrigenesMadera: function () {
+          let path = process.env.MIX_APP_URL_API + "/origenes-madera/listado";
+          this.$http.get(path).then(({data}) => {
+              this.origenes_madera = data;
+          });
+      },
+      canceled: function () {
+        this.limpiar();
+      },
+      limpiar: function () {
+        this.form.id = "";
+        this.form.numero_documento  = "";
+        this.form._method = undefined;
+        this.form.fecha_despacho = "";
+        this.form.fecha_tumba = "";
+        this.form.camion_id = '';
+        this.form.destino_id = '';
+        this.form.formato_entrega_id = '';
+        this.form.origen_madera_id = '';
+
+      },
+      abrirPDF: function (despacho) {
+          window.open('/despacho/' + despacho.id, '_blank');
       },
       editar: function (despacho) {
-          window.open('/despacho/' + despacho.id, '_blank');
-      }
+          this.form.id = despacho.id;
+          this.form.numero_documento = despacho.numero_documento;
+          this.form.camion_id = despacho.camion_id;
+          this.form.destino_id = despacho.destino_id;
+          this.form.formato_entrega_id = despacho.formato_entrega_id;
+          this.form.origen_madera_id = despacho.origen_madera_id;
+          this.form.fecha_despacho = despacho.fecha_despacho;
+          this.form.fecha_tumba = despacho.fecha_tumba;
+      },
+      limpiarErrores: function () {
+      this.errores.fecha_despacho = undefined;
+      this.errores.fecha_tumba = undefined;
+      this.errores.camion_id = undefined;
+      this.errores.destino_id = undefined;
+      this.errores.formato_entrega_id = undefined;
+      this.errores.origen_madera_id = undefined;
+
+      },
+      submitFormulario: function () {
+        this.limpiarErrores();
+        let path = process.env.MIX_APP_URL_API + "/despachosUpdate";
+        if (this.form.id !== "") {
+          path += "/" + this.form.id;
+          this.form._method = "PUT";
+        } else this.form._method = undefined;
+        this.$http
+          .post(path, this.form)
+          .then(() => {
+            this.$buefy.toast.open({
+              message: this.$t("message.guardado_generico"),
+              type: "is-success",
+            });
+            this.$refs.masterForm.submit();
+          })
+          .catch(({ response }) => {
+            let status = response.status;
+            if (status === 422) {
+              this.errores.fecha_despacho = response.data.errors.fecha_despacho;
+              this.errores.fecha_tumba = response.data.errors.fecha_tumba;
+              this.errores.camion_id = response.data.errors.camion_id;
+              this.errores.destino_id = response.data.errors.destino_id;
+              this.errores.formato_entrega_id = response.data.errors.formato_entrega_id;
+              this.errores.origen_madera_id = response.data.errors.origen_madera_id;
+            } else {
+              this.$buefy.toast.open({
+                message: this.$t("message.generic_error"),
+                type: "is-danger",
+              });
+            }
+          });
+      },
+      
   },
+  mounted : function () {
+      this.cargarCamiones();
+      this.cargarDestino();
+      this.cargarFormatoDeEntregas();
+      this.cargarOrigenesMadera();
+
+
+
+  }
 };
 </script>

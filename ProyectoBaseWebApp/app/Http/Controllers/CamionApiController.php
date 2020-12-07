@@ -13,6 +13,10 @@ class CamionApiController extends Controller
     {
         return Camion::all();
     }
+    public function listado(Request $request) {
+        $user = $request->user();
+        return Camion::active()->orderBy('placa')->where('empresa_id', $user->empresa_id)->get();
+    }
     public function index(Request $request)
     {
         $user = $request->user();

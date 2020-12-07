@@ -189,6 +189,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'camiones'], function () {
         Route::delete('/', 'CamionApiController@destroy');
         Route::get('/all', 'CamionApiController@all');
+        Route::get('/listado', 'CamionApiController@listado');
     });
     Route::resource('camiones', 'CamionApiController', [
         'except' => [
@@ -208,6 +209,12 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::resource('parametros', 'ParametroApiController', ['only' => ['index', 'store']]);
     Route::resource('despachos', 'DespachoApiController', [
         'only' => ['store', 'index']
+    ]);
+
+    Route::resource('despachosUpdate', 'DespachoApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
     ]);
     Route::post('fotos', 'DespachoApiController@subirFotos');
     Route::post('trozaFotos', 'DespachoApiController@subirTrozaFotos');
