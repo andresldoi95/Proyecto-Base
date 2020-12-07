@@ -350,9 +350,6 @@ export default {
       this.cargarFormatoDeEntregas();
       this.cargarOrigenesMadera();
       this.cargarOrigenesHacienda();
-
-
-
-  }
+  },
 };
 </script>

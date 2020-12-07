@@ -254,12 +254,25 @@
         @endif
         <tfoot>
             <tr>
-                <td class="upper" colspan="{{ (($espesores->count() + 2) / 2) }}">
-                <strong>Total plantillas enviados:</strong> {{ number_format($despacho->filas()->sum('bultos')) }}
+            @if($trozas->count()>0)
+                <td class="upper" colspan="4">
+               
+                    <strong>Total plantillas enviados:</strong> {{ $trozas->first()->numero_trozas }}                
+                </td>
+                <td class="upper" colspan="2">
+                    <strong>Total BFT enviados:</strong> {{ number_format($despacho->filas()->sum('bft'), 2) }}
+                </td>
+                <td class="upper" colspan="2">
+                    <strong>Volumen Estimado:</strong> {{ $trozas->first()->volumen_estimado}}
+                </td>
+                @else
+                <td class="upper" colspan="{{ (($espesores->count() + 2) / 2) }}">               
+                    <strong>Total plantillas enviados:</strong> {{ number_format($despacho->filas()->sum('bultos')) }}
                 </td>
                 <td class="upper" colspan="{{ (($espesores->count() + 2) / 2) }}">
-                <strong>Total BFT enviados:</strong> {{ number_format($despacho->filas()->sum('bft'), 2) }}
+                    <strong>Total BFT enviados:</strong> {{ number_format($despacho->filas()->sum('bft'), 2) }}
                 </td>
+                @endif
             </tr>
         </tfoot>
     </table>
