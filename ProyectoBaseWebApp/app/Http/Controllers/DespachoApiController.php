@@ -50,7 +50,7 @@ class DespachoApiController extends Controller
             'camion_id' => 'required|exists:camiones,id',
             'destino_id' => 'required|exists:destinos,id',
             'origen_madera_id' => 'required|exists:origenes_madera,id',
-            'formato_entrega_id' => 'required|exists:formatos_entrega,id'
+            'origen_hacienda_id' => 'required|exists:origenes_hacienda,id'
         ]);
 
         try {
@@ -64,8 +64,8 @@ class DespachoApiController extends Controller
         $despacho->fecha_tumba = $request->input('fecha_tumba');
         $despacho->camion_id = $request->input('camion_id');
         $despacho->destino_id = $request->input('destino_id');
-        $despacho->formato_entrega_id = $request->input('formato_entrega_id');
         $despacho->origen_madera_id = $request->input('origen_madera_id');
+        $despacho->origen_hacienda_id = $request->input('origen_hacienda_id');
         $despacho->valor_flete = $tarifa_new->valor;
 
         $despacho->save();

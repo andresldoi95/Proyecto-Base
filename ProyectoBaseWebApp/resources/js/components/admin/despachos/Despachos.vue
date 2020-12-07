@@ -136,25 +136,6 @@
             </div>
             <div class="column">
               <b-field
-                :message="errores.formato_entrega_id?errores.formato_entrega_id[0]:''"
-                :type="errores.formato_entrega_id?'is-danger':''"
-                :label="$t('message.formato_entrega')"
-              >
-                <b-select
-                  v-model="form.formato_entrega_id"
-                  expanded
-                  :placeholder="$t('title.seleccione')"
-                >
-                  <option
-                    v-for="option in formatos_entregas"
-                    :value="option.id"
-                    :key="option.id"
-                  >{{ option.descripcion }}</option>
-                </b-select>
-              </b-field>
-            </div>
-            <div class="column">
-              <b-field
                 :message="errores.origen_madera_id?errores.origen_madera_id[0]:''"
                 :type="errores.origen_madera_id?'is-danger':''"
                 :label="$t('message.origen_madera')"
@@ -174,7 +155,26 @@
               </b-field>
             </div>
             <div class="column">
-              <b-field :label="$t('message.valor')">
+              <b-field
+                :message="errores.origen_hacienda_id?errores.origen_hacienda_id[0]:''"
+                :type="errores.origen_hacienda_id?'is-danger':''"
+                :label="$t('message.origen_hacienda')"
+              >
+                <b-select
+                  v-model="form.origen_hacienda_id"
+                  expanded
+                  :placeholder="$t('title.seleccione')"
+                >
+                  <option
+                    v-for="option in origenes_hacienda"
+                    :value="option.id"
+                    :key="option.id"
+                  >{{ option.descripcion }}</option>
+                </b-select>
+              </b-field>
+            </div>
+            <div class="column">
+              <b-field :label="$t('message.valor_flete')">
                 <b-input readonly v-model="form.valor_flete"></b-input>
               </b-field>
             </div>
@@ -202,8 +202,8 @@ export default {
         id: "",
         camion_id: "",
         destino_id: "",
-        formato_entrega_id: "",
         origen_madera_id: "",
+        origen_hacienda_id: "",
         numero_documento: "",
         _method: undefined,
       },
@@ -212,13 +212,15 @@ export default {
       destinos: [],
       formatos_entregas: [],
       origenes_madera: [],
+      origenes_hacienda: [],
       errores: {
         fecha_despacho: undefined,
         fecha_tumba: undefined,
         camion_id: undefined,
         destino_id: undefined,
-        formato_entrega_id: undefined,
         origen_madera_id: undefined,
+        origen_hacienda_id: undefined,
+
 
 
       },
@@ -261,6 +263,12 @@ export default {
               this.origenes_madera = data;
           });
       },
+      cargarOrigenesHacienda: function () {
+          let path = process.env.MIX_APP_URL_API + "/origenes-hacienda/listado";
+          this.$http.get(path).then(({data}) => {
+              this.origenes_hacienda = data;
+          });
+      },
       canceled: function () {
         this.limpiar();
       },
@@ -272,8 +280,9 @@ export default {
         this.form.fecha_tumba = "";
         this.form.camion_id = '';
         this.form.destino_id = '';
-        this.form.formato_entrega_id = '';
         this.form.origen_madera_id = '';
+        this.form.origen_hacienda_id = '';
+
 
       },
       abrirPDF: function (despacho) {
@@ -284,8 +293,8 @@ export default {
           this.form.numero_documento = despacho.numero_documento;
           this.form.camion_id = despacho.camion_id;
           this.form.destino_id = despacho.destino_id;
-          this.form.formato_entrega_id = despacho.formato_entrega_id;
           this.form.origen_madera_id = despacho.origen_madera_id;
+          this.form.origen_hacienda_id = despacho.origen_hacienda_id;
           this.form.fecha_despacho = despacho.fecha_despacho;
           this.form.fecha_tumba = despacho.fecha_tumba;
           this.form.valor_flete = despacho.valor_flete;
@@ -296,8 +305,8 @@ export default {
       this.errores.fecha_tumba = undefined;
       this.errores.camion_id = undefined;
       this.errores.destino_id = undefined;
-      this.errores.formato_entrega_id = undefined;
       this.errores.origen_madera_id = undefined;
+      this.errores.origen_hacienda_id = undefined;
 
       },
       submitFormulario: function () {
@@ -323,8 +332,8 @@ export default {
               this.errores.fecha_tumba = response.data.errors.fecha_tumba;
               this.errores.camion_id = response.data.errors.camion_id;
               this.errores.destino_id = response.data.errors.destino_id;
-              this.errores.formato_entrega_id = response.data.errors.formato_entrega_id;
               this.errores.origen_madera_id = response.data.errors.origen_madera_id;
+              this.errores.origen_hacienda_id = response.data.errors.origen_hacienda_id;
             } else {
               this.$buefy.toast.open({
                 message: this.$t("message.generic_error"),
@@ -340,6 +349,7 @@ export default {
       this.cargarDestino();
       this.cargarFormatoDeEntregas();
       this.cargarOrigenesMadera();
+      this.cargarOrigenesHacienda();
 
 
 

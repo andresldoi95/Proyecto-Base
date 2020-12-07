@@ -3292,8 +3292,8 @@ __webpack_require__.r(__webpack_exports__);
         id: "",
         camion_id: "",
         destino_id: "",
-        formato_entrega_id: "",
         origen_madera_id: "",
+        origen_hacienda_id: "",
         numero_documento: "",
         _method: undefined
       },
@@ -3302,13 +3302,14 @@ __webpack_require__.r(__webpack_exports__);
       destinos: [],
       formatos_entregas: [],
       origenes_madera: [],
+      origenes_hacienda: [],
       errores: {
         fecha_despacho: undefined,
         fecha_tumba: undefined,
         camion_id: undefined,
         destino_id: undefined,
-        formato_entrega_id: undefined,
-        origen_madera_id: undefined
+        origen_madera_id: undefined,
+        origen_hacienda_id: undefined
       }
     };
   },
@@ -3360,6 +3361,15 @@ __webpack_require__.r(__webpack_exports__);
         _this5.origenes_madera = data;
       });
     },
+    cargarOrigenesHacienda: function cargarOrigenesHacienda() {
+      var _this6 = this;
+
+      var path = "http://127.0.0.1:8000/api" + "/origenes-hacienda/listado";
+      this.$http.get(path).then(function (_ref7) {
+        var data = _ref7.data;
+        _this6.origenes_hacienda = data;
+      });
+    },
     canceled: function canceled() {
       this.limpiar();
     },
@@ -3371,8 +3381,8 @@ __webpack_require__.r(__webpack_exports__);
       this.form.fecha_tumba = "";
       this.form.camion_id = '';
       this.form.destino_id = '';
-      this.form.formato_entrega_id = '';
       this.form.origen_madera_id = '';
+      this.form.origen_hacienda_id = '';
     },
     abrirPDF: function abrirPDF(despacho) {
       window.open('/despacho/' + despacho.id, '_blank');
@@ -3382,8 +3392,8 @@ __webpack_require__.r(__webpack_exports__);
       this.form.numero_documento = despacho.numero_documento;
       this.form.camion_id = despacho.camion_id;
       this.form.destino_id = despacho.destino_id;
-      this.form.formato_entrega_id = despacho.formato_entrega_id;
       this.form.origen_madera_id = despacho.origen_madera_id;
+      this.form.origen_hacienda_id = despacho.origen_hacienda_id;
       this.form.fecha_despacho = despacho.fecha_despacho;
       this.form.fecha_tumba = despacho.fecha_tumba;
       this.form.valor_flete = despacho.valor_flete;
@@ -3393,11 +3403,11 @@ __webpack_require__.r(__webpack_exports__);
       this.errores.fecha_tumba = undefined;
       this.errores.camion_id = undefined;
       this.errores.destino_id = undefined;
-      this.errores.formato_entrega_id = undefined;
       this.errores.origen_madera_id = undefined;
+      this.errores.origen_hacienda_id = undefined;
     },
     submitFormulario: function submitFormulario() {
-      var _this6 = this;
+      var _this7 = this;
 
       this.limpiarErrores();
       var path = "http://127.0.0.1:8000/api" + "/despachosUpdate";
@@ -3408,26 +3418,26 @@ __webpack_require__.r(__webpack_exports__);
       } else this.form._method = undefined;
 
       this.$http.post(path, this.form).then(function () {
-        _this6.$buefy.toast.open({
-          message: _this6.$t("message.guardado_generico"),
+        _this7.$buefy.toast.open({
+          message: _this7.$t("message.guardado_generico"),
           type: "is-success"
         });
 
-        _this6.$refs.masterForm.submit();
-      })["catch"](function (_ref7) {
-        var response = _ref7.response;
+        _this7.$refs.masterForm.submit();
+      })["catch"](function (_ref8) {
+        var response = _ref8.response;
         var status = response.status;
 
         if (status === 422) {
-          _this6.errores.fecha_despacho = response.data.errors.fecha_despacho;
-          _this6.errores.fecha_tumba = response.data.errors.fecha_tumba;
-          _this6.errores.camion_id = response.data.errors.camion_id;
-          _this6.errores.destino_id = response.data.errors.destino_id;
-          _this6.errores.formato_entrega_id = response.data.errors.formato_entrega_id;
-          _this6.errores.origen_madera_id = response.data.errors.origen_madera_id;
+          _this7.errores.fecha_despacho = response.data.errors.fecha_despacho;
+          _this7.errores.fecha_tumba = response.data.errors.fecha_tumba;
+          _this7.errores.camion_id = response.data.errors.camion_id;
+          _this7.errores.destino_id = response.data.errors.destino_id;
+          _this7.errores.origen_madera_id = response.data.errors.origen_madera_id;
+          _this7.errores.origen_hacienda_id = response.data.errors.origen_hacienda_id;
         } else {
-          _this6.$buefy.toast.open({
-            message: _this6.$t("message.generic_error"),
+          _this7.$buefy.toast.open({
+            message: _this7.$t("message.generic_error"),
             type: "is-danger"
           });
         }
@@ -3439,6 +3449,7 @@ __webpack_require__.r(__webpack_exports__);
     this.cargarDestino();
     this.cargarFormatoDeEntregas();
     this.cargarOrigenesMadera();
+    this.cargarOrigenesHacienda();
   }
 });
 
@@ -45098,58 +45109,6 @@ var render = function() {
                       "b-field",
                       {
                         attrs: {
-                          message: _vm.errores.formato_entrega_id
-                            ? _vm.errores.formato_entrega_id[0]
-                            : "",
-                          type: _vm.errores.formato_entrega_id
-                            ? "is-danger"
-                            : "",
-                          label: _vm.$t("message.formato_entrega")
-                        }
-                      },
-                      [
-                        _c(
-                          "b-select",
-                          {
-                            attrs: {
-                              expanded: "",
-                              placeholder: _vm.$t("title.seleccione")
-                            },
-                            model: {
-                              value: _vm.form.formato_entrega_id,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "formato_entrega_id", $$v)
-                              },
-                              expression: "form.formato_entrega_id"
-                            }
-                          },
-                          _vm._l(_vm.formatos_entregas, function(option) {
-                            return _c(
-                              "option",
-                              {
-                                key: option.id,
-                                domProps: { value: option.id }
-                              },
-                              [_vm._v(_vm._s(option.descripcion))]
-                            )
-                          }),
-                          0
-                        )
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "column" },
-                  [
-                    _c(
-                      "b-field",
-                      {
-                        attrs: {
                           message: _vm.errores.origen_madera_id
                             ? _vm.errores.origen_madera_id[0]
                             : "",
@@ -45203,7 +45162,59 @@ var render = function() {
                   [
                     _c(
                       "b-field",
-                      { attrs: { label: _vm.$t("message.valor") } },
+                      {
+                        attrs: {
+                          message: _vm.errores.origen_hacienda_id
+                            ? _vm.errores.origen_hacienda_id[0]
+                            : "",
+                          type: _vm.errores.origen_hacienda_id
+                            ? "is-danger"
+                            : "",
+                          label: _vm.$t("message.origen_hacienda")
+                        }
+                      },
+                      [
+                        _c(
+                          "b-select",
+                          {
+                            attrs: {
+                              expanded: "",
+                              placeholder: _vm.$t("title.seleccione")
+                            },
+                            model: {
+                              value: _vm.form.origen_hacienda_id,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "origen_hacienda_id", $$v)
+                              },
+                              expression: "form.origen_hacienda_id"
+                            }
+                          },
+                          _vm._l(_vm.origenes_hacienda, function(option) {
+                            return _c(
+                              "option",
+                              {
+                                key: option.id,
+                                domProps: { value: option.id }
+                              },
+                              [_vm._v(_vm._s(option.descripcion))]
+                            )
+                          }),
+                          0
+                        )
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      { attrs: { label: _vm.$t("message.valor_flete") } },
                       [
                         _c("b-input", {
                           attrs: { readonly: "" },
@@ -73651,7 +73662,8 @@ __webpack_require__.r(__webpack_exports__);
     camion: 'Camión',
     numero_documento: 'Documento',
     destino: 'Destino',
-    origen_madera: 'Hacienda',
+    origen_madera: 'Origen Hacienda',
+    origen_hacienda: 'Origen Madera',
     hectareas: "Hectáreas",
     anio_cultivo: "Año de cultivo",
     volumen_inventario: "Volumen de inventario",
@@ -73703,6 +73715,7 @@ __webpack_require__.r(__webpack_exports__);
     password: "Contraseña",
     token_invalido: "Token inválido",
     valor: "Valor",
+    valor_flete: "Valor Flete",
     color: "Color",
     codigo: "Código",
     largo: "Large",
