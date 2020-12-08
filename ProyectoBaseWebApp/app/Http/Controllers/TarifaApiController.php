@@ -53,10 +53,14 @@ class TarifaApiController extends Controller
     }
     public function getTarifaFlete(Request $request)
     {
-        $tarifa_flete = $request->input('valor_flete');
+        $tarifa_flete = "";
         try {
             $tarifa_new = Tarifa::where('destino_id', $request->input('destino_id') )->where('origen_madera_id', $request->input('origen_madera_id') )->get()->first();
-            $tarifa_flete = $tarifa_new->valor;
+            if( $tarifa_new){
+                $tarifa_flete = $tarifa_new->valor;
+
+            }
+            
         } catch (\Throwable $th) {
             //throw $th;
         }

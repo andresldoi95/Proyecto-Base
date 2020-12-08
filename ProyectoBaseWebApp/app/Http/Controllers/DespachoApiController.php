@@ -53,8 +53,16 @@ class DespachoApiController extends Controller
             'origen_hacienda_id' => 'required|exists:origenes_hacienda,id'
         ]);
 
+        $tarifa_new_valor = NULL;
+
+
+
         try {
             $tarifa_new = Tarifa::where('destino_id', $request->input('destino_id') )->where('origen_madera_id', $request->input('origen_madera_id') )->get()->first();
+            if($tarifa_new){
+                $tarifa_new_valor = $tarifa_new->valor;
+
+            }
         } catch (\Throwable $th) {
             //throw $th;
         }
@@ -66,7 +74,7 @@ class DespachoApiController extends Controller
         $despacho->destino_id = $request->input('destino_id');
         $despacho->origen_madera_id = $request->input('origen_madera_id');
         $despacho->origen_hacienda_id = $request->input('origen_hacienda_id');
-        $despacho->valor_flete = $tarifa_new->valor;
+        $despacho->valor_flete = $tarifa_new_valor;
 
         $despacho->save();
     }
