@@ -159,7 +159,7 @@ class DespachoApiController extends Controller
                         ]);
                     }
                      //GPUIG GUARDAR PATH FOTOS FILAS
-                    $fotos_filas = $fila['fotos'];
+                    /*$fotos_filas = $fila['fotos'];
                     foreach ($fotos_filas as $fotos_fila) {
                         // The final filename.
                         $fileName = $fotos_fila['id'].".jpg";
@@ -183,7 +183,7 @@ class DespachoApiController extends Controller
                             
                         ]);  
                         
-                    }
+                    }*/
                 }
                 //GPUIG GUARDAR PATH FOTOS TROZAS
                 $troza = $request->input('troza');
@@ -199,7 +199,7 @@ class DespachoApiController extends Controller
                     ]);  
                 }
                 //GPUIG GUARDAR PATH FOTOS TROZAS
-                $troza_fotos = $request->input('troza_fotos');
+                /*$troza_fotos = $request->input('troza_fotos');
                 foreach ($troza_fotos as $troza_foto) {
                     // The final filename.
                     $fileName = $troza_foto['id'].".jpg";
@@ -224,7 +224,7 @@ class DespachoApiController extends Controller
                         
                     ]);  
                     
-                }
+                }*/
             }
             return [
                 'numero_documento' => $despacho->numero_documento
