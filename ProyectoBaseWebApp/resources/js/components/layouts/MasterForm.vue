@@ -69,7 +69,6 @@
     <br />
     <b-table
       :loading="isLoading"
-      @sort="onSort"
       @page-change="onPageChange"
       :total="total"
       :checked-rows.sync="checkedRows"
@@ -83,14 +82,16 @@
       :backend-pagination="isPaginated"
       :per-page="form.per_page"
       :current-page.sync="form.current_page"
-      sort-icon="arrow-up"
+      :sort-icon="sortIcon"
+      :sort-icon-size="sortIconSize"
+      :default-sort-direction="defaultSortDirection"
       :aria-next-label="$t('message.next_page')"
       :aria-previous-label="$t('message.prev_page')"
       :aria-page-label="$t('message.page')"
       :aria-current-label="$t('message.current_page')"
     >
         <template slot-scope="props">
-            <b-table-column v-for="column in columns" :key="column.field" :field="column.field" :label="column.label" :numeric="column.numeric">
+            <b-table-column sortable v-for="column in columns" :key="column.field" :field="column.field" :label="column.label" :numeric="column.numeric">
                 <b-button @click="$emit(column.event, props.row)" :type="column.type" :icon-left="column['icon-left']" v-if="column.button"></b-button>
                 <span v-else>
                     {{ _.get(props.row, column.field) }}
@@ -221,7 +222,9 @@ export default {
         hasta: new Date()
       },
       registros: [],
+      defaultSortDirection: 'asc',
       sortIcon: "arrow-up",
+      sortIconSize: 'is-small',
       tipo_formulario: "C",
       total: 0,
     };

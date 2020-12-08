@@ -7334,6 +7334,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     enableDates: {
@@ -7447,7 +7448,9 @@ __webpack_require__.r(__webpack_exports__);
         hasta: new Date()
       },
       registros: [],
+      defaultSortDirection: 'asc',
       sortIcon: "arrow-up",
+      sortIconSize: 'is-small',
       tipo_formulario: "C",
       total: 0
     };
@@ -49965,14 +49968,15 @@ var render = function() {
           "backend-pagination": _vm.isPaginated,
           "per-page": _vm.form.per_page,
           "current-page": _vm.form.current_page,
-          "sort-icon": "arrow-up",
+          "sort-icon": _vm.sortIcon,
+          "sort-icon-size": _vm.sortIconSize,
+          "default-sort-direction": _vm.defaultSortDirection,
           "aria-next-label": _vm.$t("message.next_page"),
           "aria-previous-label": _vm.$t("message.prev_page"),
           "aria-page-label": _vm.$t("message.page"),
           "aria-current-label": _vm.$t("message.current_page")
         },
         on: {
-          sort: _vm.onSort,
           "page-change": _vm.onPageChange,
           "update:checkedRows": function($event) {
             _vm.checkedRows = $event
@@ -50001,6 +50005,7 @@ var render = function() {
                   {
                     key: column.field,
                     attrs: {
+                      sortable: "",
                       field: column.field,
                       label: column.label,
                       numeric: column.numeric
