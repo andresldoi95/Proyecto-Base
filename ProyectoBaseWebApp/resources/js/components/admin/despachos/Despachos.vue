@@ -175,7 +175,7 @@
             </div>
             <div class="column">
               <b-field :label="$t('message.valor_flete')">
-                <b-input readonly v-model="form.valor_flete"></b-input>
+                <b-input id="valor_flete_new" readonly v-model="form.valor_flete"></b-input>
               </b-field>
             </div>
               
@@ -233,6 +233,7 @@ export default {
             .post(path, this.form)
             .then(({data}) => {
               this.form.valor_flete = data;
+              document.getElementById('valor_flete_new').value = data;
             })
             .catch(({ response }) => {
               

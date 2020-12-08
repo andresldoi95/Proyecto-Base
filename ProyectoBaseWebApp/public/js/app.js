@@ -3321,6 +3321,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$http.post(path, this.form).then(function (_ref) {
         var data = _ref.data;
         _this.form.valor_flete = data;
+        document.getElementById('valor_flete_new').value = data;
       })["catch"](function (_ref2) {
         var response = _ref2.response;
       });
@@ -45217,7 +45218,7 @@ var render = function() {
                       { attrs: { label: _vm.$t("message.valor_flete") } },
                       [
                         _c("b-input", {
-                          attrs: { readonly: "" },
+                          attrs: { id: "valor_flete_new", readonly: "" },
                           model: {
                             value: _vm.form.valor_flete,
                             callback: function($$v) {
