@@ -23,6 +23,7 @@
     "dependencies": {
         "@mdi/font": "^5.3.45",
         "buefy": "^0.8.20",
+        "moment": "^2.29.1",
         "vue": "^2.6.11",
         "vue-axios": "^2.1.5",
         "vue-cookies": "^1.7.2",

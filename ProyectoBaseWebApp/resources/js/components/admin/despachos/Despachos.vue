@@ -28,7 +28,7 @@
                 {
                     label : $t('message.fecha_despacho'),
                     field : 'fecha_despacho',
-                    sortable : true
+                    sortable : true                
                 },
                 {
                     label : $t('message.fecha_tumba'),
@@ -188,6 +188,8 @@
 
 <script>
 import MasterForm from "../../layouts/MasterForm";
+import moment from 'moment'
+
 export default {
   components: { MasterForm },
   data: function () {
@@ -290,14 +292,20 @@ export default {
           window.open('/despacho/' + despacho.id, '_blank');
       },
       editar: function (despacho) {
+          var str = despacho.fecha_despacho;
+          var res = str.split("T");
+          var despacho_fecha_despacho = res[0];
+          var str = despacho.fecha_tumba;
+          var res = str.split("T");
+          var despacho_fecha_tumba = res[0];
           this.form.id = despacho.id;
           this.form.numero_documento = despacho.numero_documento;
           this.form.camion_id = despacho.camion_id;
           this.form.destino_id = despacho.destino_id;
           this.form.origen_madera_id = despacho.origen_madera_id;
           this.form.origen_hacienda_id = despacho.origen_hacienda_id;
-          this.form.fecha_despacho = despacho.fecha_despacho;
-          this.form.fecha_tumba = despacho.fecha_tumba;
+          this.form.fecha_despacho = moment(String(despacho_fecha_despacho)).format('YYYY-MM-DD');
+          this.form.fecha_tumba = moment(String(despacho_fecha_tumba)).format('YYYY-MM-DD');
           this.form.valor_flete = despacho.valor_flete;
 
       },
