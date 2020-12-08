@@ -325,6 +325,7 @@ export default {
               type: "is-success",
             });
             this.$refs.masterForm.submit();
+            this.limpiar();
           })
           .catch(({ response }) => {
             let status = response.status;

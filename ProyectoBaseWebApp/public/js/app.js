@@ -3425,6 +3425,8 @@ __webpack_require__.r(__webpack_exports__);
         });
 
         _this7.$refs.masterForm.submit();
+
+        _this7.limpiar();
       })["catch"](function (_ref8) {
         var response = _ref8.response;
         var status = response.status;
