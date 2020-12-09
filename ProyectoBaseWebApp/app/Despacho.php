@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
+
 
 class Despacho extends Model
 {
@@ -45,5 +47,12 @@ class Despacho extends Model
     ];
     public function filas() {
         return $this->hasMany('App\FilaDespacho');
+    }
+
+    public function getFechaTumbaAttribute($value) {
+        return (new Carbon($value))->format('yy-m-d');
+    }
+    public function getFechaDespachoAttribute($value) {
+        return (new Carbon($value))->format('yy-m-d');
     }
 }
