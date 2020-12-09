@@ -77,10 +77,10 @@
                     Año de cultivo: {{ $despacho->origenMadera->anio_cultivo }}
                 </td>
                 <td>
-                    Fecha de tumba: {{ $despacho->fecha_tumba->format('d/m/Y') }}
+                    Fecha de tumba:<br> {{ $despacho->fecha_tumba }}
                 </td>
                 <td>
-                    Fecha de despacho: {{ $despacho->fecha_despacho->format('d/m/Y') }}
+                    Fecha de despacho:<br> {{ $despacho->fecha_despacho }}
                 </td>
             </tr>
             <tr>
