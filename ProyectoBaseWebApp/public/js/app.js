@@ -7082,6 +7082,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -70443,6 +70450,28 @@ var render = function() {
                         }),
                         _vm._v(" "),
                         _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "" &&
+                                (_vm.$store.getters.permiteAccion(
+                                  "crear_despachos"
+                                ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "editar_despachos"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "consultar_despachos"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "eliminar_despachos"
+                                  )),
+                              expression:
+                                "\n                $store.state.nombre_empresa_actual !== '' &&\n                ($store.getters.permiteAccion('crear_despachos') ||\n                  $store.getters.permiteAccion('editar_despachos') ||\n                  $store.getters.permiteAccion('consultar_despachos') ||\n                  $store.getters.permiteAccion('eliminar_despachos'))\n              "
+                            }
+                          ],
                           attrs: {
                             icon: "bank-transfer",
                             label: _vm.$t("title.despachos"),
