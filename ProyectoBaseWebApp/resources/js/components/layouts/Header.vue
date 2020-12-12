@@ -27,6 +27,19 @@
         tag="router-link"
         to="/admin"
       >{{ $t('link.admin') }}</b-navbar-item>
+      <b-navbar-item
+              v-show="
+                  $store.state.nombre_empresa_actual !== '' &&
+                  ($store.getters.permiteAccion('crear_despachos') ||
+                    $store.getters.permiteAccion('editar_despachos') ||
+                    $store.getters.permiteAccion('consultar_despachos') ||
+                    $store.getters.permiteAccion('eliminar_despachos'))
+                "
+                icon="bank-transfer"
+                :label="$t('title.despachos')"
+                tag="router-link"
+                to="/admin/despachos"
+              >{{$t('title.despachos') }}</b-navbar-item>
     </template>
 
     <template slot="end">

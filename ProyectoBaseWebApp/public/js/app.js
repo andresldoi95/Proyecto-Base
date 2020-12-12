@@ -6425,8 +6425,12 @@ __webpack_require__.r(__webpack_exports__);
         _this.$buefy.toast.open(_this.$t("message.acceso_exitoso"));
 
         _this.$router.push({
-          name: "Home"
+          path: '/admin/despachos'
         });
+        /*this.$router.push({
+          name: "Home",
+        });*/
+
       })["catch"](function (_ref2) {
         var response = _ref2.response;
         var status = response.status;
@@ -6455,8 +6459,11 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     if (this.$session.exists()) {
       this.$router.push({
-        name: "Home"
+        path: '/admin/despachos'
       });
+      /*this.$router.push({
+        name: "Home",
+      });*/
     }
   }
 });
@@ -7141,6 +7148,19 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -71116,7 +71136,34 @@ var render = function() {
                 { attrs: { tag: "router-link", to: "/admin" } },
                 [_vm._v(_vm._s(_vm.$t("link.admin")))]
               )
-            : _vm._e()
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "b-navbar-item",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value:
+                    _vm.$store.state.nombre_empresa_actual !== "" &&
+                    (_vm.$store.getters.permiteAccion("crear_despachos") ||
+                      _vm.$store.getters.permiteAccion("editar_despachos") ||
+                      _vm.$store.getters.permiteAccion("consultar_despachos") ||
+                      _vm.$store.getters.permiteAccion("eliminar_despachos")),
+                  expression:
+                    "\n                $store.state.nombre_empresa_actual !== '' &&\n                ($store.getters.permiteAccion('crear_despachos') ||\n                  $store.getters.permiteAccion('editar_despachos') ||\n                  $store.getters.permiteAccion('consultar_despachos') ||\n                  $store.getters.permiteAccion('eliminar_despachos'))\n              "
+                }
+              ],
+              attrs: {
+                icon: "bank-transfer",
+                label: _vm.$t("title.despachos"),
+                tag: "router-link",
+                to: "/admin/despachos"
+              }
+            },
+            [_vm._v(_vm._s(_vm.$t("title.despachos")))]
+          )
         ],
         1
       ),

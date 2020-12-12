@@ -56,9 +56,10 @@ export default {
           this.$store.dispatch("loggedIn", token);
           this.$session.set("oauth2", token);
           this.$buefy.toast.open(this.$t("message.acceso_exitoso"));
-          this.$router.push({
+          this.$router.push({ path: '/admin/despachos' });
+          /*this.$router.push({
             name: "Home",
-          });
+          });*/
         })
         .catch(({ response }) => {
           let status = response.status;
@@ -85,9 +86,10 @@ export default {
   },
   mounted: function () {
     if (this.$session.exists()) {
-      this.$router.push({
+          this.$router.push({ path: '/admin/despachos' });
+      /*this.$router.push({
         name: "Home",
-      });
+      });*/
     }
   },
 };
