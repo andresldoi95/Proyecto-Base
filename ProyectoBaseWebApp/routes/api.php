@@ -212,7 +212,16 @@ Route::group(['middleware' => 'auth:api'], function () {
         'only' => ['store', 'index']
     ]);
 
+    Route::resource('despachos_pendientes_de_pago', 'DespachoPendientePagoApiController', [
+        'only' => ['index']
+    ]);
+
     Route::resource('despachosUpdate', 'DespachoApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
+    Route::resource('despachosPendientesPagoUpdate', 'DespachoPendientePagoApiController', [
         'except' => [
             'create', 'edit', 'show'
         ]

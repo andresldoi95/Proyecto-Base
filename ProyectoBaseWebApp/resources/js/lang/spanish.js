@@ -9,6 +9,8 @@ export default {
     },
     message: {
         desde: 'Desde',
+        aserrador: "Aserrador",
+        volumen: "Volumen",
         hasta: 'Hasta',
         usuario: 'Usuario',
         formato_entrega: 'Formato de entrega',
@@ -75,14 +77,15 @@ export default {
         valor_flete: "Valor Flete",
         color: "Color",
         codigo: "Código",
-        largo: "Large",
-        espesor: "Thickness",
+        largo: "Largo",
+        espesor: "Espesor",
         factor_hueco_bultos: 'Factor hueco (bultos)',
         factor_hueco_sueltos: 'Factor hueco (sueltos)',
         codigo_vendor: 'Código vendor'
     },
     title: {
         despachos: 'Despachos',
+        despachos_pendientes_de_pago: 'Despachos Pendientes de Pago',
         origenes_hacienda: 'Origenes de madera',
         tarifas: 'Tarifas',
         parametros: "Parámetros",
@@ -115,6 +118,9 @@ export default {
     },
     etiqueta: {
         haciendas: 'Haciendas',
+        pagos: 'Pagos',
+        pagos_aserrado: 'Pago Aserrado',
+        pagos_transporte: 'Pago Transporte',
         materiales: 'Materiales',
         procedencia: "Procedencia",
         username: "Nombre de usuario",

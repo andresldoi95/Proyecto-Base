@@ -58,12 +58,14 @@ class UsuarioApiController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
+            'identificacion' => 'required|max:255',
             'email' => 'required|max:500|unique:users',
             'roles' => 'required|array',
             'password' => 'required|min:6|confirmed'
         ]);
         $user = $request->user();
         $usuario = User::create([
+            'identificacion' => $request->input('identificacion'),
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'creador_id' => $user->id,
@@ -77,6 +79,7 @@ class UsuarioApiController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
+            'identificacion' => 'required|max:255',
             'email' => [
                 'required', 'max:500', Rule::unique('users')->ignore($id)
             ],
@@ -85,6 +88,7 @@ class UsuarioApiController extends Controller
         ]);
         $user = $request->user();
         $usuario = User::findOrFail($id);
+        $usuario->identificacion = $request->input('identificacion');
         $usuario->name = $request->input('name');
         $usuario->email = $request->input('email');
         $usuario->modificador_id = $user->id;

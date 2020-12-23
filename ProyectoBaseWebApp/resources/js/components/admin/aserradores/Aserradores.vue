@@ -32,8 +32,8 @@
                     sortable : true
                 },
                 {
-                    label : $t('message.identificacion'),
-                    field : 'identificacion',
+                    label : $t('message.codigo_vendor'),
+                    field : 'vendor',
                     sortable : true
                 },
                 {
@@ -58,13 +58,22 @@
                 <b-input v-model="form.nombre"></b-input>
               </b-field>
             </div>
-            <div class="column">
+            <div class="column" style="display:none;">
               <b-field
                 :message="errores.identificacion?errores.identificacion[0]:''"
                 :type="errores.identificacion?'is-danger':''"
                 :label="$t('message.identificacion')"
               >
                 <b-input v-model="form.identificacion"></b-input>
+              </b-field>
+            </div>
+            <div class="column">
+              <b-field
+                :message="errores.vendor?errores.vendor[0]:''"
+                :type="errores.vendor?'is-danger':''"
+                :label="$t('message.codigo_vendor')"
+              >
+                <b-input v-model="form.vendor"></b-input>
               </b-field>
             </div>
           </div>
@@ -84,12 +93,15 @@ export default {
         nombre: "",
         id: "",
         _method: undefined,
-        identificacion: ""
+        identificacion: "",
+        vendor: ""
       },
       acciones: [],
       errores: {
         nombre: undefined,
-        identificacion: undefined
+        identificacion: undefined,
+        vendor: undefined
+
       }
     };
   },
@@ -102,6 +114,8 @@ export default {
       this.form._method = undefined;
       this.form.nombre = "";
       this.form.identificacion = "";
+      this.form.vendor = "";
+
     },
     adding: function () {
       this.limpiar();
@@ -135,10 +149,14 @@ export default {
       this.form.id = aserrador.id;
       this.form.nombre = aserrador.nombre;
       this.form.identificacion = aserrador.identificacion;
+      this.form.vendor = aserrador.vendor;
+
     },
     limpiarErrores: function () {
       this.errores.nombre = undefined;
       this.errores.identificacion = undefined;
+      this.errores.vendor = undefined;
+
     },
     submitFormulario: function () {
       this.limpiarErrores();
@@ -160,6 +178,7 @@ export default {
           let status = response.status;
           if (status === 422) {
             this.errores.identificacion = response.data.errors.identificacion;
+            this.errores.vendor = response.data.errors.vendor;
             this.errores.nombre = response.data.errors.nombre;
           } else {
             this.$buefy.toast.open({

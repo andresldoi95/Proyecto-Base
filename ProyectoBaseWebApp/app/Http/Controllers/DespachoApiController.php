@@ -9,6 +9,16 @@ use App\Troza;
 use App\TrozaFotos;
 use App\Tarifa;
 use Carbon\Carbon;
+use App\Espesor;
+use App\Largo;
+use App\FilaSuelto;
+use App\TipoBulto;
+use App\User;
+use App\Aserrador;
+use App\Material;
+use Mail;
+use PDF;
+use App\Correo;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
@@ -24,9 +34,16 @@ class DespachoApiController extends Controller
         ]);
         $desde = new Carbon($request->input('desde'));
         $hasta = new Carbon($request->input('hasta'));
+        $camion_filter_id = $request->input('camion_filter_id');
+        $destino_filter_id = $request->input('destino_filter_id');
+        $origen_madera_filter_id = $request->input('origen_madera_filter_id');
+
         $user = $request->user();
-        $despachos = Despacho::with('camion', 'destino', 'origenMadera', 'formatoEntrega', 'usuario')->whereHas('camion', function ($query) use($user) {
+        $despachos = Despacho::with('aserrador','camion', 'destino', 'origenMadera', 'formatoEntrega', 'usuario'
+        )->whereHas('camion', function ($query) use($user) {
             return $query->where('empresa_id', $user->empresa_id);
+        })->whereHas('aserrador', function ($query){
+            return $query->where('estado', 'A');
         })->whereBetween('fecha_despacho', [
             $desde, $hasta
         ])->orderBy('numero_documento', 'desc')->orderBy('fecha_despacho', 'desc');
@@ -34,6 +51,21 @@ class DespachoApiController extends Controller
         if (isset($search)) {
             $despachos->where(function ($query) use ($search) {
                 return $query->where('numero_documento', 'like', "%$search");
+            });
+        }
+        if (isset($camion_filter_id)) {
+            $despachos->where(function ($query) use ($camion_filter_id) {
+                return $query->where('camion_id', $camion_filter_id);
+            });
+        }
+        if (isset($destino_filter_id)) {
+            $despachos->where(function ($query) use ($destino_filter_id) {
+                return $query->where('destino_id', $destino_filter_id);
+            });
+        }
+        if (isset($origen_madera_filter_id)) {
+            $despachos->where(function ($query) use ($origen_madera_filter_id) {
+                return $query->where('origen_madera_id', $origen_madera_filter_id);
             });
         }
         $currentPage = $request->input('current_page');
@@ -225,6 +257,43 @@ class DespachoApiController extends Controller
                     ]);  
                     
                 }*/
+                try {
+                        $empresa_id = User::findOrFail(Despacho::findOrFail($despacho->id)->usuario_id)->empresa_id; 
+                        $despacho = Despacho::findOrFail($despacho->id);      
+                        $correos = Correo::where('empresa_id', $empresa_id)->get();
+                        foreach($correos as $correo){
+                            $data["email"] = $correo->email;
+                            $data["title"] = "Nuevo Despacho - Tally Digital";
+                            $data["body"] = "Estimado ".$correo->nombre.", Se ha exportado un nuevo despacho.";
+
+                                    
+                            $pdf = PDF::loadView('despacho', [
+                                'despacho' => $despacho,
+                                'espesores' => Espesor::active()->orderBy('descripcion')->where('empresa_id', $empresa_id)->get(),
+                                'largos' =>Largo::active()->orderBy('descripcion')->where('empresa_id', $empresa_id)->get(),
+                                'filas_despacho' =>FilaDespacho::orderBy('indice')->where('despacho_id', $despacho->id)->get(),
+                                'trozas' =>Troza::where('despacho_id', $despacho->id)->get(),
+                                'troza_fotos' =>TrozaFotos::orderBy('troza_id')->get(),
+                                'filas_sueltos' =>FilaSuelto::orderBy('indice')->get(),
+                                'tipos_bulto' =>TipoBulto::where('empresa_id', $empresa_id)->get(),
+                                'fotos_fila' =>FotoFila::orderBy('fila_id')->get(),
+                                'aserrador' =>Aserrador::findOrFail($despacho->aserrador_id),
+                                'material' =>Material::findOrFail($despacho->material_id),
+                            ]);
+                    
+                            Mail::send('emails.myTestMail', $data, function($message)use($data, $pdf) {
+                                $message->to($data["email"], $data["email"])
+                                        ->subject($data["title"])
+                                        ->attachData($pdf->output(), "nuevo_despacho.pdf");
+                            });
+                            
+                        }
+                            
+
+                } catch (\Throwable $th) {
+                    //throw $th;
+                }
+                
             }
             return [
                 'numero_documento' => $despacho->numero_documento

@@ -102,6 +102,9 @@ export default {
     },
     adding: function () {
       this.limpiar();
+      for (let i = 0; i < this.haciendas.length; i++){
+        this.form.haciendas.push(this.haciendas[i].id);
+      }
     },
     realizarAccion: function (type, origenes_hacienda) {
       if (type === "E") {

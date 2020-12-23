@@ -26,6 +26,11 @@
                     sortable : true
                 },
                 {
+                    label : $t('message.aserrador'),
+                    field : 'aserrador.nombre',
+                    sortable : true
+                },
+                {
                     label : $t('message.fecha_despacho'),
                     field : 'fecha_despacho',
                     sortable : true                
@@ -43,6 +48,11 @@
                 {
                     label : $t('message.formato_entrega'),
                     field : 'formato_entrega.descripcion',
+                    sortable : true
+                },
+                {
+                    label : $t('message.volumen'),
+                    field : '',
                     sortable : true
                 },
                 {
@@ -187,17 +197,13 @@
 </template>
 
 <script>
-import MasterForm from "../../layouts/MasterForm";
+import MasterForm from "../../layouts/MasterFormDespacho";
 import moment from 'moment'
 
 export default {
   components: { MasterForm },
   data: function () {
     return {
-      /*form: {
-          desde: '',
-          hasta: ''
-      },*/
       form: {
         fecha_despacho: "",
         fecha_tumba: "",

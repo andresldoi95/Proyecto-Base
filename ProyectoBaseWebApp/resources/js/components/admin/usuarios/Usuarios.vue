@@ -26,6 +26,11 @@
                     sortable : true
                 },
                 {
+                    label : $t('message.identificacion'),
+                    field : 'identificacion',
+                    sortable : true
+                },
+                {
                     label : $t('message.nombre'),
                     field : 'name',
                     sortable : true
@@ -38,12 +43,12 @@
             ]"
         >
           <div class="columns">
-            <div class="column is-one-third">
+            <div class="column">
               <b-field :label="$t('message.id')">
                 <b-input readonly v-model="form.id"></b-input>
               </b-field>
             </div>
-            <div class="column is-one-third">
+            <div class="column">
               <b-field
                 :message="errores.name?errores.name[0]:''"
                 :type="errores.name?'is-danger':''"
@@ -52,7 +57,16 @@
                 <b-input v-model="form.name"></b-input>
               </b-field>
             </div>
-            <div class="column is-one-third">
+            <div class="column">
+              <b-field
+                :message="errores.identificacion?errores.identificacion[0]:''"
+                :type="errores.identificacion?'is-danger':''"
+                :label="$t('message.identificacion')"
+              >
+                <b-input v-model="form.identificacion"></b-input>
+              </b-field>
+            </div>
+            <div class="column">
               <b-field
                 :message="errores.email?errores.email[0]:''"
                 :type="errores.email?'is-danger':''"
@@ -102,6 +116,7 @@ export default {
   data: function () {
     return {
       form: {
+        identificacion: "",
         name: "",
         email: "",
         id: "",
@@ -112,6 +127,7 @@ export default {
       },
       roles: [],
       errores: {
+        identificacion: undefined,
         name: undefined,
         email: undefined,
         password: undefined,
@@ -126,6 +142,7 @@ export default {
     limpiar: function () {
       this.form.id = "";
       this.form._method = undefined;
+      this.form.identificacion = "";
       this.form.name = "";
       this.form.email = "";
       this.form.password = "";
@@ -162,6 +179,7 @@ export default {
     },
     editar: function (usuario) {
       this.form.id = usuario.id;
+      this.form.identificacion = usuario.identificacion;
       this.form.name = usuario.name;
       this.form.email = usuario.email;
       for (let i = 0; i < usuario.roles.length; i++)
@@ -170,6 +188,7 @@ export default {
       this.form.password_confirmation = "";
     },
     limpiarErrores: function () {
+      this.errores.identificacion = undefined;
       this.errores.name = undefined;
       this.errores.email = undefined;
       this.errores.password = undefined;
@@ -201,6 +220,7 @@ export default {
         .catch(({ response }) => {
           let status = response.status;
           if (status === 422) {
+            this.errores.identificacion = response.data.errors.identificacion;
             this.errores.name = response.data.errors.name;
             this.errores.email = response.data.errors.email;
             this.errores.password = response.data.errors.password;

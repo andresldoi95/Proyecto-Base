@@ -42,30 +42,33 @@ class AserradorApiController extends Controller
     {
         $user = $request->user();
         $request->validate([
-            'nombre' => 'required|max:255',
-            'identificacion' => [
+            'nombre' => 'required|max:255'
+            /*'identificacion' => [
                 'required', 'max:255', Rule::unique('aserradores')->where('empresa_id', $user->empresa_id)
-            ]
+            ]*/
         ]);
         Aserrador::create([
             'nombre' => $request->input('nombre'),
             'creador_id' => $user->id,
             'empresa_id' => $user->empresa_id,
-            'identificacion' => $request->input('identificacion')
+            'identificacion' => $request->input('identificacion'),
+            'vendor' => $request->input('vendor')
+
         ]);
     }
     public function update(Request $request, $id)
     {
         $user = $request->user();
         $request->validate([
-            'nombre' => 'required|max:255',
-            'identificacion' => [
+            'nombre' => 'required|max:255'
+            /*'identificacion' => [
                 'required', 'max:255', Rule::unique('aserradores')->where('empresa_id', $user->empresa_id)->ignore($id)
-            ]
+            ]*/
         ]);
         $aserrador = Aserrador::findOrFail($id);
         $aserrador->nombre = $request->input('nombre');
         $aserrador->identificacion = $request->input('identificacion');
+        $aserrador->vendor = $request->input('vendor');
         $aserrador->modificador_id = $user->id;
         $aserrador->save();
     }

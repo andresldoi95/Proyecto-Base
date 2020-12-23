@@ -32,7 +32,7 @@
                     sortable : true
                 },
                 {
-                    label : $t('message.valor'),
+                    label : $t('message.valor')+' (Pie)',
                     field : 'valor',
                     sortable : true
                 },
@@ -62,7 +62,7 @@
               <b-field
                 :message="errores.valor?errores.valor[0]:''"
                 :type="errores.valor?'is-danger':''"
-                :label="$t('message.valor')"
+                :label="$t('message.valor')+' (Pie)'"
               >
                 <b-input v-model="form.valor"></b-input>
               </b-field>

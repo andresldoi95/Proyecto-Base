@@ -24,6 +24,8 @@ import OrigenesMadera from "../components/admin/origenes-madera/OrigenesMadera";
 import Tarifas from "../components/admin/tarifas/Tarifas";
 import OrigenesHacienda from "../components/admin/origenes-hacienda/OrigenesHacienda";
 import Despachos from "../components/admin/despachos/Despachos";
+import DespachosPendientesPago from "../components/admin/despachos_pendientes_de_pago/DespachosPendientesPago";
+
 
 export default {
     mode: "history",
@@ -231,6 +233,14 @@ export default {
                         requiresAuth: true
                     },
                     name: "Despachos"
+                },
+                {
+                    component: DespachosPendientesPago,
+                    path: "despachos_pendientes_de_pago",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "DespachosPendientesPago"
                 }
             ]
         }
