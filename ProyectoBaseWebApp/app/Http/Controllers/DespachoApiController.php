@@ -256,44 +256,7 @@ class DespachoApiController extends Controller
                         
                     ]);  
                     
-                }*/
-                try {
-                        $empresa_id = User::findOrFail(Despacho::findOrFail($despacho->id)->usuario_id)->empresa_id; 
-                        $despacho = Despacho::findOrFail($despacho->id);      
-                        $correos = Correo::where('empresa_id', $empresa_id)->get();
-                        foreach($correos as $correo){
-                            $data["email"] = $correo->email;
-                            $data["title"] = "Nuevo Despacho - Tally Digital";
-                            $data["body"] = "Estimado ".$correo->nombre.", Se ha exportado un nuevo despacho.";
-
-                                    
-                            $pdf = PDF::loadView('despacho', [
-                                'despacho' => $despacho,
-                                'espesores' => Espesor::active()->orderBy('descripcion')->where('empresa_id', $empresa_id)->get(),
-                                'largos' =>Largo::active()->orderBy('descripcion')->where('empresa_id', $empresa_id)->get(),
-                                'filas_despacho' =>FilaDespacho::orderBy('indice')->where('despacho_id', $despacho->id)->get(),
-                                'trozas' =>Troza::where('despacho_id', $despacho->id)->get(),
-                                'troza_fotos' =>TrozaFotos::orderBy('troza_id')->get(),
-                                'filas_sueltos' =>FilaSuelto::orderBy('indice')->get(),
-                                'tipos_bulto' =>TipoBulto::where('empresa_id', $empresa_id)->get(),
-                                'fotos_fila' =>FotoFila::orderBy('fila_id')->get(),
-                                'aserrador' =>Aserrador::findOrFail($despacho->aserrador_id),
-                                'material' =>Material::findOrFail($despacho->material_id),
-                            ]);
-                    
-                            Mail::send('emails.myTestMail', $data, function($message)use($data, $pdf) {
-                                $message->to($data["email"], $data["email"])
-                                        ->subject($data["title"])
-                                        ->attachData($pdf->output(), "nuevo_despacho.pdf");
-                            });
-                            
-                        }
-                            
-
-                } catch (\Throwable $th) {
-                    //throw $th;
-                }
-                
+                }*/                
             }
             return [
                 'numero_documento' => $despacho->numero_documento
