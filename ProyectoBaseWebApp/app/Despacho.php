@@ -55,4 +55,8 @@ class Despacho extends Model
     public function getFechaDespachoAttribute($value) {
         return (new Carbon($value))->format('yy-m-d');
     }
+
+    public function getGuiaRemisionAttribute($value) {
+        return substr($value,0,3)."-".substr($value,3,3)."-".substr($value,6,9);
+    }
 }

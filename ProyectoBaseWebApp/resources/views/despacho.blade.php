@@ -46,16 +46,15 @@
                     <h3 class="upper">Guía de tranporte y despacho de madera suelta</h3>
                 </td>
                 <td>
-                    FO-AP-R6 <br>
-                    Versión: 01
+                    
                 </td>
             </tr>
             <tr>
                 <td colspan="3">
-                    Madera FSC 100% NC-FM/COC-004235
+                    NC-FM/COC-004235
                 </td>
                 <td>
-                    Secuencia: <span class="numero_documento">{{ $despacho->numero_documento }}</span>
+                    N°: <span class="numero_documento">{{ $despacho->numero_documento }}</span>
                 </td>
             </tr>
             <tr>
@@ -88,10 +87,10 @@
                     Días T2K: {{ $despacho->dias_t2k }}
                 </td>
                 <td>
-                    Guía forestal Nº: {{ $despacho->guia_forestal }}
+                    Guía forestal Nº: <br>{{ $despacho->guia_forestal }}
                 </td>
                 <td>
-                    Guía de remisión: {{ $despacho->guia_remision }}
+                    Guía de remisión: <br>{{ $despacho->guia_remision }}
                 </td>
                 <td rowspan="2">
                     Formato de entrega: {{ $despacho->formatoEntrega->descripcion }}
@@ -136,7 +135,7 @@
                 </td>
                 @foreach($espesores as $espesor)
                     <td class="centered">
-                    {{ $espesor->descripcion }} m
+                    {{ $espesor->descripcion }} "
                     </td>
                 @endforeach
                 <td class="centered">
@@ -299,7 +298,7 @@
                 Transporte
             </td>
             <td class="centered">
-                <strong>Fecha de recepción: {{ date('d/m/Y') }}</strong><br><br>__________________<br>
+                <strong>Fecha de recepción: </strong><br><br>__________________<br>
                 Recepción
             </td>
         </tr>
