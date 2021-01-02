@@ -23,6 +23,7 @@ export default {
         origen_hacienda: 'Origen Madera',
         hectareas: "Hectáreas",
         anio_cultivo: "Año de cultivo",
+        cantidad_anios: "Cantidad de Años",
         volumen_inventario: "Volumen de inventario",
         sinDatos: "Sin datos",
         filas: "Filas",
@@ -114,6 +115,8 @@ export default {
         tipos_madera: "Tipos de madera",
         formatos_entrega: "Formatos de entrega",
         origenes_madera: "Haciendas",
+        origenes_madera_anios: "Años de las Haciendas",
+
         tipos_bulto: "Tipos de bulto"
     },
     etiqueta: {

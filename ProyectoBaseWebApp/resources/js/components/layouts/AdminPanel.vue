@@ -96,6 +96,19 @@
               <b-menu-item
                 v-show="
                   $store.state.nombre_empresa_actual !== '' &&
+                  ($store.getters.permiteAccion('crear_origenes_madera') ||
+                    $store.getters.permiteAccion('editar_origenes_madera') ||
+                    $store.getters.permiteAccion('consultar_origenes_madera') ||
+                    $store.getters.permiteAccion('eliminar_origenes_madera'))
+                "
+                icon="home"
+                :label="$t('title.origenes_madera_anios')"
+                tag="router-link"
+                to="/admin/origenes-madera-anios"
+              ></b-menu-item>
+              <b-menu-item
+                v-show="
+                  $store.state.nombre_empresa_actual !== '' &&
                   ($store.getters.permiteAccion('crear_origenes_hacienda') ||
                     $store.getters.permiteAccion('editar_origenes_hacienda') ||
                     $store.getters.permiteAccion('consultar_origenes_hacienda') ||

@@ -103,6 +103,16 @@ Route::group(['middleware' => 'auth:api'], function () {
             'create', 'edit', 'show'
         ]
     ]);
+    Route::group(['prefix' => 'origenes-madera-anios'], function () {
+        Route::delete('/', 'OrigenMaderaAniosApiController@destroy');
+        Route::get('/all', 'OrigenMaderaAniosApiController@all');
+        Route::get('/listado', 'OrigenMaderaAniosApiController@listado');
+    });
+    Route::resource('origenes-madera-anios', 'OrigenMaderaAniosApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
     Route::group(['prefix' => 'origenes-hacienda'], function () {
         Route::delete('/', 'OrigenHaciendaApiController@destroy');
         Route::get('/all', 'OrigenHaciendaApiController@all');

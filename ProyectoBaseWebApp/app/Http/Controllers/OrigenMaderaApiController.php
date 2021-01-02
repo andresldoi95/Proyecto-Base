@@ -41,7 +41,6 @@ class OrigenMaderaApiController extends Controller
             'descripcion' => 'required|max:255',
             'hectareas' => 'required|numeric',
             'volumen_inventario' => 'required|numeric',
-            'anio_cultivo' => 'required|integer',
             'hectareas' => 'required|numeric'
         ]);
         $user = $request->user();
@@ -51,7 +50,6 @@ class OrigenMaderaApiController extends Controller
             'empresa_id' => $user->empresa_id,
             'hectareas' => $request->input('hectareas'),
             'volumen_inventario' => $request->input('volumen_inventario'),
-            'anio_cultivo' => $request->input('anio_cultivo'),
             'hectareas' => $request->input('hectareas')
         ]);
     }
@@ -61,14 +59,12 @@ class OrigenMaderaApiController extends Controller
             'descripcion' => 'required|max:255',
             'hectareas' => 'required|numeric',
             'volumen_inventario' => 'required|numeric',
-            'anio_cultivo' => 'required|integer',
             'hectareas' => 'required|numeric'
         ]);
         $origenMadera = OrigenMadera::findOrFail($id);
         $origenMadera->descripcion = $request->input('descripcion');
         $origenMadera->hectareas = $request->input('hectareas');
         $origenMadera->modificador_id = $request->user()->id;
-        $origenMadera->anio_cultivo = $request->input('anio_cultivo');
         $origenMadera->hectareas = $request->input('hectareas');
         $origenMadera->volumen_inventario = $request->input('volumen_inventario');
         $origenMadera->save();

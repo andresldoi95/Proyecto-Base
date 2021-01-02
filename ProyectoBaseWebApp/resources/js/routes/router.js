@@ -21,6 +21,7 @@ import TiposMadera from "../components/admin/tipos-madera/TiposMadera";
 import TiposBulto from "../components/admin/tipos-bulto/TiposBulto";
 import FormatosEntrega from "../components/admin/formatos-entrega/FormatosEntrega";
 import OrigenesMadera from "../components/admin/origenes-madera/OrigenesMadera";
+import OrigenesMaderaAnios from "../components/admin/origenes-madera-anios/OrigenesMaderaAnios";
 import Tarifas from "../components/admin/tarifas/Tarifas";
 import OrigenesHacienda from "../components/admin/origenes-hacienda/OrigenesHacienda";
 import Despachos from "../components/admin/despachos/Despachos";
@@ -217,6 +218,14 @@ export default {
                         requiresAuth: true
                     },
                     name: "OrigenesMadera"
+                },
+                {
+                    component: OrigenesMaderaAnios,
+                    path: "origenes-madera-anios",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "OrigenesMaderaAnios"
                 },
                 {
                     component: OrigenesHacienda,

@@ -4,12 +4,15 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class OrigenMadera extends Model
+class OrigenMaderaAnios extends Model
 {
-    protected $table = 'origenes_madera';
+    protected $table = 'origenes_madera_anios';
     protected $fillable = [
-        'empresa_id', 'descripcion', 'volumen_inventario', 'hectareas', 'estado', 'creador_id', 'modificador_id'
+        'origen_madera_id', 'anio_cultivo', 'estado', 'creador_id', 'modificador_id'
     ];
+    public function origenMadera() {
+        return $this->belongsTo('App\OrigenMadera');
+    }
     public function scopeActive($query)
     {
         return $query->where('estado', 'A');
@@ -21,9 +24,5 @@ class OrigenMadera extends Model
     public function modificador()
     {
         return $this->belongsTo('App\User');
-    }
-    public function scopeCurrent($query, $empresaId)
-    {
-        return $query->where('empresa_id', $empresaId);
     }
 }

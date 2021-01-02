@@ -46,15 +46,8 @@
                     <h3 class="upper">Guía de tranporte y despacho de madera suelta</h3>
                 </td>
                 <td>
+                N°: <span class="numero_documento">{{ $despacho->numero_documento }}</span>
                     
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3">
-                    NC-FM/COC-004235
-                </td>
-                <td>
-                    N°: <span class="numero_documento">{{ $despacho->numero_documento }}</span>
                 </td>
             </tr>
             <tr>
@@ -104,7 +97,12 @@
                     Placa Nº: {{ $despacho->camion->placa }}
                 </td>
                 <td>
-                    Valor del flete: {{ number_format($despacho->valor_flete, 2) }}
+                    Valor del flete: 
+                    @if($trozas->count()>0)
+                        {{ number_format($trozas->first()->volumen_estimado * $despacho->valor_flete, 2) }}
+                    @else
+                        {{ number_format($despacho->filas()->sum('bft') * $despacho->valor_flete, 2) }}
+                    @endif
                 </td>
             </tr>
         </tbody>
@@ -131,7 +129,7 @@
         <tbody>
             <tr>
                 <td class="centered">
-                    <b>LARGO PIES (metros)</b>
+                    <b>LARGO PIES</b>
                 </td>
                 @foreach($espesores as $espesor)
                     <td class="centered">
@@ -150,7 +148,7 @@
 
             <tr>
                 <td class="centered">
-                    <b># de Plantilla ( {{ $largo->descripcion }}m) </b>
+                    <b># de Plantilla ( {{ $largo->descripcion }} FT) </b>
                 </td>
                 @foreach($espesores as $espesor)
                     <td class="centered">

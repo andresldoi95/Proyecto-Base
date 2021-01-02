@@ -2,7 +2,7 @@
   <section class="hero">
     <div class="hero-body">
       <div class="container">
-        <h1 class="title">{{ $t("title.origenes_madera") }}</h1>
+        <h1 class="title">{{ $t("title.origenes_madera_anios") }}</h1>
         <masterForm
           :typeOptions="[
             {
@@ -18,7 +18,7 @@
           @editar="editar"
           ref="masterForm"
           @submitFormulario="submitFormulario"
-          resource="/api/origenes-madera"
+          resource="/api/origenes-madera-anios"
           :isPaginated="false"
           :columns="[
             {
@@ -27,18 +27,13 @@
               sortable: true,
             },
             {
-              label: $t('message.descripcion'),
-              field: 'descripcion',
-              sortable: true,
+              label : $t('message.origen_madera'),
+              field : 'origen_madera.descripcion',
+              sortable : true
             },
             {
-              label: $t('message.hectareas'),
-              field: 'hectareas',
-              sortable: true,
-            },
-            {
-              label: $t('message.volumen_inventario'),
-              field: 'volumen_inventario',
+              label: $t('message.anio_cultivo'),
+              field: 'anio_cultivo',
               sortable: true,
             },
             {
@@ -56,35 +51,33 @@
             </div>
             <div class="column">
               <b-field
-                :message="errores.descripcion ? errores.descripcion[0] : ''"
-                :type="errores.descripcion ? 'is-danger' : ''"
-                :label="$t('message.descripcion')"
+                :message="errores.origen_madera_id?errores.origen_madera_id[0]:''"
+                :type="errores.origen_madera_id?'is-danger':''"
+                :label="$t('message.origen_madera')"
               >
-                <b-input v-model="form.descripcion"></b-input>
+                <b-select
+                  v-model="form.origen_madera_id"
+                  expanded
+                  :placeholder="$t('title.seleccione')"
+                >
+                  <option
+                    v-for="option in origenes_madera"
+                    :value="option.id"
+                    :key="option.id"
+                  >{{ option.descripcion }}</option>
+                </b-select>
               </b-field>
             </div>
             <div class="column">
               <b-field
-                :message="
-                  errores.volumen_inventario
-                    ? errores.volumen_inventario[0]
-                    : ''
-                "
-                :type="errores.volumen_inventario ? 'is-danger' : ''"
-                :label="$t('message.volumen_inventario')"
+                :message="errores.anio_cultivo ? errores.anio_cultivo[0] : ''"
+                :type="errores.anio_cultivo ? 'is-danger' : ''"
+                :label="$t('message.anio_cultivo')"
               >
-                <b-input v-model="form.volumen_inventario"></b-input>
+                <b-input v-model="form.anio_cultivo"></b-input>
               </b-field>
             </div>
-            <div class="column">
-              <b-field
-                :message="errores.hectareas ? errores.hectareas[0] : ''"
-                :type="errores.hectareas ? 'is-danger' : ''"
-                :label="$t('message.hectareas')"
-              >
-                <b-input v-model="form.hectareas"></b-input>
-              </b-field>
-            </div>
+            
           </div>
         </masterForm>
       </div>
@@ -99,30 +92,35 @@ export default {
   data: function () {
     return {
       form: {
-        hectareas: "",
-        descripcion: "",
+        anio_cultivo: "",
+        origen_madera_id: "",
         id: "",
         _method: undefined,
-        volumen_inventario: "",
       },
       acciones: [],
+      origenes_madera: [],
       errores: {
-        hectareas: undefined,
-        descripcion: undefined,
-        volumen_inventario: undefined,
+        anio_cultivo: undefined,
+        origen_madera_id: undefined,
+
       },
     };
   },
   methods: {
+    cargarOrigenesMadera: function () {
+          let path = process.env.MIX_APP_URL_API + "/origenes-madera/listado";
+          this.$http.get(path).then(({data}) => {
+              this.origenes_madera = data;
+          });
+      },
     canceled: function () {
       this.limpiar();
     },
     limpiar: function () {
       this.form.id = "";
       this.form._method = undefined;
-      this.form.hectareas = "";
-      this.form.descripcion = "";
-      this.form.volumen_inventario = "";
+      this.form.origen_madera_id = '';
+      this.form.anio_cultivo = "";
     },
     adding: function () {
       this.limpiar();
@@ -133,7 +131,7 @@ export default {
         for (let i = 0; i < origenes_madera.length; i++)
           origenes_maderaId.push(origenes_madera[i].id);
         this.$http
-          .post(process.env.MIX_APP_URL_API + "/origenes-madera", {
+          .post(process.env.MIX_APP_URL_API + "/origenes-madera-anios", {
             origenesMadera: origenes_maderaId,
             _method: "DELETE",
           })
@@ -154,18 +152,17 @@ export default {
     },
     editar: function (origenMadera) {
       this.form.id = origenMadera.id;
-      this.form.hectareas = origenMadera.hectareas;
-      this.form.descripcion = origenMadera.descripcion;
-      this.form.volumen_inventario = origenMadera.volumen_inventario;
+      this.form.origen_madera_id = origenMadera.origen_madera_id;
+      this.form.anio_cultivo = origenMadera.anio_cultivo;
     },
     limpiarErrores: function () {
-      this.errores.descripcion = undefined;
-      this.errores.hectareas = undefined;
-      this.errores.volumen_inventario = undefined;
+      this.errores.anio_cultivo = undefined;
+      this.errores.origen_madera_id = undefined;
+
     },
     submitFormulario: function () {
       this.limpiarErrores();
-      let path = process.env.MIX_APP_URL_API + "/origenes-madera";
+      let path = process.env.MIX_APP_URL_API + "/origenes-madera-anios";
       if (this.form.id !== "") {
         path += "/" + this.form.id;
         this.form._method = "PUT";
@@ -182,10 +179,9 @@ export default {
         .catch(({ response }) => {
           let status = response.status;
           if (status === 422) {
-            this.errores.hectareas = response.data.errors.hectareas;
-            this.errores.volumen_inventario =
-              response.data.errors.volumen_inventario;
-            this.errores.descripcion = response.data.errors.descripcion;
+            this.errores.anio_cultivo = response.data.errors.anio_cultivo;
+            this.errores.origen_madera_id = response.data.errors.origen_madera_id;
+
           } else {
             this.$buefy.toast.open({
               message: this.$t("message.generic_error"),
@@ -194,6 +190,9 @@ export default {
           }
         });
     },
+  },
+  mounted : function () {
+      this.cargarOrigenesMadera();
   },
 };
 </script>
