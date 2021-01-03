@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\OrigenMadera;
+use App\OrigenHacienda;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -44,7 +45,7 @@ class OrigenMaderaApiController extends Controller
             'hectareas' => 'required|numeric'
         ]);
         $user = $request->user();
-        OrigenMadera::create([
+        $origenMadera = OrigenMadera::create([
             'descripcion' => $request->input('descripcion'),
             'creador_id' => $user->id,
             'empresa_id' => $user->empresa_id,
@@ -52,6 +53,15 @@ class OrigenMaderaApiController extends Controller
             'volumen_inventario' => $request->input('volumen_inventario'),
             'hectareas' => $request->input('hectareas')
         ]);
+
+        $origenHacienda = OrigenHacienda::findOrFail(1);
+        $origenHacienda2 = OrigenHacienda::findOrFail(2);
+
+        if (isset($origenMadera)){
+            $origenHacienda->haciendas()->attach($origenMadera);
+            $origenHacienda2->haciendas()->attach($origenMadera);
+        }
+
     }
     public function update(Request $request, $id)
     {

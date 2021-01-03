@@ -7513,24 +7513,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -72157,37 +72139,6 @@ var render = function() {
                             label: _vm.$t("title.aserradores"),
                             tag: "router-link",
                             to: "/admin/aserradores"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("b-menu-item", {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value:
-                                _vm.$store.state.nombre_empresa_actual !== "" &&
-                                (_vm.$store.getters.permiteAccion(
-                                  "crear_codigos_aserradores"
-                                ) ||
-                                  _vm.$store.getters.permiteAccion(
-                                    "editar_codigos_aserradores"
-                                  ) ||
-                                  _vm.$store.getters.permiteAccion(
-                                    "consultar_codigos_aserradores"
-                                  ) ||
-                                  _vm.$store.getters.permiteAccion(
-                                    "eliminar_codigos_aserradores"
-                                  )),
-                              expression:
-                                "\n                $store.state.nombre_empresa_actual !== '' &&\n                ($store.getters.permiteAccion('crear_codigos_aserradores') ||\n                  $store.getters.permiteAccion(\n                    'editar_codigos_aserradores'\n                  ) ||\n                  $store.getters.permiteAccion(\n                    'consultar_codigos_aserradores'\n                  ) ||\n                  $store.getters.permiteAccion(\n                    'eliminar_codigos_aserradores'\n                  ))\n              "
-                            }
-                          ],
-                          attrs: {
-                            icon: "code-array",
-                            label: _vm.$t("title.codigos-aserradores"),
-                            tag: "router-link",
-                            to: "/admin/codigos-aserradores"
                           }
                         }),
                         _vm._v(" "),
