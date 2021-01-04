@@ -51,11 +51,10 @@ class FormatoEntregaApiController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'descripcion' => 'required|max:255',
             'factor_hueco' => 'required|numeric'
         ]);
         $formatoEntrega = FormatoEntrega::findOrFail($id);
-        $formatoEntrega->descripcion = $request->input('descripcion');
+        //$formatoEntrega->descripcion = $request->input('descripcion');
         $formatoEntrega->modificador_id = $request->user()->id;
         $formatoEntrega->factor_hueco = $request->input('factor_hueco');
         $formatoEntrega->save();

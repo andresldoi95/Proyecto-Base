@@ -4379,7 +4379,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -68542,9 +68541,6 @@ var render = function() {
                     )
                   }
                 ],
-                createButton: _vm.$store.getters.permiteAccion(
-                  "crear_formatos_entrega"
-                ),
                 resource: "/api/formatos-entrega",
                 isPaginated: false,
                 columns: [
@@ -68622,6 +68618,7 @@ var render = function() {
                       },
                       [
                         _c("b-input", {
+                          attrs: { readonly: "" },
                           model: {
                             value: _vm.form.descripcion,
                             callback: function($$v) {

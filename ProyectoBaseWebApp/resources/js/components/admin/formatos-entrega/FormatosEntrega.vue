@@ -13,7 +13,6 @@
               ),
             },
           ]"
-          :createButton="$store.getters.permiteAccion('crear_formatos_entrega')"
           @adding="adding"
           @canceled="canceled"
           @realizarAccion="realizarAccion"
@@ -57,7 +56,7 @@
                 :type="errores.descripcion ? 'is-danger' : ''"
                 :label="$t('message.descripcion')"
               >
-                <b-input v-model="form.descripcion"></b-input>
+                <b-input readonly v-model="form.descripcion"></b-input>
               </b-field>
             </div>
             <div class="column">
