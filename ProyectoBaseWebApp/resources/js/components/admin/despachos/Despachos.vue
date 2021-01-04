@@ -52,7 +52,7 @@
                 },
                 {
                     label : $t('message.volumen'),
-                    field : '',
+                    field : 'volumen',
                     sortable : true
                 },
                 {

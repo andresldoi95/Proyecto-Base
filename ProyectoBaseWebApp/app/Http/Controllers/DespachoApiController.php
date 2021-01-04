@@ -23,6 +23,8 @@ use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Collection;
+
 
 class DespachoApiController extends Controller
 {
@@ -72,7 +74,20 @@ class DespachoApiController extends Controller
         Paginator::currentPageResolver(function () use ($currentPage) {
             return $currentPage;
         });
-        return $despachos->paginate($request->input('per_page'));
+
+        $despachos = $despachos->paginate($request->input('per_page'));
+
+        foreach($despachos as $despacho){
+            $trozas = Troza::where('despacho_id', $despacho->id)->get();
+            if($trozas->count()>0){
+                $despacho->volumen = number_format($trozas->first()->volumen_estimado,2)." BFT";
+
+            }else{
+                $despacho->volumen = number_format($despacho->filas()->sum('bft'),2)." BFT";
+            }
+        }
+
+        return $despachos;
     }
     public function update(Request $request, $id)
     {

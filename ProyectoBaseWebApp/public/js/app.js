@@ -67294,7 +67294,7 @@ var render = function() {
                   },
                   {
                     label: _vm.$t("message.volumen"),
-                    field: "",
+                    field: "volumen",
                     sortable: true
                   },
                   {
@@ -67766,7 +67766,7 @@ var render = function() {
                   },
                   {
                     label: _vm.$t("message.volumen"),
-                    field: "",
+                    field: "volumen",
                     sortable: true
                   },
                   {

@@ -12,7 +12,7 @@ class Despacho extends Model
         'id', 'camion_id', 'controlador_id', 'destino_id', 'aserrador_id', 'material_id', 'tipo_madera_id',
         'origen_madera_id', 'formato_entrega_id', 'codigo_po', 'fecha_tumba', 'fecha_despacho',
         'dias_t2k', 'guia_remision', 'guia_forestal', 'guia_forestal', 'tipo_llenado',
-        'valor_flete', 'estado', 'usuario_id', 'origen_hacienda_id', 'numero_documento'
+        'valor_flete', 'estado', 'usuario_id', 'origen_hacienda_id', 'numero_documento','volumen'
     ];
     public function camion() {
         return $this->belongsTo('App\Camion');
@@ -50,11 +50,15 @@ class Despacho extends Model
     }
 
     public function getFechaTumbaAttribute($value) {
-        return (new Carbon($value))->format('yy-m-d');
+        return (new Carbon($value))->format('Y-m-d');
     }
     public function getFechaDespachoAttribute($value) {
-        return (new Carbon($value))->format('yy-m-d');
+        return (new Carbon($value))->format('Y-m-d');
     }
+
+    /*public function getVolumenAttribute($value) {
+        return "123";
+    }*/
 
     public function getGuiaRemisionAttribute($value) {
         return substr($value,0,3)."-".substr($value,3,3)."-".substr($value,6,9);

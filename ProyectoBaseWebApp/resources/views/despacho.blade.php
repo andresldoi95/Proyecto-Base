@@ -282,7 +282,7 @@
                 @endif
                 <span class="upper"><strong>Aserrador: </strong>{{$aserrador->nombre }}</span>
                 <br>
-                <span class="upper"><strong>Cédula: </strong>{{$aserrador->identificacion }}</span>
+                <span class="upper"><strong>Vendor: </strong>{{$aserrador->vendor }}</span>
                 <br> 
             </td>
         </tr>
