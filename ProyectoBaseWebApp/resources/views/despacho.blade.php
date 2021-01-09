@@ -260,7 +260,7 @@
                     <strong>Total BFT enviados:</strong> {{ number_format($despacho->filas()->sum('bft'), 2) }}
                 </td>
                 <td class="upper" colspan="2">
-                    <strong>Volumen Estimado:</strong> {{ $trozas->first()->volumen_estimado}}
+                    <strong>Volumen Estimado:</strong> {{ $trozas->first()->volumen_estimado}} M3
                 </td>
                 @else
                 <td class="upper" colspan="{{ (($espesores->count() + 2) / 2) }}">               

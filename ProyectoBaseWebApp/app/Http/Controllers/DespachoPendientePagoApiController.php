@@ -70,7 +70,7 @@ class DespachoPendientePagoApiController extends Controller
         foreach($despachos as $despacho){
             $trozas = Troza::where('despacho_id', $despacho->id)->get();
             if($trozas->count()>0){
-                $despacho->volumen = number_format($trozas->first()->volumen_estimado,2)." BFT";
+                $despacho->volumen = number_format($trozas->first()->volumen_estimado,2)." M3";
 
             }else{
                 $despacho->volumen = number_format($despacho->filas()->sum('bft'),2)." BFT";

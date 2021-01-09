@@ -39,7 +39,7 @@ class OrigenMaderaApiController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'descripcion' => 'required|max:255',
+            'descripcion' => 'required|max:255|unique:origenes_madera',
             'hectareas' => 'required|numeric',
             'volumen_inventario' => 'required|numeric',
             'hectareas' => 'required|numeric'
@@ -66,7 +66,7 @@ class OrigenMaderaApiController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'descripcion' => 'required|max:255',
+            'descripcion' => 'required|max:255|unique:origenes_madera',
             'hectareas' => 'required|numeric',
             'volumen_inventario' => 'required|numeric',
             'hectareas' => 'required|numeric'
