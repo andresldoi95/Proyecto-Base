@@ -5482,6 +5482,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -7246,19 +7255,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -69598,6 +69594,15 @@ var render = function() {
                     label: _vm.$t("message.status"),
                     field: "estado",
                     sortable: true
+                  },
+                  {
+                    label: "",
+                    field: "",
+                    sortable: false,
+                    button: true,
+                    event: "addYear",
+                    "icon-left": "folder-plus",
+                    type: "is-info"
                   }
                 ]
               },
@@ -71795,37 +71800,6 @@ var render = function() {
                             label: _vm.$t("title.origenes_madera"),
                             tag: "router-link",
                             to: "/admin/origenes-madera"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("b-menu-item", {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value:
-                                _vm.$store.state.nombre_empresa_actual !== "" &&
-                                (_vm.$store.getters.permiteAccion(
-                                  "crear_origenes_madera"
-                                ) ||
-                                  _vm.$store.getters.permiteAccion(
-                                    "editar_origenes_madera"
-                                  ) ||
-                                  _vm.$store.getters.permiteAccion(
-                                    "consultar_origenes_madera"
-                                  ) ||
-                                  _vm.$store.getters.permiteAccion(
-                                    "eliminar_origenes_madera"
-                                  )),
-                              expression:
-                                "\n                $store.state.nombre_empresa_actual !== '' &&\n                ($store.getters.permiteAccion('crear_origenes_madera') ||\n                  $store.getters.permiteAccion('editar_origenes_madera') ||\n                  $store.getters.permiteAccion('consultar_origenes_madera') ||\n                  $store.getters.permiteAccion('eliminar_origenes_madera'))\n              "
-                            }
-                          ],
-                          attrs: {
-                            icon: "home",
-                            label: _vm.$t("title.origenes_madera_anios"),
-                            tag: "router-link",
-                            to: "/admin/origenes-madera-anios"
                           }
                         }),
                         _vm._v(" "),

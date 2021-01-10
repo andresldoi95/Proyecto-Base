@@ -46,6 +46,15 @@
               field: 'estado',
               sortable: true,
             },
+                {
+                    label: '',
+                    field: '',
+                    sortable: false,
+                    button: true,
+                    event: 'addYear',
+                    'icon-left': 'folder-plus',
+                    type: 'is-info'
+                }
           ]"
         >
           <div class="columns">
