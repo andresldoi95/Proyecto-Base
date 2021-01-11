@@ -7508,6 +7508,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -71811,6 +71824,37 @@ var render = function() {
                               value:
                                 _vm.$store.state.nombre_empresa_actual !== "" &&
                                 (_vm.$store.getters.permiteAccion(
+                                  "crear_origenes_madera"
+                                ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "editar_origenes_madera"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "consultar_origenes_madera"
+                                  ) ||
+                                  _vm.$store.getters.permiteAccion(
+                                    "eliminar_origenes_madera"
+                                  )),
+                              expression:
+                                "\n                $store.state.nombre_empresa_actual !== '' &&\n                ($store.getters.permiteAccion('crear_origenes_madera') ||\n                  $store.getters.permiteAccion('editar_origenes_madera') ||\n                  $store.getters.permiteAccion('consultar_origenes_madera') ||\n                  $store.getters.permiteAccion('eliminar_origenes_madera'))\n              "
+                            }
+                          ],
+                          attrs: {
+                            icon: "home",
+                            label: _vm.$t("title.origenes_madera_anios"),
+                            tag: "router-link",
+                            to: "/admin/origenes-madera-anios"
+                          }
+                        }),
+                        _vm._v(" "),
+                        _c("b-menu-item", {
+                          directives: [
+                            {
+                              name: "show",
+                              rawName: "v-show",
+                              value:
+                                _vm.$store.state.nombre_empresa_actual !== "" &&
+                                (_vm.$store.getters.permiteAccion(
                                   "crear_origenes_hacienda"
                                 ) ||
                                   _vm.$store.getters.permiteAccion(
@@ -97370,7 +97414,7 @@ __webpack_require__.r(__webpack_exports__);
     tipos_madera: "Tipos de madera",
     formatos_entrega: "Formatos de entrega",
     origenes_madera: "Haciendas",
-    origenes_madera_anios: "Años de las Haciendas",
+    origenes_madera_anios: "Años de Cultivo",
     tipos_bulto: "Tipos de bulto"
   },
   etiqueta: {

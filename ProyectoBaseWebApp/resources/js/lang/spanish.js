@@ -115,7 +115,7 @@ export default {
         tipos_madera: "Tipos de madera",
         formatos_entrega: "Formatos de entrega",
         origenes_madera: "Haciendas",
-        origenes_madera_anios: "Años de las Haciendas",
+        origenes_madera_anios: "Años de Cultivo",
 
         tipos_bulto: "Tipos de bulto"
     },

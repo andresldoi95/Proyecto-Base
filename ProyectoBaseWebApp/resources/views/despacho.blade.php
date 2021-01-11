@@ -66,7 +66,10 @@
             </tr>
             <tr>
                 <td>
-                    Año de cultivo: {{ $despacho->origenMadera->anio_cultivo }}
+                    Año de cultivo: 
+                    @if($despacho->origenMaderaAnio)
+                        {{ $despacho->origenMaderaAnio->anio_cultivo }}
+                    @endif
                 </td>
                 <td>
                     Fecha de tumba:<br> {{ $despacho->fecha_tumba }}

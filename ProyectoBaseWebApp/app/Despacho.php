@@ -32,6 +32,9 @@ class Despacho extends Model
     public function origenMadera() {
         return $this->belongsTo('App\OrigenMadera');
     }
+    public function origenMaderaAnio() {
+        return $this->belongsTo('App\OrigenMaderaAnios');
+    }
     public function origenHacienda() {
         return $this->belongsTo('App\OrigenHacienda');
     }
