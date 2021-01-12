@@ -12,9 +12,6 @@ public class OrigenMadera {
     @ColumnInfo(name = "descripcion")
     public String descripcion;
 
-    @ColumnInfo(name = "anio_cultivo")
-    public int anioCultivo;
-
     @ColumnInfo(name = "volumen_inventario")
     public double volumenInventario;
 
@@ -29,6 +26,6 @@ public class OrigenMadera {
 
     @Override
     public String toString() {
-        return descripcion + " (" + this.anioCultivo + ")";
+        return descripcion;
     }
 }

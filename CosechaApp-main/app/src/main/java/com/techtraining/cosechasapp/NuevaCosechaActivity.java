@@ -15,11 +15,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.techtraining.cosechasapp.controls.CustomDatePicker;
+import com.techtraining.cosechasapp.db.AppDatabase;
 import com.techtraining.cosechasapp.db.Aserrador;
 import com.techtraining.cosechasapp.db.Camion;
 import com.techtraining.cosechasapp.db.Controlador;
@@ -28,9 +30,11 @@ import com.techtraining.cosechasapp.db.Destino;
 import com.techtraining.cosechasapp.db.FormatoEntrega;
 import com.techtraining.cosechasapp.db.OrigenHacienda;
 import com.techtraining.cosechasapp.db.OrigenMadera;
+import com.techtraining.cosechasapp.db.OrigenMaderaAnio;
 import com.techtraining.cosechasapp.db.TipoMadera;
 import com.techtraining.cosechasapp.tasks.CalcularFlete;
 import com.techtraining.cosechasapp.tasks.CargarDatosNuevaCosecha;
+import com.techtraining.cosechasapp.tasks.CargarHaciendaAniosCosecha;
 import com.techtraining.cosechasapp.tasks.CargarMaterialCosecha;
 import com.techtraining.cosechasapp.tasks.GuardarCabeceraCosecha;
 import com.toptoche.searchablespinnerlibrary.SearchableSpinner;
@@ -39,6 +43,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -47,13 +52,13 @@ public class NuevaCosechaActivity extends AppCompatActivity {
     public EditText etDiasT2k;
     public EditText etFechaDespacho;
     public SearchableSpinner spnCamion;
-    public SearchableSpinner spnControlador;
     public SearchableSpinner spnDestino;
     public SearchableSpinner spnAserrador;
     public EditText etCodigoPo;
     public SearchableSpinner spnTipoMadera;
     public SearchableSpinner spnFormatoEntrega;
     public SearchableSpinner spnOrigenMadera;
+    public SearchableSpinner spnOrigenMaderaAnio;
     public EditText etFechaTumba;
     public EditText etGuiaForestal;
     public EditText etGuiaRemision;
@@ -65,11 +70,6 @@ public class NuevaCosechaActivity extends AppCompatActivity {
         Camion selectedCamion = (Camion) spnCamion.getSelectedItem();
         if (selectedCamion == null) {
             Toast.makeText(this, R.string.camion_requerido, Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        Controlador selectedControlador = (Controlador) spnControlador.getSelectedItem();
-        if (selectedControlador == null) {
-            Toast.makeText(this, R.string.controlador_requerido, Toast.LENGTH_SHORT).show();
             return false;
         }
         Destino selectedDestino = (Destino) spnDestino.getSelectedItem();
@@ -96,6 +96,11 @@ public class NuevaCosechaActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.fecha_tumba_requerida, Toast.LENGTH_SHORT).show();
             return false;
         }
+        String guiaRemision = etGuiaRemision.getText().toString();
+        if (guiaRemision.length() <15 ) {
+            Toast.makeText(this, "La Guía de Remisión debe contener 15 dígitos.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         TipoMadera tipoMadera = (TipoMadera) spnTipoMadera.getSelectedItem();
         if (tipoMadera == null) {
             Toast.makeText(this, R.string.tipo_madera_requerido, Toast.LENGTH_SHORT).show();
@@ -111,6 +116,13 @@ public class NuevaCosechaActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.origen_madera_requerido, Toast.LENGTH_SHORT).show();
             return false;
         }
+
+        OrigenMaderaAnio origenMaderaAnio = (OrigenMaderaAnio) spnOrigenMaderaAnio.getSelectedItem();
+        if (origenMaderaAnio == null) {
+            Toast.makeText(this, R.string.origen_madera_anio_requerido, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
         OrigenHacienda origenHacienda = (OrigenHacienda) spnOrigenHacieda.getSelectedItem();
         if (origenHacienda == null) {
             Toast.makeText(this, R.string.origen_hacienda_requerida, Toast.LENGTH_SHORT).show();
@@ -145,7 +157,6 @@ public class NuevaCosechaActivity extends AppCompatActivity {
         etGuiaForestal = findViewById(R.id.etGuiaForestal);
         etGuiaRemision = findViewById(R.id.etGuiaRemision);
         spnCamion = findViewById(R.id.spnCamion);
-        spnControlador = findViewById(R.id.spnControlador);
         spnDestino = findViewById(R.id.spnDestino);
         spnAserrador = findViewById(R.id.spnAserrador);
         etCodigoPo = findViewById(R.id.etCodigoPo);
@@ -166,6 +177,27 @@ public class NuevaCosechaActivity extends AppCompatActivity {
         spnFormatoEntrega.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                try {
+                    if(!isHistorial){
+                        FormatoEntrega formatoEntrega = (FormatoEntrega) spnFormatoEntrega.getSelectedItem();
+                        if(formatoEntrega!=null){
+                            if(formatoEntrega.id==3){
+                                spnTipoMadera.setEnabled(false);
+                                spnTipoMadera.setFocusable(false);
+                                spnTipoMadera.setSelection(0);
+                            }else{
+                                spnTipoMadera.setEnabled(true);
+                                spnTipoMadera.setFocusable(true);
+                            }
+                        }else{
+                            spnTipoMadera.setEnabled(true);
+                            spnTipoMadera.setFocusable(true);
+                        }
+                    }
+
+                }catch (Exception e){
+                    Log.e( "onItemSelected: ", e.toString() );
+                }
                 setearMaterial();
             }
 
@@ -175,6 +207,11 @@ public class NuevaCosechaActivity extends AppCompatActivity {
             }
         });
         spnOrigenMadera = findViewById(R.id.spnOrigenMadera);
+        spnOrigenMaderaAnio = findViewById(R.id.spnOrigenMaderaAnio);
+
+
+
+
         etFechaTumba = findViewById(R.id.etFechaTumba);
         etFechaTumba.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -210,10 +247,21 @@ public class NuevaCosechaActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 calcularValorFlete();
+
+                try {
+                    setearAniosHacienda();
+
+
+                }catch (Exception e){
+
+                }
+
+
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                setearAniosHacienda();
                 calcularValorFlete();
             }
         });
@@ -246,9 +294,6 @@ public class NuevaCosechaActivity extends AppCompatActivity {
         spnCamion.setTitle(getString(R.string.ingrese_origen_camion));
         spnCamion.setPositiveButton(getString(R.string.close));
 
-        spnControlador.setTitle(getString(R.string.ingrese_controlador));
-        spnControlador.setPositiveButton(getString(R.string.close));
-
         spnDestino.setTitle(getString(R.string.ingrese_desitno));
         spnDestino.setPositiveButton(getString(R.string.close));
 
@@ -264,6 +309,9 @@ public class NuevaCosechaActivity extends AppCompatActivity {
         spnOrigenMadera.setTitle(getString(R.string.ingrese_origen_hacienda));
         spnOrigenMadera.setPositiveButton(getString(R.string.close));
 
+        spnOrigenMaderaAnio.setTitle(getString(R.string.ingrese_origen_hacienda_anio));
+        spnOrigenMaderaAnio.setPositiveButton(getString(R.string.close));
+
         if(isHistorial){
             spnOrigenHacieda.setEnabled(false);
             etValorFlete.setEnabled(false);
@@ -272,13 +320,13 @@ public class NuevaCosechaActivity extends AppCompatActivity {
             etGuiaForestal.setEnabled(false);
             etGuiaRemision.setEnabled(false);
             spnCamion.setEnabled(false);
-            spnControlador.setEnabled(false);
             spnDestino.setEnabled(false);
             spnAserrador.setEnabled(false);
             etCodigoPo.setEnabled(false);
             etMaterial.setEnabled(false);
             spnTipoMadera.setEnabled(false);
             spnOrigenMadera.setEnabled(false);
+            spnOrigenMaderaAnio.setEnabled(false);
             spnFormatoEntrega.setEnabled(false);
             etFechaTumba.setEnabled(false);
         }
@@ -289,6 +337,13 @@ public class NuevaCosechaActivity extends AppCompatActivity {
         OrigenHacienda origenHacienda = (OrigenHacienda) spnOrigenHacieda.getSelectedItem();
         if (tipoMadera != null && origenHacienda != null) {
             new CargarMaterialCosecha(this, tipoMadera.id, origenHacienda.id).execute();
+        }
+    }
+
+    private void setearAniosHacienda() {
+        OrigenMadera origenMadera = (OrigenMadera) spnOrigenMadera.getSelectedItem();
+        if (origenMadera != null ) {
+            new CargarHaciendaAniosCosecha(this, origenMadera.id).execute();
         }
     }
 
@@ -309,12 +364,12 @@ public class NuevaCosechaActivity extends AppCompatActivity {
     private void guardar() {
         final SharedPreferences preferences = getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE);
         Camion selectedCamion = (Camion) spnCamion.getSelectedItem();
-        Controlador selectedControlador = (Controlador) spnControlador.getSelectedItem();
         Destino selectedDestino = (Destino) spnDestino.getSelectedItem();
         Aserrador selectedAserrador = (Aserrador) spnAserrador.getSelectedItem();
         TipoMadera selectedTipoMadera = (TipoMadera) spnTipoMadera.getSelectedItem();
         FormatoEntrega selectedFormatoEntrega = (FormatoEntrega) spnFormatoEntrega.getSelectedItem();
         OrigenMadera selectedOrigenMadera = (OrigenMadera) spnOrigenMadera.getSelectedItem();
+        OrigenMaderaAnio selectedOrigenMaderaAnio = (OrigenMaderaAnio) spnOrigenMaderaAnio.getSelectedItem();
         OrigenHacienda selectedOrigenHacienda = (OrigenHacienda) spnOrigenHacieda.getSelectedItem();
         String cosechaId = preferences.getString(Helper.CURRENT_COSECHA_ID_NAME, null);
         if (cosechaId == null){
@@ -326,7 +381,6 @@ public class NuevaCosechaActivity extends AppCompatActivity {
         cosecha.origenHaciendaId = selectedOrigenHacienda.id;
         cosecha.camionId = selectedCamion.id;
         cosecha.codigoPo = etCodigoPo.getText().toString();
-        cosecha.controladorId = selectedControlador.id;
         cosecha.destinoId = selectedDestino.id;
         cosecha.materialId = materialId;
         cosecha.aserradorId = selectedAserrador.id;
@@ -338,6 +392,8 @@ public class NuevaCosechaActivity extends AppCompatActivity {
         cosecha.tipoMaderaId = selectedTipoMadera.id;
         cosecha.formatoEntregaId = selectedFormatoEntrega.id;
         cosecha.origenMaderaId = selectedOrigenMadera.id;
+        cosecha.origenMaderaAnioId = selectedOrigenMaderaAnio.id;
+        Log.e( "origenMaderaAnioId: ", String.valueOf(selectedOrigenMaderaAnio.id));
         cosecha.estado = "P";
         cosecha.valorFlete = Double.parseDouble(etValorFlete.getText().toString());
         cosecha.tipoLlenado = selectedFormatoEntrega.id == 1?"B":(selectedFormatoEntrega.id == 2?"S":"T");

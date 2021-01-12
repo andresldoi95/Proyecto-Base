@@ -1,15 +1,19 @@
 package com.techtraining.cosechasapp.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.techtraining.cosechasapp.R;
 import com.techtraining.cosechasapp.db.Cosecha;
+import com.techtraining.cosechasapp.db.FilaCosecha;
 
 import java.util.List;
 
@@ -19,6 +23,10 @@ public class CosechasTerminadasAdapter extends ArrayAdapter<Cosecha>  {
 
     private static class ViewHolder {
         CheckBox chkSeleccionar;
+        TextView tvCosecha;
+        TextView tvFechaDespacho;
+        TextView tvCamion;
+        TextView tvVolumenEstimado;
     }
 
     public CosechasTerminadasAdapter(List<Cosecha> data, Context context) {
@@ -45,11 +53,45 @@ public class CosechasTerminadasAdapter extends ArrayAdapter<Cosecha>  {
                 }
             });
             convertView.setTag(viewHolder);
+            viewHolder.tvCosecha = (TextView) convertView.findViewById(R.id.tvCosecha);
+            viewHolder.tvFechaDespacho = (TextView) convertView.findViewById(R.id.tvFechaDespacho);
+            viewHolder.tvCamion = (TextView) convertView.findViewById(R.id.tvCamion);
+            viewHolder.tvVolumenEstimado = (TextView) convertView.findViewById(R.id.tvVolumenEstimado);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();
         }
         viewHolder.chkSeleccionar.setChecked(dataModel.seleccionado);
-        viewHolder.chkSeleccionar.setText(dataModel.codigoPo);
+        //viewHolder.chkSeleccionar.setText(String.valueOf(position +1));
+        viewHolder.tvCosecha.setText(mContext.getString(R.string.id_despacho_text, String.valueOf(position + 1)));
+
+        viewHolder.tvFechaDespacho.setText(mContext.getString(R.string.fecha_despacho_text, dataModel.fechaDespacho));
+        try{
+            double valor_volumen = 0;
+
+            for (int i = 0; i < dataModel.filas.size(); i++) {
+                FilaCosecha fila = dataModel.filas.get(i);
+                valor_volumen = valor_volumen+ fila.bft;
+            }
+
+            if(valor_volumen==0){
+                valor_volumen= valor_volumen + dataModel.troza.volumenEstimado;
+
+            }
+
+            viewHolder.tvVolumenEstimado.setText(mContext.getString(R.string.volumen_text, String.valueOf(valor_volumen)));
+
+
+        }catch (Exception e){
+            viewHolder.tvVolumenEstimado.setText(mContext.getString(R.string.volumen_text, ""));
+            Log.e( "Error volumen: ",e.toString() );
+        }
+
+        try{
+            viewHolder.tvCamion.setText(mContext.getString(R.string.camion_placa_text, String.valueOf( dataModel.camionPlaca)));
+        }catch (Exception e){
+            viewHolder.tvCamion.setText(mContext.getString(R.string.camion_placa_text, ""));
+            Log.e( "Error Camion: ",e.toString() );
+        }
         return convertView;
     }
 }

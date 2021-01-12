@@ -154,12 +154,13 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(JSONObject response) {
                     try {
                         String nombre = response.getString("name");
+                        String identificacion = response.getString("identificacion");
                         Toast.makeText(MainActivity.this, getString(R.string.welcome) + " " + nombre, Toast.LENGTH_SHORT).show();
                         int currentId = response.getInt("id");
                         SharedPreferences.Editor editor = preferences.edit();
                         editor.putInt(Helper.CURRENT_ID, currentId);
                         editor.commit();
-                        new InsertUpdateUser(getApplicationContext(), currentId, nombre, response.getString("email")).execute();
+                        new InsertUpdateUser(getApplicationContext(), currentId, nombre, response.getString("email"),identificacion).execute();
                         String primeraVez = preferences.getString(Helper.FIRST_TIME_NAME, "N");
                         if (primeraVez.equals("N")) {
                             importar();

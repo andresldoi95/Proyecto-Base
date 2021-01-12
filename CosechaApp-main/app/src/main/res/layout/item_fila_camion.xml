@@ -47,7 +47,7 @@
         android:layout_margin="@dimen/item_fila_camion_margin"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@id/tvBft"
-        android:text=")"
+        android:text=" BFT)"
         android:textStyle="bold"
         android:layout_width="wrap_content"
         android:id="@+id/tvParentesisDer"

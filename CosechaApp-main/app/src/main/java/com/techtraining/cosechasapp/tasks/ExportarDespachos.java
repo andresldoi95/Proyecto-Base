@@ -62,6 +62,8 @@ public class ExportarDespachos extends AsyncTask<Void, Void, Void> {
                 imagenFilaList.addAll(appDatabase.imagenFilaDao().loadByFila(fila.id));
             }
             cosecha.troza = appDatabase.trozaDao().loadByCosecha(cosecha.id);
+            Log.e( "Exp origenMaderaAnioId: ", String.valueOf(cosecha.origenMaderaAnioId));
+
             if(cosecha.troza != null){
                 trozaFotosList = appDatabase.trozaFotosDao().loadAllByTrozaId(cosecha.troza.id);
             }
@@ -71,125 +73,6 @@ public class ExportarDespachos extends AsyncTask<Void, Void, Void> {
             String json = gson.toJson(cosecha);
             try {
                 JSONObject request = new JSONObject(json);
-                JSONObject request_new = new JSONObject();
-                Log.e( "request: ", request.toString());
-
-                /*
-
-                //FOTOS TROZAS
-                try {
-                    JSONArray jsonArrayTrozaFotos = request.getJSONArray("troza_fotos");
-                    JSONObject jsonObjectTrozaFotos_new = new JSONObject();
-
-
-
-                        for(int i2=0; i2<jsonArrayTrozaFotos.length(); i2++){
-                            JSONObject jsonObjectFilaFotos = jsonArrayTrozaFotos.getJSONObject(i2);
-
-                            if(!jsonObjectFilaFotos.getString("foto").equals("NULL") && !jsonObjectFilaFotos.getString("foto").equals("")){
-                                Bitmap bitmap = null;
-                                BitmapFactory.Options options = null;
-                                options = new BitmapFactory.Options();
-                                bitmap = BitmapFactory.decodeFile(jsonObjectFilaFotos.getString("foto"), options);
-                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                                bitmap.compress(Bitmap.CompressFormat.JPEG, 40, stream);
-                                byte[] byte_arr = stream.toByteArray();
-                                String encodedImage = Base64.encodeToString(byte_arr, 0);
-
-                                //Se actualiza el path
-                                jsonObjectFilaFotos.put("foto",encodedImage);
-
-                                //Se actualiza Fila Fotos
-
-                            }
-
-
-                            jsonObjectTrozaFotos_new.put(String.valueOf(i2),jsonObjectFilaFotos);
-
-
-                        }
-
-                    request.put("troza_fotos",jsonObjectTrozaFotos_new);
-
-                } catch (Exception e) {
-                    Log.e( "Exception FOTO TROZA", e.toString());
-                }
-                //FOTOS FILAS
-                try {
-
-                    JSONArray jsonArrayFila = request.getJSONArray("filas");
-
-                    JSONObject jsonObjectFila_new = new JSONObject();
-
-
-
-                    for(int i=0; i<jsonArrayFila.length(); i++){
-                        JSONObject jsonObjectFila = jsonArrayFila.getJSONObject(i);
-
-
-                        JSONArray jsonArrayFilaFotos = jsonObjectFila.getJSONArray("fotos");
-                        JSONObject jsonObjectFilaFotos_new = new JSONObject();
-
-
-
-                        for(int i2=0; i2<jsonArrayFilaFotos.length(); i2++){
-                            JSONObject jsonObjectFilaFotos = jsonArrayFilaFotos.getJSONObject(i2);
-
-                            if(!jsonObjectFilaFotos.getString("path").equals("NULL") && !jsonObjectFilaFotos.getString("path").equals("")){
-                                Bitmap bitmap = null;
-                                BitmapFactory.Options options = null;
-                                options = new BitmapFactory.Options();
-                                bitmap = BitmapFactory.decodeFile(jsonObjectFilaFotos.getString("path"), options);
-                                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                                bitmap.compress(Bitmap.CompressFormat.JPEG, 40, stream);
-                                byte[] byte_arr = stream.toByteArray();
-                                String encodedImage = Base64.encodeToString(byte_arr, 0);
-
-                                //Se actualiza el path
-                                jsonObjectFilaFotos.put("path",encodedImage);
-
-                                //Se actualiza Fila Fotos
-
-                            }
-
-
-                            jsonObjectFilaFotos_new.put(String.valueOf(i2),jsonObjectFilaFotos);
-
-
-                        }
-
-                        jsonObjectFila.put("fotos",jsonObjectFilaFotos_new);
-
-
-
-                        jsonObjectFila_new.put(String.valueOf(i),jsonObjectFila);
-
-                    }
-
-                    Log.e( "jsonObjectFila_new:", jsonObjectFila_new.toString());
-
-
-                    request.put("filas",jsonObjectFila_new);
-
-
-
-
-
-
-
-
-                } catch (Exception e) {
-                    Log.e( "Exception FOTO FILA", e.toString());
-                }
-
-
-
-                Log.e( "request NEW: ", request.toString());
-
-                 */
-
-
-
                 JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, request, new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {

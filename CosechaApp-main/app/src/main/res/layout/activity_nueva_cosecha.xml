@@ -13,13 +13,31 @@
         android:paddingBottom="@dimen/single_form_updown_margin"
         android:paddingTop="@dimen/single_form_updown_margin"
         tools:context=".NuevaCosechaActivity">
+
+        <TextView
+            android:layout_marginTop="@dimen/space_form_margin"
+            android:id="@+id/tvFormatoEntrega"
+            android:layout_width="match_parent"
+            android:text="@string/tv_formato_entrega"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="wrap_content"></TextView>
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/space_form_margin"
+            android:id="@+id/spnFormatoEntrega"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvFormatoEntrega"
+            android:layout_height="wrap_content"></com.toptoche.searchablespinnerlibrary.SearchableSpinner>
         <TextView
             android:id="@+id/tvOrigenHacienda"
             android:layout_width="match_parent"
             android:text="@string/tv_origen_hacienda"
             android:layout_marginLeft="@dimen/side_form_margin"
             android:layout_marginRight="@dimen/side_form_margin"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/spnFormatoEntrega"
             android:layout_height="wrap_content"></TextView>
         <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:layout_width="match_parent"
@@ -30,12 +48,46 @@
             android:layout_height="wrap_content" />
         <TextView
             android:layout_marginTop="@dimen/space_form_margin"
+            android:id="@+id/tvOrigenMadera"
+            android:layout_width="match_parent"
+            android:text="@string/tv_origen_madera"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/spnOrigenHacienda"
+            android:layout_height="wrap_content"></TextView>
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:layout_width="match_parent"
+            android:id="@+id/spnOrigenMadera"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvOrigenMadera"
+            android:layout_height="wrap_content"></com.toptoche.searchablespinnerlibrary.SearchableSpinner>
+
+        <TextView
+            android:layout_marginTop="@dimen/space_form_margin"
+            android:id="@+id/tvOrigenMaderaAnio"
+            android:layout_width="match_parent"
+            android:text="@string/tv_origen_madera_anio"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/spnOrigenMadera"
+            android:layout_height="wrap_content"></TextView>
+        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
+            android:layout_width="match_parent"
+            android:id="@+id/spnOrigenMaderaAnio"
+            android:layout_marginLeft="@dimen/side_form_margin"
+            android:layout_marginRight="@dimen/side_form_margin"
+            app:layout_constraintTop_toBottomOf="@id/tvOrigenMaderaAnio"
+            android:layout_height="wrap_content"></com.toptoche.searchablespinnerlibrary.SearchableSpinner>
+
+        <TextView
+            android:layout_marginTop="@dimen/space_form_margin"
             android:id="@+id/tvCamion"
             android:layout_width="match_parent"
             android:text="@string/tv_camion"
             android:layout_marginLeft="@dimen/side_form_margin"
             android:layout_marginRight="@dimen/side_form_margin"
-            app:layout_constraintTop_toBottomOf="@id/spnOrigenHacienda"
+            app:layout_constraintTop_toBottomOf="@id/spnOrigenMaderaAnio"
             android:layout_height="wrap_content"></TextView>
         <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:layout_width="match_parent"
@@ -46,28 +98,12 @@
             android:layout_height="wrap_content"></com.toptoche.searchablespinnerlibrary.SearchableSpinner>
         <TextView
             android:layout_marginTop="@dimen/space_form_margin"
-            android:id="@+id/tvControlador"
-            android:layout_width="match_parent"
-            android:text="@string/tv_controlador"
-            android:layout_marginLeft="@dimen/side_form_margin"
-            android:layout_marginRight="@dimen/side_form_margin"
-            app:layout_constraintTop_toBottomOf="@id/spnCamion"
-            android:layout_height="wrap_content"></TextView>
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:layout_width="match_parent"
-            android:id="@+id/spnControlador"
-            android:layout_marginLeft="@dimen/side_form_margin"
-            android:layout_marginRight="@dimen/side_form_margin"
-            app:layout_constraintTop_toBottomOf="@id/tvControlador"
-            android:layout_height="wrap_content"></com.toptoche.searchablespinnerlibrary.SearchableSpinner>
-        <TextView
-            android:layout_marginTop="@dimen/space_form_margin"
             android:id="@+id/tvDestino"
             android:layout_width="match_parent"
             android:text="@string/tv_destino"
             android:layout_marginLeft="@dimen/side_form_margin"
             android:layout_marginRight="@dimen/side_form_margin"
-            app:layout_constraintTop_toBottomOf="@id/spnControlador"
+            app:layout_constraintTop_toBottomOf="@id/spnCamion"
             android:layout_height="wrap_content"></TextView>
         <com.toptoche.searchablespinnerlibrary.SearchableSpinner
             android:layout_width="match_parent"
@@ -105,26 +141,12 @@
             android:id="@+id/etCodigoPo"
             android:layout_width="match_parent"
             android:hint="@string/hint_po"
+            android:inputType="number"
             android:layout_marginLeft="@dimen/side_form_margin"
             android:layout_marginRight="@dimen/side_form_margin"
             app:layout_constraintTop_toBottomOf="@id/tvCodigoPo"
             android:layout_height="wrap_content"></EditText>
-        <TextView
-            android:layout_marginTop="@dimen/space_form_margin"
-            android:id="@+id/tvOrigenMadera"
-            android:layout_width="match_parent"
-            android:text="@string/tv_origen_madera"
-            android:layout_marginLeft="@dimen/side_form_margin"
-            android:layout_marginRight="@dimen/side_form_margin"
-            app:layout_constraintTop_toBottomOf="@id/etCodigoPo"
-            android:layout_height="wrap_content"></TextView>
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:layout_width="match_parent"
-            android:id="@+id/spnOrigenMadera"
-            android:layout_marginLeft="@dimen/side_form_margin"
-            android:layout_marginRight="@dimen/side_form_margin"
-            app:layout_constraintTop_toBottomOf="@id/tvOrigenMadera"
-            android:layout_height="wrap_content"></com.toptoche.searchablespinnerlibrary.SearchableSpinner>
+
         <TextView
             android:layout_marginTop="@dimen/space_form_margin"
             android:id="@+id/tvFechaTumba"
@@ -132,7 +154,7 @@
             android:text="@string/tv_fecha_tumba"
             android:layout_marginLeft="@dimen/side_form_margin"
             android:layout_marginRight="@dimen/side_form_margin"
-            app:layout_constraintTop_toBottomOf="@id/spnOrigenMadera"
+            app:layout_constraintTop_toBottomOf="@id/etCodigoPo"
             android:layout_height="wrap_content"></TextView>
         <EditText
             android:inputType="date"
@@ -158,7 +180,11 @@
         <EditText
             android:id="@+id/etGuiaRemision"
             android:layout_width="match_parent"
-            android:hint="@string/hint_guia_remision"
+            android:hint="000-000-000000000"
+            android:maxLength="15"
+            android:digits="1234567890"
+            android:singleLine="true"
+            android:inputType="number"
             android:layout_marginLeft="@dimen/side_form_margin"
             android:layout_marginRight="@dimen/side_form_margin"
             app:layout_constraintTop_toBottomOf="@id/tvGuiaRemision"
@@ -176,6 +202,7 @@
             android:id="@+id/etGuiaForestal"
             android:layout_width="match_parent"
             android:hint="@string/hint_guia_forestal"
+            android:inputType="text"
             android:layout_marginLeft="@dimen/side_form_margin"
             android:layout_marginRight="@dimen/side_form_margin"
             app:layout_constraintTop_toBottomOf="@id/tvGuiaForestal"
@@ -196,22 +223,7 @@
             android:layout_marginRight="@dimen/side_form_margin"
             app:layout_constraintTop_toBottomOf="@id/tvTipoMadera"
             android:layout_height="wrap_content"></com.toptoche.searchablespinnerlibrary.SearchableSpinner>
-        <TextView
-            android:layout_marginTop="@dimen/space_form_margin"
-            android:id="@+id/tvFormatoEntrega"
-            android:layout_width="match_parent"
-            android:text="@string/tv_formato_entrega"
-            android:layout_marginLeft="@dimen/side_form_margin"
-            android:layout_marginRight="@dimen/side_form_margin"
-            app:layout_constraintTop_toBottomOf="@id/spnTipoMadera"
-            android:layout_height="wrap_content"></TextView>
-        <com.toptoche.searchablespinnerlibrary.SearchableSpinner
-            android:layout_width="match_parent"
-            android:id="@+id/spnFormatoEntrega"
-            android:layout_marginLeft="@dimen/side_form_margin"
-            android:layout_marginRight="@dimen/side_form_margin"
-            app:layout_constraintTop_toBottomOf="@id/tvFormatoEntrega"
-            android:layout_height="wrap_content"></com.toptoche.searchablespinnerlibrary.SearchableSpinner>
+
         <TextView
             android:layout_marginTop="@dimen/space_form_margin"
             android:id="@+id/tvMaterial"
@@ -220,7 +232,7 @@
             android:text="@string/tv_material"
             android:layout_marginLeft="@dimen/side_form_margin"
             android:layout_marginRight="@dimen/side_form_margin"
-            app:layout_constraintTop_toBottomOf="@id/spnFormatoEntrega"
+            app:layout_constraintTop_toBottomOf="@id/spnTipoMadera"
             android:layout_height="wrap_content"></TextView>
         <EditText
             android:enabled="false"

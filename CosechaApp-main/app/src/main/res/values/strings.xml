@@ -68,6 +68,8 @@
     <string name="tv_codigo_po">Código PO</string>
     <string name="hint_po">Será manual cuando no exista</string>
     <string name="tv_origen_madera">Hacienda</string>
+    <string name="tv_origen_madera_anio">Años de Cultivo</string>
+
     <string name="tv_tipo_madera">Tipo de madera</string>
     <string name="tv_fecha_tumba">Fecha de tumba</string>
     <string name="hint_fecha_tumba">Indique una fecha...</string>
@@ -90,6 +92,8 @@
     <string name="tipo_madera_requerido">El tipo de madera es requerido.</string>
     <string name="formato_entrega_requerido">El formato de entrega es requerido.</string>
     <string name="origen_madera_requerido">La hacienda es requerida</string>
+    <string name="origen_madera_anio_requerido">El Año de Cultivo es requerido.</string>
+
     <string name="tipo_bulto">Tipo de bulto</string>
     <string name="tipo_bulto_requerido">El tipo de bulto es requerido</string>
 
@@ -107,8 +111,8 @@
 
     <string name="plantilla">Número de plantillas</string>
     <string name="bultos">Cant. Bultos</string>
-    <string name="espesor">Espesor</string>
-    <string name="largo">Largo</string>
+    <string name="espesor">Espesor(Pulgadas)</string>
+    <string name="largo">Largo(Pies)</string>
     <string name="datos_bloque">Datos de bloque</string>
 
     <string name="plantilla_requerida">El número de plantillas es requerido.</string>
@@ -175,7 +179,7 @@
 
     <string name="troza_guardada">La troza ha sido almacenada.</string>
 
-    <string name="volumen_estimado">Volumen estimado</string>
+    <string name="volumen_estimado">Volumen estimado (M3)</string>
     <string name="observaciones">Observaciones</string>
 
     <string name="quitar_foto">Quitar foto</string>
@@ -192,6 +196,8 @@
     <string name="ingrese_tipo_madera">Ingrese Tipo de Madera</string>
     <string name="ingrese_formato_entrega">Ingrese Formato de Entrega</string>
     <string name="ingrese_origen_hacienda">Ingrese Hacienda</string>
+    <string name="ingrese_origen_hacienda_anio">Ingrese Año</string>
+
     <string name="confirm_delete_title">Eliminar</string>
     <string name="confirm_delete_body">¿Esta seguro que desea eliminar este ingreso?</string>
     <string name="bloque_eliminado">El bloque ha sido eliminado exitosamente.</string>
@@ -212,4 +218,9 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="ver">Ver</string>
     <string name="codigo_po_text">Código PO: %1$s</string>
+    <string name="camion_placa_text">Camión: %1$s</string>
+    <string name="volumen_text">Volumen(BFT): %1$s</string>
+    <string name="id_despacho_text">ID: %1$s</string>
+
+
 </resources>

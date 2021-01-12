@@ -13,12 +13,16 @@ public class InsertUpdateUser extends AsyncTask<Void, Void, Void> {
     private int id;
     private String name;
     private String email;
+    private String identificacion;
+
     private Context context;
-    public InsertUpdateUser(Context context, int id, String name, String email) {
+    public InsertUpdateUser(Context context, int id, String name, String email, String identificacion) {
         this.context = context;
         this.id  = id;
         this.name = name;
         this.email = email;
+        this.identificacion = identificacion;
+
     }
     @Override
     protected Void doInBackground(Void... voids) {
@@ -30,11 +34,13 @@ public class InsertUpdateUser extends AsyncTask<Void, Void, Void> {
             user.id = id;
             user.name = name;
             user.email = email;
+            user.identificacion = identificacion;
             userDao.insertOne(user);
         }
         else {
             user.name = name;
             user.email = email;
+            user.identificacion = identificacion;
             userDao.update(user);
         }
         return null;

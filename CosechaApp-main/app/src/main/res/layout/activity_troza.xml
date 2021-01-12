@@ -45,6 +45,7 @@
             android:layout_width="match_parent"
             android:layout_marginLeft="@dimen/side_form_margin"
             android:layout_marginRight="@dimen/side_form_margin"
+            android:inputType="numberDecimal"
             app:layout_constraintTop_toBottomOf="@id/tvVolumenEstimado"
             android:id="@+id/etVolumenEstimado"
             android:layout_height="wrap_content" />

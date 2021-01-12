@@ -198,19 +198,7 @@
                 tag="router-link"
                 to="/admin/correos"
               ></b-menu-item>
-              <b-menu-item
-                v-show="
-                  $store.state.nombre_empresa_actual !== '' &&
-                  ($store.getters.permiteAccion('crear_controladores') ||
-                    $store.getters.permiteAccion('editar_controladores') ||
-                    $store.getters.permiteAccion('consultar_controladores') ||
-                    $store.getters.permiteAccion('eliminar_controladores'))
-                "
-                icon="nature-people"
-                :label="$t('title.controladores')"
-                tag="router-link"
-                to="/admin/controladores"
-              ></b-menu-item>
+              
               <b-menu-item
                 v-show="
                   $store.state.nombre_empresa_actual !== '' &&

@@ -159,7 +159,7 @@ Route::group(['middleware' => 'auth:api'], function () {
             'create', 'edit', 'show'
         ]
     ]);
-    Route::group(['prefix' => 'controladores'], function () {
+    /*Route::group(['prefix' => 'controladores'], function () {
         Route::delete('/', 'ControladorApiController@destroy');
         Route::get('/all', 'ControladorApiController@all');
     });
@@ -167,7 +167,7 @@ Route::group(['middleware' => 'auth:api'], function () {
         'except' => [
             'create', 'edit', 'show'
         ]
-    ]);
+    ]);*/
     Route::group(['prefix' => 'espesores'], function () {
         Route::delete('/', 'EspesorApiController@destroy');
         Route::get('/all', 'EspesorApiController@all');

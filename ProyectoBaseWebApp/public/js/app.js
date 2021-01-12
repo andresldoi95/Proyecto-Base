@@ -7658,18 +7658,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -72993,37 +72981,6 @@ var render = function() {
                             label: _vm.$t("title.correos"),
                             tag: "router-link",
                             to: "/admin/correos"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("b-menu-item", {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value:
-                                _vm.$store.state.nombre_empresa_actual !== "" &&
-                                (_vm.$store.getters.permiteAccion(
-                                  "crear_controladores"
-                                ) ||
-                                  _vm.$store.getters.permiteAccion(
-                                    "editar_controladores"
-                                  ) ||
-                                  _vm.$store.getters.permiteAccion(
-                                    "consultar_controladores"
-                                  ) ||
-                                  _vm.$store.getters.permiteAccion(
-                                    "eliminar_controladores"
-                                  )),
-                              expression:
-                                "\n                $store.state.nombre_empresa_actual !== '' &&\n                ($store.getters.permiteAccion('crear_controladores') ||\n                  $store.getters.permiteAccion('editar_controladores') ||\n                  $store.getters.permiteAccion('consultar_controladores') ||\n                  $store.getters.permiteAccion('eliminar_controladores'))\n              "
-                            }
-                          ],
-                          attrs: {
-                            icon: "nature-people",
-                            label: _vm.$t("title.controladores"),
-                            tag: "router-link",
-                            to: "/admin/controladores"
                           }
                         }),
                         _vm._v(" "),

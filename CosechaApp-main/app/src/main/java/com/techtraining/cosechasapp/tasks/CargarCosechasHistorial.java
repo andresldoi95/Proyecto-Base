@@ -37,6 +37,9 @@ public class CargarCosechasHistorial extends AsyncTask<Void, Void, Void> {
         long today = date.getTime()/1000L;
         for (Cosecha cosecha:cosechas){
             try {
+                cosecha.filas = appDatabase.filaCosechaDao().loadByCosecha(cosecha.id);
+                cosecha.troza = appDatabase.trozaDao().loadByCosecha(cosecha.id);
+                cosecha.camionPlaca =appDatabase.camionDao().loadById(cosecha.camionId).placa;
                 DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
                 date = (Date)formatter.parse(cosecha.fechaDespacho);
                 date = new Date(date.getTime() + Helper.UNIX_DAYS_HISTORIAL);
@@ -46,6 +49,7 @@ public class CargarCosechasHistorial extends AsyncTask<Void, Void, Void> {
                 }else if(cosecha.estado.equals("F")){
                     currentCosechas.add(cosecha);
                 }
+                Log.e( "cosecha: ", cosecha.filas.toString());
             } catch (ParseException e) {
                 e.printStackTrace();
             }

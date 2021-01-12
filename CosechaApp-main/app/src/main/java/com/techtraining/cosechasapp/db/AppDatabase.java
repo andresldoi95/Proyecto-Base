@@ -10,7 +10,7 @@ Espesor.class, Largo.class, Material.class, CodigoAserrador.class, Cosecha.class
 Parametro.class, FilaCosecha.class, ItemFilaCosecha.class, MaterialProcedencia.class,
 TipoMadera.class, FormatoEntrega.class, OrigenMadera.class, TipoBulto.class, FilaSuelto.class,
 Tarifa.class, ImagenFila.class, OrigenHacienda.class, HaciendaMadera.class,
-Troza.class, TrozaFotos.class}, version = Helper.DB_VERSION, exportSchema = false)
+Troza.class, TrozaFotos.class, OrigenMaderaAnio.class}, version = Helper.DB_VERSION, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     public abstract UserDao userDao();
     public abstract EmpresaDao empresaDao();
@@ -31,6 +31,7 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract TipoMaderaDao tipoMaderaDao();
     public abstract FormatoEntregaDao formatoEntregaDao();
     public abstract OrigenMaderaDao origenMaderaDao();
+    public abstract OrigenMaderaAnioDao origenMaderaAnioDao();
     public abstract TipoBultoDao tipoBultoDao();
     public abstract FilaSueltoDao filaSueltoDao();
     public abstract TarifaDao tarifaDao();

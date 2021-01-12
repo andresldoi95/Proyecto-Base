@@ -2,6 +2,7 @@ package com.techtraining.cosechasapp.tasks;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 
 import com.techtraining.cosechasapp.DBManager;
@@ -16,7 +17,9 @@ import com.techtraining.cosechasapp.db.Destino;
 import com.techtraining.cosechasapp.db.FormatoEntrega;
 import com.techtraining.cosechasapp.db.OrigenHacienda;
 import com.techtraining.cosechasapp.db.OrigenMadera;
+import com.techtraining.cosechasapp.db.OrigenMaderaAnio;
 import com.techtraining.cosechasapp.db.TipoMadera;
+import com.techtraining.cosechasapp.db.User;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,7 +29,8 @@ public class CargarDatosNuevaCosecha extends AsyncTask<Void, Void, Void> {
     private Context context;
     private NuevaCosechaActivity activity;
     private List<Camion> camiones;
-    private List<Controlador> controladores;
+    //private List<Controlador> controladores;
+    private List<User> usuarios;
     private List<Destino> destinos;
     private List<Aserrador> aserradores;
     private List<OrigenMadera> origenesMadera;
@@ -42,7 +46,6 @@ public class CargarDatosNuevaCosecha extends AsyncTask<Void, Void, Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         activity.spnCamion.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_dropdown_item, camiones));
-        activity.spnControlador.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_dropdown_item, controladores));
         activity.spnDestino.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_dropdown_item, destinos));
         activity.spnAserrador.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_dropdown_item, aserradores));
         activity.spnTipoMadera.setAdapter(new ArrayAdapter<>(activity, android.R.layout.simple_spinner_dropdown_item, tiposMadera));
@@ -75,12 +78,6 @@ public class CargarDatosNuevaCosecha extends AsyncTask<Void, Void, Void> {
                     break;
                 }
             }
-            for (int i = 0; i < controladores.size(); i++) {
-                if (controladores.get(i).id == currentCosecha.controladorId) {
-                    activity.spnControlador.setSelection(i);
-                    break;
-                }
-            }
             for (int i = 0; i < tiposMadera.size(); i++) {
                 if (tiposMadera.get(i).id == currentCosecha.tipoMaderaId) {
                     activity.spnTipoMadera.setSelection(i);
@@ -93,6 +90,12 @@ public class CargarDatosNuevaCosecha extends AsyncTask<Void, Void, Void> {
                     break;
                 }
             }
+            /*for (int i = 0; i < origenesMaderaAnio.size(); i++) {
+                if (origenesMaderaAnio.get(i).id == currentCosecha.origenMaderaAnioId) {
+                    activity.spnOrigenMaderaAnio.setSelection(i);
+                    break;
+                }
+            }*/
             for (int i = 0; i < formatosEntrega.size(); i++) {
                 if (formatosEntrega.get(i).id == currentCosecha.formatoEntregaId) {
                     activity.spnFormatoEntrega.setSelection(i);
@@ -126,7 +129,7 @@ public class CargarDatosNuevaCosecha extends AsyncTask<Void, Void, Void> {
     protected Void doInBackground(Void... voids) {
         AppDatabase appDatabase = DBManager.getInstance(context);
         camiones = appDatabase.camionDao().getAllActive();
-        controladores = appDatabase.controladorDao().getAllActive();
+        usuarios = appDatabase.userDao().getAll();
         destinos = appDatabase.destinoDao().getAllActive();
         aserradores = appDatabase.aserradorDao().getAllActive();
         origenesMadera = appDatabase.origenMaderaDao().getAllActive();

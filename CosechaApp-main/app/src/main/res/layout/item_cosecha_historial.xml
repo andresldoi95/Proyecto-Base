@@ -19,13 +19,31 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
     <TextView
-        android:id="@+id/tvFechaDespacho"
+        android:id="@+id/tvCamion"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/item_fila_camion_margin"
         android:textStyle="bold"
         android:gravity="center_vertical"
         app:layout_constraintTop_toBottomOf="@+id/tvCosecha"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+    <TextView
+        android:id="@+id/tvVolumenEstimado"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/item_fila_camion_margin"
+        android:textStyle="bold"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/tvCamion"
+        app:layout_constraintLeft_toLeftOf="parent"/>
+    <TextView
+        android:id="@+id/tvFechaDespacho"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/item_fila_camion_margin"
+        android:textStyle="bold"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@+id/tvVolumenEstimado"
         app:layout_constraintLeft_toLeftOf="parent"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

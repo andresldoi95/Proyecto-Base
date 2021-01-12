@@ -50,56 +50,114 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (formularioValido()) {
-                    String url = Helper.URL_OAUTH2;
-                    JSONObject jsonObject = new JSONObject();
+
                     try {
-                        jsonObject.put("client_id", Helper.CLIENT_ID);
-                        jsonObject.put("grant_type", Helper.GRANT_TYPE);
-                        jsonObject.put("client_secret", Helper.CLIENT_SECRET);
-                        jsonObject.put("username", etUsername.getText().toString());
-                        jsonObject.put("password", etPassword.getText().toString());
-                    }
-                    catch (JSONException ex) {
-                        Log.e(LoginActivity.class.getName(), ex.getMessage());
-                    }
-                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
-                            url, jsonObject, new Response.Listener<JSONObject>() {
-                        @Override
-                        public void onResponse(JSONObject response) {
-                            try {
-                                String token = response.getString("access_token");
-                                SharedPreferences sharedPreferences = getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE);
-                                SharedPreferences.Editor editor = sharedPreferences.edit();
-                                editor.putString(Helper.USER_TOKEN_NAME, token);
-                                editor.commit();
-                                Toast.makeText(LoginActivity.this, R.string.acceso_exitoso, Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                startActivity(intent);
-                                finish();
-                            }
-                            catch (JSONException ex) {
-                                Toast.makeText(LoginActivity.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
+                        String url = Helper.URL_LOGIN_APP;
+                        JSONObject jsonObject = new JSONObject();
+                        try {
+                            jsonObject.put("username", etUsername.getText().toString());
+                            jsonObject.put("password", etPassword.getText().toString());
                         }
-                    }, new Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            String errorMessage = error.getMessage();
-                            if (errorMessage != null)
-                                Log.e(LoginActivity.class.getName(), errorMessage);
-                            NetworkResponse networkResponse = error.networkResponse;
-                            if (networkResponse != null) {
-                                Toast.makeText(LoginActivity.this, R.string.invalid_credentials, Toast.LENGTH_SHORT).show();
-                            }
-                            else if (errorMessage != null)
-                                Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-                            else
-                                Toast.makeText(LoginActivity.this, R.string.error_generico, Toast.LENGTH_SHORT).show();
+                        catch (JSONException ex) {
+                            Log.e(LoginActivity.class.getName(), ex.getMessage());
                         }
-                    });
-                    NetworkManager.getInstance(LoginActivity.this).addToRequestQueue(jsonObjectRequest);
+                        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
+                                url, jsonObject, new Response.Listener<JSONObject>() {
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                try {
+                                    Log.e( "response: ", response.toString());
+                                    String status = response.getString("status");
+
+                                    if(status.equals("true")){
+                                        LOGIN_OAUTH();
+                                    }else{
+                                        Toast.makeText(LoginActivity.this, "No tiene permisos para ingresar a la app. Contacte al Administrador", Toast.LENGTH_SHORT).show();
+
+                                    }
+
+
+                                }
+                                catch (JSONException ex) {
+                                    Toast.makeText(LoginActivity.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }, new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                String errorMessage = error.getMessage();
+                                if (errorMessage != null)
+                                    Log.e(LoginActivity.class.getName(), errorMessage);
+                                NetworkResponse networkResponse = error.networkResponse;
+                                if (networkResponse != null) {
+                                    Toast.makeText(LoginActivity.this, "No tiene permisos para ingresar a la app. Contacte al Administrador", Toast.LENGTH_SHORT).show();
+                                }
+                                else if (errorMessage != null)
+                                    Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                                else
+                                    Toast.makeText(LoginActivity.this, R.string.error_generico, Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        NetworkManager.getInstance(LoginActivity.this).addToRequestQueue(jsonObjectRequest);
+
+                    }catch (Exception e){
+                        Log.e( "Error Login App: ",e.toString() );
+                    }
+
                 }
             }
         });
+    }
+
+    public void  LOGIN_OAUTH(){
+        String url = Helper.URL_OAUTH2;
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("client_id", Helper.CLIENT_ID);
+            jsonObject.put("grant_type", Helper.GRANT_TYPE);
+            jsonObject.put("client_secret", Helper.CLIENT_SECRET);
+            jsonObject.put("username", etUsername.getText().toString());
+            jsonObject.put("password", etPassword.getText().toString());
+        }
+        catch (JSONException ex) {
+            Log.e(LoginActivity.class.getName(), ex.getMessage());
+        }
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST,
+                url, jsonObject, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    String token = response.getString("access_token");
+                    SharedPreferences sharedPreferences = getSharedPreferences(Helper.SHARED_PREFERENCES_NAME, MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString(Helper.USER_TOKEN_NAME, token);
+                    editor.commit();
+                    Toast.makeText(LoginActivity.this, R.string.acceso_exitoso, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                catch (JSONException ex) {
+                    Toast.makeText(LoginActivity.this, ex.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                String errorMessage = error.getMessage();
+                if (errorMessage != null)
+                    Log.e(LoginActivity.class.getName(), errorMessage);
+                NetworkResponse networkResponse = error.networkResponse;
+                if (networkResponse != null) {
+                    Toast.makeText(LoginActivity.this, R.string.invalid_credentials, Toast.LENGTH_SHORT).show();
+                }
+                else if (errorMessage != null)
+                    Toast.makeText(LoginActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(LoginActivity.this, R.string.error_generico, Toast.LENGTH_SHORT).show();
+            }
+        });
+        NetworkManager.getInstance(LoginActivity.this).addToRequestQueue(jsonObjectRequest);
+
     }
 }

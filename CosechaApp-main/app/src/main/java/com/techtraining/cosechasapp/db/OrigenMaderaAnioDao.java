@@ -9,28 +9,31 @@ import androidx.room.Update;
 import java.util.List;
 
 @Dao
-public interface OrigenMaderaDao {
-    @Query("SELECT * FROM origenmadera")
-    List<OrigenMadera> getAll();
+public interface OrigenMaderaAnioDao {
+    @Query("SELECT * FROM origenmaderaanio")
+    List<OrigenMaderaAnio> getAll();
 
-    @Query("SELECT * FROM origenmadera WHERE estado = 'A'")
-    List<OrigenMadera> getAllActive();
+    @Query("SELECT * FROM origenmaderaanio WHERE estado = 'A'")
+    List<OrigenMaderaAnio> getAllActive();
 
-    @Query("SELECT * FROM origenmadera WHERE id IN (:origenMaderaIds)")
-    List<OrigenMadera> loadAllByIds(int[] origenMaderaIds);
+    @Query("SELECT * FROM origenmaderaanio WHERE estado = 'A' AND origen_madera_id = :select_origen_madera_id ")
+    List<OrigenMaderaAnio> getAllActiveOrigenMadera(int select_origen_madera_id);
 
-    @Query("SELECT * FROM origenmadera WHERE id = (:origenMaderaId)")
-    OrigenMadera loadById(int origenMaderaId);
+    @Query("SELECT * FROM origenmaderaanio WHERE id IN (:origenMaderaAnioIds)")
+    List<OrigenMaderaAnio> loadAllByIds(int[] origenMaderaAnioIds);
+
+    @Query("SELECT * FROM origenmaderaanio WHERE id = (:origenMaderaAnioId)")
+    OrigenMaderaAnio loadById(int origenMaderaAnioId);
 
     @Update
-    void update(OrigenMadera origenMadera);
+    void update(OrigenMaderaAnio origenMaderaAnio);
 
     @Insert
-    void insertOne(OrigenMadera origenMadera);
+    void insertOne(OrigenMaderaAnio origenMaderaAnio);
 
     @Insert
-    void insertAll(OrigenMadera... origenesMadera);
+    void insertAll(OrigenMaderaAnio... origenMaderaAnios);
 
     @Delete
-    void delete(OrigenMadera origenMadera);
+    void delete(OrigenMaderaAnio origenMaderaAnio);
 }

@@ -11,8 +11,8 @@ public class Aserrador {
     @ColumnInfo(name = "nombre")
     public String nombre;
 
-    @ColumnInfo(name = "identificacion")
-    public String identificacion;
+    @ColumnInfo(name = "vendor")
+    public String vendor;
 
     @ColumnInfo(name = "empresa_id")
     public int empresaId;
@@ -22,6 +22,6 @@ public class Aserrador {
 
     @Override
     public String toString() {
-        return nombre + " (" + identificacion + ")";
+        return nombre + " (" + vendor + ")";
     }
 }

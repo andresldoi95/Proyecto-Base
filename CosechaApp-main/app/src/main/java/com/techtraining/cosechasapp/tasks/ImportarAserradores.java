@@ -41,13 +41,13 @@ public class ImportarAserradores extends AsyncTask<Void, Void, Void> {
                     aserrador.id = id;
                     aserrador.nombre = jsonObject.getString("nombre");
                     aserrador.empresaId = jsonObject.getInt("empresa_id");
-                    aserrador.identificacion = jsonObject.getString("identificacion");
+                    aserrador.vendor = jsonObject.getString("vendor");
                     aserrador.estado = jsonObject.getString("estado");
                     aserradorDao.insertOne(aserrador);
                 }
                 else {
                     aserrador.nombre = jsonObject.getString("nombre");
-                    aserrador.identificacion = jsonObject.getString("identificacion");
+                    aserrador.vendor = jsonObject.getString("vendor");
                     aserrador.estado = jsonObject.getString("estado");
                     aserrador.empresaId = jsonObject.getInt("empresa_id");
                     aserradorDao.update(aserrador);

@@ -129,7 +129,6 @@ class DespachoApiController extends Controller
         $request->validate([
             'id' => 'required|max:36',
             'camionId' => 'required|exists:camiones,id',
-            'controladorId' => 'required|exists:controladores,id',
             'destinoId' => 'required|exists:destinos,id',
             'aserradorId' => 'required|exists:aserradores,id',
             'materialId' => 'required|exists:materiales,id',
@@ -162,7 +161,6 @@ class DespachoApiController extends Controller
                 $despacho = Despacho::create([
                     'id' => $request->input('id'),
                     'camion_id' => $request->input('camionId'),
-                    'controlador_id' => $request->input('controladorId'),
                     'destino_id' => $request->input('destinoId'),
                     'aserrador_id' => $request->input('aserradorId'),
                     'material_id' => $request->input('materialId'),

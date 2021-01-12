@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class OrigenMaderaAnios {
+public class OrigenMaderaAnio {
     @PrimaryKey
     public int id;
 

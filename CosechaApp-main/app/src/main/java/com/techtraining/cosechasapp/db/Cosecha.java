@@ -16,9 +16,6 @@ public class Cosecha {
     @ColumnInfo(name = "camion_id")
     public int camionId;
 
-    @ColumnInfo(name = "controlador_id")
-    public int controladorId;
-
     @ColumnInfo(name = "destino_id")
     public int destinoId;
 
@@ -33,6 +30,9 @@ public class Cosecha {
 
     @ColumnInfo(name = "origen_madera_id")
     public int origenMaderaId;
+
+    @ColumnInfo(name = "origen_madera_anio_id")
+    public int origenMaderaAnioId;
 
     @ColumnInfo(name = "origen_hacienda_id")
     public int origenHaciendaId;
@@ -74,6 +74,8 @@ public class Cosecha {
     public List<FilaCosecha> filas;
     @Ignore
     public List<TrozaFotos> troza_fotos;
+    @Ignore
+    public String camionPlaca;
 
     @Ignore
     public Troza troza;

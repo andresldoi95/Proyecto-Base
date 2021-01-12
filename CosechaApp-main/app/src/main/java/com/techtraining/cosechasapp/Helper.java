@@ -3,10 +3,14 @@ package com.techtraining.cosechasapp;
 import android.app.AlarmManager;
 
 public class Helper {
-    //public static final String URL_API = "http://38.123.149.8/api";
-    //public static final String URL_OAUTH2 = "http://38.123.149.8/oauth/token";
-    public static final String URL_API = "http://192.168.1.167:8000/api";
-    public static final String URL_OAUTH2 = "http://192.168.1.167:8000/oauth/token";
+    public static final String URL_API = "http://38.123.149.8/api";
+    public static final String URL_OAUTH2 = "http://38.123.149.8/oauth/token";
+    public static final String URL_LOGIN_APP = "http://38.123.149.8/api/login_app";
+
+    /*public static final String URL_API = "http://192.168.0.117:8000/api";
+    public static final String URL_OAUTH2 = "http://192.168.0.117:8000/oauth/token";
+    public static final String URL_LOGIN_APP = "http://192.168.0.117:8000/api/login_app";*/
+    
     public static final String CLIENT_ID = "2";
     public static final String GRANT_TYPE = "password";
     public static final String CLIENT_SECRET = "XbEO8Ol48yp67UQrw0L4sbQSrmNKxFGaRwzplHKL";
@@ -19,7 +23,7 @@ public class Helper {
     public static final String SHARED_PREFERENCES_NAME = "cosechas";
     public static final String AUTH_HEADER = "Authorization";
     public static final String AUTH_TYPE = "Bearer ";
-    public static final int DB_VERSION = 39;
+    public static final int DB_VERSION = 42;
     public static final int MAX_PHOTOS_TROZA = 3;
     public static final String DB_NAME = "cosechas";
     public static final String CURRENT_ID = "currentId";
