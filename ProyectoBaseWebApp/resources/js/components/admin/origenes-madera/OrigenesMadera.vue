@@ -161,7 +161,7 @@
 </template>
 
 <script>
-import MasterForm from "../../layouts/MasterForm";
+import MasterForm from "../../layouts/MasterFormOrigenesMadera";
 import MasterFormOrigenesMaderaAnios from "../../layouts/MasterFormOrigenesMaderaAnios";
 
 export default {

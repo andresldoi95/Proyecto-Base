@@ -28,10 +28,9 @@
             :value="option.value"
           >{{ option.text }}</option>
         </b-select>
-        <b-input type="number" v-model="form.origen_madera_id_filter" style="display:none;"></b-input>
         <b-input type="text" v-model="form.search" :placeholder="$t('message.search')"></b-input>
         <div class="control">
-          <b-button native-type="submit" type="is-primary" id="enviar_busqueda" icon-left="magnify"></b-button>
+          <b-button native-type="submit" type="is-primary" icon-left="magnify"></b-button>
         </div>
         <b-select v-model="form.per_page" v-show="isPaginated">
           <option
@@ -44,14 +43,14 @@
     </form>
     <form v-show="tipo_formulario !== 'C'" @submit.prevent="submitFormulario">
       <slot></slot>
-      <b-field grouped group-multiline style="position: relative;float: right;">
+      <b-field grouped group-multiline>
         <div class="control">
           <b-button
             v-show="editable"
             native-type="submit"
             type="is-primary"
             icon-left="content-save"
-          >{{ $t("message.guardar") }} Año</b-button>
+          >{{ $t("message.guardar") }}</b-button>
         </div>
         <div class="control">
           <b-button
@@ -59,7 +58,7 @@
             native-type="button"
             type="is-danger"
             icon-left="close"
-          >{{ $t("message.cancelar") }} Año</b-button>
+          >{{ $t("message.cancelar") }}</b-button>
         </div>
       </b-field>
     </form>
@@ -211,7 +210,6 @@ export default {
       form: {
         status: this.defaultStatus,
         search: "",
-        origen_madera_id_filter: "",
         per_page: this.pageDefault,
         current_page: 1,
         sort_by: this.sortByDefault,
@@ -261,7 +259,6 @@ export default {
       this.$emit("editar", row);
     },
     submit: function () {
-      this.form.origen_madera_id_filter = document.getElementById("origen_madera_id_filter_2").value;
       this.isLoading = true;
       if (this.tipo_formulario !== "C") this.tipo_formulario = "C";
       this.$http
