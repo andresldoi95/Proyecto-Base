@@ -7676,18 +7676,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -72164,37 +72152,6 @@ var render = function() {
                               value:
                                 _vm.$store.state.nombre_empresa_actual !== "" &&
                                 (_vm.$store.getters.permiteAccion(
-                                  "crear_origenes_madera"
-                                ) ||
-                                  _vm.$store.getters.permiteAccion(
-                                    "editar_origenes_madera"
-                                  ) ||
-                                  _vm.$store.getters.permiteAccion(
-                                    "consultar_origenes_madera"
-                                  ) ||
-                                  _vm.$store.getters.permiteAccion(
-                                    "eliminar_origenes_madera"
-                                  )),
-                              expression:
-                                "\n                $store.state.nombre_empresa_actual !== '' &&\n                ($store.getters.permiteAccion('crear_origenes_madera') ||\n                  $store.getters.permiteAccion('editar_origenes_madera') ||\n                  $store.getters.permiteAccion('consultar_origenes_madera') ||\n                  $store.getters.permiteAccion('eliminar_origenes_madera'))\n              "
-                            }
-                          ],
-                          attrs: {
-                            icon: "home",
-                            label: _vm.$t("title.origenes_madera_anios"),
-                            tag: "router-link",
-                            to: "/admin/origenes-madera-anios"
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("b-menu-item", {
-                          directives: [
-                            {
-                              name: "show",
-                              rawName: "v-show",
-                              value:
-                                _vm.$store.state.nombre_empresa_actual !== "" &&
-                                (_vm.$store.getters.permiteAccion(
                                   "crear_origenes_hacienda"
                                 ) ||
                                   _vm.$store.getters.permiteAccion(
@@ -97675,8 +97632,8 @@ __webpack_require__.r(__webpack_exports__);
     ancho_bulto: "Ancho de bulto",
     placa: "Placa",
     tipo_camion: "Tipo de camión",
-    alto: "Alto",
-    ancho: "Ancho",
+    alto: "Alto (Pie)",
+    ancho: "Ancho (Pulgada)",
     identificacion: "Identificación",
     email_inexistente: "El e-mail proporcionado no está registrado en el sistema",
     link_enviado: "El link de recuperación ha sido enviado a su dirección de correo electrónico",
@@ -97717,7 +97674,7 @@ __webpack_require__.r(__webpack_exports__);
     valor_flete: "Valor Flete",
     color: "Color",
     codigo: "Código",
-    largo: "Largo",
+    largo: "Largo (Pie)",
     espesor: "Espesor",
     factor_hueco_bultos: 'Factor hueco (bultos)',
     factor_hueco_sueltos: 'Factor hueco (sueltos)',
@@ -97742,7 +97699,7 @@ __webpack_require__.r(__webpack_exports__);
     recuperar_cuenta: "Recuperar cuenta",
     recuperar_cuenta_sub: "Recupera tu cuenta proporcionándonos tu email",
     set_password: "Cambia tu contraseña",
-    largos: "Largos",
+    largos: "Largos (Pie)",
     espesores: "Espesores",
     procedencias: "Procedencias",
     destinos: "Destinos",
