@@ -5491,6 +5491,79 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -5505,29 +5578,36 @@ __webpack_require__.r(__webpack_exports__);
         _method: undefined,
         volumen_inventario: ""
       },
+      form2: {
+        origen_madera_id: "",
+        anio_cultivo: "",
+        id: "",
+        origen_madera_name: "",
+        _method: undefined
+      },
       acciones: [],
       errores: {
         hectareas: undefined,
         descripcion: undefined,
-        volumen_inventario: undefined
+        volumen_inventario: undefined,
+        origen_madera_id: undefined,
+        anio_cultivo: undefined
       }
     };
   },
   methods: {
-    canceled: function canceled() {
-      this.limpiar();
+    canceledAnio: function canceledAnio() {
+      this.limpiarAnio();
     },
-    limpiar: function limpiar() {
-      this.form.id = "";
-      this.form._method = undefined;
-      this.form.hectareas = "";
-      this.form.descripcion = "";
-      this.form.volumen_inventario = "";
+    limpiarAnio: function limpiarAnio() {
+      this.form2.id = "";
+      this.form2._method = undefined;
+      this.form2.anio_cultivo = "";
     },
-    adding: function adding() {
-      this.limpiar();
+    addingAnio: function addingAnio() {
+      this.limpiarAnio();
     },
-    realizarAccion: function realizarAccion(type, origenes_madera) {
+    realizarAccionAnio: function realizarAccionAnio(type, origenes_madera) {
       var _this = this;
 
       if (type === "E") {
@@ -5537,7 +5617,7 @@ __webpack_require__.r(__webpack_exports__);
           origenes_maderaId.push(origenes_madera[i].id);
         }
 
-        this.$http.post("http://127.0.0.1:8000/api" + "/origenes-madera", {
+        this.$http.post("http://127.0.0.1:8000/api" + "/origenes-madera-anios", {
           origenesMadera: origenes_maderaId,
           _method: "DELETE"
         }).then(function () {
@@ -5555,6 +5635,93 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
+    editarAnio: function editarAnio(origenMaderaAnio) {
+      this.form2.id = origenMaderaAnio.id;
+      this.form2.origen_madera_id = origenMaderaAnio.origen_madera_id;
+      this.form2.anio_cultivo = origenMaderaAnio.anio_cultivo;
+    },
+    limpiarErroresAnio: function limpiarErroresAnio() {
+      this.errores.anio_cultivo = undefined;
+    },
+    submitFormularioAnio: function submitFormularioAnio() {
+      var _this2 = this;
+
+      this.limpiarErroresAnio();
+      var path = "http://127.0.0.1:8000/api" + "/origenes-madera-anios";
+
+      if (this.form2.id !== "") {
+        path += "/" + this.form2.id;
+        this.form2._method = "PUT";
+      } else this.form2._method = undefined;
+
+      this.$http.post(path, this.form2).then(function () {
+        _this2.$buefy.toast.open({
+          message: _this2.$t("message.guardado_generico"),
+          type: "is-success"
+        });
+
+        _this2.$refs.masterForm.submit();
+      })["catch"](function (_ref) {
+        var response = _ref.response;
+        var status = response.status;
+
+        if (status === 422) {
+          _this2.errores.anio_cultivo = response.data.errors.anio_cultivo;
+          _this2.errores.origen_madera_id = response.data.errors.origen_madera_id;
+        } else {
+          _this2.$buefy.toast.open({
+            message: _this2.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        }
+      });
+    },
+    canceled: function canceled() {
+      this.limpiar();
+    },
+    limpiar: function limpiar() {
+      this.form.id = "";
+      this.form._method = undefined;
+      this.form.hectareas = "";
+      this.form.descripcion = "";
+      this.form.volumen_inventario = "";
+    },
+    adding: function adding() {
+      this.limpiar();
+    },
+    addYear: function addYear(origenes_madera) {
+      document.getElementById("add_anio_div").style.display = "block";
+      this.form2.origen_madera_id = origenes_madera.id;
+      this.form2.origen_madera_name = origenes_madera.descripcion;
+    },
+    realizarAccion: function realizarAccion(type, origenes_madera) {
+      var _this3 = this;
+
+      if (type === "E") {
+        var origenes_maderaId = [];
+
+        for (var i = 0; i < origenes_madera.length; i++) {
+          origenes_maderaId.push(origenes_madera[i].id);
+        }
+
+        this.$http.post("http://127.0.0.1:8000/api" + "/origenes-madera", {
+          origenesMadera: origenes_maderaId,
+          _method: "DELETE"
+        }).then(function () {
+          _this3.$buefy.toast.open({
+            message: _this3.$t("message.guardado_generico"),
+            type: "is-success"
+          });
+
+          _this3.$refs.masterForm.submit();
+        })["catch"](function () {
+          _this3.$buefy.toast.open({
+            message: _this3.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        });
+      }
+    },
     editar: function editar(origenMadera) {
       this.form.id = origenMadera.id;
       this.form.hectareas = origenMadera.hectareas;
@@ -5567,7 +5734,7 @@ __webpack_require__.r(__webpack_exports__);
       this.errores.volumen_inventario = undefined;
     },
     submitFormulario: function submitFormulario() {
-      var _this2 = this;
+      var _this4 = this;
 
       this.limpiarErrores();
       var path = "http://127.0.0.1:8000/api" + "/origenes-madera";
@@ -5578,23 +5745,23 @@ __webpack_require__.r(__webpack_exports__);
       } else this.form._method = undefined;
 
       this.$http.post(path, this.form).then(function () {
-        _this2.$buefy.toast.open({
-          message: _this2.$t("message.guardado_generico"),
+        _this4.$buefy.toast.open({
+          message: _this4.$t("message.guardado_generico"),
           type: "is-success"
         });
 
-        _this2.$refs.masterForm.submit();
-      })["catch"](function (_ref) {
-        var response = _ref.response;
+        _this4.$refs.masterForm.submit();
+      })["catch"](function (_ref2) {
+        var response = _ref2.response;
         var status = response.status;
 
         if (status === 422) {
-          _this2.errores.hectareas = response.data.errors.hectareas;
-          _this2.errores.volumen_inventario = response.data.errors.volumen_inventario;
-          _this2.errores.descripcion = response.data.errors.descripcion;
+          _this4.errores.hectareas = response.data.errors.hectareas;
+          _this4.errores.volumen_inventario = response.data.errors.volumen_inventario;
+          _this4.errores.descripcion = response.data.errors.descripcion;
         } else {
-          _this2.$buefy.toast.open({
-            message: _this2.$t("message.generic_error"),
+          _this4.$buefy.toast.open({
+            message: _this4.$t("message.generic_error"),
             type: "is-danger"
           });
         }
@@ -69621,6 +69788,7 @@ var render = function() {
               },
               on: {
                 adding: _vm.adding,
+                addYear: _vm.addYear,
                 canceled: _vm.canceled,
                 realizarAccion: _vm.realizarAccion,
                 editar: _vm.editar,
@@ -69753,6 +69921,178 @@ var render = function() {
                 )
               ])
             ]
+          ),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticStyle: { display: "none" }, attrs: { id: "add_anio_div" } },
+            [
+              _c("h1", { staticClass: "title" }, [
+                _vm._v(_vm._s(_vm.$t("title.origenes_madera_anios")))
+              ]),
+              _vm._v(" "),
+              _c(
+                "masterForm",
+                {
+                  ref: "masterForm",
+                  attrs: {
+                    typeOptions: [
+                      {
+                        value: "E",
+                        text: _vm.$t("message.delete"),
+                        visible: _vm.$store.getters.permiteAccion(
+                          "eliminar_origenes_madera"
+                        )
+                      }
+                    ],
+                    createButton: _vm.$store.getters.permiteAccion(
+                      "crear_origenes_madera"
+                    ),
+                    resource: "/api/origenes-madera-anios",
+                    isPaginated: false,
+                    columns: [
+                      {
+                        label: _vm.$t("message.origen_madera"),
+                        field: "origen_madera.descripcion",
+                        sortable: true
+                      },
+                      {
+                        label: _vm.$t("message.anio_cultivo"),
+                        field: "anio_cultivo",
+                        sortable: true
+                      },
+                      {
+                        label: _vm.$t("message.status"),
+                        field: "estado",
+                        sortable: true
+                      }
+                    ]
+                  },
+                  on: {
+                    adding: _vm.addingAnio,
+                    canceled: _vm.canceledAnio,
+                    realizarAccion: _vm.realizarAccionAnio,
+                    editar: _vm.editarAnio,
+                    submitFormulario: _vm.submitFormularioAnio
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "columns" },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "column",
+                          staticStyle: { display: "none" }
+                        },
+                        [
+                          _c(
+                            "b-field",
+                            { attrs: { label: _vm.$t("message.id") } },
+                            [
+                              _c("b-input", {
+                                attrs: { readonly: "" },
+                                model: {
+                                  value: _vm.form2.id,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form2, "id", $$v)
+                                  },
+                                  expression: "form2.id"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("b-input", {
+                        staticStyle: { display: "none" },
+                        model: {
+                          value: _vm.form2.origen_madera_id,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form2, "origen_madera_id", $$v)
+                          },
+                          expression: "form2.origen_madera_id"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "column" },
+                        [
+                          _c(
+                            "b-field",
+                            {
+                              attrs: { label: _vm.$t("message.origen_madera") }
+                            },
+                            [
+                              _c("b-input", {
+                                attrs: { readonly: "" },
+                                model: {
+                                  value: _vm.form2.origen_madera_name,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.form2,
+                                      "origen_madera_name",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "form2.origen_madera_name"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "column" },
+                        [
+                          _c(
+                            "b-field",
+                            {
+                              attrs: {
+                                message: _vm.errores.anio_cultivo
+                                  ? _vm.errores.anio_cultivo[0]
+                                  : "",
+                                type: _vm.errores.anio_cultivo
+                                  ? "is-danger"
+                                  : "",
+                                label: _vm.$t("message.anio_cultivo")
+                              }
+                            },
+                            [
+                              _c("b-input", {
+                                model: {
+                                  value: _vm.form2.anio_cultivo,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form2, "anio_cultivo", $$v)
+                                  },
+                                  expression: "form2.anio_cultivo"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
+            ],
+            1
           )
         ],
         1
