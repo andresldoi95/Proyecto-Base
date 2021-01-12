@@ -34,7 +34,7 @@ export default {
         ancho_bulto: "Ancho de bulto",
         placa: "Placa",
         tipo_camion: "Tipo de camión",
-        alto: "Alto (Pulada)",
+        alto: "Alto (Pulgada)",
         ancho: "Ancho (Pulgada)",
         identificacion: "Identificación",
         email_inexistente:

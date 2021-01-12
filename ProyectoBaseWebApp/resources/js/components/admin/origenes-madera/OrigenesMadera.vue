@@ -13,8 +13,6 @@
           ]"
           :createButton="$store.getters.permiteAccion('crear_origenes_madera')"
           @adding="adding"
-          @addYear="addYear"
-
           @canceled="canceled"
           @realizarAccion="realizarAccion"
           @editar="editar"
@@ -47,16 +45,7 @@
               label: $t('message.status'),
               field: 'estado',
               sortable: true,
-            },
-                {
-                    label: '',
-                    field: '',
-                    sortable: false,
-                    button: true,
-                    event: 'addYear',
-                    'icon-left': 'folder-plus',
-                    type: 'is-info'
-                }
+            }
           ]"
         >
           <div class="columns">
@@ -97,10 +86,7 @@
               </b-field>
             </div>
           </div>
-          
-          
-        </masterForm>
-        <hr>
+          <hr>
           <div id="add_anio_div" style="display:none;">
             <h1 class="title">{{ $t("title.origenes_madera_anios") }}</h1>
             <b-input  v-model="NeworigenMaderas.id" style="display:none;" id ="origen_madera_id_filter_2"></b-input>
@@ -168,6 +154,7 @@
             </masterFormOrigenesMaderaAnios>
 
           </div>
+        </masterForm>
       </div>
     </div>
   </section>
@@ -297,15 +284,6 @@ export default {
     adding: function () {
       this.limpiar();
     },
-    addYear: function (origenes_madera) {
-          document.getElementById("add_anio_div").style.display = "block";
-          this.form2.origen_madera_id = origenes_madera.id;
-          this.form2.origen_madera_name = origenes_madera.descripcion;
-          this.NeworigenMaderas.id = origenes_madera.id;
-          setTimeout(function() {
-            document.getElementById("enviar_busqueda").click();
-          }, 500);
-      },
     realizarAccion: function (type, origenes_madera) {
       if (type === "E") {
         let origenes_maderaId = [];
@@ -336,6 +314,14 @@ export default {
       this.form.hectareas = origenMadera.hectareas;
       this.form.descripcion = origenMadera.descripcion;
       this.form.volumen_inventario = origenMadera.volumen_inventario;
+
+      document.getElementById("add_anio_div").style.display = "block";
+      this.form2.origen_madera_id = origenMadera.id;
+      this.form2.origen_madera_name = origenMadera.descripcion;
+      this.NeworigenMaderas.id = origenMadera.id;
+      setTimeout(function() {
+        document.getElementById("enviar_busqueda").click();
+      }, 500);
     },
     limpiarErrores: function () {
       this.errores.descripcion = undefined;
