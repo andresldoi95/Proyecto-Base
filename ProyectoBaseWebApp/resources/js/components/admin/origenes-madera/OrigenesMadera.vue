@@ -103,9 +103,8 @@
         <hr>
           <div id="add_anio_div" style="display:none;">
             <h1 class="title">{{ $t("title.origenes_madera_anios") }}</h1>
-
-
-            <masterForm
+            <b-input  v-model="NeworigenMaderas.id" style="display:none;" id ="origen_madera_id_filter_2"></b-input>
+            <masterFormOrigenesMaderaAnios
               :typeOptions="[
                 {
                   value: 'E',
@@ -118,7 +117,7 @@
               @canceled="canceledAnio"
               @realizarAccion="realizarAccionAnio"
               @editar="editarAnio"
-              ref="masterForm"
+              ref="masterFormOrigenesMaderaAnios"
               @submitFormulario="submitFormularioAnio"
               resource="/api/origenes-madera-anios"
               :isPaginated="false"
@@ -147,7 +146,7 @@
                     <b-input readonly v-model="form2.id"></b-input>
                   </b-field>
                 </div>
-                <b-input v-model="form2.origen_madera_id" style="display:none;"></b-input>
+                <b-input v-model="form2.origen_madera_id" style="display:none;" ></b-input>
                 <div class="column">
                   <b-field
                     :label="$t('message.origen_madera')"
@@ -166,7 +165,7 @@
                 </div>
                 
               </div>
-            </masterForm>
+            </masterFormOrigenesMaderaAnios>
 
           </div>
       </div>
@@ -176,8 +175,10 @@
 
 <script>
 import MasterForm from "../../layouts/MasterForm";
+import MasterFormOrigenesMaderaAnios from "../../layouts/MasterFormOrigenesMaderaAnios";
+
 export default {
-  components: { MasterForm },
+  components: { MasterForm,MasterFormOrigenesMaderaAnios },
   data: function () {
     return {
       form: {
@@ -193,6 +194,9 @@ export default {
         id: "",
         origen_madera_name: "",
         _method: undefined,
+      },
+      NeworigenMaderas: {
+        id: '',
       },
       acciones: [],
       errores: {
@@ -249,7 +253,6 @@ export default {
     },
     limpiarErroresAnio: function () {
       this.errores.anio_cultivo = undefined;
-
     },
     submitFormularioAnio: function () {
       this.limpiarErroresAnio();
@@ -298,6 +301,10 @@ export default {
           document.getElementById("add_anio_div").style.display = "block";
           this.form2.origen_madera_id = origenes_madera.id;
           this.form2.origen_madera_name = origenes_madera.descripcion;
+          this.NeworigenMaderas.id = origenes_madera.id;
+          setTimeout(function() {
+            document.getElementById("enviar_busqueda").click();
+          }, 500);
       },
     realizarAccion: function (type, origenes_madera) {
       if (type === "E") {

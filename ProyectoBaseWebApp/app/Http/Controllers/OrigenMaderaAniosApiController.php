@@ -22,17 +22,26 @@ class OrigenMaderaAniosApiController extends Controller
         $user = $request->user();
         $status = $request->input('status');
         $search = $request->input('search');
-        return OrigenMaderaAnios::with('origenMadera')->orderBy('anio_cultivo')
-            ->where(function ($query) use ($status) {
-                if ($status !== 'T')
-                    return $query->where('estado', $status);
-                else
-                    return $query;
-            })
-            ->where(function ($query) use ($search) {
-                return $query->where('anio_cultivo', 'like', "%$search%")->orWhere('anio_cultivo', 'like', "%$search%");
-            })
-            ->get();
+        $origen_madera_id_filter = $request->input('origen_madera_id_filter');
+        $origenMaderaAnios= OrigenMaderaAnios::with('origenMadera')->orderBy('anio_cultivo')
+        ->where(function ($query) use ($status) {
+            if ($status !== 'T')
+                return $query->where('estado', $status);
+            else
+                return $query;
+        })
+        ->where(function ($query) use ($origen_madera_id_filter) {
+            return $query->where('origen_madera_id', $origen_madera_id_filter);
+        })
+        ->where(function ($query) use ($search) {
+            return $query->where('anio_cultivo', 'like', "%$search%")->orWhere('anio_cultivo', 'like', "%$search%");
+        })
+        ->get();
+
+        
+
+
+        return $origenMaderaAnios;
     }
     public function store(Request $request)
     {
