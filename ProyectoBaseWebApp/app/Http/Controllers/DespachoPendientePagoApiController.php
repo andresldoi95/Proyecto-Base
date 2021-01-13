@@ -17,7 +17,6 @@ use Illuminate\Support\Facades\Storage;
 class DespachoPendientePagoApiController extends Controller
 {
     
-
     public function index(Request $request) {
         $request->validate([
             'desde' => 'required|date',
