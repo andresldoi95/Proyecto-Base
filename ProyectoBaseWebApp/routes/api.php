@@ -216,6 +216,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('acciones', 'AccionApiController@index');
     
 
+
     Route::get('acciones-por-usuario', 'AccionApiController@accionesPorUsuario');
     Route::get('parametros/all', 'ParametroApiController@all');
     Route::resource('parametros', 'ParametroApiController', ['only' => ['index', 'store']]);
