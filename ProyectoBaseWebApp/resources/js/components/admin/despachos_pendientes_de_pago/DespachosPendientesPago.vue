@@ -145,8 +145,6 @@ export default {
       },
       limpiarErrores: function () {
       this.errores.fecha_despacho = undefined;
-      
-
       },
       submitFormulario: function () {
         this.limpiarErrores();
@@ -178,9 +176,6 @@ export default {
             }
           });
       },
-      
-  },
-  mounted : function () {
       
   },
 };

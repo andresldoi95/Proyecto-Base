@@ -40,6 +40,10 @@ class DespachoPendientePagoApiController extends Controller
             $desde, $hasta
         ])->orderBy('numero_documento', 'desc')->orderBy('fecha_despacho', 'desc');
         $search = $request->input('search');
+        $despachos->where(function ($query) use ($origen_madera_filter_id) {
+            return $query->where('pago_aserrado',NULL)->orWhere('pago_transporte', NULL);
+        });
+
         if (isset($search)) {
             $despachos->where(function ($query) use ($search) {
                 return $query->where('numero_documento', 'like', "%$search");
@@ -60,11 +64,11 @@ class DespachoPendientePagoApiController extends Controller
                 return $query->where('origen_madera_id', $origen_madera_filter_id);
             });
         }
-        $despachos->where('pago_aserrado',NULL)->orWhere('pago_transporte', NULL);
         $currentPage = $request->input('current_page');
         Paginator::currentPageResolver(function () use ($currentPage) {
             return $currentPage;
         });
+
         $despachos = $despachos->paginate($request->input('per_page'));
 
         foreach($despachos as $despacho){
