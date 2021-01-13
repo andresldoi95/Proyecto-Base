@@ -73277,53 +73277,6 @@ var render = function() {
         "template",
         { slot: "end" },
         [
-          _c(
-            "b-navbar-dropdown",
-            { attrs: { label: _vm.$store.state.locale } },
-            [
-              _c(
-                "b-navbar-item",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.$store.state.locale !== "es",
-                      expression: "$store.state.locale !== 'es'"
-                    }
-                  ],
-                  on: {
-                    click: function($event) {
-                      return _vm.cambiarLenguaje("es")
-                    }
-                  }
-                },
-                [_vm._v("Español (es)")]
-              ),
-              _vm._v(" "),
-              _c(
-                "b-navbar-item",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.$store.state.locale !== "en",
-                      expression: "$store.state.locale !== 'en'"
-                    }
-                  ],
-                  on: {
-                    click: function($event) {
-                      return _vm.cambiarLenguaje("en")
-                    }
-                  }
-                },
-                [_vm._v("English (en)")]
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
           _vm.$store.state.usuario.id !== ""
             ? _c(
                 "b-navbar-dropdown",

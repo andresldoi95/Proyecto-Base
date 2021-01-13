@@ -56,7 +56,7 @@
     </template>
 
     <template slot="end">
-      <b-navbar-dropdown :label="$store.state.locale">
+      <!--<b-navbar-dropdown :label="$store.state.locale">
         <b-navbar-item
           v-show="$store.state.locale !== 'es'"
           @click="cambiarLenguaje('es')"
@@ -65,7 +65,7 @@
           v-show="$store.state.locale !== 'en'"
           @click="cambiarLenguaje('en')"
         >English (en)</b-navbar-item>
-      </b-navbar-dropdown>
+      </b-navbar-dropdown>-->
       <b-navbar-dropdown v-if="$store.state.usuario.id !== ''" :label="$store.state.usuario.nombre">
         <b-navbar-item tag="router-link" to="/perfil">{{ $t('link.perfil') }}</b-navbar-item>
         <b-navbar-item @click="logout">{{ $t('link.logout') }}</b-navbar-item>
