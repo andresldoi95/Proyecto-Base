@@ -50,7 +50,7 @@
             native-type="submit"
             type="is-primary"
             icon-left="content-save"
-          >{{ $t("message.guardar") }}</b-button>
+          >{{ $t("message.guardar") }} Hacienda</b-button>
         </div>
         <div class="control">
           <b-button

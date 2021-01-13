@@ -86,7 +86,8 @@
               </b-field>
             </div>
           </div>
-          <hr>
+        </masterForm>
+        <hr>
           <div id="add_anio_div" style="display:none;">
             <h1 class="title">{{ $t("title.origenes_madera_anios") }}</h1>
             <b-input  v-model="NeworigenMaderas.id" style="display:none;" id ="origen_madera_id_filter_2"></b-input>
@@ -154,7 +155,6 @@
             </masterFormOrigenesMaderaAnios>
 
           </div>
-        </masterForm>
       </div>
     </div>
   </section>
@@ -273,6 +273,8 @@ export default {
     },
     canceled: function () {
       this.limpiar();
+      document.getElementById("add_anio_div").style.display = "none";
+
     },
     limpiar: function () {
       this.form.id = "";
@@ -342,6 +344,8 @@ export default {
             message: this.$t("message.guardado_generico"),
             type: "is-success",
           });
+                document.getElementById("add_anio_div").style.display = "none";
+
           this.$refs.masterForm.submit();
         })
         .catch(({ response }) => {

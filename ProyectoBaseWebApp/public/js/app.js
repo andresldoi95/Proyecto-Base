@@ -5670,6 +5670,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     canceled: function canceled() {
       this.limpiar();
+      document.getElementById("add_anio_div").style.display = "none";
     },
     limpiar: function limpiar() {
       this.form.id = "";
@@ -5743,6 +5744,8 @@ __webpack_require__.r(__webpack_exports__);
           message: _this4.$t("message.guardado_generico"),
           type: "is-success"
         });
+
+        document.getElementById("add_anio_div").style.display = "none";
 
         _this4.$refs.masterForm.submit();
       })["catch"](function (_ref2) {
@@ -70482,197 +70485,192 @@ var render = function() {
                   ],
                   1
                 )
+              ])
+            ]
+          ),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticStyle: { display: "none" }, attrs: { id: "add_anio_div" } },
+            [
+              _c("h1", { staticClass: "title" }, [
+                _vm._v(_vm._s(_vm.$t("title.origenes_madera_anios")))
               ]),
               _vm._v(" "),
-              _c("hr"),
+              _c("b-input", {
+                staticStyle: { display: "none" },
+                attrs: { id: "origen_madera_id_filter_2" },
+                model: {
+                  value: _vm.NeworigenMaderas.id,
+                  callback: function($$v) {
+                    _vm.$set(_vm.NeworigenMaderas, "id", $$v)
+                  },
+                  expression: "NeworigenMaderas.id"
+                }
+              }),
               _vm._v(" "),
               _c(
-                "div",
+                "masterFormOrigenesMaderaAnios",
                 {
-                  staticStyle: { display: "none" },
-                  attrs: { id: "add_anio_div" }
+                  ref: "masterFormOrigenesMaderaAnios",
+                  attrs: {
+                    typeOptions: [
+                      {
+                        value: "E",
+                        text: _vm.$t("message.delete"),
+                        visible: _vm.$store.getters.permiteAccion(
+                          "eliminar_origenes_madera"
+                        )
+                      }
+                    ],
+                    createButton: _vm.$store.getters.permiteAccion(
+                      "crear_origenes_madera"
+                    ),
+                    resource: "/api/origenes-madera-anios",
+                    isPaginated: false,
+                    columns: [
+                      {
+                        label: _vm.$t("message.origen_madera"),
+                        field: "origen_madera.descripcion",
+                        sortable: true
+                      },
+                      {
+                        label: _vm.$t("message.anio_cultivo"),
+                        field: "anio_cultivo",
+                        sortable: true
+                      },
+                      {
+                        label: _vm.$t("message.status"),
+                        field: "estado",
+                        sortable: true
+                      }
+                    ]
+                  },
+                  on: {
+                    adding: _vm.addingAnio,
+                    canceled: _vm.canceledAnio,
+                    realizarAccion: _vm.realizarAccionAnio,
+                    editar: _vm.editarAnio,
+                    submitFormulario: _vm.submitFormularioAnio
+                  }
                 },
                 [
-                  _c("h1", { staticClass: "title" }, [
-                    _vm._v(_vm._s(_vm.$t("title.origenes_madera_anios")))
-                  ]),
-                  _vm._v(" "),
-                  _c("b-input", {
-                    staticStyle: { display: "none" },
-                    attrs: { id: "origen_madera_id_filter_2" },
-                    model: {
-                      value: _vm.NeworigenMaderas.id,
-                      callback: function($$v) {
-                        _vm.$set(_vm.NeworigenMaderas, "id", $$v)
-                      },
-                      expression: "NeworigenMaderas.id"
-                    }
-                  }),
-                  _vm._v(" "),
                   _c(
-                    "masterFormOrigenesMaderaAnios",
-                    {
-                      ref: "masterFormOrigenesMaderaAnios",
-                      attrs: {
-                        typeOptions: [
-                          {
-                            value: "E",
-                            text: _vm.$t("message.delete"),
-                            visible: _vm.$store.getters.permiteAccion(
-                              "eliminar_origenes_madera"
-                            )
-                          }
-                        ],
-                        createButton: _vm.$store.getters.permiteAccion(
-                          "crear_origenes_madera"
-                        ),
-                        resource: "/api/origenes-madera-anios",
-                        isPaginated: false,
-                        columns: [
-                          {
-                            label: _vm.$t("message.origen_madera"),
-                            field: "origen_madera.descripcion",
-                            sortable: true
-                          },
-                          {
-                            label: _vm.$t("message.anio_cultivo"),
-                            field: "anio_cultivo",
-                            sortable: true
-                          },
-                          {
-                            label: _vm.$t("message.status"),
-                            field: "estado",
-                            sortable: true
-                          }
-                        ]
-                      },
-                      on: {
-                        adding: _vm.addingAnio,
-                        canceled: _vm.canceledAnio,
-                        realizarAccion: _vm.realizarAccionAnio,
-                        editar: _vm.editarAnio,
-                        submitFormulario: _vm.submitFormularioAnio
-                      }
-                    },
+                    "div",
+                    { staticClass: "columns" },
                     [
                       _c(
                         "div",
-                        { staticClass: "columns" },
+                        {
+                          staticClass: "column",
+                          staticStyle: { display: "none" }
+                        },
                         [
                           _c(
-                            "div",
+                            "b-field",
+                            { attrs: { label: _vm.$t("message.id") } },
+                            [
+                              _c("b-input", {
+                                attrs: { readonly: "" },
+                                model: {
+                                  value: _vm.form2.id,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form2, "id", $$v)
+                                  },
+                                  expression: "form2.id"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("b-input", {
+                        staticStyle: { display: "none" },
+                        model: {
+                          value: _vm.form2.origen_madera_id,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form2, "origen_madera_id", $$v)
+                          },
+                          expression: "form2.origen_madera_id"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "column" },
+                        [
+                          _c(
+                            "b-field",
                             {
-                              staticClass: "column",
-                              staticStyle: { display: "none" }
+                              attrs: { label: _vm.$t("message.origen_madera") }
                             },
                             [
-                              _c(
-                                "b-field",
-                                { attrs: { label: _vm.$t("message.id") } },
-                                [
-                                  _c("b-input", {
-                                    attrs: { readonly: "" },
-                                    model: {
-                                      value: _vm.form2.id,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.form2, "id", $$v)
-                                      },
-                                      expression: "form2.id"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
+                              _c("b-input", {
+                                attrs: { readonly: "" },
+                                model: {
+                                  value: _vm.form2.origen_madera_name,
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.form2,
+                                      "origen_madera_name",
+                                      $$v
+                                    )
+                                  },
+                                  expression: "form2.origen_madera_name"
+                                }
+                              })
                             ],
                             1
-                          ),
-                          _vm._v(" "),
-                          _c("b-input", {
-                            staticStyle: { display: "none" },
-                            model: {
-                              value: _vm.form2.origen_madera_id,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form2, "origen_madera_id", $$v)
-                              },
-                              expression: "form2.origen_madera_id"
-                            }
-                          }),
-                          _vm._v(" "),
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "column" },
+                        [
                           _c(
-                            "div",
-                            { staticClass: "column" },
+                            "b-field",
+                            {
+                              attrs: {
+                                message: _vm.errores.anio_cultivo
+                                  ? _vm.errores.anio_cultivo[0]
+                                  : "",
+                                type: _vm.errores.anio_cultivo
+                                  ? "is-danger"
+                                  : "",
+                                label: _vm.$t("message.anio_cultivo")
+                              }
+                            },
                             [
-                              _c(
-                                "b-field",
-                                {
-                                  attrs: {
-                                    label: _vm.$t("message.origen_madera")
-                                  }
-                                },
-                                [
-                                  _c("b-input", {
-                                    attrs: { readonly: "" },
-                                    model: {
-                                      value: _vm.form2.origen_madera_name,
-                                      callback: function($$v) {
-                                        _vm.$set(
-                                          _vm.form2,
-                                          "origen_madera_name",
-                                          $$v
-                                        )
-                                      },
-                                      expression: "form2.origen_madera_name"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "column" },
-                            [
-                              _c(
-                                "b-field",
-                                {
-                                  attrs: {
-                                    message: _vm.errores.anio_cultivo
-                                      ? _vm.errores.anio_cultivo[0]
-                                      : "",
-                                    type: _vm.errores.anio_cultivo
-                                      ? "is-danger"
-                                      : "",
-                                    label: _vm.$t("message.anio_cultivo")
-                                  }
-                                },
-                                [
-                                  _c("b-input", {
-                                    model: {
-                                      value: _vm.form2.anio_cultivo,
-                                      callback: function($$v) {
-                                        _vm.$set(_vm.form2, "anio_cultivo", $$v)
-                                      },
-                                      expression: "form2.anio_cultivo"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
+                              _c("b-input", {
+                                model: {
+                                  value: _vm.form2.anio_cultivo,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form2, "anio_cultivo", $$v)
+                                  },
+                                  expression: "form2.anio_cultivo"
+                                }
+                              })
                             ],
                             1
                           )
                         ],
                         1
                       )
-                    ]
+                    ],
+                    1
                   )
-                ],
-                1
+                ]
               )
-            ]
+            ],
+            1
           )
         ],
         1
@@ -74625,7 +74623,7 @@ var render = function() {
                       "icon-left": "content-save"
                     }
                   },
-                  [_vm._v(_vm._s(_vm.$t("message.guardar")))]
+                  [_vm._v(_vm._s(_vm.$t("message.guardar")) + " Hacienda")]
                 )
               ],
               1
@@ -75027,61 +75025,54 @@ var render = function() {
         [
           _vm._t("default"),
           _vm._v(" "),
-          _c(
-            "b-field",
-            {
-              staticStyle: { position: "relative", float: "right" },
-              attrs: { grouped: "", "group-multiline": "" }
-            },
-            [
-              _c(
-                "div",
-                { staticClass: "control" },
-                [
-                  _c(
-                    "b-button",
-                    {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value: _vm.editable,
-                          expression: "editable"
-                        }
-                      ],
-                      attrs: {
-                        "native-type": "submit",
-                        type: "is-primary",
-                        "icon-left": "content-save"
+          _c("b-field", { attrs: { grouped: "", "group-multiline": "" } }, [
+            _c(
+              "div",
+              { staticClass: "control" },
+              [
+                _c(
+                  "b-button",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.editable,
+                        expression: "editable"
                       }
+                    ],
+                    attrs: {
+                      "native-type": "submit",
+                      type: "is-primary",
+                      "icon-left": "content-save"
+                    }
+                  },
+                  [_vm._v(_vm._s(_vm.$t("message.guardar")) + " Año")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "control" },
+              [
+                _c(
+                  "b-button",
+                  {
+                    attrs: {
+                      "native-type": "button",
+                      type: "is-danger",
+                      "icon-left": "close"
                     },
-                    [_vm._v(_vm._s(_vm.$t("message.guardar")) + " Año")]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "control" },
-                [
-                  _c(
-                    "b-button",
-                    {
-                      attrs: {
-                        "native-type": "button",
-                        type: "is-danger",
-                        "icon-left": "close"
-                      },
-                      on: { click: _vm.cancel }
-                    },
-                    [_vm._v(_vm._s(_vm.$t("message.cancelar")) + " Año")]
-                  )
-                ],
-                1
-              )
-            ]
-          )
+                    on: { click: _vm.cancel }
+                  },
+                  [_vm._v(_vm._s(_vm.$t("message.cancelar")))]
+                )
+              ],
+              1
+            )
+          ])
         ],
         2
       ),

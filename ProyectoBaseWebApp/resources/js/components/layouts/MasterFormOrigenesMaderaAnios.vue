@@ -44,7 +44,7 @@
     </form>
     <form v-show="tipo_formulario !== 'C'" @submit.prevent="submitFormulario">
       <slot></slot>
-      <b-field grouped group-multiline style="position: relative;float: right;">
+      <b-field grouped group-multiline>
         <div class="control">
           <b-button
             v-show="editable"
@@ -59,7 +59,7 @@
             native-type="button"
             type="is-danger"
             icon-left="close"
-          >{{ $t("message.cancelar") }} Año</b-button>
+          >{{ $t("message.cancelar") }}</b-button>
         </div>
       </b-field>
     </form>
