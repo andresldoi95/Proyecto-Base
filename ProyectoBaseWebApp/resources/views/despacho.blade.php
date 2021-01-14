@@ -102,9 +102,9 @@
                 <td>
                     Valor del flete: 
                     @if($trozas->count()>0)
-                        {{ $despacho->valor_flete, 2) }}
+                        {{ $despacho->valor_flete }}
                     @else
-                        {{ $despacho->valor_flete, 2) }}
+                        {{ $despacho->valor_flete }}
                     @endif
                 </td>
             </tr>
