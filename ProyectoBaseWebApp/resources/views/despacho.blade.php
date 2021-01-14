@@ -102,9 +102,9 @@
                 <td>
                     Valor del flete: 
                     @if($trozas->count()>0)
-                        {{ number_format($trozas->first()->volumen_estimado * $despacho->valor_flete, 2) }}
+                        {{ $despacho->valor_flete, 2) }}
                     @else
-                        {{ number_format($despacho->filas()->sum('bft') * $despacho->valor_flete, 2) }}
+                        {{ $despacho->valor_flete, 2) }}
                     @endif
                 </td>
             </tr>
