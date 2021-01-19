@@ -39,8 +39,8 @@
     <table class="bordered">
         <tbody>
             <tr>
-                <td>
-
+                <td style="text-align: center;width:175px;">
+                    <img src="<?php echo public_path();?>/img/logo_plantabal.jpeg" alt="" style="width: 100%; height: 50px;margin: 0px; padding: 0px;">
                 </td>
                 <td colspan="2">
                     <h3 class="upper">Guía de tranporte y despacho de madera suelta</h3>
@@ -48,6 +48,11 @@
                 <td>
                 N°: <span class="numero_documento">{{ $despacho->numero_documento }}</span>
                     
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    Madera FSC 100% NC-FM/COC-004235
                 </td>
             </tr>
             <tr>
@@ -287,6 +292,11 @@
                 <br>
                 <span class="upper"><strong>Vendor: </strong>{{$aserrador->vendor }}</span>
                 <br> 
+                <br> 
+                <span class="upper"><strong>Controlador: </strong>{{$users->where('id',$despacho->usuario_id)->first()->name }}</span>
+                <br>
+                <span class="upper"><strong>Identificación: </strong>{{$users->where('id',$despacho->usuario_id)->first()->identificacion }}</span>
+                <br>
             </td>
         </tr>
         <tr>

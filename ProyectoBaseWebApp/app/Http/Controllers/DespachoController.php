@@ -36,6 +36,8 @@ class DespachoController extends Controller
             'fotos_fila' =>FotoFila::orderBy('fila_id')->get(),
             'aserrador' =>Aserrador::findOrFail($despacho->aserrador_id),
             'material' =>Material::findOrFail($despacho->material_id),
+            'users' =>User::where('empresa_id', $empresa_id)->get(),
+
 
 
 
@@ -64,6 +66,8 @@ class DespachoController extends Controller
                     'fotos_fila' =>FotoFila::orderBy('fila_id')->get(),
                     'aserrador' =>Aserrador::findOrFail($despacho->aserrador_id),
                     'material' =>Material::findOrFail($despacho->material_id),
+                    'users' =>User::where('empresa_id', $empresa_id)->get(),
+
                 ]);
 
                 foreach($correos as $correo){
@@ -112,6 +116,8 @@ class DespachoController extends Controller
             'fotos_fila' =>FotoFila::orderBy('fila_id')->get(),
             'aserrador' =>Aserrador::findOrFail($despacho->aserrador_id),
             'material' =>Material::findOrFail($despacho->material_id),
+            'users' =>User::where('empresa_id', $empresa_id)->get(),
+
 
 
         ]);
