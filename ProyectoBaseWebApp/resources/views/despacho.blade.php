@@ -40,7 +40,7 @@
         <tbody>
             <tr>
                 <td style="text-align: center;width:175px;">
-                    <img src="<?php echo public_path();?>/img/logo_plantabal.jpeg" alt="" style="width: 100%; height: 50px;margin: 0px; padding: 0px;">
+                    <img src="<?php echo public_path();?>/img/logo_plantabal.png" alt="" style="width: 100%; height: 50px;margin: 0px; padding: 0px;">
                 </td>
                 <td colspan="2">
                     <h3 class="upper">Guía de tranporte y despacho de madera suelta</h3>
