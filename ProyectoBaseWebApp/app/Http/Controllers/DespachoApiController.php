@@ -296,8 +296,8 @@ class DespachoApiController extends Controller
                         $constraint->aspectRatio();
                         $constraint->upsize();
                       });
-                    Storage::put($fullpath, (string) $image->encode('jpg', 30));
-                } catch (\Throwable $th) {
+                      Storage::disk('local')->put('public/imgs', $image->encode('jpg', 30));
+                    } catch (\Throwable $th) {
                     //throw $th;
                 }
             }
@@ -312,23 +312,20 @@ class DespachoApiController extends Controller
                 $troza = Troza::findOrFail($request->input('troza_id'));
                 $fotos = $request->file('fotos');
                 foreach ($fotos as $foto) {
-                    $path = Storage::disk('local')->put('public/imgs', $foto);
+                    //$path = Storage::disk('local')->put('public/imgs', $foto);
+                    //$fullpath = Storage::disk('local')->path($path);
+
+                    $image = Image::make($foto);
+                    $image->resize(720, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                    });
+                    $path = Storage::disk('local')->put('public/imgs', $image->encode('jpg', 30));
                     $fullpath = Storage::disk('local')->path($path);
                     $troza->fotos()->create([
                         'foto' => $fullpath,
                         'id' => $request->input('id')
                     ]);
-
-                    try {
-                        $image = Image::make(Storage::get($path));
-                        $image->resize(720, null, function ($constraint) {
-                            $constraint->aspectRatio();
-                            $constraint->upsize();
-                          });
-                        Storage::put($fullpath, (string) $image->encode('jpg', 30));
-                    } catch (\Throwable $th) {
-                        //throw $th;
-                    }
 
 
                 }
