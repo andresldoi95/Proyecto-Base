@@ -291,7 +291,7 @@ class DespachoApiController extends Controller
                     'path' => $fullpath
                 ]);
                 try {
-                    $image = Image::make(Storage::get($fullpath));
+                    $image = Image::make($fullpath);
                     $image->resize(720, null, function ($constraint) {
                         $constraint->aspectRatio();
                         $constraint->upsize();
@@ -320,7 +320,7 @@ class DespachoApiController extends Controller
                     ]);
 
                     try {
-                        $image = Image::make(Storage::get($fullpath));
+                        $image = Image::make($fullpath);
                         $image->resize(720, null, function ($constraint) {
                             $constraint->aspectRatio();
                             $constraint->upsize();
