@@ -24,6 +24,7 @@ use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Collection;
+use Image;
 
 
 class DespachoApiController extends Controller
@@ -108,7 +109,6 @@ class DespachoApiController extends Controller
             $tarifa_new = Tarifa::where('destino_id', $request->input('destino_id') )->where('origen_madera_id', $request->input('origen_madera_id') )->get()->first();
             if($tarifa_new){
                 $tarifa_new_valor = $tarifa_new->valor;
-
             }
         } catch (\Throwable $th) {
             //throw $th;
@@ -290,6 +290,16 @@ class DespachoApiController extends Controller
                 $fila->fotos()->create([
                     'path' => $fullpath
                 ]);
+                try {
+                    $image = Image::make(Storage::get($fullpath));
+                    $image->resize(720, null, function ($constraint) {
+                        $constraint->aspectRatio();
+                        $constraint->upsize();
+                      });
+                    Storage::put($fullpath, (string) $image->encode('jpg', 30));
+                } catch (\Throwable $th) {
+                    //throw $th;
+                }
             }
         });
     }
@@ -308,6 +318,19 @@ class DespachoApiController extends Controller
                         'foto' => $fullpath,
                         'id' => $request->input('id')
                     ]);
+
+                    try {
+                        $image = Image::make(Storage::get($fullpath));
+                        $image->resize(720, null, function ($constraint) {
+                            $constraint->aspectRatio();
+                            $constraint->upsize();
+                          });
+                        Storage::put($fullpath, (string) $image->encode('jpg', 30));
+                    } catch (\Throwable $th) {
+                        //throw $th;
+                    }
+
+
                 }
             }catch(\Exception $e){
                 echo $e;

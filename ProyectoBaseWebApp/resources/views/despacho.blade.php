@@ -261,8 +261,7 @@
             <tr>
             @if($trozas->count()>0)
                 <td class="upper" colspan="4">
-               
-                    <strong>Total plantillas enviados:</strong> {{ $trozas->first()->numero_trozas }}                
+                    <strong>Total Trozas enviadas:</strong> {{ $trozas->first()->numero_trozas }}                
                 </td>
                 <td class="upper" colspan="2">
                     <strong>Total BFT enviados:</strong> {{ number_format($despacho->filas()->sum('bft'), 2) }}
