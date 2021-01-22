@@ -288,7 +288,6 @@ class DespachoApiController extends Controller
                 $file = $foto;
                 $path = storage_path('app/public').'/imgs';
                 $fileName = uniqid().".jpg";
-
                 $fullpath = $path.'/'. $fileName;
 
                 $moved=  Image::make($foto)
@@ -320,7 +319,6 @@ class DespachoApiController extends Controller
                     $file = $foto;
                     $path = storage_path('app/public').'/imgs';
                     $fileName = $request->input('id')."-".uniqid().".jpg";
-
                     $fullpath = $path.'/'. $fileName;
 
                     $moved=  Image::make($foto)
