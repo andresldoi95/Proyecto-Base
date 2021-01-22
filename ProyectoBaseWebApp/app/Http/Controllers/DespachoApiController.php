@@ -295,7 +295,7 @@ class DespachoApiController extends Controller
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 })
-                ->save($path.'/'.$fileName, 60);
+                ->save($path.'/'.$fileName, 75);
 
                 if ($moved) {
                     $fila->fotos()->create([
@@ -326,7 +326,7 @@ class DespachoApiController extends Controller
                         $constraint->aspectRatio();
                         $constraint->upsize();
                     })
-                    ->save($path.'/'.$fileName, 60);
+                    ->save($path.'/'.$fileName, 75);
 
                     if ($moved) {
                         $troza->fotos()->create([
