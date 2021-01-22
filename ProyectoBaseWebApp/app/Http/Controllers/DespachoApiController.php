@@ -286,7 +286,7 @@ class DespachoApiController extends Controller
             $fotos = $request->file('fotos');
             foreach ($fotos as $foto) {
                 $file = $foto;
-                $path = public_path().'/imgs';
+                $path = storage_path('app/public').'/imgs';
                 $fileName = uniqid().".jpg";
 
                 $fullpath = $path.'/'. $fileName;
@@ -318,7 +318,7 @@ class DespachoApiController extends Controller
                 $fotos = $request->file('fotos');
                 foreach ($fotos as $foto) {
                     $file = $foto;
-                    $path = public_path().'/imgs';
+                    $path = storage_path('app/public').'/imgs';
                     $fileName = $request->input('id')."-".uniqid().".jpg";
 
                     $fullpath = $path.'/'. $fileName;
