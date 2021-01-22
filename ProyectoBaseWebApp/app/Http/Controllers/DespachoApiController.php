@@ -285,21 +285,26 @@ class DespachoApiController extends Controller
             $fila = FilaDespacho::findOrFail($request->input('fila_id'));
             $fotos = $request->file('fotos');
             foreach ($fotos as $foto) {
-                $path = Storage::disk('local')->put('public/imgs', $foto);
-                $fullpath = Storage::disk('local')->path($path);
-                $fila->fotos()->create([
-                    'path' => $fullpath
-                ]);
-                try {
-                    $image = Image::make(Storage::get($path));
-                    $image->resize(720, null, function ($constraint) {
-                        $constraint->aspectRatio();
-                        $constraint->upsize();
-                      });
-                      Storage::disk('local')->put('public/imgs', $image->encode('jpg', 30));
-                    } catch (\Throwable $th) {
-                    //throw $th;
+                $file = $foto;
+                $path = public_path().'/imgs';
+                $fileName = uniqid().".jpg";
+
+                $fullpath = $path.'/'. $fileName;
+
+                $moved=  Image::make($foto)
+                ->resize(720, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })
+                ->save($path.'/'.$fileName, 60);
+
+                if ($moved) {
+                    $fila->fotos()->create([
+                        'path' => $fullpath
+                    ]);
+                    
                 }
+                
             }
         });
     }
@@ -312,22 +317,26 @@ class DespachoApiController extends Controller
                 $troza = Troza::findOrFail($request->input('troza_id'));
                 $fotos = $request->file('fotos');
                 foreach ($fotos as $foto) {
-                    //$path = Storage::disk('local')->put('public/imgs', $foto);
-                    //$fullpath = Storage::disk('local')->path($path);
+                    $file = $foto;
+                    $path = public_path().'/imgs';
+                    $fileName = $request->input('id')."-".uniqid().".jpg";
 
-                    $image = Image::make($foto);
-                    $image->resize(720, null, function ($constraint) {
+                    $fullpath = $path.'/'. $fileName;
+
+                    $moved=  Image::make($foto)
+                    ->resize(720, null, function ($constraint) {
                         $constraint->aspectRatio();
                         $constraint->upsize();
-                    });
-                    $path = Storage::disk('local')->put('public/imgs', $image->encode('jpg', 30));
-                    $fullpath = Storage::disk('local')->path($path);
-                    $troza->fotos()->create([
-                        'foto' => $fullpath,
-                        'id' => $request->input('id')
-                    ]);
+                    })
+                    ->save($path.'/'.$fileName, 60);
 
-
+                    if ($moved) {
+                        $troza->fotos()->create([
+                            'foto' => $fullpath,
+                            'id' => $request->input('id')
+                        ]);
+                        
+                    }                    
                 }
             }catch(\Exception $e){
                 echo $e;
