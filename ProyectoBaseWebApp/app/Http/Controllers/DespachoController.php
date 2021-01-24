@@ -51,6 +51,7 @@ class DespachoController extends Controller
 
             foreach($despachos_sin_enviar as $despacho_sin_enviar){
                 $id = $despacho_sin_enviar->id;
+                try {
                 $empresa_id = User::findOrFail(Despacho::findOrFail($id)->usuario_id)->empresa_id; 
                 $despacho = Despacho::findOrFail($id);      
                 $correos = Correo::where('empresa_id', $empresa_id)->get();
@@ -85,6 +86,12 @@ class DespachoController extends Controller
                 $despacho_update = Despacho::findOrFail($id);
                 $despacho_update->email_enviado = 1;                
                 $despacho_update->save();
+                } catch (\Throwable $th) {
+                    $despacho_update = Despacho::findOrFail($id);
+                    $despacho_update->email_enviado = 0;                
+                    $despacho_update->save();
+                }
+                
 
 
 
