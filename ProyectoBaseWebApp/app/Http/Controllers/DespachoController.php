@@ -54,7 +54,7 @@ class DespachoController extends Controller
                 try {
                 $empresa_id = User::findOrFail(Despacho::findOrFail($id)->usuario_id)->empresa_id; 
                 $despacho = Despacho::findOrFail($id);      
-                $correos = Correo::where('empresa_id', $empresa_id)->get();
+                $correos = Correo::where('empresa_id', $empresa_id)->where('estado', 'A')->get();
                 $pdf = PDF::loadView('despacho', [
                     'despacho' => $despacho,
                     'espesores' => Espesor::active()->orderBy('descripcion')->where('empresa_id', $empresa_id)->get(),
