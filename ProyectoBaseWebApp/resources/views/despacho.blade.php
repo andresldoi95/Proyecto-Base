@@ -247,7 +247,7 @@
                             @foreach($troza_fotos->where('troza_id', $troza->id) as $troza_foto)
                                     <?php if($contador==0){echo"<h2>Fotos</h2><br><br>";}?>
 
-                                    <img src="{{$troza_foto->foto}}" alt="" style="width: auto; height: 175px;padding: 15px;">
+                                    <img src="{{$troza_foto->foto}}" alt="" style="width: auto; height: 175px;padding: 5px;">
                                     <?php $contador++;if($contador%2==0 && $contador>1){echo"<br>";}?>
                             @endforeach
                         @endforeach                    
