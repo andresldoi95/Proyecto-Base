@@ -245,7 +245,7 @@ class DespachoApiController extends Controller
                 ->save($path.'/'.$fileName, 75);*/
 
                 $moved=  Image::make($foto)
-                ->save($path.'/'.$fileName, 75);
+                ->save($path.'/'.$fileName, 25);
 
                 if ($moved) {
                     $fila->fotos()->create([
@@ -279,7 +279,7 @@ class DespachoApiController extends Controller
                     ->save($path.'/'.$fileName, 75);*/
 
                     $moved=  Image::make($foto)
-                    ->save($path.'/'.$fileName, 75);
+                    ->save($path.'/'.$fileName, 25);
 
                     if ($moved) {
                         $troza->fotos()->create([
