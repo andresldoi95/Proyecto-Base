@@ -204,32 +204,6 @@ class DespachoApiController extends Controller
                             'id' => $suelto['id']
                         ]);
                     }
-                     //GPUIG GUARDAR PATH FOTOS FILAS
-                    /*$fotos_filas = $fila['fotos'];
-                    foreach ($fotos_filas as $fotos_fila) {
-                        // The final filename.
-                        $fileName = $fotos_fila['id'].".jpg";
-                        // Upload path
-                        $uploadPath = public_path().'/imagenes/filas/' . $fileName;
-
-                        if(isset($fotos_fila['path'])){
-                            // Decode your image/file
-                            $decodedImagen = base64_decode($fotos_fila['path']);
-                            // Upload the decoded file/image
-                            if(!file_put_contents($uploadPath , $decodedImagen)){
-                                $uploadPath = NULL;   
-                            }
-                        }else{
-                            $uploadPath = NULL;
-                        }
-
-                        $fotos_fila_create = FotoFila::create([
-                            'fila_id' => $fotos_fila['filaId'],
-                            'path' => $uploadPath
-                            
-                        ]);  
-                        
-                    }*/
                 }
                 //GPUIG GUARDAR PATH FOTOS TROZAS
                 $troza = $request->input('troza');
@@ -243,34 +217,7 @@ class DespachoApiController extends Controller
                         'observaciones' => $troza['observaciones'],
                         'id' => $troza['id']
                     ]);  
-                }
-                //GPUIG GUARDAR PATH FOTOS TROZAS
-                /*$troza_fotos = $request->input('troza_fotos');
-                foreach ($troza_fotos as $troza_foto) {
-                    // The final filename.
-                    $fileName = $troza_foto['id'].".jpg";
-                    // Upload path
-                    $uploadPath = public_path().'/imagenes/trozas/' . $fileName;
-
-                    if(isset($troza_foto['foto'])){
-                        // Decode your image/file
-                        $decodedImagen = base64_decode($troza_foto['foto']);
-                        // Upload the decoded file/image
-                        if(!file_put_contents($uploadPath , $decodedImagen)){
-                            $uploadPath = NULL;   
-                        }
-                    }else{
-                        $uploadPath = NULL;
-                    }
-
-                    $trozas_foto_create = TrozaFotos::create([
-                        'troza_id' => $troza_foto['trozaId'],
-                        'id' => $troza_foto['id'],
-                        'foto' => $uploadPath
-                        
-                    ]);  
-                    
-                }*/                
+                }                
             }
             return [
                 'numero_documento' => $despacho->numero_documento
@@ -290,11 +237,14 @@ class DespachoApiController extends Controller
                 $fileName = uniqid().".jpg";
                 $fullpath = $path.'/'. $fileName;
 
-                $moved=  Image::make($foto)
+                /*$moved=  Image::make($foto)
                 ->resize(720, null, function ($constraint) {
                     $constraint->aspectRatio();
                     $constraint->upsize();
                 })
+                ->save($path.'/'.$fileName, 75);*/
+
+                $moved=  Image::make($foto)
                 ->save($path.'/'.$fileName, 75);
 
                 if ($moved) {
@@ -321,11 +271,14 @@ class DespachoApiController extends Controller
                     $fileName = $request->input('id')."-".uniqid().".jpg";
                     $fullpath = $path.'/'. $fileName;
 
-                    $moved=  Image::make($foto)
+                    /*$moved=  Image::make($foto)
                     ->resize(720, null, function ($constraint) {
                         $constraint->aspectRatio();
                         $constraint->upsize();
                     })
+                    ->save($path.'/'.$fileName, 75);*/
+
+                    $moved=  Image::make($foto)
                     ->save($path.'/'.$fileName, 75);
 
                     if ($moved) {
