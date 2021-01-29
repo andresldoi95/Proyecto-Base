@@ -232,10 +232,15 @@ class DespachoApiController extends Controller
             $fila = FilaDespacho::findOrFail($request->input('fila_id'));
             $fotos = $request->file('fotos');
             foreach ($fotos as $foto) {
-                $file = $foto;
+                $path = Storage::disk('local')->put('public/imgs', $foto);
+                $fullpath = Storage::disk('local')->path($path);
+                $fila->fotos()->create([
+                    'path' => $fullpath
+                ]);
+                /*$file = $foto;
                 $path = storage_path('app/public').'/imgs';
                 $fileName = uniqid().".jpg";
-                $fullpath = $path.'/'. $fileName;
+                $fullpath = $path.'/'. $fileName;*/
 
                 /*$moved=  Image::make($foto)
                 ->resize(720, null, function ($constraint) {
@@ -244,7 +249,7 @@ class DespachoApiController extends Controller
                 })
                 ->save($path.'/'.$fileName, 75);*/
 
-                $moved=  Image::make($foto)
+                /*$moved=  Image::make($foto)
                 ->save($path.'/'.$fileName, 25);
 
                 if ($moved) {
@@ -252,7 +257,7 @@ class DespachoApiController extends Controller
                         'path' => $fullpath
                     ]);
                     
-                }
+                }*/
                 
             }
         });
@@ -262,14 +267,19 @@ class DespachoApiController extends Controller
             'troza_id' => 'required',
         ]);
         return DB::transaction(function () use($request) {
-            try{
                 $troza = Troza::findOrFail($request->input('troza_id'));
                 $fotos = $request->file('fotos');
                 foreach ($fotos as $foto) {
-                    $file = $foto;
+                    $path = Storage::disk('local')->put('public/imgs', $foto);
+                    $fullpath = Storage::disk('local')->path($path);
+                    $troza->fotos()->create([
+                        'foto' => $fullpath,
+                        'id' => $request->input('id')
+                    ]);
+                    /*$file = $foto;
                     $path = storage_path('app/public').'/imgs';
                     $fileName = $request->input('id')."-".uniqid().".jpg";
-                    $fullpath = $path.'/'. $fileName;
+                    $fullpath = $path.'/'. $fileName;*/
 
                     /*$moved=  Image::make($foto)
                     ->resize(720, null, function ($constraint) {
@@ -278,7 +288,7 @@ class DespachoApiController extends Controller
                     })
                     ->save($path.'/'.$fileName, 75);*/
 
-                    $moved=  Image::make($foto)
+                    /*$moved=  Image::make($foto)
                     ->save($path.'/'.$fileName, 25);
 
                     if ($moved) {
@@ -287,11 +297,8 @@ class DespachoApiController extends Controller
                             'id' => $request->input('id')
                         ]);
                         
-                    }                    
+                    }*/                   
                 }
-            }catch(\Exception $e){
-                echo $e;
-            }
         });
     }
 }
