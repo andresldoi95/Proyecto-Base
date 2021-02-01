@@ -241,6 +241,11 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('fotos', 'DespachoApiController@subirFotos');
     Route::post('getTarifaFlete', 'TarifaApiController@getTarifaFlete');
     Route::post('trozaFotos', 'DespachoApiController@subirTrozaFotos');
+
+    Route::post('despachosHistorialUpdate', 'DespachoApiController@historialUpdate');
+    Route::post('fotosHistorialUpdate', 'DespachoApiController@subirFotosUpdate');
+    Route::post('trozaFotosHistorialUpdate', 'DespachoApiController@subirTrozaFotosUpdate');
+
 });
 
 Route::post('/reset', 'UsuarioApiController@reset');

@@ -224,6 +224,217 @@ class DespachoApiController extends Controller
             ];
         });
     }
+    public function historialUpdate(Request $request) {
+        try {
+            $request->validate([
+                'id' => 'required|max:36',
+                'camionId' => 'required|exists:camiones,id',
+                'destinoId' => 'required|exists:destinos,id',
+                'aserradorId' => 'required|exists:aserradores,id',
+                'materialId' => 'required|exists:materiales,id',
+                'tipoMaderaId' => 'required|exists:tipos_madera,id',
+                'origenMaderaAnioId' => 'required|exists:origenes_madera_anios,id',
+                'formatoEntregaId' => 'required|exists:formatos_entrega,id',
+                'codigoPo' => 'required|max:20',
+                'fechaTumba' => 'required|date',
+                'fechaDespacho' => 'required|date',
+                'diasT2k' => 'required|integer',
+                'guiaRemision' => 'nullable|max:30',
+                'guiaForestal' => 'nullable|max:30',
+                'tipoLlenado' => 'required|max:1',
+                'valorFlete' => 'required|numeric',
+                'estado' => 'required|max:1',
+                'filas' => 'required|array',
+                'filas.*.indice' => 'required|integer',
+                'filas.*.bft' => 'required|numeric',
+                'filas.*.bultos' => 'required|numeric',
+                'filas.*.estado' => 'required|max:1',
+                'filas.*.tipo' => 'required|max:1',
+                'filas.*.id' => 'required|max:36|distinct',
+                'origenHaciendaId' => 'required|exists:origenes_hacienda,id'
+            ]);
+            return DB::transaction(function () use($request) {
+                $despacho = Despacho::find($request->input('id'));
+                if (!isset($despacho)) {
+                    $ultimoDespacho = Despacho::orderByRaw('CAST(numero_documento AS INT) DESC')->select(['numero_documento'])->first();
+                    $numeroDocumento = isset($ultimoDespacho)?intval($ultimoDespacho->numero_documento) + 1:1;
+                    $despacho = Despacho::create([
+                        'id' => $request->input('id'),
+                        'camion_id' => $request->input('camionId'),
+                        'destino_id' => $request->input('destinoId'),
+                        'aserrador_id' => $request->input('aserradorId'),
+                        'material_id' => $request->input('materialId'),
+                        'tipo_madera_id' => $request->input('tipoMaderaId'),
+                        'origen_madera_id' => $request->input('origenMaderaId'),
+                        'origen_madera_anio_id' => $request->input('origenMaderaAnioId'),
+                        'formato_entrega_id' => $request->input('formatoEntregaId'),
+                        'codigo_po' => $request->input('codigoPo'),
+                        'fecha_tumba' => new Carbon($request->input('fechaTumba')),
+                        'fecha_despacho' => new Carbon($request->input('fechaDespacho')),
+                        'dias_t2k' => $request->input('diasT2k'),
+                        'guia_remision' => $request->input('guiaRemision'),
+                        'guia_forestal' => $request->input('guiaForestal'),
+                        'tipo_llenado' => $request->input('tipoLlenado'),
+                        'valor_flete' => $request->input('valorFlete'),
+                        'estado' => $request->input('estado'),
+                        'usuario_id' => $request->user()->id,
+                        'origen_hacienda_id' => $request->input('origenHaciendaId'),
+                        'numero_documento' => str_pad($numeroDocumento, 8, '0', STR_PAD_LEFT)
+                    ]);
+                    $filas = $request->input('filas');
+                    foreach ($filas as $fila) {
+                        $f = $despacho->filas()->create([
+                            'id' => $fila['id'],
+                            'despacho_id' => $despacho->id,
+                            'indice' => $fila['indice'],
+                            'bft' => $fila['bft'],
+                            'bultos' => $fila['bultos'],
+                            'estado' => $fila['estado'],
+                            'tipo' => $fila['tipo']
+                        ]);
+                        $sueltos = $fila['sueltos'];
+                        foreach ($sueltos as $suelto) {
+                            $f->sueltos()->create([
+                                'largo_id' => intval($suelto['largoId']) > 0?$suelto['largoId']:null,
+                                'espesor_id' => intval($suelto['espesorId']) > 0?$suelto['espesorId']:null,
+                                'indice' => $suelto['indice'],
+                                'bft' => $suelto['bft'],
+                                'bultos' => $suelto['bultos'],
+                                'tipo_bulto_id' => intval($suelto['tipoBultoId']) > 0?$suelto['tipoBultoId']:null,
+                                'id' => $suelto['id']
+                            ]);
+                        }
+                    }
+                    //GPUIG GUARDAR PATH FOTOS TROZAS
+                    $troza = $request->input('troza');
+                    if (isset($troza)) {
+                        $uploadPath = NULL;
+                        $troza_creada = Troza::create([
+                            'despacho_id' => $despacho->id,
+                            'numero_trozas' => $troza['numeroTrozas'],
+                            'volumen_estimado' => $troza['volumenEstimado'],
+                            'foto' => $uploadPath,
+                            'observaciones' => $troza['observaciones'],
+                            'id' => $troza['id']
+                        ]);  
+                    }                
+                }else{
+    
+                    $despacho = Despacho::find($request->input('id'));
+                    $despacho->camion_id = $request->input('camionId');
+                    $despacho->destino_id = $request->input('destinoId');
+                    $despacho->aserrador_id = $request->input('aserradorId');
+                    $despacho->material_id = $request->input('materialId');
+                    $despacho->tipo_madera_id = $request->input('tipoMaderaId');
+                    $despacho->origen_madera_id = $request->input('origenMaderaId');
+                    $despacho->origen_madera_anio_id = $request->input('origenMaderaAnioId');
+                    $despacho->formato_entrega_id = $request->input('formatoEntregaId');
+                    $despacho->codigo_po = $request->input('codigoPo');
+                    $despacho->fecha_tumba = new Carbon($request->input('fechaTumba'));
+                    $despacho->fecha_despacho = new Carbon($request->input('fechaDespacho'));
+                    $despacho->dias_t2k = $request->input('diasT2k');
+                    $despacho->guia_remision = $request->input('guiaRemision');
+                    $despacho->guia_forestal = $request->input('guiaForestal');
+                    $despacho->tipo_llenado = $request->input('tipoLlenado');
+                    $despacho->valor_flete = $request->input('valorFlete');
+                    $despacho->estado = $request->input('estado');
+                    $despacho->usuario_id = $request->user()->id;
+                    $despacho->origen_hacienda_id = $request->input('origenHaciendaId');
+                    $despacho->save();
+    
+                    $filas = $request->input('filas');
+                    foreach ($filas as $fila) {
+    
+                        $filaDesp = FilaDespacho::find($fila['id']);
+    
+                        if (!isset($filaDesp)){
+                            $f = $despacho->filas()->create([
+                                'id' => $fila['id'],
+                                'despacho_id' => $despacho->id,
+                                'indice' => $fila['indice'],
+                                'bft' => $fila['bft'],
+                                'bultos' => $fila['bultos'],
+                                'estado' => $fila['estado'],
+                                'tipo' => $fila['tipo']
+                            ]);
+                        }else{
+                            $filaDesp->despacho_id = $despacho->id;
+                            $filaDesp->indice = $fila['indice'];
+                            $filaDesp->bft = $fila['bft'];
+                            $filaDesp->bultos = $fila['bultos'];
+                            $filaDesp->estado = $fila['estado'];
+                            $filaDesp->tipo = $fila['tipo'];
+                            $filaDesp->save();
+                        }
+                        
+                        $sueltos = $fila['sueltos'];
+                        foreach ($sueltos as $suelto) {
+                            $sueltoDesp = FilaSuelto::find($suelto['id']);
+    
+                            if (!isset($sueltoDesp)){
+                                $f->sueltos()->create([
+                                    'largo_id' => intval($suelto['largoId']) > 0?$suelto['largoId']:null,
+                                    'espesor_id' => intval($suelto['espesorId']) > 0?$suelto['espesorId']:null,
+                                    'indice' => $suelto['indice'],
+                                    'bft' => $suelto['bft'],
+                                    'bultos' => $suelto['bultos'],
+                                    'tipo_bulto_id' => intval($suelto['tipoBultoId']) > 0?$suelto['tipoBultoId']:null,
+                                    'id' => $suelto['id']
+                                ]);
+                            }else{
+                                $sueltoDesp->largo_id = intval($suelto['largoId']) > 0?$suelto['largoId']:null;
+                                $sueltoDesp->espesor_id = intval($suelto['espesorId']) > 0?$suelto['espesorId']:null;
+                                $sueltoDesp->indice = $fila['indice'];
+                                $sueltoDesp->bft = $fila['bft'];
+                                $sueltoDesp->bultos = $fila['bultos'];
+                                $sueltoDesp->tipo_bulto_id = intval($suelto['tipoBultoId']) > 0?$suelto['tipoBultoId']:null;
+                                $sueltoDesp->save();
+    
+                            }
+                            
+                        }
+                    }
+                    //GPUIG GUARDAR PATH FOTOS TROZAS
+                    $troza = $request->input('troza');
+                    if (isset($troza)) {
+                        $uploadPath = NULL;
+    
+                        $trozaDesp = Troza::find($troza['id']);
+    
+                            if (!isset($trozaDesp)){
+                                $troza_creada = Troza::create([
+                                    'despacho_id' => $despacho->id,
+                                    'numero_trozas' => $troza['numeroTrozas'],
+                                    'volumen_estimado' => $troza['volumenEstimado'],
+                                    'foto' => $uploadPath,
+                                    'observaciones' => $troza['observaciones'],
+                                    'id' => $troza['id']
+                                ]); 
+                            }else{
+                                $trozaDesp->despacho_id = $despacho->id;
+                                $trozaDesp->numero_trozas =  $troza['numeroTrozas'];
+                                $trozaDesp->volumen_estimado = $troza['volumenEstimado'];
+                                $trozaDesp->foto = $uploadPath;
+                                $trozaDesp->observaciones = $troza['observaciones'];
+                                $trozaDesp->save();
+                            }
+                         
+                    } 
+    
+    
+                }
+                return [
+                    'numero_documento' => $despacho->numero_documento
+                ];
+            });
+        } catch(\Exception $e){
+            $error = $e->getMessage();
+            return [
+                'numero_documento' => $error
+            ];
+        }
+        
+    }
     public function subirFotos(Request $request) {
         $request->validate([
             'fila_id' => 'required|exists:filas_despacho,id',
@@ -262,6 +473,28 @@ class DespachoApiController extends Controller
             }
         });
     }
+    public function subirFotosUpdate(Request $request) {
+        $request->validate([
+            'fila_id' => 'required|exists:filas_despacho,id',
+        ]);
+        return DB::transaction(function () use($request) {
+            $fila = FilaDespacho::findOrFail($request->input('fila_id'));
+            $fotos = $request->file('fotos');
+            foreach ($fotos as $foto) {
+                $path = Storage::disk('local')->put('public/imgs', $foto);
+                $fullpath = Storage::disk('local')->path($path);
+                $fotoFila = FotoFila::where('path', $fullpath)->get();
+
+                if($fotoFila->count()==0){
+                    $fila->fotos()->create([
+                        'path' => $fullpath
+                    ]);  
+                }                            
+            }
+
+        });
+        
+    }
     public function subirTrozaFotos(Request $request) {
         $request->validate([
             'troza_id' => 'required',
@@ -298,6 +531,30 @@ class DespachoApiController extends Controller
                         ]);
                         
                     }*/                   
+                }
+        });
+    }
+    public function subirTrozaFotosUpdate(Request $request) {
+        $request->validate([
+            'troza_id' => 'required',
+        ]);
+        return DB::transaction(function () use($request) {
+                $troza = Troza::findOrFail($request->input('troza_id'));
+                $fotos = $request->file('fotos');
+                foreach ($fotos as $foto) {
+                    $path = Storage::disk('local')->put('public/imgs', $foto);
+                    $fullpath = Storage::disk('local')->path($path);
+
+                    $fotoTroza = TrozaFotos::where('id', $foto->id)->get();
+
+                    if($fotoTroza->count()==0){
+                        $troza->fotos()->create([
+                            'foto' => $fullpath,
+                            'id' => $request->input('id')
+                        ]);
+                    }    
+                    
+               
                 }
         });
     }
