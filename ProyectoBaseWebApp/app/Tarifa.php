@@ -7,11 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 class Tarifa extends Model
 {
     protected $fillable = [
-        'empresa_id', 'origen_madera_id', 'destino_id', 'valor', 'creador_id',
+        'tipo_camion','empresa_id', 'origen_madera_id', 'destino_id', 'valor', 'creador_id',
         'modificador_id'
+    ];
+    protected $appends = [
+        'descripcion_tipo_camion'
     ];
     public function origenMadera() {
         return $this->belongsTo('App\OrigenMadera');
+    }
+    public function getDescripcionTipoCamionAttribute()
+    {
+        switch ($this->tipo_camion) {
+            case 'B':
+                return 'Bananero';
+            case 'T':
+                return 'Trailer';
+            default:
+                return 'No definido';
+        }
     }
     public function destino() {
         return $this->belongsTo('App\Destino');

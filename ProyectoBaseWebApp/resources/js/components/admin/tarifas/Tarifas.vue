@@ -27,6 +27,11 @@
                     sortable : true
                 },
                 {
+                    label : $t('message.tipo_camion'),
+                    field : 'descripcion_tipo_camion',
+                    sortable : true
+                },
+                 {
                     label : $t('message.destino'),
                     field : 'destino.descripcion',
                     sortable : true
@@ -61,6 +66,18 @@
                 :label="$t('message.valor')"
               >
                 <b-input v-model="form.valor"></b-input>
+              </b-field>
+            </div>
+            <div class="column">
+              <b-field
+                :message="errores.tipo_camion?errores.tipo_camion[0]:''"
+                :type="errores.tipo_camion?'is-danger':''"
+                :label="$t('message.tipo_camion')"
+              >
+                <b-select v-model="form.tipo_camion" expanded :placeholder="$t('title.seleccione')">
+                  <option value="B">Bananero</option>
+                  <option value="T">Trailer</option>
+                </b-select>
               </b-field>
             </div>
             <div class="column">
@@ -108,6 +125,7 @@ export default {
         destino_id: "",
         valor: "",
         id: "",
+        tipo_camion: "B",
         _method: undefined,
         origen_madera_id: ""
       },
@@ -128,6 +146,7 @@ export default {
       this.form._method = undefined;
       this.form.destino_id = "";
       this.form.valor = "";
+      this.form.tipo_camion = "B";
       this.form.origen_madera_id = "";
     },
     adding: function () {
@@ -162,6 +181,7 @@ export default {
       this.form.id = procedencia.id;
       this.form.destino_id = procedencia.destino_id;
       this.form.valor = procedencia.valor;
+      this.form.tipo_camion = procedencia.tipo_camion;
       this.form.origen_madera_id = procedencia.origen_madera_id;
     },
     limpiarErrores: function () {

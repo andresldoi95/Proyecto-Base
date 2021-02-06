@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Tarifa;
+use App\Camion;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -41,11 +43,13 @@ class TarifaApiController extends Controller
         $request->validate([
             'valor' => 'required|numeric',
             'destino_id' => 'required|exists:destinos,id',
+            'tipo_camion' => 'required|max:1',
             'origen_madera_id' => 'required|exists:origenes_madera,id'
         ]);
         Tarifa::create([
             'valor' => $request->input('valor'),
             'creador_id' => $user->id,
+            'tipo_camion' => $request->input('tipo_camion'),
             'empresa_id' => $user->empresa_id,
             'destino_id' => $request->input('destino_id'),
             'origen_madera_id' => $request->input('origen_madera_id')
@@ -55,11 +59,17 @@ class TarifaApiController extends Controller
     {
         $tarifa_flete = "";
         try {
-            $tarifa_new = Tarifa::where('destino_id', $request->input('destino_id') )->where('origen_madera_id', $request->input('origen_madera_id') )->get()->first();
-            if( $tarifa_new){
-                $tarifa_flete = $tarifa_new->valor;
+            $camion = Camion::findOrFail($request->input('camion_id'));
 
+            if($camion!=NULL){
+                $tarifa_new = Tarifa::where('destino_id', $request->input('destino_id') )->where('origen_madera_id', $request->input('origen_madera_id') )->where('tipo_camion', $camion->tipo_camion)->get()->first();
+                if( $tarifa_new){
+                    $tarifa_flete = $tarifa_new->valor;
+    
+                }
             }
+
+            
             
         } catch (\Throwable $th) {
             //throw $th;
@@ -74,12 +84,14 @@ class TarifaApiController extends Controller
         $request->validate([
             'valor' => 'required|numeric',
             'destino_id' => 'required|exists:destinos,id',
+            'tipo_camion' => 'required|max:1',
             'origen_madera_id' => 'required|exists:origenes_madera,id'
         ]);
         $tarifa = Tarifa::findOrFail($id);
         $tarifa->valor = $request->input('valor');
         $tarifa->origen_madera_id = $request->input('origen_madera_id');
         $tarifa->destino_id = $request->input('destino_id');
+        $tarifa->tipo_camion = $request->input('tipo_camion');
         $tarifa->modificador_id = $user->id;
         $tarifa->origen_madera_id = $request->input('origen_madera_id');
         $tarifa->save();

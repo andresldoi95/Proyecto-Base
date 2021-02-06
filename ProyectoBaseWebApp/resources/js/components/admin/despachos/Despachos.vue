@@ -97,6 +97,7 @@
                   v-model="form.camion_id"
                   expanded
                   :placeholder="$t('title.seleccione')"
+                  @change.native="consultarValorFlete"
                 >
                   <option
                     v-for="option in camiones"

@@ -3302,6 +3302,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -5876,6 +5877,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -5889,6 +5907,7 @@ __webpack_require__.r(__webpack_exports__);
         destino_id: "",
         valor: "",
         id: "",
+        tipo_camion: "B",
         _method: undefined,
         origen_madera_id: ""
       },
@@ -5909,6 +5928,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form._method = undefined;
       this.form.destino_id = "";
       this.form.valor = "";
+      this.form.tipo_camion = "B";
       this.form.origen_madera_id = "";
     },
     adding: function adding() {
@@ -5946,6 +5966,7 @@ __webpack_require__.r(__webpack_exports__);
       this.form.id = procedencia.id;
       this.form.destino_id = procedencia.destino_id;
       this.form.valor = procedencia.valor;
+      this.form.tipo_camion = procedencia.tipo_camion;
       this.form.origen_madera_id = procedencia.origen_madera_id;
     },
     limpiarErrores: function limpiarErrores() {
@@ -68150,6 +68171,11 @@ var render = function() {
                               expanded: "",
                               placeholder: _vm.$t("title.seleccione")
                             },
+                            nativeOn: {
+                              change: function($event) {
+                                return _vm.consultarValorFlete($event)
+                              }
+                            },
                             model: {
                               value: _vm.form.camion_id,
                               callback: function($$v) {
@@ -70733,6 +70759,11 @@ var render = function() {
                     sortable: true
                   },
                   {
+                    label: _vm.$t("message.tipo_camion"),
+                    field: "descripcion_tipo_camion",
+                    sortable: true
+                  },
+                  {
                     label: _vm.$t("message.destino"),
                     field: "destino.descripcion",
                     sortable: true
@@ -70814,6 +70845,54 @@ var render = function() {
                             expression: "form.valor"
                           }
                         })
+                      ],
+                      1
+                    )
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "column" },
+                  [
+                    _c(
+                      "b-field",
+                      {
+                        attrs: {
+                          message: _vm.errores.tipo_camion
+                            ? _vm.errores.tipo_camion[0]
+                            : "",
+                          type: _vm.errores.tipo_camion ? "is-danger" : "",
+                          label: _vm.$t("message.tipo_camion")
+                        }
+                      },
+                      [
+                        _c(
+                          "b-select",
+                          {
+                            attrs: {
+                              expanded: "",
+                              placeholder: _vm.$t("title.seleccione")
+                            },
+                            model: {
+                              value: _vm.form.tipo_camion,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "tipo_camion", $$v)
+                              },
+                              expression: "form.tipo_camion"
+                            }
+                          },
+                          [
+                            _c("option", { attrs: { value: "B" } }, [
+                              _vm._v("Bananero")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "T" } }, [
+                              _vm._v("Trailer")
+                            ])
+                          ]
+                        )
                       ],
                       1
                     )

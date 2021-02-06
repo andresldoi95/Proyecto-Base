@@ -289,8 +289,6 @@
                 @endif
                 <span class="upper"><strong>Aserrador: </strong>{{$aserrador->nombre }}</span>
                 <br>
-                <span class="upper"><strong>Vendor: </strong>{{$aserrador->vendor }}</span>
-                <br> 
                 <br> 
                 <span class="upper"><strong>Controlador: </strong>{{$users->where('id',$despacho->usuario_id)->first()->name }}</span>
                 <br>
