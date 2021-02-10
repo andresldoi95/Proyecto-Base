@@ -50,13 +50,28 @@ class TarifaTipoCamionApiController extends Controller
             'tarifa_id' => 'required'
         ]);
         $user = $request->user();
-        TarifaTipoCamion::create([
-            'tipo_camion' => $request->input('tipo_camion'),
-            'tarifa_id' => $request->input('tarifa_id'),
-            'valor' => $request->input('valor'),
-            'creador_id' => $user->id
-            
-        ]);
+
+        $tarifa_existe = TarifaTipoCamion::where('tarifa_id', $request->input('tarifa_id'))
+        ->where('tipo_camion', $request->input('tipo_camion'))
+        ->where('estado', 'A')
+        ->get();
+
+        if($tarifa_existe->count()==0){
+            TarifaTipoCamion::create([
+                'tipo_camion' => $request->input('tipo_camion'),
+                'tarifa_id' => $request->input('tarifa_id'),
+                'valor' => $request->input('valor'),
+                'creador_id' => $user->id
+            ]);
+        }else{
+            $TarifaTipoCamion = TarifaTipoCamion::findOrFail($tarifa_existe->first()->id);
+            $TarifaTipoCamion->valor = $request->input('valor');
+            $TarifaTipoCamion->tipo_camion = $request->input('tipo_camion');
+            $TarifaTipoCamion->tarifa_id = $request->input('tarifa_id');
+            $TarifaTipoCamion->modificador_id = $request->user()->id;
+            $TarifaTipoCamion->save();
+        }
+        
     }
     public function update(Request $request, $id)
     {
@@ -64,12 +79,21 @@ class TarifaTipoCamionApiController extends Controller
             'valor' => 'required|max:255',
             'tarifa_id' => 'required'
         ]);
-        $TarifaTipoCamion = TarifaTipoCamion::findOrFail($id);
-        $TarifaTipoCamion->valor = $request->input('valor');
-        $TarifaTipoCamion->tipo_camion = $request->input('tipo_camion');
-        $TarifaTipoCamion->tarifa_id = $request->input('tarifa_id');
-        $TarifaTipoCamion->modificador_id = $request->user()->id;
-        $TarifaTipoCamion->save();
+
+        $tarifa_existe = TarifaTipoCamion::where('tarifa_id', $request->input('tarifa_id'))
+        ->where('tipo_camion', $request->input('tipo_camion'))
+        ->where('estado', 'A')
+        ->where('id','!=', $id)
+        ->get();
+        if($tarifa_existe->count()==0){
+            $TarifaTipoCamion = TarifaTipoCamion::findOrFail($id);
+            $TarifaTipoCamion->valor = $request->input('valor');
+            $TarifaTipoCamion->tipo_camion = $request->input('tipo_camion');
+            $TarifaTipoCamion->tarifa_id = $request->input('tarifa_id');
+            $TarifaTipoCamion->modificador_id = $request->user()->id;
+            $TarifaTipoCamion->save();
+        }
+        
     }
     public function destroy(Request $request)
     {
