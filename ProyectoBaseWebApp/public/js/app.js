@@ -5778,7 +5778,50 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layouts/MasterForm */ "./resources/js/components/layouts/MasterForm.vue");
+/* harmony import */ var _layouts_MasterFormTarifas__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../layouts/MasterFormTarifas */ "./resources/js/components/layouts/MasterFormTarifas.vue");
+/* harmony import */ var _layouts_MasterFormTarifasTipoCamion__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../layouts/MasterFormTarifasTipoCamion */ "./resources/js/components/layouts/MasterFormTarifasTipoCamion.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -5895,9 +5938,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    MasterForm: _layouts_MasterForm__WEBPACK_IMPORTED_MODULE_0__["default"]
+    MasterForm: _layouts_MasterFormTarifas__WEBPACK_IMPORTED_MODULE_0__["default"],
+    MasterFormTarifasTipoCamion: _layouts_MasterFormTarifasTipoCamion__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -5905,47 +5950,55 @@ __webpack_require__.r(__webpack_exports__);
       destinos: [],
       form: {
         destino_id: "",
+        origen_madera_id: "",
+        id: "",
+        _method: undefined
+      },
+      form2: {
+        tarifa_id: "",
         valor: "",
         id: "",
         tipo_camion: "B",
-        _method: undefined,
-        origen_madera_id: ""
+        _method: undefined
+      },
+      Newtarifas: {
+        id: ''
       },
       acciones: [],
       errores: {
         destino_id: undefined,
         valor: undefined,
+        tarifa_id: undefined,
+        tipo_camion: undefined,
         origen_madera_id: undefined
       }
     };
   },
   methods: {
-    canceled: function canceled() {
-      this.limpiar();
+    canceledTarifaTipoCamion: function canceledTarifaTipoCamion() {
+      this.limpiarTarifaTipoCamion();
     },
-    limpiar: function limpiar() {
-      this.form.id = "";
-      this.form._method = undefined;
-      this.form.destino_id = "";
-      this.form.valor = "";
-      this.form.tipo_camion = "B";
-      this.form.origen_madera_id = "";
+    limpiarTarifaTipoCamion: function limpiarTarifaTipoCamion() {
+      this.form2.id = "";
+      this.form2._method = undefined;
+      this.form2.valor = "";
+      this.form2.tipo_camion = "";
     },
-    adding: function adding() {
-      this.limpiar();
+    addingTarifaTipoCamion: function addingTarifaTipoCamion() {
+      this.limpiarTarifaTipoCamion();
     },
-    realizarAccion: function realizarAccion(type, tarifas) {
+    realizarAccionTarifaTipoCamion: function realizarAccionTarifaTipoCamion(type, tarifas) {
       var _this = this;
 
       if (type === "E") {
-        var tarifasId = [];
+        var tarifaId = [];
 
         for (var i = 0; i < tarifas.length; i++) {
-          tarifasId.push(tarifas[i].id);
+          tarifaId.push(tarifas[i].id);
         }
 
-        this.$http.post("http://127.0.0.1:8000/api" + "/tarifas", {
-          tarifas: tarifasId,
+        this.$http.post("http://127.0.0.1:8000/api" + "/tarifas-tipo-camion", {
+          tarifas: tarifaId,
           _method: "DELETE"
         }).then(function () {
           _this.$buefy.toast.open({
@@ -5962,29 +6015,28 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
-    editar: function editar(procedencia) {
-      this.form.id = procedencia.id;
-      this.form.destino_id = procedencia.destino_id;
-      this.form.valor = procedencia.valor;
-      this.form.tipo_camion = procedencia.tipo_camion;
-      this.form.origen_madera_id = procedencia.origen_madera_id;
+    editarTarifaTipoCamion: function editarTarifaTipoCamion(tarifaTipoCamion) {
+      this.form2.id = tarifaTipoCamion.id;
+      this.form2.tipo_camion = tarifaTipoCamion.tipo_camion;
+      this.form2.tarifa_id = tarifaTipoCamion.tarifa_id;
+      this.form2.valor = tarifaTipoCamion.valor;
     },
-    limpiarErrores: function limpiarErrores() {
+    limpiarErroresTarifaTipoCamion: function limpiarErroresTarifaTipoCamion() {
       this.errores.valor = undefined;
-      this.errores.destino_id = undefined;
+      this.errores.tipo_camion = undefined;
     },
-    submitFormulario: function submitFormulario() {
+    submitFormularioTarifaTipoCamion: function submitFormularioTarifaTipoCamion() {
       var _this2 = this;
 
-      this.limpiarErrores();
-      var path = "http://127.0.0.1:8000/api" + "/tarifas";
+      this.limpiarErroresTarifaTipoCamion();
+      var path = "http://127.0.0.1:8000/api" + "/tarifas-tipo-camion";
 
-      if (this.form.id !== "") {
-        path += "/" + this.form.id;
-        this.form._method = "PUT";
-      } else this.form._method = undefined;
+      if (this.form2.id !== "") {
+        path += "/" + this.form2.id;
+        this.form2._method = "PUT";
+      } else this.form2._method = undefined;
 
-      this.$http.post(path, this.form).then(function () {
+      this.$http.post(path, this.form2).then(function () {
         _this2.$buefy.toast.open({
           message: _this2.$t("message.guardado_generico"),
           type: "is-success"
@@ -5996,8 +6048,8 @@ __webpack_require__.r(__webpack_exports__);
         var status = response.status;
 
         if (status === 422) {
-          _this2.errores.destino_id = response.data.errors.destino_id;
           _this2.errores.valor = response.data.errors.valor;
+          _this2.errores.tipo_camion = response.data.errors.tipo_camion;
         } else {
           _this2.$buefy.toast.open({
             message: _this2.$t("message.generic_error"),
@@ -6005,18 +6057,109 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
       });
+    },
+    canceled: function canceled() {
+      this.limpiar();
+      document.getElementById("add_tarifa_tipo_camion_div").style.display = "none";
+    },
+    limpiar: function limpiar() {
+      this.form.id = "";
+      this.form._method = undefined;
+      this.form.destino_id = "";
+      this.form.origen_madera_id = "";
+    },
+    adding: function adding() {
+      this.limpiar();
+    },
+    realizarAccion: function realizarAccion(type, tarifas) {
+      var _this3 = this;
+
+      if (type === "E") {
+        var tarifasId = [];
+
+        for (var i = 0; i < tarifas.length; i++) {
+          tarifasId.push(tarifas[i].id);
+        }
+
+        this.$http.post("http://127.0.0.1:8000/api" + "/tarifas", {
+          tarifas: tarifasId,
+          _method: "DELETE"
+        }).then(function () {
+          _this3.$buefy.toast.open({
+            message: _this3.$t("message.guardado_generico"),
+            type: "is-success"
+          });
+
+          _this3.$refs.masterForm.submit();
+        })["catch"](function () {
+          _this3.$buefy.toast.open({
+            message: _this3.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        });
+      }
+    },
+    editar: function editar(procedencia) {
+      this.form.id = procedencia.id;
+      this.form.destino_id = procedencia.destino_id;
+      this.form.origen_madera_id = procedencia.origen_madera_id;
+      document.getElementById("add_tarifa_tipo_camion_div").style.display = "block";
+      this.form2.tarifa_id = procedencia.id;
+      this.Newtarifas.id = procedencia.id;
+      setTimeout(function () {
+        document.getElementById("enviar_busqueda").click();
+      }, 500);
+    },
+    limpiarErrores: function limpiarErrores() {
+      this.errores.origen_madera_id = undefined;
+      this.errores.destino_id = undefined;
+    },
+    submitFormulario: function submitFormulario() {
+      var _this4 = this;
+
+      this.limpiarErrores();
+      var path = "http://127.0.0.1:8000/api" + "/tarifas";
+
+      if (this.form.id !== "") {
+        path += "/" + this.form.id;
+        this.form._method = "PUT";
+      } else this.form._method = undefined;
+
+      this.$http.post(path, this.form).then(function () {
+        _this4.$buefy.toast.open({
+          message: _this4.$t("message.guardado_generico"),
+          type: "is-success"
+        });
+
+        document.getElementById("add_tarifa_tipo_camion_div").style.display = "none";
+
+        _this4.$refs.masterForm.submit();
+      })["catch"](function (_ref2) {
+        var response = _ref2.response;
+        var status = response.status;
+
+        if (status === 422) {
+          _this4.errores.destino_id = response.data.errors.destino_id;
+          _this4.errores.origen_madera_id = response.data.errors.origen_madera_id;
+        } else {
+          _this4.$buefy.toast.open({
+            message: _this4.$t("message.generic_error"),
+            type: "is-danger"
+          });
+        }
+      });
     }
   },
   mounted: function mounted() {
-    var _this3 = this;
+    var _this5 = this;
 
-    this.$http.get("http://127.0.0.1:8000/api" + '/origenes-madera/listado').then(function (_ref2) {
-      var data = _ref2.data;
-      _this3.origenesMadera = data;
-    });
-    this.$http.get("http://127.0.0.1:8000/api" + '/destinos/listado').then(function (_ref3) {
+    this.$http.get("http://127.0.0.1:8000/api" + '/origenes-madera/listado').then(function (_ref3) {
       var data = _ref3.data;
-      _this3.destinos = data;
+      _this5.origenesMadera = data;
+    });
+    this.$http.get("http://127.0.0.1:8000/api" + '/destinos/listado').then(function (_ref4) {
+      var data = _ref4.data;
+      _this5.destinos = data;
     });
   }
 });
@@ -9086,6 +9229,609 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.form.origen_madera_id_filter = document.getElementById("origen_madera_id_filter_2").value;
+      this.isLoading = true;
+      if (this.tipo_formulario !== "C") this.tipo_formulario = "C";
+      this.$http.get(this.resource, {
+        params: this.form
+      }).then(function (_ref) {
+        var data = _ref.data;
+        if (!_this.isPaginated) _this.registros = data;else {
+          _this.registros = data.data;
+          _this.total = data.total;
+        }
+        _this.isLoading = false;
+      })["catch"](function () {
+        _this.$buefy.toast.open({
+          message: _this.$t("message.generic_error"),
+          type: "is-danger"
+        });
+
+        _this.isLoading = false;
+      });
+    },
+    submitFormulario: function submitFormulario() {
+      this.$emit("submitFormulario", this.form);
+    },
+    add: function add() {
+      this.tipo_formulario = "N";
+      this.$emit("adding");
+    },
+    cancel: function cancel() {
+      this.tipo_formulario = "C";
+      this.$emit("canceled");
+    }
+  },
+  mounted: function mounted() {
+    this.submit();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/MasterFormTarifas.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/MasterFormTarifas.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    enableDates: {
+      required: false,
+      "default": false,
+      type: Boolean
+    },
+    noMostrarEdicion: {
+      required: false,
+      "default": false,
+      type: Boolean
+    },
+    editable: {
+      type: Boolean,
+      required: false,
+      "default": true
+    },
+    defaultStatus: {
+      type: String,
+      required: false,
+      "default": "A"
+    },
+    createButton: {
+      type: Boolean,
+      required: false,
+      "default": false
+    },
+    sortOrderDefault: {
+      type: String,
+      required: false,
+      "default": "asc"
+    },
+    sortByDefault: {
+      type: String,
+      required: false,
+      "default": ""
+    },
+    resource: {
+      type: String,
+      required: false,
+      "default": "/"
+    },
+    pageDefault: {
+      type: Number,
+      required: false,
+      "default": 5
+    },
+    pageOptions: {
+      type: Array,
+      required: false,
+      "default": function _default() {
+        return [5, 10, 20, 30, 50, 100];
+      }
+    },
+    checkable: {
+      type: Boolean,
+      required: false,
+      "default": true
+    },
+    columns: {
+      type: Array,
+      required: true
+    },
+    isPaginated: {
+      type: Boolean,
+      required: false,
+      "default": true
+    },
+    statusOptions: {
+      type: Array,
+      required: false,
+      "default": function _default() {
+        return [{
+          value: "A",
+          text: this.$t("message.active")
+        }, {
+          value: "I",
+          text: this.$t("message.inactive")
+        }, {
+          value: "T",
+          text: this.$t("message.all")
+        }];
+      }
+    },
+    typeOptions: {
+      type: Array,
+      required: false,
+      "default": function _default() {
+        return [{
+          value: "E",
+          text: this.$t("message.delete"),
+          visible: false
+        }];
+      }
+    }
+  },
+  data: function data() {
+    return {
+      isLoading: false,
+      checkedRows: [],
+      selected: null,
+      type: "",
+      form: {
+        status: this.defaultStatus,
+        search: "",
+        per_page: this.pageDefault,
+        current_page: 1,
+        sort_by: this.sortByDefault,
+        sort_order: this.sortOrderDefault
+      },
+      registros: [],
+      defaultSortDirection: 'asc',
+      sortIcon: "arrow-up",
+      sortIconSize: 'is-small',
+      tipo_formulario: "C",
+      total: 0
+    };
+  },
+  methods: {
+    onSort: function onSort(field, order) {
+      if (this.isPaginated && (this.form.sort_by !== field || this.form.sort_order !== order)) {
+        this.form.sort_by = field;
+        this.form.sort_order = order;
+        this.submit();
+      }
+    },
+    onPageChange: function onPageChange(page) {
+      if (this.isPaginated && this.form.current_page !== page) {
+        this.form.current_page = page;
+        this.submit();
+      }
+    },
+    realizarAccion: function realizarAccion() {
+      if (this.type === "") {
+        this.$buefy.toast.open({
+          message: this.$t("message.debe_seleccionar_accion"),
+          type: "is-warning"
+        });
+      } else if (this.checkedRows.length === 0) {
+        this.$buefy.toast.open({
+          message: this.$t("message.debe_seleccionar"),
+          type: "is-warning"
+        });
+      } else this.$emit("realizarAccion", this.type, this.checkedRows);
+    },
+    editar: function editar(row) {
+      if (!this.noMostrarEdicion) this.tipo_formulario = "E";
+      this.$emit("editar", row);
+    },
+    submit: function submit() {
+      var _this = this;
+
+      this.isLoading = true;
+      if (this.tipo_formulario !== "C") this.tipo_formulario = "C";
+      this.$http.get(this.resource, {
+        params: this.form
+      }).then(function (_ref) {
+        var data = _ref.data;
+        if (!_this.isPaginated) _this.registros = data;else {
+          _this.registros = data.data;
+          _this.total = data.total;
+        }
+        _this.isLoading = false;
+      })["catch"](function () {
+        _this.$buefy.toast.open({
+          message: _this.$t("message.generic_error"),
+          type: "is-danger"
+        });
+
+        _this.isLoading = false;
+      });
+    },
+    submitFormulario: function submitFormulario() {
+      this.$emit("submitFormulario", this.form);
+    },
+    add: function add() {
+      this.tipo_formulario = "N";
+      this.$emit("adding");
+    },
+    cancel: function cancel() {
+      this.tipo_formulario = "C";
+      this.$emit("canceled");
+    }
+  },
+  mounted: function mounted() {
+    this.submit();
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/MasterFormTarifasTipoCamion.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/MasterFormTarifasTipoCamion.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    enableDates: {
+      required: false,
+      "default": false,
+      type: Boolean
+    },
+    noMostrarEdicion: {
+      required: false,
+      "default": false,
+      type: Boolean
+    },
+    editable: {
+      type: Boolean,
+      required: false,
+      "default": true
+    },
+    defaultStatus: {
+      type: String,
+      required: false,
+      "default": "A"
+    },
+    createButton: {
+      type: Boolean,
+      required: false,
+      "default": false
+    },
+    sortOrderDefault: {
+      type: String,
+      required: false,
+      "default": "asc"
+    },
+    sortByDefault: {
+      type: String,
+      required: false,
+      "default": ""
+    },
+    resource: {
+      type: String,
+      required: false,
+      "default": "/"
+    },
+    pageDefault: {
+      type: Number,
+      required: false,
+      "default": 5
+    },
+    pageOptions: {
+      type: Array,
+      required: false,
+      "default": function _default() {
+        return [5, 10, 20, 30, 50, 100];
+      }
+    },
+    checkable: {
+      type: Boolean,
+      required: false,
+      "default": true
+    },
+    columns: {
+      type: Array,
+      required: true
+    },
+    isPaginated: {
+      type: Boolean,
+      required: false,
+      "default": true
+    },
+    statusOptions: {
+      type: Array,
+      required: false,
+      "default": function _default() {
+        return [{
+          value: "A",
+          text: this.$t("message.active")
+        }, {
+          value: "I",
+          text: this.$t("message.inactive")
+        }, {
+          value: "T",
+          text: this.$t("message.all")
+        }];
+      }
+    },
+    typeOptions: {
+      type: Array,
+      required: false,
+      "default": function _default() {
+        return [{
+          value: "E",
+          text: this.$t("message.delete"),
+          visible: false
+        }];
+      }
+    }
+  },
+  data: function data() {
+    return {
+      isLoading: false,
+      checkedRows: [],
+      selected: null,
+      type: "",
+      form: {
+        status: this.defaultStatus,
+        search: "",
+        tarifa_id_filter: "",
+        per_page: this.pageDefault,
+        current_page: 1,
+        sort_by: this.sortByDefault,
+        sort_order: this.sortOrderDefault
+      },
+      registros: [],
+      defaultSortDirection: 'asc',
+      sortIcon: "arrow-up",
+      sortIconSize: 'is-small',
+      tipo_formulario: "C",
+      total: 0
+    };
+  },
+  methods: {
+    onSort: function onSort(field, order) {
+      if (this.isPaginated && (this.form.sort_by !== field || this.form.sort_order !== order)) {
+        this.form.sort_by = field;
+        this.form.sort_order = order;
+        this.submit();
+      }
+    },
+    onPageChange: function onPageChange(page) {
+      if (this.isPaginated && this.form.current_page !== page) {
+        this.form.current_page = page;
+        this.submit();
+      }
+    },
+    realizarAccion: function realizarAccion() {
+      if (this.type === "") {
+        this.$buefy.toast.open({
+          message: this.$t("message.debe_seleccionar_accion"),
+          type: "is-warning"
+        });
+      } else if (this.checkedRows.length === 0) {
+        this.$buefy.toast.open({
+          message: this.$t("message.debe_seleccionar"),
+          type: "is-warning"
+        });
+      } else this.$emit("realizarAccion", this.type, this.checkedRows);
+    },
+    editar: function editar(row) {
+      if (!this.noMostrarEdicion) this.tipo_formulario = "E";
+      this.$emit("editar", row);
+    },
+    submit: function submit() {
+      var _this = this;
+
+      this.form.tarifa_id_filter = document.getElementById("tarifa_id_filter_2").value;
       this.isLoading = true;
       if (this.tipo_formulario !== "C") this.tipo_formulario = "C";
       this.$http.get(this.resource, {
@@ -70759,18 +71505,8 @@ var render = function() {
                     sortable: true
                   },
                   {
-                    label: _vm.$t("message.tipo_camion"),
-                    field: "descripcion_tipo_camion",
-                    sortable: true
-                  },
-                  {
                     label: _vm.$t("message.destino"),
                     field: "destino.descripcion",
-                    sortable: true
-                  },
-                  {
-                    label: _vm.$t("message.valor"),
-                    field: "valor",
                     sortable: true
                   },
                   {
@@ -70813,86 +71549,6 @@ var render = function() {
                             expression: "form.id"
                           }
                         })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "column" },
-                  [
-                    _c(
-                      "b-field",
-                      {
-                        attrs: {
-                          message: _vm.errores.valor
-                            ? _vm.errores.valor[0]
-                            : "",
-                          type: _vm.errores.valor ? "is-danger" : "",
-                          label: _vm.$t("message.valor")
-                        }
-                      },
-                      [
-                        _c("b-input", {
-                          model: {
-                            value: _vm.form.valor,
-                            callback: function($$v) {
-                              _vm.$set(_vm.form, "valor", $$v)
-                            },
-                            expression: "form.valor"
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "column" },
-                  [
-                    _c(
-                      "b-field",
-                      {
-                        attrs: {
-                          message: _vm.errores.tipo_camion
-                            ? _vm.errores.tipo_camion[0]
-                            : "",
-                          type: _vm.errores.tipo_camion ? "is-danger" : "",
-                          label: _vm.$t("message.tipo_camion")
-                        }
-                      },
-                      [
-                        _c(
-                          "b-select",
-                          {
-                            attrs: {
-                              expanded: "",
-                              placeholder: _vm.$t("title.seleccione")
-                            },
-                            model: {
-                              value: _vm.form.tipo_camion,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "tipo_camion", $$v)
-                              },
-                              expression: "form.tipo_camion"
-                            }
-                          },
-                          [
-                            _c("option", { attrs: { value: "B" } }, [
-                              _vm._v("Bananero")
-                            ]),
-                            _vm._v(" "),
-                            _c("option", { attrs: { value: "T" } }, [
-                              _vm._v("Trailer")
-                            ])
-                          ]
-                        )
                       ],
                       1
                     )
@@ -71013,6 +71669,208 @@ var render = function() {
                 )
               ])
             ]
+          ),
+          _vm._v(" "),
+          _c("hr"),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticStyle: { display: "none" },
+              attrs: { id: "add_tarifa_tipo_camion_div" }
+            },
+            [
+              _c("h1", { staticClass: "title" }, [_vm._v("Valores")]),
+              _vm._v(" "),
+              _c("b-input", {
+                staticStyle: { display: "none" },
+                attrs: { id: "tarifa_id_filter_2" },
+                model: {
+                  value: _vm.Newtarifas.id,
+                  callback: function($$v) {
+                    _vm.$set(_vm.Newtarifas, "id", $$v)
+                  },
+                  expression: "Newtarifas.id"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "masterFormTarifasTipoCamion",
+                {
+                  ref: "masterFormTarifasTipoCamion",
+                  attrs: {
+                    typeOptions: [
+                      {
+                        value: "E",
+                        text: _vm.$t("message.delete"),
+                        visible: _vm.$store.getters.permiteAccion(
+                          "eliminar_tarifas"
+                        )
+                      }
+                    ],
+                    createButton: _vm.$store.getters.permiteAccion(
+                      "crear_tarifas"
+                    ),
+                    resource: "/api/tarifas-tipo-camion",
+                    isPaginated: false,
+                    columns: [
+                      {
+                        label: _vm.$t("message.tipo_camion"),
+                        field: "descripcion_tipo_camion",
+                        sortable: true
+                      },
+                      {
+                        label: _vm.$t("message.valor"),
+                        field: "valor",
+                        sortable: true
+                      },
+                      {
+                        label: _vm.$t("message.status"),
+                        field: "estado",
+                        sortable: true
+                      }
+                    ]
+                  },
+                  on: {
+                    adding: _vm.addingTarifaTipoCamion,
+                    canceled: _vm.canceledTarifaTipoCamion,
+                    realizarAccion: _vm.realizarAccionTarifaTipoCamion,
+                    editar: _vm.editarTarifaTipoCamion,
+                    submitFormulario: _vm.submitFormularioTarifaTipoCamion
+                  }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "columns" },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "column",
+                          staticStyle: { display: "none" }
+                        },
+                        [
+                          _c(
+                            "b-field",
+                            { attrs: { label: _vm.$t("message.id") } },
+                            [
+                              _c("b-input", {
+                                attrs: { readonly: "" },
+                                model: {
+                                  value: _vm.form2.id,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form2, "id", $$v)
+                                  },
+                                  expression: "form2.id"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c("b-input", {
+                        staticStyle: { display: "none" },
+                        model: {
+                          value: _vm.form2.tarifa_id,
+                          callback: function($$v) {
+                            _vm.$set(_vm.form2, "tarifa_id", $$v)
+                          },
+                          expression: "form2.tarifa_id"
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "column" },
+                        [
+                          _c(
+                            "b-field",
+                            {
+                              attrs: {
+                                message: _vm.errores.tipo_camion
+                                  ? _vm.errores.tipo_camion[0]
+                                  : "",
+                                type: _vm.errores.tipo_camion
+                                  ? "is-danger"
+                                  : "",
+                                label: _vm.$t("message.tipo_camion")
+                              }
+                            },
+                            [
+                              _c(
+                                "b-select",
+                                {
+                                  attrs: {
+                                    expanded: "",
+                                    placeholder: _vm.$t("title.seleccione")
+                                  },
+                                  model: {
+                                    value: _vm.form2.tipo_camion,
+                                    callback: function($$v) {
+                                      _vm.$set(_vm.form2, "tipo_camion", $$v)
+                                    },
+                                    expression: "form2.tipo_camion"
+                                  }
+                                },
+                                [
+                                  _c("option", { attrs: { value: "B" } }, [
+                                    _vm._v("Bananero")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("option", { attrs: { value: "T" } }, [
+                                    _vm._v("Trailer")
+                                  ])
+                                ]
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "column" },
+                        [
+                          _c(
+                            "b-field",
+                            {
+                              attrs: {
+                                message: _vm.errores.valor
+                                  ? _vm.errores.valor[0]
+                                  : "",
+                                type: _vm.errores.valor ? "is-danger" : "",
+                                label: _vm.$t("message.valor")
+                              }
+                            },
+                            [
+                              _c("b-input", {
+                                model: {
+                                  value: _vm.form2.valor,
+                                  callback: function($$v) {
+                                    _vm.$set(_vm.form2, "valor", $$v)
+                                  },
+                                  expression: "form2.valor"
+                                }
+                              })
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
+            ],
+            1
           )
         ],
         1
@@ -75079,6 +75937,846 @@ var render = function() {
                     }
                   },
                   [_vm._v(_vm._s(_vm.$t("message.guardar")) + " Año")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "control" },
+              [
+                _c(
+                  "b-button",
+                  {
+                    attrs: {
+                      "native-type": "button",
+                      type: "is-danger",
+                      "icon-left": "close"
+                    },
+                    on: { click: _vm.cancel }
+                  },
+                  [_vm._v(_vm._s(_vm.$t("message.cancelar")))]
+                )
+              ],
+              1
+            )
+          ])
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("b-table", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.tipo_formulario === "C",
+            expression: "tipo_formulario === 'C'"
+          }
+        ],
+        attrs: {
+          loading: _vm.isLoading,
+          total: _vm.total,
+          "checked-rows": _vm.checkedRows,
+          focusable: "",
+          selected: _vm.selected,
+          checkable: _vm.checkable,
+          data: _vm.registros,
+          paginated: _vm.isPaginated,
+          "backend-pagination": _vm.isPaginated,
+          "per-page": _vm.form.per_page,
+          "current-page": _vm.form.current_page,
+          "sort-icon": _vm.sortIcon,
+          "sort-icon-size": _vm.sortIconSize,
+          "default-sort-direction": _vm.defaultSortDirection,
+          "aria-next-label": _vm.$t("message.next_page"),
+          "aria-previous-label": _vm.$t("message.prev_page"),
+          "aria-page-label": _vm.$t("message.page"),
+          "aria-current-label": _vm.$t("message.current_page")
+        },
+        on: {
+          "page-change": _vm.onPageChange,
+          "update:checkedRows": function($event) {
+            _vm.checkedRows = $event
+          },
+          "update:checked-rows": function($event) {
+            _vm.checkedRows = $event
+          },
+          dblclick: _vm.editar,
+          "update:selected": function($event) {
+            _vm.selected = $event
+          },
+          "update:currentPage": function($event) {
+            return _vm.$set(_vm.form, "current_page", $event)
+          },
+          "update:current-page": function($event) {
+            return _vm.$set(_vm.form, "current_page", $event)
+          }
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "default",
+            fn: function(props) {
+              return _vm._l(_vm.columns, function(column) {
+                return _c(
+                  "b-table-column",
+                  {
+                    key: column.field,
+                    attrs: {
+                      sortable: "",
+                      field: column.field,
+                      label: column.label,
+                      numeric: column.numeric
+                    }
+                  },
+                  [
+                    column.button
+                      ? _c("b-button", {
+                          attrs: {
+                            type: column.type,
+                            "icon-left": column["icon-left"]
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.$emit(column.event, props.row)
+                            }
+                          }
+                        })
+                      : _c("span", [
+                          _vm._v(
+                            "\n                  " +
+                              _vm._s(_vm._.get(props.row, column.field)) +
+                              "\n              "
+                          )
+                        ])
+                  ],
+                  1
+                )
+              })
+            }
+          }
+        ])
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/MasterFormTarifas.vue?vue&type=template&id=07da2fa6&":
+/*!****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/MasterFormTarifas.vue?vue&type=template&id=07da2fa6& ***!
+  \****************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submit($event)
+            }
+          }
+        },
+        [
+          _c(
+            "b-field",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.tipo_formulario === "C",
+                  expression: "tipo_formulario === 'C'"
+                }
+              ],
+              attrs: { grouped: "", "group-multiline": "" }
+            },
+            [
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.createButton,
+                      expression: "createButton"
+                    }
+                  ],
+                  staticClass: "control"
+                },
+                [
+                  _c(
+                    "b-button",
+                    { attrs: { "icon-left": "plus" }, on: { click: _vm.add } },
+                    [_vm._v(_vm._s(_vm.$t("message.add")))]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-select",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.typeOptions.length > 0,
+                      expression: "typeOptions.length > 0"
+                    }
+                  ],
+                  model: {
+                    value: _vm.type,
+                    callback: function($$v) {
+                      _vm.type = $$v
+                    },
+                    expression: "type"
+                  }
+                },
+                [
+                  _c("option", { attrs: { disabled: "", value: "" } }, [
+                    _vm._v(_vm._s(_vm.$t("message.group_action")))
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.typeOptions, function(type) {
+                    return _c(
+                      "option",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: type.visible,
+                            expression: "type.visible"
+                          }
+                        ],
+                        key: type.value,
+                        domProps: { value: type.value }
+                      },
+                      [_vm._v(_vm._s(type.text))]
+                    )
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.typeOptions.length > 0,
+                      expression: "typeOptions.length > 0"
+                    }
+                  ],
+                  staticClass: "control"
+                },
+                [
+                  _c(
+                    "b-button",
+                    {
+                      attrs: { "icon-left": "check", type: "is-warning" },
+                      on: { click: _vm.realizarAccion }
+                    },
+                    [_vm._v(_vm._s(_vm.$t("message.do_group_action")))]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-select",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.statusOptions.length > 0,
+                      expression: "statusOptions.length > 0"
+                    }
+                  ],
+                  on: { input: _vm.submit },
+                  model: {
+                    value: _vm.form.status,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "status", $$v)
+                    },
+                    expression: "form.status"
+                  }
+                },
+                _vm._l(_vm.statusOptions, function(option) {
+                  return _c(
+                    "option",
+                    { key: option.value, domProps: { value: option.value } },
+                    [_vm._v(_vm._s(option.text))]
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c("b-input", {
+                attrs: { type: "text", placeholder: _vm.$t("message.search") },
+                model: {
+                  value: _vm.form.search,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "search", $$v)
+                  },
+                  expression: "form.search"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "control" },
+                [
+                  _c("b-button", {
+                    attrs: {
+                      "native-type": "submit",
+                      type: "is-primary",
+                      "icon-left": "magnify"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-select",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.isPaginated,
+                      expression: "isPaginated"
+                    }
+                  ],
+                  model: {
+                    value: _vm.form.per_page,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "per_page", $$v)
+                    },
+                    expression: "form.per_page"
+                  }
+                },
+                _vm._l(_vm.pageOptions, function(page) {
+                  return _c(
+                    "option",
+                    { key: page, domProps: { value: page } },
+                    [
+                      _vm._v(
+                        _vm._s(page) + " " + _vm._s(_vm.$t("message.perpage"))
+                      )
+                    ]
+                  )
+                }),
+                0
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.tipo_formulario !== "C",
+              expression: "tipo_formulario !== 'C'"
+            }
+          ],
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submitFormulario($event)
+            }
+          }
+        },
+        [
+          _vm._t("default"),
+          _vm._v(" "),
+          _c("b-field", { attrs: { grouped: "", "group-multiline": "" } }, [
+            _c(
+              "div",
+              { staticClass: "control" },
+              [
+                _c(
+                  "b-button",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.editable,
+                        expression: "editable"
+                      }
+                    ],
+                    attrs: {
+                      "native-type": "submit",
+                      type: "is-primary",
+                      "icon-left": "content-save"
+                    }
+                  },
+                  [
+                    _vm._v(
+                      _vm._s(_vm.$t("message.guardar")) +
+                        " Tarifa Origen/Destino"
+                    )
+                  ]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              { staticClass: "control" },
+              [
+                _c(
+                  "b-button",
+                  {
+                    attrs: {
+                      "native-type": "button",
+                      type: "is-danger",
+                      "icon-left": "close"
+                    },
+                    on: { click: _vm.cancel }
+                  },
+                  [_vm._v(_vm._s(_vm.$t("message.cancelar")))]
+                )
+              ],
+              1
+            )
+          ])
+        ],
+        2
+      ),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v(" "),
+      _c("b-table", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.tipo_formulario === "C",
+            expression: "tipo_formulario === 'C'"
+          }
+        ],
+        attrs: {
+          loading: _vm.isLoading,
+          total: _vm.total,
+          "checked-rows": _vm.checkedRows,
+          focusable: "",
+          selected: _vm.selected,
+          checkable: _vm.checkable,
+          data: _vm.registros,
+          paginated: _vm.isPaginated,
+          "backend-pagination": _vm.isPaginated,
+          "per-page": _vm.form.per_page,
+          "current-page": _vm.form.current_page,
+          "sort-icon": _vm.sortIcon,
+          "sort-icon-size": _vm.sortIconSize,
+          "default-sort-direction": _vm.defaultSortDirection,
+          "aria-next-label": _vm.$t("message.next_page"),
+          "aria-previous-label": _vm.$t("message.prev_page"),
+          "aria-page-label": _vm.$t("message.page"),
+          "aria-current-label": _vm.$t("message.current_page")
+        },
+        on: {
+          "page-change": _vm.onPageChange,
+          "update:checkedRows": function($event) {
+            _vm.checkedRows = $event
+          },
+          "update:checked-rows": function($event) {
+            _vm.checkedRows = $event
+          },
+          dblclick: _vm.editar,
+          "update:selected": function($event) {
+            _vm.selected = $event
+          },
+          "update:currentPage": function($event) {
+            return _vm.$set(_vm.form, "current_page", $event)
+          },
+          "update:current-page": function($event) {
+            return _vm.$set(_vm.form, "current_page", $event)
+          }
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "default",
+            fn: function(props) {
+              return _vm._l(_vm.columns, function(column) {
+                return _c(
+                  "b-table-column",
+                  {
+                    key: column.field,
+                    attrs: {
+                      sortable: "",
+                      field: column.field,
+                      label: column.label,
+                      numeric: column.numeric
+                    }
+                  },
+                  [
+                    column.button
+                      ? _c("b-button", {
+                          attrs: {
+                            type: column.type,
+                            "icon-left": column["icon-left"]
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.$emit(column.event, props.row)
+                            }
+                          }
+                        })
+                      : _c("span", [
+                          _vm._v(
+                            "\n                  " +
+                              _vm._s(_vm._.get(props.row, column.field)) +
+                              "\n              "
+                          )
+                        ])
+                  ],
+                  1
+                )
+              })
+            }
+          }
+        ])
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/MasterFormTarifasTipoCamion.vue?vue&type=template&id=42f90c8c&":
+/*!**************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/layouts/MasterFormTarifasTipoCamion.vue?vue&type=template&id=42f90c8c& ***!
+  \**************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    [
+      _c(
+        "form",
+        {
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submit($event)
+            }
+          }
+        },
+        [
+          _c(
+            "b-field",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.tipo_formulario === "C",
+                  expression: "tipo_formulario === 'C'"
+                }
+              ],
+              attrs: { grouped: "", "group-multiline": "" }
+            },
+            [
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.createButton,
+                      expression: "createButton"
+                    }
+                  ],
+                  staticClass: "control"
+                },
+                [
+                  _c(
+                    "b-button",
+                    { attrs: { "icon-left": "plus" }, on: { click: _vm.add } },
+                    [_vm._v(_vm._s(_vm.$t("message.add")))]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-select",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.typeOptions.length > 0,
+                      expression: "typeOptions.length > 0"
+                    }
+                  ],
+                  model: {
+                    value: _vm.type,
+                    callback: function($$v) {
+                      _vm.type = $$v
+                    },
+                    expression: "type"
+                  }
+                },
+                [
+                  _c("option", { attrs: { disabled: "", value: "" } }, [
+                    _vm._v(_vm._s(_vm.$t("message.group_action")))
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.typeOptions, function(type) {
+                    return _c(
+                      "option",
+                      {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: type.visible,
+                            expression: "type.visible"
+                          }
+                        ],
+                        key: type.value,
+                        domProps: { value: type.value }
+                      },
+                      [_vm._v(_vm._s(type.text))]
+                    )
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.typeOptions.length > 0,
+                      expression: "typeOptions.length > 0"
+                    }
+                  ],
+                  staticClass: "control"
+                },
+                [
+                  _c(
+                    "b-button",
+                    {
+                      attrs: { "icon-left": "check", type: "is-warning" },
+                      on: { click: _vm.realizarAccion }
+                    },
+                    [_vm._v(_vm._s(_vm.$t("message.do_group_action")))]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-select",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.statusOptions.length > 0,
+                      expression: "statusOptions.length > 0"
+                    }
+                  ],
+                  on: { input: _vm.submit },
+                  model: {
+                    value: _vm.form.status,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "status", $$v)
+                    },
+                    expression: "form.status"
+                  }
+                },
+                _vm._l(_vm.statusOptions, function(option) {
+                  return _c(
+                    "option",
+                    { key: option.value, domProps: { value: option.value } },
+                    [_vm._v(_vm._s(option.text))]
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _c("b-input", {
+                staticStyle: { display: "none" },
+                attrs: { type: "number" },
+                model: {
+                  value: _vm.form.tarifa_id_filter,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "tarifa_id_filter", $$v)
+                  },
+                  expression: "form.tarifa_id_filter"
+                }
+              }),
+              _vm._v(" "),
+              _c("b-input", {
+                attrs: { type: "text", placeholder: _vm.$t("message.search") },
+                model: {
+                  value: _vm.form.search,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "search", $$v)
+                  },
+                  expression: "form.search"
+                }
+              }),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "control" },
+                [
+                  _c("b-button", {
+                    attrs: {
+                      "native-type": "submit",
+                      type: "is-primary",
+                      id: "enviar_busqueda",
+                      "icon-left": "magnify"
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "b-select",
+                {
+                  directives: [
+                    {
+                      name: "show",
+                      rawName: "v-show",
+                      value: _vm.isPaginated,
+                      expression: "isPaginated"
+                    }
+                  ],
+                  model: {
+                    value: _vm.form.per_page,
+                    callback: function($$v) {
+                      _vm.$set(_vm.form, "per_page", $$v)
+                    },
+                    expression: "form.per_page"
+                  }
+                },
+                _vm._l(_vm.pageOptions, function(page) {
+                  return _c(
+                    "option",
+                    { key: page, domProps: { value: page } },
+                    [
+                      _vm._v(
+                        _vm._s(page) + " " + _vm._s(_vm.$t("message.perpage"))
+                      )
+                    ]
+                  )
+                }),
+                0
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.tipo_formulario !== "C",
+              expression: "tipo_formulario !== 'C'"
+            }
+          ],
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submitFormulario($event)
+            }
+          }
+        },
+        [
+          _vm._t("default"),
+          _vm._v(" "),
+          _c("b-field", { attrs: { grouped: "", "group-multiline": "" } }, [
+            _c(
+              "div",
+              { staticClass: "control" },
+              [
+                _c(
+                  "b-button",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.editable,
+                        expression: "editable"
+                      }
+                    ],
+                    attrs: {
+                      "native-type": "submit",
+                      type: "is-primary",
+                      "icon-left": "content-save"
+                    }
+                  },
+                  [_vm._v(_vm._s(_vm.$t("message.guardar")) + " Valor")]
                 )
               ],
               1
@@ -99002,6 +100700,144 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MasterFormOrigenesMaderaAnios_vue_vue_type_template_id_d59676c6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MasterFormOrigenesMaderaAnios_vue_vue_type_template_id_d59676c6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/layouts/MasterFormTarifas.vue":
+/*!***************************************************************!*\
+  !*** ./resources/js/components/layouts/MasterFormTarifas.vue ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MasterFormTarifas_vue_vue_type_template_id_07da2fa6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MasterFormTarifas.vue?vue&type=template&id=07da2fa6& */ "./resources/js/components/layouts/MasterFormTarifas.vue?vue&type=template&id=07da2fa6&");
+/* harmony import */ var _MasterFormTarifas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MasterFormTarifas.vue?vue&type=script&lang=js& */ "./resources/js/components/layouts/MasterFormTarifas.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MasterFormTarifas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MasterFormTarifas_vue_vue_type_template_id_07da2fa6___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MasterFormTarifas_vue_vue_type_template_id_07da2fa6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/layouts/MasterFormTarifas.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/layouts/MasterFormTarifas.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************!*\
+  !*** ./resources/js/components/layouts/MasterFormTarifas.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MasterFormTarifas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./MasterFormTarifas.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/MasterFormTarifas.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MasterFormTarifas_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/layouts/MasterFormTarifas.vue?vue&type=template&id=07da2fa6&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/layouts/MasterFormTarifas.vue?vue&type=template&id=07da2fa6& ***!
+  \**********************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MasterFormTarifas_vue_vue_type_template_id_07da2fa6___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./MasterFormTarifas.vue?vue&type=template&id=07da2fa6& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/MasterFormTarifas.vue?vue&type=template&id=07da2fa6&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MasterFormTarifas_vue_vue_type_template_id_07da2fa6___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MasterFormTarifas_vue_vue_type_template_id_07da2fa6___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/layouts/MasterFormTarifasTipoCamion.vue":
+/*!*************************************************************************!*\
+  !*** ./resources/js/components/layouts/MasterFormTarifasTipoCamion.vue ***!
+  \*************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MasterFormTarifasTipoCamion_vue_vue_type_template_id_42f90c8c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MasterFormTarifasTipoCamion.vue?vue&type=template&id=42f90c8c& */ "./resources/js/components/layouts/MasterFormTarifasTipoCamion.vue?vue&type=template&id=42f90c8c&");
+/* harmony import */ var _MasterFormTarifasTipoCamion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MasterFormTarifasTipoCamion.vue?vue&type=script&lang=js& */ "./resources/js/components/layouts/MasterFormTarifasTipoCamion.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MasterFormTarifasTipoCamion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MasterFormTarifasTipoCamion_vue_vue_type_template_id_42f90c8c___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MasterFormTarifasTipoCamion_vue_vue_type_template_id_42f90c8c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/layouts/MasterFormTarifasTipoCamion.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/layouts/MasterFormTarifasTipoCamion.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************!*\
+  !*** ./resources/js/components/layouts/MasterFormTarifasTipoCamion.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MasterFormTarifasTipoCamion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./MasterFormTarifasTipoCamion.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/MasterFormTarifasTipoCamion.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MasterFormTarifasTipoCamion_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/layouts/MasterFormTarifasTipoCamion.vue?vue&type=template&id=42f90c8c&":
+/*!********************************************************************************************************!*\
+  !*** ./resources/js/components/layouts/MasterFormTarifasTipoCamion.vue?vue&type=template&id=42f90c8c& ***!
+  \********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MasterFormTarifasTipoCamion_vue_vue_type_template_id_42f90c8c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./MasterFormTarifasTipoCamion.vue?vue&type=template&id=42f90c8c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/layouts/MasterFormTarifasTipoCamion.vue?vue&type=template&id=42f90c8c&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MasterFormTarifasTipoCamion_vue_vue_type_template_id_42f90c8c___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MasterFormTarifasTipoCamion_vue_vue_type_template_id_42f90c8c___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

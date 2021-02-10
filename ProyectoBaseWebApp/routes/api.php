@@ -113,6 +113,16 @@ Route::group(['middleware' => 'auth:api'], function () {
             'create', 'edit', 'show'
         ]
     ]);
+    Route::group(['prefix' => 'tarifas-tipo-camion'], function () {
+        Route::delete('/', 'TarifaTipoCamionApiController@destroy');
+        Route::get('/all', 'TarifaTipoCamionApiController@all');
+        Route::get('/listado', 'TarifaTipoCamionApiController@listado');
+    });
+    Route::resource('tarifas-tipo-camion', 'TarifaTipoCamionApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
     Route::group(['prefix' => 'origenes-hacienda'], function () {
         Route::delete('/', 'OrigenHaciendaApiController@destroy');
         Route::get('/all', 'OrigenHaciendaApiController@all');
