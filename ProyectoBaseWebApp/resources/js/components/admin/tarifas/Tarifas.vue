@@ -250,13 +250,33 @@ export default {
       } else this.form2._method = undefined;
       this.$http
         .post(path, this.form2)
-        .then(() => {
-          this.$buefy.toast.open({
-            message: this.$t("message.guardado_generico"),
-            type: "is-success",
-          });
-          this.$refs.masterForm.submit();
-        })
+        .then(
+          ( response ) => {
+          
+          console.log(response);
+
+          let respuesta = response.data;
+
+            try {
+              if(respuesta.estado==true){
+              this.$buefy.toast.open({
+                message: this.$t("message.guardado_generico"),
+                type: "is-success",
+              });
+              this.$refs.masterForm.submit();
+            }else{
+              this.$buefy.toast.open({
+                message: respuesta.respuesta,
+                type: "is-danger",
+              });
+
+            }
+              
+            } catch (error) {
+              console.log(error);
+            }
+        }        
+        )
         .catch(({ response }) => {
           let status = response.status;
           if (status === 422) {

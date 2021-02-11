@@ -6036,13 +6036,27 @@ __webpack_require__.r(__webpack_exports__);
         this.form2._method = "PUT";
       } else this.form2._method = undefined;
 
-      this.$http.post(path, this.form2).then(function () {
-        _this2.$buefy.toast.open({
-          message: _this2.$t("message.guardado_generico"),
-          type: "is-success"
-        });
+      this.$http.post(path, this.form2).then(function (response) {
+        console.log(response);
+        var respuesta = response.data;
 
-        _this2.$refs.masterForm.submit();
+        try {
+          if (respuesta.estado == true) {
+            _this2.$buefy.toast.open({
+              message: _this2.$t("message.guardado_generico"),
+              type: "is-success"
+            });
+
+            _this2.$refs.masterForm.submit();
+          } else {
+            _this2.$buefy.toast.open({
+              message: respuesta.respuesta,
+              type: "is-danger"
+            });
+          }
+        } catch (error) {
+          console.log(error);
+        }
       })["catch"](function (_ref) {
         var response = _ref.response;
         var status = response.status;

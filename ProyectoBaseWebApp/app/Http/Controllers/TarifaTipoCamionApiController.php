@@ -63,13 +63,16 @@ class TarifaTipoCamionApiController extends Controller
                 'valor' => $request->input('valor'),
                 'creador_id' => $user->id
             ]);
+            return [
+                'estado' => true,
+                'respuesta' => "Registro creado Exitosamente."
+            ];
+            
         }else{
-            $TarifaTipoCamion = TarifaTipoCamion::findOrFail($tarifa_existe->first()->id);
-            $TarifaTipoCamion->valor = $request->input('valor');
-            $TarifaTipoCamion->tipo_camion = $request->input('tipo_camion');
-            $TarifaTipoCamion->tarifa_id = $request->input('tarifa_id');
-            $TarifaTipoCamion->modificador_id = $request->user()->id;
-            $TarifaTipoCamion->save();
+            return [
+                'estado' => false,
+                'respuesta' => "Ya existe un registro con ese tipo de Camión, Origen y Destino."
+            ];
         }
         
     }
@@ -92,6 +95,15 @@ class TarifaTipoCamionApiController extends Controller
             $TarifaTipoCamion->tarifa_id = $request->input('tarifa_id');
             $TarifaTipoCamion->modificador_id = $request->user()->id;
             $TarifaTipoCamion->save();
+            return [
+                'estado' => true,
+                'respuesta' => "Registro creado Exitosamente."
+            ];
+        }else{
+            return [
+                'estado' => false,
+                'respuesta' => "Ya existe un registro con ese tipo de Camión, Origen y Destino."
+            ];
         }
         
     }

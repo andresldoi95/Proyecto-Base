@@ -458,15 +458,24 @@ class DespachoApiController extends Controller
             $fila = FilaDespacho::findOrFail($request->input('fila_id'));
             $fotos = $request->file('fotos');
             foreach ($fotos as $foto) {
-                $path = Storage::disk('local')->put('public/imgs', $foto);
+                /*$path = Storage::disk('local')->put('public/imgs', $foto);
                 $fullpath = Storage::disk('local')->path($path);
                 $fila->fotos()->create([
                     'path' => $fullpath
-                ]);
-                /*$file = $foto;
+                ]);*/
+                $file = $foto;
                 $path = storage_path('app/public').'/imgs';
                 $fileName = uniqid().".jpg";
-                $fullpath = $path.'/'. $fileName;*/
+                $fullpath = $path.'/'. $fileName;
+                $moved=  Image::make($foto)
+                ->save($path.'/'.$fileName, 25);
+
+                if ($moved) {
+                    $fila->fotos()->create([
+                        'path' => $fullpath
+                    ]);
+                    
+                }
 
                 /*$moved=  Image::make($foto)
                 ->resize(720, null, function ($constraint) {
@@ -475,15 +484,7 @@ class DespachoApiController extends Controller
                 })
                 ->save($path.'/'.$fileName, 75);*/
 
-                /*$moved=  Image::make($foto)
-                ->save($path.'/'.$fileName, 25);
-
-                if ($moved) {
-                    $fila->fotos()->create([
-                        'path' => $fullpath
-                    ]);
-                    
-                }*/
+                
                 
             }
         });
@@ -496,7 +497,7 @@ class DespachoApiController extends Controller
             $fila = FilaDespacho::findOrFail($request->input('fila_id'));
             $fotos = $request->file('fotos');
             foreach ($fotos as $foto) {
-                $path = Storage::disk('local')->put('public/imgs', $foto);
+                /*$path = Storage::disk('local')->put('public/imgs', $foto);
                 $fullpath = Storage::disk('local')->path($path);
                 $fotoFila = FotoFila::where('path', $fullpath)->get();
 
@@ -504,6 +505,19 @@ class DespachoApiController extends Controller
                     $fila->fotos()->create([
                         'path' => $fullpath
                     ]);  
+                }*/
+                $file = $foto;
+                $path = storage_path('app/public').'/imgs';
+                $fileName = uniqid().".jpg";
+                $fullpath = $path.'/'. $fileName;
+                $moved=  Image::make($foto)
+                ->save($path.'/'.$fileName, 25);
+
+                if ($moved) {
+                    $fila->fotos()->create([
+                        'path' => $fullpath
+                    ]);
+                    
                 }                            
             }
 
@@ -518,16 +532,24 @@ class DespachoApiController extends Controller
                 $troza = Troza::findOrFail($request->input('troza_id'));
                 $fotos = $request->file('fotos');
                 foreach ($fotos as $foto) {
-                    $path = Storage::disk('local')->put('public/imgs', $foto);
+                    /*$path = Storage::disk('local')->put('public/imgs', $foto);
                     $fullpath = Storage::disk('local')->path($path);
                     $troza->fotos()->create([
                         'foto' => $fullpath,
                         'id' => $request->input('id')
-                    ]);
-                    /*$file = $foto;
+                    ]);*/
+                    $file = $foto;
                     $path = storage_path('app/public').'/imgs';
                     $fileName = $request->input('id')."-".uniqid().".jpg";
-                    $fullpath = $path.'/'. $fileName;*/
+                    $fullpath = $path.'/'. $fileName;
+                    $moved=  Image::make($foto)
+                    ->save($path.'/'.$fileName, 25);
+                    if ($moved) {
+                        $troza->fotos()->create([
+                            'foto' => $fullpath,
+                            'id' => $request->input('id')
+                        ]);
+                    }
 
                     /*$moved=  Image::make($foto)
                     ->resize(720, null, function ($constraint) {
@@ -536,16 +558,7 @@ class DespachoApiController extends Controller
                     })
                     ->save($path.'/'.$fileName, 75);*/
 
-                    /*$moved=  Image::make($foto)
-                    ->save($path.'/'.$fileName, 25);
-
-                    if ($moved) {
-                        $troza->fotos()->create([
-                            'foto' => $fullpath,
-                            'id' => $request->input('id')
-                        ]);
-                        
-                    }*/                   
+                                      
                 }
         });
     }
@@ -557,12 +570,24 @@ class DespachoApiController extends Controller
                 $troza = Troza::findOrFail($request->input('troza_id'));
                 $fotos = $request->file('fotos');
                 foreach ($fotos as $foto) {
-                    $path = Storage::disk('local')->put('public/imgs', $foto);
+                    /*$path = Storage::disk('local')->put('public/imgs', $foto);
                     $fullpath = Storage::disk('local')->path($path);
 
                     $fotoTroza = TrozaFotos::where('id', $foto->id)->get();
 
                     if($fotoTroza->count()==0){
+                        $troza->fotos()->create([
+                            'foto' => $fullpath,
+                            'id' => $request->input('id')
+                        ]);
+                    }*/
+                    $file = $foto;
+                    $path = storage_path('app/public').'/imgs';
+                    $fileName = $request->input('id')."-".uniqid().".jpg";
+                    $fullpath = $path.'/'. $fileName;
+                    $moved=  Image::make($foto)
+                    ->save($path.'/'.$fileName, 25);
+                    if ($moved) {
                         $troza->fotos()->create([
                             'foto' => $fullpath,
                             'id' => $request->input('id')
