@@ -133,7 +133,7 @@
     </table>
     <h4 class="upper centered">Madera aserrada/espesor pulgadas</h4>
     <table id="filas" class="bordered">
-    @if($despacho->tipo_llenado =='B' || $despacho->tipo_llenado =='S')
+    @if($despacho->tipo_llenado =='B' || $despacho->tipo_llenado =='S' || $despacho->tipo_llenado =='H')
         <tbody>
             <tr>
                 <td class="centered">

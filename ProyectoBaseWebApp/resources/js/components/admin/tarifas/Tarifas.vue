@@ -253,8 +253,6 @@ export default {
         .then(
           ( response ) => {
           
-          console.log(response);
-
           let respuesta = response.data;
 
             try {
