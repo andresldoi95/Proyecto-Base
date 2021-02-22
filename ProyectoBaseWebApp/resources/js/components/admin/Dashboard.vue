@@ -23,6 +23,8 @@
             </div>
             <div class="column">
               <b>Volumen Total Despachado</b>
+              <div id="volumen_total"></div>
+
               
             </div>
             
@@ -30,21 +32,22 @@
           <div class="columns">
             <div class="column">
               <b>Volumen Despachado por Destino</b>
-              <div class="hello" ref="chartdivDestino" style="width:100%; height:500px;"></div>
+              <div class="hello" ref="chartdivDestino" style="width:100%; height:400px;"></div>
             </div>
             <div class="column">
               <b>Volumen Despachado por Espesores</b>
-              
+              <div class="hello" ref="chartdivEspesor" style="width:100%; height:400px;"></div>
+
             </div>
             <div class="column">
               <b>Volumen Despachado por Formato</b>
-              
+              <div class="hello" ref="chartdivFormato" style="width:100%; height:400px;"></div>
             </div>
           </div>
           <div class="columns">
             <div class="column">
               <b>Volumen Despachado por Hacienda</b>
-              <div class="hello" ref="chartdivHacienda" style="width:100%; height:500px;"></div>
+              <div class="hello" ref="chartdivHacienda" style="width:100%; height:400px;"></div>
             </div>
           </div>
       </div>
@@ -86,6 +89,8 @@ export default {
             chart.data = data;
             // Create axes
             let categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.title.text = "Destino";
+            categoryAxis.title.fontWeight = 800;
             categoryAxis.dataFields.category = "destino";
             categoryAxis.numberFormatter.numberFormat = "#";
             categoryAxis.renderer.inversed = true;
@@ -94,7 +99,8 @@ export default {
             categoryAxis.renderer.cellEndLocation = 0.9;
 
             let  valueAxis = chart.xAxes.push(new am4charts.ValueAxis()); 
-            valueAxis.renderer.opposite = true;
+            valueAxis.title.text = "Volumen Enviado";
+            valueAxis.title.fontWeight = 800;
             // Create series
             function createSeries(field, name) {
               let series = chart.series.push(new am4charts.ColumnSeries());
@@ -105,20 +111,6 @@ export default {
               series.columns.template.height = am4core.percent(100);
               series.sequencedInterpolation = true;
 
-              let valueLabel = series.bullets.push(new am4charts.LabelBullet());
-              valueLabel.label.text = "{valueX}";
-              valueLabel.label.horizontalCenter = "left";
-              valueLabel.label.dx = 10;
-              valueLabel.label.hideOversized = false;
-              valueLabel.label.truncate = false;
-
-              let categoryLabel = series.bullets.push(new am4charts.LabelBullet());
-              categoryLabel.label.text = "{valueX}";
-              categoryLabel.label.horizontalCenter = "right";
-              categoryLabel.label.dx = -10;
-              categoryLabel.label.fill = am4core.color("#fff");
-              categoryLabel.label.hideOversized = false;
-              categoryLabel.label.truncate = false;
             }
             createSeries("volumen", "Volumen");
 
@@ -134,6 +126,8 @@ export default {
             chart.data = data;
             // Create axes
             let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.title.text = "Hacienda";
+            categoryAxis.title.fontWeight = 800;
             categoryAxis.dataFields.category = "hacienda";
             categoryAxis.numberFormatter.numberFormat = "#";
             categoryAxis.renderer.inversed = true;
@@ -142,7 +136,8 @@ export default {
             categoryAxis.renderer.cellEndLocation = 0.9;
 
             let  valueAxis = chart.yAxes.push(new am4charts.ValueAxis()); 
-            valueAxis.renderer.opposite = true;
+            valueAxis.title.text = "Volumen Enviado";
+            valueAxis.title.fontWeight = 800;
             // Create series
             function createSeries(field, name) {
               let series = chart.series.push(new am4charts.ColumnSeries());
@@ -153,26 +148,100 @@ export default {
               series.columns.template.height = am4core.percent(100);
               series.sequencedInterpolation = true;
 
-
-              let categoryLabel = series.bullets.push(new am4charts.LabelBullet());
-              categoryLabel.label.text = "{valueY}";
-              categoryLabel.label.horizontalCenter = "right";
-              categoryLabel.label.fill = am4core.color("#fff");
-              categoryLabel.label.hideOversized = false;
-              categoryLabel.label.truncate = false;
             }
             createSeries("volumen", "Volumen");
 
             this.chart = chart;
         });
     },
+    cargarDespachosPorEspesor: function () {
+        let path = process.env.MIX_APP_URL_API + "/despachos_por_espesor";
+        this.$http.get(path).then(({data}) => {
+            //console.log(data);
+            let chart = am4core.create(this.$refs.chartdivEspesor, am4charts.XYChart); 
+            chart.data = data;
+            // Create axes
+            let categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.title.text = "Espesor";
+            categoryAxis.title.fontWeight = 800;
+            categoryAxis.dataFields.category = "espesor";
+            categoryAxis.numberFormatter.numberFormat = "#";
+            categoryAxis.renderer.inversed = true;
+            categoryAxis.renderer.grid.template.location = 0;
+            categoryAxis.renderer.cellStartLocation = 0.1;
+            categoryAxis.renderer.cellEndLocation = 0.9;
+
+            let  valueAxis = chart.xAxes.push(new am4charts.ValueAxis()); 
+            valueAxis.title.text = "Volumen Enviado";
+            valueAxis.title.fontWeight = 800;
+            // Create series
+            function createSeries(field, name) {
+              let series = chart.series.push(new am4charts.ColumnSeries());
+              series.dataFields.valueX = field;
+              series.dataFields.categoryY = "espesor";
+              series.name = name;
+              series.columns.template.tooltipText = "{name}: [bold]{valueX}[/]";
+              series.columns.template.height = am4core.percent(100);
+              series.sequencedInterpolation = true;
+
+            }
+            createSeries("volumen", "Volumen");
+
+            this.chart = chart;
+        });
+    },
+    cargarDespachosPorFormato: function () {
+        let path = process.env.MIX_APP_URL_API + "/despachos_por_formato";
+        this.$http.get(path).then(({data}) => {
+            //console.log(data);
+            let chart = am4core.create(this.$refs.chartdivFormato, am4charts.XYChart); 
+            chart.data = data;
+            // Create axes
+            let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
+            categoryAxis.title.text = "Formato de Entrega";
+            categoryAxis.title.fontWeight = 800;
+            categoryAxis.dataFields.category = "formato";
+            categoryAxis.numberFormatter.numberFormat = "#";
+            categoryAxis.renderer.inversed = true;
+            categoryAxis.renderer.grid.template.location = 0;
+            categoryAxis.renderer.cellStartLocation = 0.1;
+            categoryAxis.renderer.cellEndLocation = 0.9;
+            
+
+            let  valueAxis = chart.yAxes.push(new am4charts.ValueAxis()); 
+            valueAxis.title.text = "Volumen Enviado";
+            valueAxis.title.fontWeight = 800;
+            // Create series
+            function createSeries(field, name) {
+              let series = chart.series.push(new am4charts.ColumnSeries());
+              series.dataFields.valueY = field;
+              series.dataFields.categoryX = "formato";
+              series.name = name;
+              series.columns.template.tooltipText = "{name}: [bold]{valueY}[/]";
+              series.columns.template.height = am4core.percent(100);
+              series.sequencedInterpolation = true;
+
+            }
+            createSeries("volumen", "Volumen");
+            this.chart = chart;
+        });
+    },
+    cargarDespachosTotal: function () {
+        let path = process.env.MIX_APP_URL_API + "/despachos_total";
+        this.$http.get(path).then(({data}) => {
+            console.log(data);
+            document.getElementById('volumen_total').innerHTML = '<h1 class="title" >'+data+'</h1>';
+        });
+    },
 
   },
   mounted() {
     this.cargarDestinos();
+    this.cargarDespachosTotal();
     this.cargarDespachosPorDestino();
     this.cargarDespachosPorHacienda();
-
+    this.cargarDespachosPorFormato();
+    this.cargarDespachosPorEspesor();
   },
 
   beforeDestroy() {

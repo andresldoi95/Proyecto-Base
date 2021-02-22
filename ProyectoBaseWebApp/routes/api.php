@@ -227,6 +227,9 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::get('despachos_por_destino', 'DespachoApiController@dashboard_despachado_por_destino');
     Route::get('despachos_por_hacienda', 'DespachoApiController@dashboard_despachado_por_hacienda');
+    Route::get('despachos_por_formato', 'DespachoApiController@dashboard_despachado_por_formato');
+    Route::get('despachos_por_espesor', 'DespachoApiController@dashboard_despachado_por_espesor');
+    Route::get('despachos_total', 'DespachoApiController@dashboard_total');
 
 
 

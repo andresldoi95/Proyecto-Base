@@ -17,6 +17,7 @@ use App\User;
 use App\Aserrador;
 use App\Destino;
 use App\OrigenMadera;
+use App\FormatoEntrega;
 use App\Material;
 use Mail;
 use PDF;
@@ -635,7 +636,7 @@ class DespachoApiController extends Controller
                     if($trozas->count()>0){
                         $volumen = $volumen + $trozas->first()->volumen_estimado;
                     }else{
-                    // $despacho->volumen = number_format($despacho->filas()->sum('bft'),2)." BFT";
+                        $volumen = $volumen + $despacho->filas()->sum('bft');
                     }
                 }
                 
@@ -643,7 +644,7 @@ class DespachoApiController extends Controller
 
             $other = [
                 'destino' => $destino->descripcion,
-                'volumen' => $volumen
+                'volumen' => number_format($volumen,2)
             ];
 
             array_push($valores_grafica, $other);
@@ -690,7 +691,7 @@ class DespachoApiController extends Controller
                     if($trozas->count()>0){
                         $volumen = $volumen + $trozas->first()->volumen_estimado;
                     }else{
-                    // $despacho->volumen = number_format($despacho->filas()->sum('bft'),2)." BFT";
+                        $volumen = $volumen + $despacho->filas()->sum('bft');
                     }
                 }
                 
@@ -698,7 +699,7 @@ class DespachoApiController extends Controller
 
             $other = [
                 'hacienda' => $hacienda->descripcion,
-                'volumen' => $volumen
+                'volumen' => number_format($volumen,2)
             ];
 
             array_push($valores_grafica, $other);
@@ -709,5 +710,190 @@ class DespachoApiController extends Controller
         
 
         return $valores_grafica;
+    }
+
+    public function dashboard_despachado_por_formato(Request $request) {
+        /*$request->validate([
+            'desde' => 'required|date',
+            'hasta' => 'required|date',
+            'search' => 'nullable'
+        ]);*/
+        //$desde = new Carbon($request->input('desde'));
+        //$hasta = new Carbon($request->input('hasta'));
+
+        $user = $request->user();
+
+        $formatos = FormatoEntrega::where('empresa_id', $user->empresa_id)->where('estado', 'A')->get();
+        $despachos = Despacho::with('aserrador','camion', 'destino', 'origenMadera', 'formatoEntrega', 'usuario'
+        )->whereHas('camion', function ($query) use($user) {
+            return $query->where('empresa_id', $user->empresa_id);
+        })->whereHas('aserrador', function ($query){
+            return $query->where('estado', 'A');
+        })
+        /*->whereBetween('fecha_despacho', [
+            $desde, $hasta
+        ])*/
+        ->get();
+
+        $valores_grafica = [];
+
+        foreach($formatos as $formato){
+            $volumen = 0;
+            foreach($despachos as $despacho){
+
+                if($despacho->formato_entrega_id == $formato->id){
+                    $trozas = Troza::where('despacho_id', $despacho->id)->get();
+                    if($trozas->count()>0){
+                        $volumen = $volumen + $trozas->first()->volumen_estimado;
+                    }else{
+                        $volumen = $volumen + $despacho->filas()->sum('bft');
+                    }
+                }
+                
+            }
+
+            $other = [
+                'formato' => $formato->descripcion,
+                'volumen' => number_format($volumen,2)
+            ];
+
+            array_push($valores_grafica, $other);
+
+        }
+
+
+        
+
+        return $valores_grafica;
+    }
+
+    public function dashboard_despachado_por_espesor(Request $request) {
+        /*$request->validate([
+            'desde' => 'required|date',
+            'hasta' => 'required|date',
+            'search' => 'nullable'
+        ]);*/
+        //$desde = new Carbon($request->input('desde'));
+        //$hasta = new Carbon($request->input('hasta'));
+
+        $user = $request->user();
+
+        $espesores = Espesor::where('empresa_id', $user->empresa_id)->where('estado', 'A')->get();
+        $despachos = Despacho::with('aserrador','camion', 'destino', 'origenMadera', 'formatoEntrega', 'usuario'
+        )->whereHas('camion', function ($query) use($user) {
+            return $query->where('empresa_id', $user->empresa_id);
+        })->whereHas('aserrador', function ($query){
+            return $query->where('estado', 'A');
+        })
+        /*->whereBetween('fecha_despacho', [
+            $desde, $hasta
+        ])*/
+        ->get();
+
+        $valores_grafica = [];
+
+        foreach($espesores as $espesor){
+            $volumen = 0;
+            foreach($despachos as $despacho){
+
+                $filas_despacho = FilaDespacho::where('despacho_id', $despacho->id)->get();
+
+                foreach($filas_despacho as $fila_despacho){
+                    $filas_sueltos = FilaSuelto::where('fila_id', $fila_despacho->id)->get();
+
+                    foreach($filas_sueltos as $fila_suelto){
+
+                        if($fila_suelto->tipo_bulto_id==NULL){
+                            if($fila_suelto->espesor_id == $espesor->id){
+                                $trozas = Troza::where('despacho_id', $despacho->id)->get();
+                                if($trozas->count()>0){
+                                    $volumen = $volumen + $trozas->first()->volumen_estimado;
+                                }else{
+                                    $volumen = $volumen + $despacho->filas()->sum('bft');
+                                }
+                            }
+                            
+
+
+                        }else{
+                            $tipoBulto = TipoBulto::findOrFail($fila_suelto->tipo_bulto_id);
+
+                            if($tipoBulto->espesor_id == $espesor->id){
+                                $trozas = Troza::where('despacho_id', $despacho->id)->get();
+                                if($trozas->count()>0){
+                                    $volumen = $volumen + $trozas->first()->volumen_estimado;
+                                }else{
+                                    $volumen = $volumen + $despacho->filas()->sum('bft');
+                                }
+                            }
+
+
+
+                        }
+
+                    }
+
+                }
+
+
+                
+                
+            }
+
+            $other = [
+                'espesor' => $espesor->descripcion,
+                'volumen' => number_format($volumen,2)
+            ];
+
+            array_push($valores_grafica, $other);
+
+        }
+
+
+        
+
+        return $valores_grafica;
+    }
+
+    public function dashboard_total(Request $request) {
+        /*$request->validate([
+            'desde' => 'required|date',
+            'hasta' => 'required|date',
+            'search' => 'nullable'
+        ]);*/
+        //$desde = new Carbon($request->input('desde'));
+        //$hasta = new Carbon($request->input('hasta'));
+
+        $user = $request->user();
+        $despachos = Despacho::with('aserrador','camion', 'destino', 'origenMadera', 'formatoEntrega', 'usuario'
+        )->whereHas('camion', function ($query) use($user) {
+            return $query->where('empresa_id', $user->empresa_id);
+        })->whereHas('aserrador', function ($query){
+            return $query->where('estado', 'A');
+        })
+        /*->whereBetween('fecha_despacho', [
+            $desde, $hasta
+        ])*/
+        ->get();
+
+
+        $volumen = 0;
+        foreach($despachos as $despacho){
+
+            $trozas = Troza::where('despacho_id', $despacho->id)->get();
+            if($trozas->count()>0){
+                $volumen = $volumen + $trozas->first()->volumen_estimado;
+            }else{
+                $volumen = $volumen + $despacho->filas()->sum('bft');
+            }
+        
+            
+        }
+
+
+
+        
+
+        return $volumen;
     }
 }
