@@ -224,7 +224,10 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::get('modulos', 'ModuloApiController@index');
 
     Route::get('acciones', 'AccionApiController@index');
-    
+
+    Route::get('despachos_por_destino', 'DespachoApiController@dashboard_despachado_por_destino');
+    Route::get('despachos_por_hacienda', 'DespachoApiController@dashboard_despachado_por_hacienda');
+
 
 
     Route::get('acciones-por-usuario', 'AccionApiController@accionesPorUsuario');

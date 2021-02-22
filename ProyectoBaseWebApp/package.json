@@ -21,6 +21,7 @@
         "webpack-livereload-plugin": "^2.3.0"
     },
     "dependencies": {
+        "@amcharts/amcharts4": "^4.10.15",
         "@mdi/font": "^5.3.45",
         "buefy": "^0.8.20",
         "moment": "^2.29.1",
