@@ -225,11 +225,11 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::get('acciones', 'AccionApiController@index');
 
-    Route::get('despachos_por_destino', 'DespachoApiController@dashboard_despachado_por_destino');
-    Route::get('despachos_por_hacienda', 'DespachoApiController@dashboard_despachado_por_hacienda');
-    Route::get('despachos_por_formato', 'DespachoApiController@dashboard_despachado_por_formato');
-    Route::get('despachos_por_espesor', 'DespachoApiController@dashboard_despachado_por_espesor');
-    Route::get('despachos_total', 'DespachoApiController@dashboard_total');
+    Route::post('despachos_por_destino', 'DespachoApiController@dashboard_despachado_por_destino');
+    Route::post('despachos_por_hacienda', 'DespachoApiController@dashboard_despachado_por_hacienda');
+    Route::post('despachos_por_formato', 'DespachoApiController@dashboard_despachado_por_formato');
+    Route::post('despachos_por_espesor', 'DespachoApiController@dashboard_despachado_por_espesor');
+    Route::post('despachos_total', 'DespachoApiController@dashboard_total');
 
 
 

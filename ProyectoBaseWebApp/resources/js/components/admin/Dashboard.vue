@@ -3,32 +3,37 @@
     <div class="hero-body">
       <div class="container" style="max-width:95%;">
         <h1 class="title">{{ $t('title.dashboard') }}</h1>
-          <div class="columns">
-            <div class="column">
-              
-            </div>
-            <div class="column">
-              <b>Rango de Fecha</b>
-              <b-datepicker :placeholder="$t('message.desde')" v-model="form.desde">
-              </b-datepicker>
-              <b-datepicker :placeholder="$t('message.hasta')" v-model="form.hasta">
-              </b-datepicker>
-              
-            </div>
-            <div class="column">
-                <b>Destino</b>
-                <div v-for="destino in destinos" :key="destino.id" class="field">
-                    <b-checkbox v-model="form.destinos" :native-value="destino.id">{{ destino.descripcion }}</b-checkbox>
-                </div>
-            </div>
-            <div class="column">
-              <b>Volumen Total Despachado</b>
-              <div id="volumen_total"></div>
+          <form @submit.prevent="submit">
+            <div class="columns">
+              <div class="column">
+                
+              </div>
+              <div class="column">
+                <b>Rango de Fecha</b>
+                <b-datepicker :placeholder="$t('message.desde')" v-model="form.desde">
+                </b-datepicker>
+                <b-datepicker :placeholder="$t('message.hasta')" v-model="form.hasta">
+                </b-datepicker>
+                
+              </div>
+              <div class="column">
+                  <b>Destino</b>
+                  <div v-for="destino in destinos" :key="destino.id" class="field">
+                      <b-checkbox v-model="form.destinos" :native-value="destino.id">{{ destino.descripcion }}</b-checkbox>
+                  </div>
+              </div>
+              <div class="column">
+                <b>Volumen Total Despachado</b>
+                <div id="volumen_total"></div>
 
+                
+              </div>
+              <div class="control">
+                <b-button native-type="submit" type="is-primary" icon-left="magnify"></b-button>
+              </div>
               
             </div>
-            
-          </div>
+          </form>
           <div class="columns">
             <div class="column">
               <b>Volumen Despachado por Destino</b>
@@ -69,22 +74,36 @@ export default {
     return {
       form: {
         _method: undefined,
-        destinos: []
+        destinos: [],
+        desde: new Date(),
+        hasta: new Date()
       },
       destinos: [],
     };
   },
   methods: {
+    submit: function () {
+      this.cargarDespachosTotal();
+      this.cargarDespachosPorDestino();
+      this.cargarDespachosPorHacienda();
+      this.cargarDespachosPorFormato();
+      this.cargarDespachosPorEspesor();      
+    },
     cargarDestinos: function () {
         let path = process.env.MIX_APP_URL_API + "/destinos/listado";
         this.$http.get(path).then(({data}) => {
             this.destinos = data;
+            for (let i = 0; i < this.destinos.length; i++){
+              this.form.destinos.push(this.destinos[i].id);
+            }
         });
     },
-    cargarDespachosPorDestino: function () {
+    cargarDespachosPorDestino: function () {            
         let path = process.env.MIX_APP_URL_API + "/despachos_por_destino";
-        this.$http.get(path).then(({data}) => {
-            //console.log(data);
+        this.$http
+        .post(path, this.form)
+        .then(({data}) => {
+          
             let chart = am4core.create(this.$refs.chartdivDestino, am4charts.XYChart); 
             chart.data = data;
             // Create axes
@@ -120,7 +139,9 @@ export default {
 
     cargarDespachosPorHacienda: function () {
         let path = process.env.MIX_APP_URL_API + "/despachos_por_hacienda";
-        this.$http.get(path).then(({data}) => {
+        this.$http
+        .post(path, this.form)
+        .then(({data}) => {
             //console.log(data);
             let chart = am4core.create(this.$refs.chartdivHacienda, am4charts.XYChart); 
             chart.data = data;
@@ -156,7 +177,9 @@ export default {
     },
     cargarDespachosPorEspesor: function () {
         let path = process.env.MIX_APP_URL_API + "/despachos_por_espesor";
-        this.$http.get(path).then(({data}) => {
+        this.$http
+        .post(path, this.form)
+        .then(({data}) => {
             //console.log(data);
             let chart = am4core.create(this.$refs.chartdivEspesor, am4charts.XYChart); 
             chart.data = data;
@@ -192,7 +215,9 @@ export default {
     },
     cargarDespachosPorFormato: function () {
         let path = process.env.MIX_APP_URL_API + "/despachos_por_formato";
-        this.$http.get(path).then(({data}) => {
+        this.$http
+        .post(path, this.form)
+        .then(({data}) => {
             //console.log(data);
             let chart = am4core.create(this.$refs.chartdivFormato, am4charts.XYChart); 
             chart.data = data;
@@ -228,7 +253,9 @@ export default {
     },
     cargarDespachosTotal: function () {
         let path = process.env.MIX_APP_URL_API + "/despachos_total";
-        this.$http.get(path).then(({data}) => {
+        this.$http
+        .post(path, this.form)
+        .then(({data}) => {
             console.log(data);
             document.getElementById('volumen_total').innerHTML = '<h1 class="title" >'+data+'</h1>';
         });

@@ -603,34 +603,34 @@ class DespachoApiController extends Controller
     }
 
     public function dashboard_despachado_por_destino(Request $request) {
-        /*$request->validate([
-            'desde' => 'required|date',
-            'hasta' => 'required|date',
-            'search' => 'nullable'
-        ]);*/
-        //$desde = new Carbon($request->input('desde'));
-        //$hasta = new Carbon($request->input('hasta'));
+        $desde = new Carbon($request->input('desde'));
+        $hasta = new Carbon($request->input('hasta'));
+                
 
         $user = $request->user();
 
         $destinos = Destino::where('empresa_id', $user->empresa_id)->where('estado', 'A')->get();
+        $destinos_filter = $request->input('destinos');
         $despachos = Despacho::with('aserrador','camion', 'destino', 'origenMadera', 'formatoEntrega', 'usuario'
         )->whereHas('camion', function ($query) use($user) {
             return $query->where('empresa_id', $user->empresa_id);
         })->whereHas('aserrador', function ($query){
             return $query->where('estado', 'A');
         })
-        /*->whereBetween('fecha_despacho', [
+        ->whereBetween('fecha_despacho', [
             $desde, $hasta
-        ])*/
-        ->get();
+        ]);
+        if (isset($destinos_filter)) {
+            $despachos->where(function ($query) use ($destinos_filter) {
+                return $query->whereIn('destino_id',  $destinos_filter);
+            });   
+        }
+        $despachos = $despachos->get();
 
         $valores_grafica = [];
-
         foreach($destinos as $destino){
             $volumen = 0;
             foreach($despachos as $despacho){
-
                 if($despacho->destino_id == $destino->id){
                     $trozas = Troza::where('despacho_id', $despacho->id)->get();
                     if($trozas->count()>0){
@@ -639,46 +639,39 @@ class DespachoApiController extends Controller
                         $volumen = $volumen + $despacho->filas()->sum('bft');
                     }
                 }
-                
             }
-
             $other = [
                 'destino' => $destino->descripcion,
                 'volumen' => number_format($volumen,2)
             ];
-
             array_push($valores_grafica, $other);
-
         }
-
-
-        
-
         return $valores_grafica;
     }
 
     public function dashboard_despachado_por_hacienda(Request $request) {
-        /*$request->validate([
-            'desde' => 'required|date',
-            'hasta' => 'required|date',
-            'search' => 'nullable'
-        ]);*/
-        //$desde = new Carbon($request->input('desde'));
-        //$hasta = new Carbon($request->input('hasta'));
+        $desde = new Carbon($request->input('desde'));
+        $hasta = new Carbon($request->input('hasta'));
 
         $user = $request->user();
 
         $haciendas = OrigenMadera::where('empresa_id', $user->empresa_id)->where('estado', 'A')->get();
+        $destinos_filter = $request->input('destinos');
         $despachos = Despacho::with('aserrador','camion', 'destino', 'origenMadera', 'formatoEntrega', 'usuario'
         )->whereHas('camion', function ($query) use($user) {
             return $query->where('empresa_id', $user->empresa_id);
         })->whereHas('aserrador', function ($query){
             return $query->where('estado', 'A');
         })
-        /*->whereBetween('fecha_despacho', [
+        ->whereBetween('fecha_despacho', [
             $desde, $hasta
-        ])*/
-        ->get();
+        ]);
+        if (isset($destinos_filter)) {
+            $despachos->where(function ($query) use ($destinos_filter) {
+                return $query->whereIn('destino_id',  $destinos_filter);
+            });   
+        }
+        $despachos = $despachos->get();
 
         $valores_grafica = [];
 
@@ -713,27 +706,28 @@ class DespachoApiController extends Controller
     }
 
     public function dashboard_despachado_por_formato(Request $request) {
-        /*$request->validate([
-            'desde' => 'required|date',
-            'hasta' => 'required|date',
-            'search' => 'nullable'
-        ]);*/
-        //$desde = new Carbon($request->input('desde'));
-        //$hasta = new Carbon($request->input('hasta'));
+        $desde = new Carbon($request->input('desde'));
+        $hasta = new Carbon($request->input('hasta'));
 
         $user = $request->user();
 
         $formatos = FormatoEntrega::where('empresa_id', $user->empresa_id)->where('estado', 'A')->get();
+        $destinos_filter = $request->input('destinos');
         $despachos = Despacho::with('aserrador','camion', 'destino', 'origenMadera', 'formatoEntrega', 'usuario'
         )->whereHas('camion', function ($query) use($user) {
             return $query->where('empresa_id', $user->empresa_id);
         })->whereHas('aserrador', function ($query){
             return $query->where('estado', 'A');
         })
-        /*->whereBetween('fecha_despacho', [
+        ->whereBetween('fecha_despacho', [
             $desde, $hasta
-        ])*/
-        ->get();
+        ]);
+        if (isset($destinos_filter)) {
+            $despachos->where(function ($query) use ($destinos_filter) {
+                return $query->whereIn('destino_id',  $destinos_filter);
+            });   
+        }
+        $despachos = $despachos->get();
 
         $valores_grafica = [];
 
@@ -768,27 +762,28 @@ class DespachoApiController extends Controller
     }
 
     public function dashboard_despachado_por_espesor(Request $request) {
-        /*$request->validate([
-            'desde' => 'required|date',
-            'hasta' => 'required|date',
-            'search' => 'nullable'
-        ]);*/
-        //$desde = new Carbon($request->input('desde'));
-        //$hasta = new Carbon($request->input('hasta'));
+        $desde = new Carbon($request->input('desde'));
+        $hasta = new Carbon($request->input('hasta'));
 
         $user = $request->user();
 
         $espesores = Espesor::where('empresa_id', $user->empresa_id)->where('estado', 'A')->get();
+        $destinos_filter = $request->input('destinos');
         $despachos = Despacho::with('aserrador','camion', 'destino', 'origenMadera', 'formatoEntrega', 'usuario'
         )->whereHas('camion', function ($query) use($user) {
             return $query->where('empresa_id', $user->empresa_id);
         })->whereHas('aserrador', function ($query){
             return $query->where('estado', 'A');
         })
-        /*->whereBetween('fecha_despacho', [
+        ->whereBetween('fecha_despacho', [
             $desde, $hasta
-        ])*/
-        ->get();
+        ]);
+        if (isset($destinos_filter)) {
+            $despachos->where(function ($query) use ($destinos_filter) {
+                return $query->whereIn('destino_id',  $destinos_filter);
+            });   
+        }
+        $despachos = $despachos->get();
 
         $valores_grafica = [];
 
@@ -856,25 +851,26 @@ class DespachoApiController extends Controller
     }
 
     public function dashboard_total(Request $request) {
-        /*$request->validate([
-            'desde' => 'required|date',
-            'hasta' => 'required|date',
-            'search' => 'nullable'
-        ]);*/
-        //$desde = new Carbon($request->input('desde'));
-        //$hasta = new Carbon($request->input('hasta'));
+        $desde = new Carbon($request->input('desde'));
+        $hasta = new Carbon($request->input('hasta'));
 
         $user = $request->user();
+        $destinos_filter = $request->input('destinos');
         $despachos = Despacho::with('aserrador','camion', 'destino', 'origenMadera', 'formatoEntrega', 'usuario'
         )->whereHas('camion', function ($query) use($user) {
             return $query->where('empresa_id', $user->empresa_id);
         })->whereHas('aserrador', function ($query){
             return $query->where('estado', 'A');
         })
-        /*->whereBetween('fecha_despacho', [
+        ->whereBetween('fecha_despacho', [
             $desde, $hasta
-        ])*/
-        ->get();
+        ]);
+        if (isset($destinos_filter)) {
+            $despachos->where(function ($query) use ($destinos_filter) {
+                return $query->whereIn('destino_id',  $destinos_filter);
+            });   
+        }
+        $despachos = $despachos->get();
 
 
         $volumen = 0;
