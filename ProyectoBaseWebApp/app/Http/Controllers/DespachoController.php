@@ -7,7 +7,6 @@ use App\Espesor;
 use App\Largo;
 use App\FilaDespacho;
 use App\FilaSuelto;
-use App\TipoBulto;
 use App\User;
 use App\Troza;
 use App\FotoFila;
@@ -17,6 +16,7 @@ use App\Material;
 use Mail;
 use PDF;
 use App\Correo;
+use App\TipoBulto;
 use Illuminate\Http\Request;
 use DB;
 
