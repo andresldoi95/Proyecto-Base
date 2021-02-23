@@ -44,12 +44,12 @@
               <div class="hello" ref="chartdivEspesor" style="width:100%; height:400px;"></div>
 
             </div>
+          </div>
+          <div class="columns">
             <div class="column">
               <b>Volumen Despachado por Formato</b>
               <div class="hello" ref="chartdivFormato" style="width:100%; height:400px;"></div>
             </div>
-          </div>
-          <div class="columns">
             <div class="column">
               <b>Volumen Despachado por Hacienda</b>
               <div class="hello" ref="chartdivHacienda" style="width:100%; height:400px;"></div>
@@ -114,8 +114,8 @@ export default {
             categoryAxis.numberFormatter.numberFormat = "#";
             categoryAxis.renderer.inversed = true;
             categoryAxis.renderer.grid.template.location = 0;
-            categoryAxis.renderer.cellStartLocation = 0.1;
-            categoryAxis.renderer.cellEndLocation = 0.9;
+            categoryAxis.renderer.cellStartLocation = 0.2;
+            categoryAxis.renderer.cellEndLocation = 0.8;
 
             let  valueAxis = chart.xAxes.push(new am4charts.ValueAxis()); 
             valueAxis.title.text = "Volumen Enviado";
@@ -145,6 +145,8 @@ export default {
             //console.log(data);
             let chart = am4core.create(this.$refs.chartdivHacienda, am4charts.XYChart); 
             chart.data = data;
+            chart.cursor = new am4charts.XYCursor();
+            chart.scrollbarX = new am4core.Scrollbar();
             // Create axes
             let categoryAxis = chart.xAxes.push(new am4charts.CategoryAxis());
             categoryAxis.title.text = "Hacienda";
@@ -153,8 +155,8 @@ export default {
             categoryAxis.numberFormatter.numberFormat = "#";
             categoryAxis.renderer.inversed = true;
             categoryAxis.renderer.grid.template.location = 0;
-            categoryAxis.renderer.cellStartLocation = 0.1;
-            categoryAxis.renderer.cellEndLocation = 0.9;
+            categoryAxis.renderer.cellStartLocation = 0.2;
+            categoryAxis.renderer.cellEndLocation = 0.8;
 
             let  valueAxis = chart.yAxes.push(new am4charts.ValueAxis()); 
             valueAxis.title.text = "Volumen Enviado";
@@ -191,8 +193,8 @@ export default {
             categoryAxis.numberFormatter.numberFormat = "#";
             categoryAxis.renderer.inversed = true;
             categoryAxis.renderer.grid.template.location = 0;
-            categoryAxis.renderer.cellStartLocation = 0.1;
-            categoryAxis.renderer.cellEndLocation = 0.9;
+            categoryAxis.renderer.cellStartLocation = 0.2;
+            categoryAxis.renderer.cellEndLocation = 0.8;
 
             let  valueAxis = chart.xAxes.push(new am4charts.ValueAxis()); 
             valueAxis.title.text = "Volumen Enviado";
@@ -229,8 +231,8 @@ export default {
             categoryAxis.numberFormatter.numberFormat = "#";
             categoryAxis.renderer.inversed = true;
             categoryAxis.renderer.grid.template.location = 0;
-            categoryAxis.renderer.cellStartLocation = 0.1;
-            categoryAxis.renderer.cellEndLocation = 0.9;
+            categoryAxis.renderer.cellStartLocation = 0.2;
+            categoryAxis.renderer.cellEndLocation = 0.8;
             
 
             let  valueAxis = chart.yAxes.push(new am4charts.ValueAxis()); 
