@@ -7,7 +7,6 @@ use App\Espesor;
 use App\Largo;
 use App\FilaDespacho;
 use App\FilaSuelto;
-use App\TipoBulto;
 use App\User;
 use App\Troza;
 use App\FotoFila;
@@ -17,6 +16,7 @@ use App\Material;
 use Mail;
 use PDF;
 use App\Correo;
+use App\TipoBulto;
 use Illuminate\Http\Request;
 use DB;
 
@@ -142,7 +142,7 @@ class DespachoController extends Controller
             $filas_despacho =FilaDespacho::orderBy('indice')->where('despacho_id', $id)->get();
             $trozas =Troza::where('despacho_id', $id)->get();
             $troza_fotos =TrozaFotos::orderBy('troza_id')->get();
-            $filas_sueltos =FilaSuelto::orderBy('indice')->get();
+            $filas_suelto =FilaSuelto::orderBy('indice')->get();
             $tipos_bulto =TipoBulto::where('empresa_id', $empresa_id)->get();
             $fotos_fila =FotoFila::orderBy('fila_id')->get();
             $aserrador =Aserrador::findOrFail($despacho->aserrador_id);
@@ -154,111 +154,69 @@ class DespachoController extends Controller
             $fecha_despacho = "";
             $guia_forestal = "";
             $enviar_web_service = "";
-            
-
-            if($despacho->tipo_llenado =='B' || $despacho->tipo_llenado =='S' || $despacho->tipo_llenado =='H'){
-                if($trozas->count()>0){
-                    $volumenEnviado = $trozas->first()->volumen_estimado;
-                }else{
-                    $volumenEnviado = number_format($despacho->filas()->sum('bft'),2);
-                }
-                if($trozas->count()>0){
-                    $numeroPlantilla = number_format($trozas->first()->numero_trozas);
-                }else{
-                    $numeroPlantilla =  number_format($despacho->filas()->sum('bultos'));
-                }
-
-                $guia_remision = str_replace('-', '', $despacho->guia_remision);
-
-                $fecha_despacho = $despacho->fecha_despacho;
-                $fecha_tumba= $despacho->fecha_tumba;
-                $guia_forestal= $despacho->guia_forestal;
-
-                if($guia_forestal==null){
-                    $guia_forestal = "";
-                }
-
-                $detallePlantillas_response = [];
-
-                foreach($largos as $largo){
-                    foreach($espesores as $espesor){
-                        $suma_fila_despacho_bulto=0;
-
-                        foreach ($filas_despacho as $fila_despacho) {
-                            if($filas_sueltos->where('fila_id',$fila_despacho->id)->where('espesor_id',$espesor->id)->where('largo_id',$largo->id)->count() > 0){
-                                $suma_fila_despacho_bulto= $suma_fila_despacho_bulto + $filas_sueltos->where('fila_id',$fila_despacho->id)->where('espesor_id',$espesor->id)->where('largo_id',$largo->id)->sum('bultos');
-                            }else{
-                                if($tipos_bulto->where('espesor_id',$espesor->id)->where('largo_id',$largo->id)->count() > 0){
-                                    foreach($tipos_bulto->where('espesor_id',$espesor->id)->where('largo_id',$largo->id) as $tipo_bulto){
-                                        if($filas_sueltos->where('fila_id',$fila_despacho->id)->where('tipo_bulto_id',$tipo_bulto->id)->count() > 0){
-                                            $suma_fila_despacho_bulto= $suma_fila_despacho_bulto + $filas_sueltos->where('fila_id',$fila_despacho->id)->where('tipo_bulto_id',$tipo_bulto->id)->sum('bultos');
-                                        }
-                                    }
-                                }
-                            }
-        
-                        }
-                        if($suma_fila_despacho_bulto>0){
-
-                            $tipo_bulto =TipoBulto::where('largo_id', $largo->id)->where('espesor_id', $espesor->id)->get()->first();
-
-                            $other = [
-                                'largo' => (int) $largo->valor,
-                                'espesor' => $espesor->valor,
-                                'ancho' => (int) $tipo_bulto->ancho,
-                                'numeroPlantilla' => $suma_fila_despacho_bulto
-                            ];
-                            array_push($detallePlantillas_response, $other);
-                        }
-                    }
-                }
-
-                
-
-                $despachos_response = [
-                    'numeroDespacho' => $despacho->numero_documento,
-                    'volumenEnviado' => (int) $volumenEnviado,
-                    'haciendaCodigo' => $despacho->origenHacienda->descripcion,
-                    'aserradorVendor' => $aserrador->vendor,
-                    'fechaTumba' => $fecha_tumba,
-                    'fechaDespacho' => $fecha_despacho,
-                    'codSapMaterial' => $material->codigo,
-                    'po' => $despacho->codigo_po,
-                    'detallePlantillas' => $detallePlantillas_response
-                ];
-
-                $enviar_web_service =  [
-                    'plantaDestino' => $despacho->destino->descripcion,
-                    'placa' => $despacho->camion->placa,
-                    'guiaRemision' => $guia_remision,
-                    'guiaForestal' => $guia_forestal,
-                    'formatoMadera' => $despacho->formatoEntrega->descripcion,
-                    'volumenEnviado' => (int) $volumenEnviado,
-                    'controladorCedula' => $users->where('id',$despacho->usuario_id)->first()->identificacion,
-                    'despachos'=> [$despachos_response]
-                ];
-
-                return $enviar_web_service;
-                $yourjson = json_encode($enviar_web_service);
-
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, "http://api.scm-test.dts-ec.com:90/api/tallydigital/tallyadd");
-                curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-                    'Content-Type: application/json'
-                ));
-                curl_setopt($ch, CURLOPT_POST, 1);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $yourjson);
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $response = curl_exec($ch);
-                curl_close($ch);
-
-                $respuesta = json_decode($response, true);
-                return $respuesta;
-
-
+            if($trozas->count()>0){
+                $volumenEnviado = $trozas->first()->volumen_estimado;
+            }
+            if($trozas->count()>0){
+                $numeroPlantilla = number_format($trozas->first()->numero_trozas);
+            }else{
+                $numeroPlantilla =  number_format($despacho->filas()->sum('bultos'));
             }
             
-            
+            $guia_remision = str_replace('-', '', $despacho->guia_remision);
+
+            $fecha_despacho = $despacho->fecha_despacho;
+            $fecha_tumba= $despacho->fecha_tumba;
+            $guia_forestal= $despacho->guia_forestal;
+
+            if($guia_forestal==null){
+                $guia_forestal = "";
+            }
+
+            $detallePlantillas_response = [];
+
+            foreach ($filas_despacho as $fila_despacho) {
+                $tipo_bulto_fila_despacho = TipoBulto::findOrFail($fila_despacho->tipo_bulto_id);
+                $largo_fila_despacho = Largo::findOrFail($tipo_bulto_fila_despacho->largo_id);
+                $espesor_fila_despacho = Espesor::findOrFail($tipo_bulto_fila_despacho->espesor_id);
+                $ancho_fila_despacho = $tipo_bulto_fila_despacho->ancho;
+
+                $other = [
+                    'largo' => $largo_fila_despacho->valor,
+                    'espesor' => $espesor_fila_despacho->valor,
+                    'ancho' => $ancho_fila_despacho,
+                    'numeroPlantilla' => $fila_despacho->indice
+                ];
+
+                array_push($detallePlantillas_response, $other);
+
+                //$detallePlantillas_response = arrary_merge( $other, $detallePlantillas_response);
+            }
+
+            $despachos_response = [
+                'numeroDespacho' => $despacho->numero_documento,
+                'volumenEnviado' => (int) $volumenEnviado,
+                'haciendaCodigo' => $despacho->origenHacienda->descripcion,
+                'aserradorVendor' => $aserrador->vendor,
+                'fechaTumba' => $fecha_tumba,
+                'fechaDespacho' => $fecha_despacho,
+                'codSapMaterial' => $material->codigo,
+                'po' => $despacho->codigo_po,
+                'detallePlantillas' => $detallePlantillas_response
+            ];
+
+            $enviar_web_service =  response()->json([
+                'plantaDestino' => $despacho->destino->descripcion,
+                'placa' => $despacho->camion->placa,
+                'guiaRemision' => $guia_remision,
+                'guiaForestal' => $guia_forestal,
+                'formatoMadera' => $despacho->formatoEntrega->descripcion,
+                'volumenEnviado' => (int) $volumenEnviado,
+                'controladorCedula' => $users->where('id',$despacho->usuario_id)->first()->identificacion,
+                'despachos'=> $despachos_response
+            ]);
+
+            return $enviar_web_service;
         } catch (\Exception $e) {
             $error = $e->getMessage();
             return response()->json([

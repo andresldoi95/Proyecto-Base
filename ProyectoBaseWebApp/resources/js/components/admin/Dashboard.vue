@@ -18,8 +18,8 @@
               </div>
               <div class="column">
                   <b>Destino</b>
-                  <div v-for="destino in destinos" :key="destino.id" class="field">
-                      <b-checkbox v-model="form.destinos" :native-value="destino.id">{{ destino.descripcion }}</b-checkbox>
+                  <div>
+                    <multiselect v-model="form.destinos" tag-placeholder="Añade un Destino" placeholder="Busca o Añade un Destino" label="descripcion" track-by="id" :options="destinos" :multiple="true" :taggable="true" @tag="addTag"></multiselect>
                   </div>
               </div>
               <div class="column">
@@ -59,17 +59,24 @@
     </div>
   </section>
 </template>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+
 
 <script>
 import * as am4core from "@amcharts/amcharts4/core";
 import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
+import Multiselect from 'vue-multiselect'
+
 
 am4core.useTheme(am4themes_animated);
 
 
 export default {
   name: 'HelloWorld',
+  components: {
+    Multiselect
+  },
   data: function () {
     return {
       form: {
@@ -89,13 +96,14 @@ export default {
       this.cargarDespachosPorFormato();
       this.cargarDespachosPorEspesor();      
     },
+    addTag (newTag) {
+      //this.form.destinos.push(newTag.id)
+    },
     cargarDestinos: function () {
         let path = process.env.MIX_APP_URL_API + "/destinos/listado";
         this.$http.get(path).then(({data}) => {
             this.destinos = data;
-            for (let i = 0; i < this.destinos.length; i++){
-              this.form.destinos.push(this.destinos[i].id);
-            }
+            this.form.destinos = data;
         });
     },
     cargarDespachosPorDestino: function () {            
@@ -266,11 +274,7 @@ export default {
   },
   mounted() {
     this.cargarDestinos();
-    this.cargarDespachosTotal();
-    this.cargarDespachosPorDestino();
-    this.cargarDespachosPorHacienda();
-    this.cargarDespachosPorFormato();
-    this.cargarDespachosPorEspesor();
+    this.submit();
   },
 
   beforeDestroy() {

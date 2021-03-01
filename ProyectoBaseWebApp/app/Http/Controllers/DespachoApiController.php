@@ -611,6 +611,11 @@ class DespachoApiController extends Controller
 
         $destinos = Destino::where('empresa_id', $user->empresa_id)->where('estado', 'A')->get();
         $destinos_filter = $request->input('destinos');
+        $destinos_filter_new = [];
+        foreach($destinos_filter as $destino_filt){
+            array_push($destinos_filter_new, $destino_filt['id']);
+        }
+        $destinos_filter = $destinos_filter_new;
         $despachos = Despacho::with('aserrador','camion', 'destino', 'origenMadera', 'formatoEntrega', 'usuario'
         )->whereHas('camion', function ($query) use($user) {
             return $query->where('empresa_id', $user->empresa_id);
@@ -657,6 +662,11 @@ class DespachoApiController extends Controller
 
         $haciendas = OrigenMadera::where('empresa_id', $user->empresa_id)->where('estado', 'A')->get();
         $destinos_filter = $request->input('destinos');
+        $destinos_filter_new = [];
+        foreach($destinos_filter as $destino_filt){
+            array_push($destinos_filter_new, $destino_filt['id']);
+        }
+        $destinos_filter = $destinos_filter_new;
         $despachos = Despacho::with('aserrador','camion', 'destino', 'origenMadera', 'formatoEntrega', 'usuario'
         )->whereHas('camion', function ($query) use($user) {
             return $query->where('empresa_id', $user->empresa_id);
@@ -713,6 +723,11 @@ class DespachoApiController extends Controller
 
         $formatos = FormatoEntrega::where('empresa_id', $user->empresa_id)->where('estado', 'A')->get();
         $destinos_filter = $request->input('destinos');
+        $destinos_filter_new = [];
+        foreach($destinos_filter as $destino_filt){
+            array_push($destinos_filter_new, $destino_filt['id']);
+        }
+        $destinos_filter = $destinos_filter_new;
         $despachos = Despacho::with('aserrador','camion', 'destino', 'origenMadera', 'formatoEntrega', 'usuario'
         )->whereHas('camion', function ($query) use($user) {
             return $query->where('empresa_id', $user->empresa_id);
@@ -769,6 +784,11 @@ class DespachoApiController extends Controller
 
         $espesores = Espesor::where('empresa_id', $user->empresa_id)->where('estado', 'A')->get();
         $destinos_filter = $request->input('destinos');
+        $destinos_filter_new = [];
+        foreach($destinos_filter as $destino_filt){
+            array_push($destinos_filter_new, $destino_filt['id']);
+        }
+        $destinos_filter = $destinos_filter_new;
         $despachos = Despacho::with('aserrador','camion', 'destino', 'origenMadera', 'formatoEntrega', 'usuario'
         )->whereHas('camion', function ($query) use($user) {
             return $query->where('empresa_id', $user->empresa_id);
@@ -800,39 +820,17 @@ class DespachoApiController extends Controller
 
                         if($fila_suelto->tipo_bulto_id==NULL){
                             if($fila_suelto->espesor_id == $espesor->id){
-                                $trozas = Troza::where('despacho_id', $despacho->id)->get();
-                                if($trozas->count()>0){
-                                    $volumen = $volumen + $trozas->first()->volumen_estimado;
-                                }else{
-                                    $volumen = $volumen + $despacho->filas()->sum('bft');
-                                }
+                                $volumen = $volumen + $fila_suelto->bft;
                             }
-                            
-
-
                         }else{
                             $tipoBulto = TipoBulto::findOrFail($fila_suelto->tipo_bulto_id);
 
                             if($tipoBulto->espesor_id == $espesor->id){
-                                $trozas = Troza::where('despacho_id', $despacho->id)->get();
-                                if($trozas->count()>0){
-                                    $volumen = $volumen + $trozas->first()->volumen_estimado;
-                                }else{
-                                    $volumen = $volumen + $despacho->filas()->sum('bft');
-                                }
+                                $volumen = $volumen + $fila_suelto->bft;
                             }
-
-
-
                         }
-
                     }
-
                 }
-
-
-                
-                
             }
 
             $other = [
@@ -856,6 +854,11 @@ class DespachoApiController extends Controller
 
         $user = $request->user();
         $destinos_filter = $request->input('destinos');
+        $destinos_filter_new = [];
+        foreach($destinos_filter as $destino_filt){
+            array_push($destinos_filter_new, $destino_filt['id']);
+        }
+        $destinos_filter = $destinos_filter_new;
         $despachos = Despacho::with('aserrador','camion', 'destino', 'origenMadera', 'formatoEntrega', 'usuario'
         )->whereHas('camion', function ($query) use($user) {
             return $query->where('empresa_id', $user->empresa_id);
