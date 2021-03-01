@@ -30,6 +30,7 @@ use Illuminate\Support\Collection;
 use Image;
 
 
+
 class DespachoApiController extends Controller
 {
     public function index(Request $request) {

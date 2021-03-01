@@ -97,7 +97,6 @@ export default {
       this.cargarDespachosPorEspesor();      
     },
     addTag (newTag) {
-      //this.form.destinos.push(newTag.id)
     },
     cargarDestinos: function () {
         let path = process.env.MIX_APP_URL_API + "/destinos/listado";
