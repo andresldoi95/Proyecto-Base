@@ -47,12 +47,16 @@ class OrigenMaderaAniosApiController extends Controller
     {
         $request->validate([
             'anio_cultivo' => 'required|max:255',
-            'origen_madera_id' => 'required'
+            'origen_madera_id' => 'required',
+            'codigo_hacienda' => 'required'
+
         ]);
         $user = $request->user();
         OrigenMaderaAnios::create([
             'anio_cultivo' => $request->input('anio_cultivo'),
             'origen_madera_id' => $request->input('origen_madera_id'),
+            'codigo_hacienda' => $request->input('codigo_hacienda'),
+
             'creador_id' => $user->id
             
         ]);
@@ -61,10 +65,13 @@ class OrigenMaderaAniosApiController extends Controller
     {
         $request->validate([
             'anio_cultivo' => 'required|max:255',
-            'origen_madera_id' => 'required'
+            'origen_madera_id' => 'required',
+            'codigo_hacienda' => 'required'
         ]);
         $OrigenMaderaAnios = OrigenMaderaAnios::findOrFail($id);
         $OrigenMaderaAnios->anio_cultivo = $request->input('anio_cultivo');
+        $OrigenMaderaAnios->codigo_hacienda = $request->input('codigo_hacienda');
+
         $OrigenMaderaAnios->origen_madera_id = $request->input('origen_madera_id');
         $OrigenMaderaAnios->modificador_id = $request->user()->id;
         $OrigenMaderaAnios->save();

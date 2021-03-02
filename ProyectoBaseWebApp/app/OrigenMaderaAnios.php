@@ -8,7 +8,7 @@ class OrigenMaderaAnios extends Model
 {
     protected $table = 'origenes_madera_anios';
     protected $fillable = [
-        'origen_madera_id', 'anio_cultivo', 'estado', 'creador_id', 'modificador_id'
+        'origen_madera_id', 'anio_cultivo','codigo_hacienda', 'estado', 'creador_id', 'modificador_id'
     ];
     public function origenMadera() {
         return $this->belongsTo('App\OrigenMadera');

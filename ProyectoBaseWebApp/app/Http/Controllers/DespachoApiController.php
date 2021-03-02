@@ -141,7 +141,7 @@ class DespachoApiController extends Controller
                 'tipoMaderaId' => 'required|exists:tipos_madera,id',
                 'origenMaderaAnioId' => 'required|exists:origenes_madera_anios,id',
                 'formatoEntregaId' => 'required|exists:formatos_entrega,id',
-                'codigoPo' => 'required|max:20',
+                'codigoPoId' => 'required|exists:codigos_po,id',
                 'fechaTumba' => 'required|date',
                 'fechaDespacho' => 'required|date',
                 'diasT2k' => 'required|integer',
@@ -174,7 +174,7 @@ class DespachoApiController extends Controller
                         'origen_madera_id' => $request->input('origenMaderaId'),
                         'origen_madera_anio_id' => $request->input('origenMaderaAnioId'),
                         'formato_entrega_id' => $request->input('formatoEntregaId'),
-                        'codigo_po' => $request->input('codigoPo'),
+                        'codigo_po_id' => $request->input('codigoPoId'),
                         'fecha_tumba' => new Carbon($request->input('fechaTumba')),
                         'fecha_despacho' => new Carbon($request->input('fechaDespacho')),
                         'dias_t2k' => $request->input('diasT2k'),
@@ -251,7 +251,7 @@ class DespachoApiController extends Controller
                 'tipoMaderaId' => 'required|exists:tipos_madera,id',
                 'origenMaderaAnioId' => 'required|exists:origenes_madera_anios,id',
                 'formatoEntregaId' => 'required|exists:formatos_entrega,id',
-                'codigoPo' => 'required|max:20',
+                'codigoPoId' => 'required|exists:codigos_po,id',
                 'fechaTumba' => 'required|date',
                 'fechaDespacho' => 'required|date',
                 'diasT2k' => 'required|integer',
@@ -284,7 +284,7 @@ class DespachoApiController extends Controller
                         'origen_madera_id' => $request->input('origenMaderaId'),
                         'origen_madera_anio_id' => $request->input('origenMaderaAnioId'),
                         'formato_entrega_id' => $request->input('formatoEntregaId'),
-                        'codigo_po' => $request->input('codigoPo'),
+                        'codigo_po_id' => $request->input('codigoPoId'),
                         'fecha_tumba' => new Carbon($request->input('fechaTumba')),
                         'fecha_despacho' => new Carbon($request->input('fechaDespacho')),
                         'dias_t2k' => $request->input('diasT2k'),
@@ -345,7 +345,7 @@ class DespachoApiController extends Controller
                     $despacho->origen_madera_id = $request->input('origenMaderaId');
                     $despacho->origen_madera_anio_id = $request->input('origenMaderaAnioId');
                     $despacho->formato_entrega_id = $request->input('formatoEntregaId');
-                    $despacho->codigo_po = $request->input('codigoPo');
+                    $despacho->codigo_po_id = $request->input('codigoPoId');
                     $despacho->fecha_tumba = new Carbon($request->input('fechaTumba'));
                     $despacho->fecha_despacho = new Carbon($request->input('fechaDespacho'));
                     $despacho->dias_t2k = $request->input('diasT2k');

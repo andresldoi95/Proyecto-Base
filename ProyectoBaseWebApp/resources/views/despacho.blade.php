@@ -125,7 +125,12 @@
                     <strong class="upper">Material:</strong> {{ $material->descripcion }}
                 </td>
                 <td>
-                    <strong class="upper">Código PO:</strong> {{ $despacho->codigo_po }}
+                    <strong class="upper">Código PO:</strong> 
+                    @if($despacho->codigo_po!=NULL)
+                        {{ $despacho->codigo_po }}
+                    @else
+                        {{ $despacho->codigoPo->descripcion }}
+                    @endif
                 </td>
                 
             </tr>
@@ -287,7 +292,7 @@
                     <span class="upper"><strong>Observaciones:</strong> {{$trozas->first()->observaciones }}</span>
                     <br>
                 @endif
-                <span class="upper"><strong>Aserrador: </strong>{{$aserrador->nombre }}</span>
+                <span class="upper"><strong>Código: </strong>{{$aserrador->nombre }}</span>
                 <br>
                 <br> 
                 <span class="upper"><strong>Controlador: </strong>{{$users->where('id',$despacho->usuario_id)->first()->name }}</span>

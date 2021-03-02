@@ -188,6 +188,19 @@
               <b-menu-item
                 v-show="
                   $store.state.nombre_empresa_actual !== '' &&
+                  ($store.getters.permiteAccion('crear_codigo_po') ||
+                    $store.getters.permiteAccion('editar_codigo_po') ||
+                    $store.getters.permiteAccion('consultar_codigo_po') ||
+                    $store.getters.permiteAccion('eliminar_codigo_po'))
+                "
+                icon="material-ui"
+                :label="$t('title.codigos_po')"
+                tag="router-link"
+                to="/admin/codigos-po"
+              ></b-menu-item>
+              <b-menu-item
+                v-show="
+                  $store.state.nombre_empresa_actual !== '' &&
                   ($store.getters.permiteAccion('crear_correos') ||
                     $store.getters.permiteAccion('editar_correos') ||
                     $store.getters.permiteAccion('consultar_correos') ||

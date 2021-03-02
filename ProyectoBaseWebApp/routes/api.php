@@ -161,6 +161,16 @@ Route::group(['middleware' => 'auth:api'], function () {
             'create', 'edit', 'show'
         ]
     ]);
+    Route::group(['prefix' => 'codigos-po'], function () {
+        Route::delete('/', 'CodigoPoApiController@destroy');
+        Route::get('/all', 'CodigoPoApiController@all');
+        Route::get('/listado', 'CodigoPoApiController@listado');
+    });
+    Route::resource('codigos-po', 'CodigoPoApiController', [
+        'except' => [
+            'create', 'edit', 'show'
+        ]
+    ]);
     Route::group(['prefix' => 'correos'], function () {
         Route::delete('/', 'CorreoApiController@destroy');
     });

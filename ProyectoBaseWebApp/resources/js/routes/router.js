@@ -12,6 +12,7 @@ import Largos from "../components/admin/largos/Largos";
 import Espesores from "../components/admin/espesores/Espesores";
 import Destinos from "../components/admin/destinos/Destinos";
 import Materiales from "../components/admin/materiales/Materiales";
+import CodigosPo from "../components/admin/codigos-po/CodigosPo";
 import Correos from "../components/admin/correos/Correos";
 import Controladores from "../components/admin/controladores/Controladores";
 import Aserradores from "../components/admin/aserradores/Aserradores";
@@ -138,6 +139,14 @@ export default {
                         requiresAuth: true
                     },
                     name: "Materiales"
+                },
+                {
+                    component: CodigosPo,
+                    path: "codigos-po",
+                    meta: {
+                        requiresAuth: true
+                    },
+                    name: "CodigosPo"
                 },
                 {
                     component: Correos,
