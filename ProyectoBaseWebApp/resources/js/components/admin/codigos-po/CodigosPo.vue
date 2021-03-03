@@ -43,7 +43,7 @@
                 },
                 {
                     label : $t('message.orden_hacienda'),
-                    field : 'origen_madera_anio.descripcion',
+                    field : 'origen_madera_anio.codigo_hacienda',
                     sortable : true
                 },
                 {
@@ -142,7 +142,7 @@
                     v-for="option in origenesMaderaAnios"
                     :value="option.id"
                     :key="option.id"
-                  >{{ option.descripcion }}</option>
+                  >{{ option.codigo_hacienda }}</option>
                 </b-select>
               </b-field>
             </div>
