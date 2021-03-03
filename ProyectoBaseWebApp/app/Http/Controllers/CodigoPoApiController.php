@@ -23,7 +23,7 @@ class CodigoPoApiController extends Controller
         $user = $request->user();
         $status = $request->input('status');
         $search = $request->input('search');
-        return CodigoPo::with('material', 'destino','hacienda')->where('empresa_id', $user->empresa_id)
+        return CodigoPo::with('material', 'destino','origenMaderaAnio')->where('empresa_id', $user->empresa_id)
             ->orderBy('descripcion')
             ->where(function ($query) use ($status) {
                 if ($status !== 'T')
@@ -44,7 +44,7 @@ class CodigoPoApiController extends Controller
                 'required', 'max:255', Rule::unique('codigos_po')->where('empresa_id', $user->empresa_id)
             ],
             'material_id' => 'required|exists:materiales,id',
-            'origen_madera_id' => 'required|exists:origenes_madera,id',
+            'origen_madera_anio_id' => 'required|exists:origenes_madera_anios,id',
 
             'destino_id' => 'required|exists:destinos,id'
         ]);
@@ -53,7 +53,7 @@ class CodigoPoApiController extends Controller
             'creador_id' => $user->id,
             'empresa_id' => $user->empresa_id,
             'material_id' => $request->input('material_id'),
-            'origen_madera_id' => $request->input('origen_madera_id'),
+            'origen_madera_anio_id' => $request->input('origen_madera_anio_id'),
 
             'destino_id' => $request->input('destino_id')
         ]);
@@ -66,14 +66,14 @@ class CodigoPoApiController extends Controller
                 'required', 'max:255', Rule::unique('codigos_po')->where('empresa_id', $user->empresa_id)->ignore($id)
             ],
             'material_id' => 'required|exists:materiales,id',
-            'origen_madera_id' => 'required|exists:origenes_madera,id',
+            'origen_madera_anio_id' => 'required|exists:origenes_madera_anios,id',
             'destino_id' => 'required|exists:destinos,id'
         ]);
         $material = CodigoPo::findOrFail($id);
         $material->descripcion = $request->input('descripcion');
         $material->modificador_id = $user->id;
         $material->material_id = $request->input('material_id');
-        $material->origen_madera_id = $request->input('origen_madera_id');
+        $material->origen_madera_anio_id = $request->input('origen_madera_anio_id');
 
         $material->destino_id = $request->input('destino_id');
         $material->save();

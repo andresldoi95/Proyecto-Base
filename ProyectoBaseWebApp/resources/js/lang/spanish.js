@@ -23,7 +23,7 @@ export default {
         origen_hacienda: 'Origen Madera',
         hectareas: "Hectáreas",
         anio_cultivo: "Año de cultivo",
-        codigo_hacienda: "Código de Hacienda",
+        orden_hacienda: "Orden de Hacienda",
         cantidad_anios: "Cantidad de Años",
         volumen_inventario: "Volumen de inventario",
         sinDatos: "Sin datos",

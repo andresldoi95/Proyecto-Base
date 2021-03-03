@@ -268,6 +268,9 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::post('getTarifaFlete', 'TarifaApiController@getTarifaFlete');
     Route::post('trozaFotos', 'DespachoApiController@subirTrozaFotos');
 
+    Route::post('get-origenes-madera-anios', 'OrigenMaderaAniosApiController@getOrigenMaderaAnios');
+
+
     Route::post('despachosHistorialUpdate', 'DespachoApiController@historialUpdate');
     Route::post('fotosHistorialUpdate', 'DespachoApiController@subirFotosUpdate');
     Route::post('trozaFotosHistorialUpdate', 'DespachoApiController@subirTrozaFotosUpdate');

@@ -15,7 +15,7 @@ class OrigenMaderaAniosApiController extends Controller
     public function listado(Request $request)
     {
         $user = $request->user();
-        return OrigenMaderaAnios::active()->orderBy('anio_cultivo')->get();
+        return OrigenMaderaAnios::active()->orderBy('descripcion')->get();
     }
     public function index(Request $request)
     {
@@ -43,10 +43,24 @@ class OrigenMaderaAniosApiController extends Controller
 
         return $origenMaderaAnios;
     }
+
+    public function getOrigenMaderaAnios(Request $request)
+    {
+       
+
+        $user = $request->user();
+        $origen_madera_id_filter = $request->input('origen_madera_id');
+
+        return OrigenMaderaAnios::active()->where('origen_madera_id', $origen_madera_id_filter)->orderBy('descripcion')->get();
+
+    }
+
+    
     public function store(Request $request)
     {
         $request->validate([
             'anio_cultivo' => 'required|max:255',
+            'descripcion' => 'required|max:255',
             'origen_madera_id' => 'required',
             'codigo_hacienda' => 'required'
 
@@ -54,6 +68,7 @@ class OrigenMaderaAniosApiController extends Controller
         $user = $request->user();
         OrigenMaderaAnios::create([
             'anio_cultivo' => $request->input('anio_cultivo'),
+            'descripcion' => $request->input('descripcion'),
             'origen_madera_id' => $request->input('origen_madera_id'),
             'codigo_hacienda' => $request->input('codigo_hacienda'),
 
@@ -65,11 +80,15 @@ class OrigenMaderaAniosApiController extends Controller
     {
         $request->validate([
             'anio_cultivo' => 'required|max:255',
+            'descripcion' => 'required|max:255',
+
             'origen_madera_id' => 'required',
             'codigo_hacienda' => 'required'
         ]);
         $OrigenMaderaAnios = OrigenMaderaAnios::findOrFail($id);
         $OrigenMaderaAnios->anio_cultivo = $request->input('anio_cultivo');
+        $OrigenMaderaAnios->descripcion = $request->input('descripcion');
+
         $OrigenMaderaAnios->codigo_hacienda = $request->input('codigo_hacienda');
 
         $OrigenMaderaAnios->origen_madera_id = $request->input('origen_madera_id');

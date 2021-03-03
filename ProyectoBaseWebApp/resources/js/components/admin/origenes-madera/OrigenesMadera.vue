@@ -121,8 +121,13 @@
                   sortable: true,
                 },
                 {
-                  label: 'Código de Hacienda',
+                  label: $t('message.orden_hacienda'),
                   field: 'codigo_hacienda',
+                  sortable: true,
+                },
+                {
+                  label: $t('message.descripcion'),
+                  field: 'descripcion',
                   sortable: true,
                 },
                 {
@@ -159,9 +164,18 @@
                   <b-field
                     :message="errores.codigo_hacienda ? errores.codigo_hacienda[0] : ''"
                     :type="errores.codigo_hacienda ? 'is-danger' : ''"
-                    :label="$t('message.codigo_hacienda')"
+                    :label="$t('message.orden_hacienda')"
                   >
                     <b-input v-model="form2.codigo_hacienda"></b-input>
+                  </b-field>
+                </div>
+                <div class="column">
+                  <b-field
+                    :message="errores.descripcion ? errores.descripcion[0] : ''"
+                    :type="errores.descripcion ? 'is-danger' : ''"
+                    :label="$t('message.descripcion')"
+                  >
+                    <b-input v-model="form2.descripcion"></b-input>
                   </b-field>
                 </div>
                 
@@ -192,6 +206,7 @@ export default {
       form2: {
         origen_madera_id: "",
         anio_cultivo: "",
+        descripcion: "",
         codigo_hacienda: "",
         id: "",
         origen_madera_name: "",
@@ -207,6 +222,7 @@ export default {
         volumen_inventario: undefined,
         origen_madera_id: undefined,
         anio_cultivo: undefined,
+        descripcion: undefined,
         codigo_hacienda: undefined,
 
 
@@ -221,6 +237,7 @@ export default {
       this.form2.id = "";
       this.form2._method = undefined;
       this.form2.anio_cultivo = "";
+      this.form2.descripcion = "";
       this.form2.codigo_hacienda = "";
 
     },
@@ -242,7 +259,7 @@ export default {
               message: this.$t("message.guardado_generico"),
               type: "is-success",
             });
-            this.$refs.masterForm.submit();
+            this.$refs.masterFormOrigenesMaderaAnios.submit();
           })
           .catch(() => {
             this.$buefy.toast.open({
@@ -256,11 +273,13 @@ export default {
       this.form2.id = origenMaderaAnio.id;
       this.form2.origen_madera_id = origenMaderaAnio.origen_madera_id;
       this.form2.anio_cultivo = origenMaderaAnio.anio_cultivo;
+      this.form2.descripcion = origenMaderaAnio.descripcion;
       this.form2.codigo_hacienda = origenMaderaAnio.codigo_hacienda;
 
     },
     limpiarErroresAnio: function () {
       this.errores.anio_cultivo = undefined;
+      this.errores.descripcion = undefined;
       this.errores.codigo_hacienda = undefined;
     },
     submitFormularioAnio: function () {
@@ -277,12 +296,13 @@ export default {
             message: this.$t("message.guardado_generico"),
             type: "is-success",
           });
-          this.$refs.masterForm.submit();
+          this.$refs.masterFormOrigenesMaderaAnios.submit();
         })
         .catch(({ response }) => {
           let status = response.status;
           if (status === 422) {
             this.errores.anio_cultivo = response.data.errors.anio_cultivo;
+            this.errores.descripcion = response.data.errors.descripcion;
             this.errores.codigo_hacienda = response.data.errors.codigo_hacienda;
             this.errores.origen_madera_id = response.data.errors.origen_madera_id;
 
