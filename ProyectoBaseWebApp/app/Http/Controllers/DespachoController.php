@@ -19,6 +19,7 @@ use PDF;
 use App\Correo;
 use Illuminate\Http\Request;
 use DB;
+use App\OrigenMaderaAnios;
 
 
 class DespachoController extends Controller
@@ -154,24 +155,40 @@ class DespachoController extends Controller
             $fecha_despacho = "";
             $guia_forestal = "";
             $enviar_web_service = "";
-            
+            $codigo_po = "";
+            $codigo_hacienda = "";
+            $fechaTumba = "";
+            $fechaDespacho = "";
+
+            $numero_documento = ltrim($despacho->numero_documento, "0");
+
+            if($despacho->codigo_po!=NULL){
+                $codigo_po = $despacho->codigo_po;
+            }else{
+                $codigo_po = $despacho->codigoPo->descripcion;
+            }
+            if($despacho->origenMaderaAnio->codigo_hacienda!=NULL){
+                $codigo_hacienda = trim($despacho->origenMaderaAnio->codigo_hacienda);
+            }
+
+
 
             if($despacho->tipo_llenado =='B' || $despacho->tipo_llenado =='S' || $despacho->tipo_llenado =='H'){
                 if($trozas->count()>0){
                     $volumenEnviado = $trozas->first()->volumen_estimado;
                 }else{
-                    $volumenEnviado = number_format($despacho->filas()->sum('bft'),2);
+                    $volumenEnviado = $despacho->filas()->sum('bft');
                 }
                 if($trozas->count()>0){
-                    $numeroPlantilla = number_format($trozas->first()->numero_trozas);
+                    $numeroPlantilla = $trozas->first()->numero_trozas;
                 }else{
-                    $numeroPlantilla =  number_format($despacho->filas()->sum('bultos'));
+                    $numeroPlantilla =  $despacho->filas()->sum('bultos');
                 }
 
                 $guia_remision = str_replace('-', '', $despacho->guia_remision);
 
-                $fecha_despacho = $despacho->fecha_despacho;
-                $fecha_tumba= $despacho->fecha_tumba;
+                $fecha_despacho = $despacho->fecha_despacho."T00:00:00.000Z";
+                $fecha_tumba= $despacho->fecha_tumba."T00:00:00.000Z";
                 $guia_forestal= $despacho->guia_forestal;
 
                 if($guia_forestal==null){
@@ -204,9 +221,9 @@ class DespachoController extends Controller
 
                             $other = [
                                 'largo' => (int) $largo->valor,
-                                'espesor' => $espesor->valor,
+                                'espesor' => $espesor->descripcion,
                                 'ancho' => (int) $tipo_bulto->ancho,
-                                'numeroPlantilla' => $suma_fila_despacho_bulto
+                                'numeroPlantilla' => (int) $suma_fila_despacho_bulto
                             ];
                             array_push($detallePlantillas_response, $other);
                         }
@@ -216,29 +233,28 @@ class DespachoController extends Controller
                 
 
                 $despachos_response = [
-                    'numeroDespacho' => $despacho->numero_documento,
+                    'numeroDespacho' => $numero_documento,
                     'volumenEnviado' => (int) $volumenEnviado,
-                    'haciendaCodigo' => $despacho->origenHacienda->descripcion,
+                    'haciendaCodigo' => $codigo_hacienda,
                     'aserradorVendor' => $aserrador->vendor,
-                    'fechaTumba' => $fecha_tumba,
+                    'fechaTumba' => $fecha_despacho,
                     'fechaDespacho' => $fecha_despacho,
                     'codSapMaterial' => $material->codigo,
-                    'po' => $despacho->codigo_po,
+                    'po' => $codigo_po,
                     'detallePlantillas' => $detallePlantillas_response
                 ];
 
                 $enviar_web_service =  [
-                    'plantaDestino' => $despacho->destino->descripcion,
-                    'placa' => $despacho->camion->placa,
+                    'plantaDestino' => $despacho->destino->codigo,
+                    'placa' => strtolower($despacho->camion->placa),
                     'guiaRemision' => $guia_remision,
                     'guiaForestal' => $guia_forestal,
-                    'formatoMadera' => $despacho->formatoEntrega->descripcion,
+                    'formatoMadera' => strtolower($despacho->formatoEntrega->descripcion),
                     'volumenEnviado' => (int) $volumenEnviado,
                     'controladorCedula' => $users->where('id',$despacho->usuario_id)->first()->identificacion,
                     'despachos'=> [$despachos_response]
                 ];
 
-                return $enviar_web_service;
                 $yourjson = json_encode($enviar_web_service);
 
                 $ch = curl_init();
@@ -253,6 +269,25 @@ class DespachoController extends Controller
                 curl_close($ch);
 
                 $respuesta = json_decode($response, true);
+
+                if($respuesta['isSuccess']==true){
+                    try{
+                        $despacho_save = Despacho::findOrFail($id);
+                        $despacho_save->web_service = 1;
+                        $despacho_save->save();
+                    }catch (\Exception $e) {
+
+                    }
+
+                }else{
+                    try{
+                        $despacho_save = Despacho::findOrFail($id);
+                        $despacho_save->web_service = 0;
+                        $despacho_save->save();
+                    }catch (\Exception $e) {
+
+                    }
+                }
                 return $respuesta;
 
 
