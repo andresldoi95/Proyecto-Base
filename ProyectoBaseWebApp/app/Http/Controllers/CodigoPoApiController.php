@@ -43,7 +43,7 @@ class CodigoPoApiController extends Controller
             'descripcion' => [
                 'required', 'max:255', Rule::unique('codigos_po')->where('empresa_id', $user->empresa_id)
             ],
-            'material_id' => 'required|exists:materiales,id',
+            'material_id' => 'required',
             'origen_madera_anio_id' => 'required|exists:origenes_madera_anios,id',
 
             'destino_id' => 'required|exists:destinos,id'
@@ -65,7 +65,7 @@ class CodigoPoApiController extends Controller
             'descripcion' => [
                 'required', 'max:255', Rule::unique('codigos_po')->where('empresa_id', $user->empresa_id)->ignore($id)
             ],
-            'material_id' => 'required|exists:materiales,id',
+            'material_id' => 'required',
             'origen_madera_anio_id' => 'required|exists:origenes_madera_anios,id',
             'destino_id' => 'required|exists:destinos,id'
         ]);

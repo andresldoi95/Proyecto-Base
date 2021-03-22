@@ -33,7 +33,7 @@
                 },
                 {
                     label : $t('etiqueta.materiales'),
-                    field : 'material.descripcion',
+                    field : 'descripcion_material',
                     sortable : true
                 },
                 {
@@ -79,6 +79,7 @@
                   expanded
                   :placeholder="$t('title.seleccione')"
                 >
+                <option value="0">TODOS</option>
                   <option
                     v-for="option in materiales"
                     :value="option.id"

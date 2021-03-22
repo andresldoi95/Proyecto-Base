@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Material;
 
 class CodigoPo extends Model
 {
@@ -10,6 +11,31 @@ class CodigoPo extends Model
     protected $fillable = [
         'empresa_id', 'descripcion', 'destino_id', 'material_id', 'origen_madera_anio_id', 'estado', 'creador_id', 'modificador_id'
     ];
+
+    protected $appends = [
+        'descripcion_material'
+    ];
+
+    public function getDescripcionMaterialAttribute()
+    {
+        if($this->material_id==0){
+            return 'Todos';
+        }elseif($this->material_id>0){
+
+            $material_descripcion = "";
+
+            try {
+                $material = Material::findOrFail($this->material_id);
+                $material_descripcion = $material->descripcion;
+            } catch (\Throwable $th) {
+            }
+            return $material_descripcion;
+
+        }else{
+            return 'No definido';
+
+        }
+    }
     public function material() {
         return $this->belongsTo('App\Material', 'material_id');
     }
