@@ -91,7 +91,7 @@
     >
         <template slot-scope="props">
             <b-table-column v-for="column in columns" :key="column.field" :field="column.field" :label="column.label" :numeric="column.numeric">
-                <b-button @click="$emit(column.event, props.row)" :type="column.type" :icon-left="column.icon-left" v-if="column.button"></b-button>
+                <b-button @click="$emit(column.event, props.row)" :type="column.type" :icon-left="column['icon-left']" v-if="column.button"></b-button>
                 <span v-else>
                     {{ props.row[column.field] }}
                 </span>

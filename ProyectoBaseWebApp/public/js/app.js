@@ -32209,7 +32209,7 @@ var render = function() {
                       ? _c("b-button", {
                           attrs: {
                             type: column.type,
-                            "icon-left": column.icon - _vm.left
+                            "icon-left": column["icon-left"]
                           },
                           on: {
                             click: function($event) {
